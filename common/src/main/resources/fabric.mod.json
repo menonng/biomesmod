@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "biomesmod",
+	"version": "${version}",
+	"name": "Biomes Mod",
+	"description": "Adds new biomes to the End.",
+	"authors": ["menonng"],
+	"contact": {
+		"sources": "https://github.com/menonng/biomesmod"
+	},
+	"license": "ARR",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["io.github.menonng.biomesmod.BiomesMod"]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.0",
+		"minecraft": "${minecraft_dependency}",
+		"java": ">=${java_version}",
+		"fabric-api": "*"
+	}
+}

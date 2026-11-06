@@ -1,0 +1,11 @@
+{
+	"schemaVersion": 1,
+	"id": "biomesmod-gametest",
+	"version": "1.0.0",
+	"name": "Biomes Mod (dev gametests)",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": ["io.github.menonng.biomesmod.test.BootGameTest"]
+	},
+	"depends": { "biomesmod": "*" }
+}

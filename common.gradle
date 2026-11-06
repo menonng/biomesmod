@@ -1,0 +1,55 @@
+// Applied by every versions/<mc>/build.gradle after Loom is applied.
+version = "${rootProject.mod_version}+${project.minecraft_version}"
+group = rootProject.maven_group
+base { archivesName = rootProject.archives_base_name }
+
+def commonDir = rootProject.file('common/src/main')
+sourceSets.main {
+	java.srcDir(new File(commonDir, 'java'))
+	resources.srcDir(new File(commonDir, 'resources'))
+}
+
+java {
+	toolchain.languageVersion = JavaLanguageVersion.of(project.java_version as int)
+	withSourcesJar()
+}
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.release = project.java_version as int
+}
+
+processResources {
+	def props = [
+		version: project.version,
+		minecraft_dependency: project.minecraft_dependency,
+		java_version: project.java_version,
+	]
+	inputs.properties props
+	filesMatching('fabric.mod.json') { expand props }
+}
+
+
+// Headless self-check: boots Fabric's gametest server (no EULA, no client),
+// verifies the biome is registered + placed in the End, then exits 0/1.
+loom {
+	runs {
+		selfCheck {
+			server()
+			name = "Self Check (${project.minecraft_version})"
+			runDir = "run/selfcheck"
+			vmArg '-Dfabric-api.gametest'
+			vmArg '-Dbiomesmod.selfcheck=true'
+		}
+	}
+}
+
+// Vanilla-compatible data pack (biome + features only) for Paper/vanilla servers.
+tasks.register('datapack', Zip) {
+	group = 'build'
+	description = 'Packages the worldgen data as a standalone data pack'
+	archiveFileName = "biomesmod-datapack-${project.version}.zip"
+	destinationDirectory = layout.buildDirectory.dir('datapack')
+	from(new File(commonDir, 'resources')) { include 'data/**' }
+	from('src/main/resources') { include 'data/**' }
+	from(rootProject.file("common/datapack/pack.mcmeta.${project.minecraft_version}")) { rename { 'pack.mcmeta' } }
+}

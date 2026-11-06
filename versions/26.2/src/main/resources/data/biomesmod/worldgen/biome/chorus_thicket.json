@@ -1,0 +1,42 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "attributes": {
+    "minecraft:visual/fog_color": "#5b2a6e",
+    "minecraft:visual/sky_color": "#1a0a24",
+    "minecraft:visual/water_fog_color": "#2b1240",
+    "minecraft:visual/ambient_particles": [
+      { "particle": { "type": "minecraft:portal" }, "probability": 0.012 }
+    ]
+  },
+  "effects": {
+    "water_color": "#8f5fd6"
+  },
+  "carvers": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    ["minecraft:end_gateway_return"],
+    [],
+    [],
+    [],
+    [],
+    ["biomesmod:dense_chorus_plant"]
+  ],
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      { "type": "minecraft:enderman", "weight": 10, "minCount": 4, "maxCount": 4 }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  }
+}

@@ -1,0 +1,24 @@
+plugins { id 'net.fabricmc.fabric-loom-remap' }
+apply from: rootProject.file('common.gradle')
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+// Dev-only source set (never packaged): 1.21.1 needs >=1 gametest for the selfCheck server to boot.
+sourceSets {
+	gametest {
+		compileClasspath += main.compileClasspath + main.output
+		runtimeClasspath += main.runtimeClasspath + main.output
+	}
+}
+loom {
+	mods {
+		biomesmod { sourceSet sourceSets.main }
+		'biomesmod-gametest' { sourceSet sourceSets.gametest }
+	}
+	runs.selfCheck.source(sourceSets.gametest)
+}
