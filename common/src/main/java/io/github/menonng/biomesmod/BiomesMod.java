@@ -1,5 +1,6 @@
 package io.github.menonng.biomesmod;
 
+import io.github.menonng.biomesmod.terrain.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ public final class BiomesMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModFeatures.register();
 		LOGGER.info("Loaded {} biome(s)", ModBiomes.ALL.size());
 
 		if (Boolean.getBoolean("biomesmod.selfcheck")) {

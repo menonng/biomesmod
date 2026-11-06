@@ -61,6 +61,8 @@ loom {
 			source sourceSets.gametest
 			vmArg '-Dfabric-api.gametest'
 			vmArg '-Dbiomesmod.selfcheck=true'
+			vmArg "-Dbiomesmod.showcase=${project.findProperty('showcase') ?: ''}"
+			vmArg "-Dbiomesmod.render=${project.findProperty('render') ?: 'false'}"
 		}
 	}
 }

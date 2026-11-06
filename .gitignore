@@ -14,3 +14,6 @@ bin/
 
 # Local test servers (not part of the mod source)
 servers/
+
+# Local Claude Code config (subagent definitions etc.)
+.claude/

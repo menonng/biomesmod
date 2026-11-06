@@ -3,6 +3,7 @@ package io.github.menonng.biomesmod;
 import com.mojang.datafixers.util.Pair;
 import io.github.menonng.biomesmod.compat.Ids;
 import io.github.menonng.biomesmod.compat.LevelCompat;
+import io.github.menonng.biomesmod.debug.DebugRender;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +30,9 @@ final class SelfCheck {
 	}
 
 	static void run(MinecraftServer server) {
+		if (!System.getProperty("biomesmod.showcase", "").isEmpty()) {
+			return; // a dev showcase owns this run
+		}
 		List<String> failures = new ArrayList<>();
 		var biomes = server.registryAccess().lookupOrThrow(Registries.BIOME);
 
@@ -57,6 +61,9 @@ final class SelfCheck {
 			} else {
 				BiomesMod.LOGGER.info("[selfcheck] {} OK - nearest at {} ({} ms); surface: {}", name, found.getFirst().toShortString(),
 						System.currentTimeMillis() - start, surfaceSummary(level, found.getFirst(), entry));
+				if (DebugRender.enabled()) {
+					DebugRender.render(level, found.getFirst(), 256, entry.key().toString().replaceAll(".*:([a-z0-9_]+)]$", "$1"));
+				}
 			}
 		}
 

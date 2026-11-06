@@ -4,6 +4,15 @@
 	"version": "1.0.0",
 	"name": "Biomes Mod (dev gametests)",
 	"environment": "*",
-	"mixins": ["biomesmod-gametest.mixins.json"],
-	"depends": { "biomesmod": "*" }
+	"mixins": [
+		"biomesmod-gametest.mixins.json"
+	],
+	"depends": {
+		"biomesmod": "*"
+	},
+	"entrypoints": {
+		"main": [
+			"io.github.menonng.biomesmod.test.Showcases"
+		]
+	}
 }
