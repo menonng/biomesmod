@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:shifted_noise",
+        "noise": "minecraft:continentalness",
+        "shift_x": "minecraft:shift_x",
+        "shift_y": 0.0,
+        "shift_z": "minecraft:shift_z",
+        "xz_scale": 0.25,
+        "y_scale": 0.0
+      },
+      "points": [
+        {
+          "location": -0.6,
+          "value": -0.6,
+          "derivative": 1.0
+        },
+        {
+          "location": -0.32,
+          "value": -0.2,
+          "derivative": 0.5
+        },
+        {
+          "location": -0.13,
+          "value": -0.155,
+          "derivative": 0.22
+        },
+        {
+          "location": 0.05,
+          "value": -0.095,
+          "derivative": 0.5
+        },
+        {
+          "location": 0.45,
+          "value": 0.45,
+          "derivative": 1.0
+        }
+      ]
+    }
+  }
+}
