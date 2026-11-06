@@ -7,8 +7,8 @@
       "biomes": [
         "biomesmod:cliffs_of_moher"
       ],
-      "spacing": 90,
-      "chance": 0.7,
+      "spacing": 40,
+      "chance": 1.0,
       "salt": 5750,
       "count": 4,
       "height": [

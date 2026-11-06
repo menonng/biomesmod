@@ -7,14 +7,14 @@
       "biomes": [
         "biomesmod:zhangjiajie"
       ],
-      "spacing": 100,
+      "spacing": 40,
       "chance": 1.0,
       "salt": 38456,
       "cluster_radius": [
-        26,
-        40
+        18,
+        28
       ],
-      "pillar_spacing": 10,
+      "pillar_spacing": 9,
       "density": 0.75,
       "pillar_radius": [
         3,

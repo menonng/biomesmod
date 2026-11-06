@@ -9,7 +9,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:lukewarm_ocean"
+      "minecraft:warm_ocean",
+      "minecraft:lukewarm_ocean",
+      "minecraft:deep_lukewarm_ocean"
     ]
   },
   "base": "minecraft:lukewarm_ocean",

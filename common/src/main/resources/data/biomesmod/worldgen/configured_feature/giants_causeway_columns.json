@@ -4,14 +4,14 @@
       "biomesmod:giants_causeway"
     ],
     "cell": 2.2,
-    "chance": 0.85,
+    "chance": 1.0,
     "length": [
       36,
       60
     ],
     "salt": 61323,
     "shape": "column_field",
-    "spacing": 70,
+    "spacing": 40,
     "width": [
       16,
       26

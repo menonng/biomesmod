@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:grove"
+      "minecraft:snowy_slopes",
+      "minecraft:grove",
+      "minecraft:meadow"
     ]
   },
   "base": "minecraft:grove",

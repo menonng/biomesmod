@@ -11,6 +11,8 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
+      "minecraft:jagged_peaks",
+      "minecraft:frozen_peaks",
       "minecraft:stony_peaks"
     ]
   },

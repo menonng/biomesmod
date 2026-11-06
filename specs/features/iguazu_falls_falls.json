@@ -7,12 +7,17 @@
       "biomes": [
         "biomesmod:iguazu_falls"
       ],
-      "spacing": 200,
+      "spacing": 48,
       "chance": 1.0,
       "salt": 80184,
+      "min_distance": 600,
       "radius": [
-        26,
-        36
+        18,
+        26
+      ],
+      "river_width": [
+        24,
+        40
       ],
       "max_relief": 40,
       "cap": {

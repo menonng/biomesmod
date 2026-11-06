@@ -234,97 +234,228 @@
   "overworld_regions": [
     {
       "name": "biomesmod:overworld_1",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:badlands": "biomesmod:grand_canyon",
-        "minecraft:beach": "biomesmod:coast_eroded_shore",
+        "minecraft:badlands": "biomesmod:dallol",
+        "minecraft:bamboo_jungle": "biomesmod:daintree",
+        "minecraft:beach": "biomesmod:cliffs_of_moher",
         "minecraft:birch_forest": "biomesmod:plitvice_lakes",
         "minecraft:cold_ocean": "biomesmod:alaid_volcano",
+        "minecraft:dark_forest": "biomesmod:plitvice_lakes",
+        "minecraft:deep_cold_ocean": "biomesmod:alaid_volcano",
+        "minecraft:deep_frozen_ocean": "biomesmod:ross_ice_shelf",
+        "minecraft:deep_lukewarm_ocean": "biomesmod:coast_archipelago",
+        "minecraft:deep_ocean": "biomesmod:ushishir_caldera",
         "minecraft:desert": "biomesmod:dallol",
         "minecraft:eroded_badlands": "biomesmod:dallol",
-        "minecraft:forest": "biomesmod:gotjawal",
+        "minecraft:flower_forest": "biomesmod:plitvice_lakes",
+        "minecraft:forest": "biomesmod:plitvice_lakes",
         "minecraft:frozen_ocean": "biomesmod:ross_ice_shelf",
-        "minecraft:frozen_peaks": "biomesmod:denali_massif",
-        "minecraft:grove": "biomesmod:sarek",
-        "minecraft:ice_spikes": "biomesmod:mcmurdo_dry_valleys",
-        "minecraft:jagged_peaks": "biomesmod:denali_massif",
-        "minecraft:jungle": "biomesmod:iguazu_falls",
+        "minecraft:frozen_peaks": "biomesmod:aletsch_glacier",
+        "minecraft:grove": "biomesmod:antarctic_peninsula",
+        "minecraft:ice_spikes": "biomesmod:franz_josef_land",
+        "minecraft:jagged_peaks": "biomesmod:aletsch_glacier",
+        "minecraft:jungle": "biomesmod:daintree",
         "minecraft:lukewarm_ocean": "biomesmod:coast_archipelago",
-        "minecraft:mangrove_swamp": "biomesmod:everglades",
-        "minecraft:meadow": "biomesmod:lauterbrunnen",
+        "minecraft:mangrove_swamp": "biomesmod:amazon_varzea",
+        "minecraft:meadow": "biomesmod:antarctic_peninsula",
         "minecraft:ocean": "biomesmod:ushishir_caldera",
-        "minecraft:old_growth_spruce_taiga": "biomesmod:magellanic_fjords",
+        "minecraft:old_growth_birch_forest": "biomesmod:plitvice_lakes",
+        "minecraft:old_growth_pine_taiga": "biomesmod:coast_sunken_pines",
+        "minecraft:old_growth_spruce_taiga": "biomesmod:coast_sunken_pines",
         "minecraft:plains": "biomesmod:coast_polder_tulips",
-        "minecraft:savanna": "biomesmod:pamukkale",
-        "minecraft:savanna_plateau": "biomesmod:socotra",
-        "minecraft:snowy_beach": "biomesmod:svalbard_coast",
+        "minecraft:savanna": "biomesmod:bromo_tengger",
+        "minecraft:savanna_plateau": "biomesmod:bromo_tengger",
+        "minecraft:snowy_beach": "biomesmod:cliffs_of_moher",
         "minecraft:snowy_plains": "biomesmod:franz_josef_land",
         "minecraft:snowy_slopes": "biomesmod:antarctic_peninsula",
+        "minecraft:snowy_taiga": "biomesmod:franz_josef_land",
         "minecraft:sparse_jungle": "biomesmod:daintree",
-        "minecraft:stony_peaks": "biomesmod:puna_de_atacama",
+        "minecraft:stony_peaks": "biomesmod:aletsch_glacier",
         "minecraft:stony_shore": "biomesmod:cliffs_of_moher",
-        "minecraft:sunflower_plains": "biomesmod:orkhon_steppe",
+        "minecraft:sunflower_plains": "biomesmod:coast_polder_tulips",
         "minecraft:swamp": "biomesmod:amazon_varzea",
         "minecraft:taiga": "biomesmod:coast_sunken_pines",
-        "minecraft:warm_ocean": "biomesmod:great_barrier_reef",
+        "minecraft:warm_ocean": "biomesmod:coast_archipelago",
         "minecraft:windswept_forest": "biomesmod:geirangerfjord",
-        "minecraft:windswept_gravelly_hills": "biomesmod:krenitsyn_caldera",
+        "minecraft:windswept_gravelly_hills": "biomesmod:geirangerfjord",
+        "minecraft:windswept_hills": "biomesmod:geirangerfjord",
         "minecraft:windswept_savanna": "biomesmod:bromo_tengger",
-        "minecraft:wooded_badlands": "biomesmod:grand_canyon"
+        "minecraft:wooded_badlands": "biomesmod:dallol"
       }
     },
     {
       "name": "biomesmod:overworld_2",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:badlands": "biomesmod:lake_gairdner",
-        "minecraft:beach": "biomesmod:giants_causeway",
+        "minecraft:badlands": "biomesmod:dasht_e_lut",
+        "minecraft:bamboo_jungle": "biomesmod:iguazu_falls",
+        "minecraft:beach": "biomesmod:coast_eroded_cliffs",
+        "minecraft:deep_lukewarm_ocean": "biomesmod:exuma_cays",
         "minecraft:desert": "biomesmod:dasht_e_lut",
         "minecraft:eroded_badlands": "biomesmod:dasht_e_lut",
-        "minecraft:frozen_peaks": "biomesmod:aletsch_glacier",
-        "minecraft:jungle": "biomesmod:zhangjiajie",
+        "minecraft:forest": "biomesmod:gotjawal",
+        "minecraft:frozen_peaks": "biomesmod:cordillera_darwin",
+        "minecraft:grove": "biomesmod:lauterbrunnen",
+        "minecraft:ice_spikes": "biomesmod:lake_vostok_plateau",
+        "minecraft:jagged_peaks": "biomesmod:cordillera_darwin",
+        "minecraft:jungle": "biomesmod:iguazu_falls",
         "minecraft:lukewarm_ocean": "biomesmod:exuma_cays",
+        "minecraft:mangrove_swamp": "biomesmod:everglades",
+        "minecraft:meadow": "biomesmod:lauterbrunnen",
+        "minecraft:old_growth_pine_taiga": "biomesmod:grand_prismatic",
+        "minecraft:old_growth_spruce_taiga": "biomesmod:grand_prismatic",
         "minecraft:plains": "biomesmod:devils_tower",
+        "minecraft:savanna": "biomesmod:pamukkale",
+        "minecraft:savanna_plateau": "biomesmod:pamukkale",
+        "minecraft:snowy_beach": "biomesmod:coast_eroded_cliffs",
         "minecraft:snowy_plains": "biomesmod:lake_vostok_plateau",
-        "minecraft:snowy_slopes": "biomesmod:moraine_lake",
-        "minecraft:stony_peaks": "biomesmod:tre_cime",
+        "minecraft:snowy_slopes": "biomesmod:lauterbrunnen",
+        "minecraft:snowy_taiga": "biomesmod:lake_vostok_plateau",
+        "minecraft:sparse_jungle": "biomesmod:iguazu_falls",
+        "minecraft:stony_peaks": "biomesmod:cordillera_darwin",
         "minecraft:stony_shore": "biomesmod:coast_eroded_cliffs",
+        "minecraft:sunflower_plains": "biomesmod:devils_tower",
+        "minecraft:swamp": "biomesmod:everglades",
         "minecraft:taiga": "biomesmod:grand_prismatic",
-        "minecraft:warm_ocean": "biomesmod:ha_long_bay"
+        "minecraft:warm_ocean": "biomesmod:exuma_cays",
+        "minecraft:windswept_forest": "biomesmod:krenitsyn_caldera",
+        "minecraft:windswept_gravelly_hills": "biomesmod:krenitsyn_caldera",
+        "minecraft:windswept_hills": "biomesmod:krenitsyn_caldera",
+        "minecraft:windswept_savanna": "biomesmod:pamukkale",
+        "minecraft:wooded_badlands": "biomesmod:dasht_e_lut"
       }
     },
     {
       "name": "biomesmod:overworld_3",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:badlands": "biomesmod:monument_valley",
-        "minecraft:desert": "biomesmod:lencois_maranhenses",
-        "minecraft:frozen_peaks": "biomesmod:cordillera_darwin",
-        "minecraft:plains": "biomesmod:patagonian_steppe",
-        "minecraft:stony_shore": "biomesmod:lofoten_reine"
+        "minecraft:badlands": "biomesmod:grand_canyon",
+        "minecraft:bamboo_jungle": "biomesmod:zhangjiajie",
+        "minecraft:beach": "biomesmod:coast_eroded_shore",
+        "minecraft:deep_lukewarm_ocean": "biomesmod:great_barrier_reef",
+        "minecraft:desert": "biomesmod:grand_canyon",
+        "minecraft:eroded_badlands": "biomesmod:grand_canyon",
+        "minecraft:frozen_peaks": "biomesmod:denali_massif",
+        "minecraft:grove": "biomesmod:moraine_lake",
+        "minecraft:ice_spikes": "biomesmod:mcmurdo_dry_valleys",
+        "minecraft:jagged_peaks": "biomesmod:denali_massif",
+        "minecraft:jungle": "biomesmod:zhangjiajie",
+        "minecraft:lukewarm_ocean": "biomesmod:great_barrier_reef",
+        "minecraft:meadow": "biomesmod:moraine_lake",
+        "minecraft:old_growth_pine_taiga": "biomesmod:magellanic_fjords",
+        "minecraft:old_growth_spruce_taiga": "biomesmod:magellanic_fjords",
+        "minecraft:plains": "biomesmod:orkhon_steppe",
+        "minecraft:savanna": "biomesmod:socotra",
+        "minecraft:savanna_plateau": "biomesmod:socotra",
+        "minecraft:snowy_beach": "biomesmod:coast_eroded_shore",
+        "minecraft:snowy_plains": "biomesmod:mcmurdo_dry_valleys",
+        "minecraft:snowy_slopes": "biomesmod:moraine_lake",
+        "minecraft:snowy_taiga": "biomesmod:mcmurdo_dry_valleys",
+        "minecraft:sparse_jungle": "biomesmod:zhangjiajie",
+        "minecraft:stony_peaks": "biomesmod:denali_massif",
+        "minecraft:stony_shore": "biomesmod:coast_eroded_shore",
+        "minecraft:sunflower_plains": "biomesmod:orkhon_steppe",
+        "minecraft:taiga": "biomesmod:magellanic_fjords",
+        "minecraft:warm_ocean": "biomesmod:great_barrier_reef",
+        "minecraft:windswept_savanna": "biomesmod:socotra",
+        "minecraft:wooded_badlands": "biomesmod:grand_canyon"
       }
     },
     {
       "name": "biomesmod:overworld_4",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:badlands": "biomesmod:salar_de_tara",
-        "minecraft:desert": "biomesmod:salar_de_uyuni",
-        "minecraft:frozen_peaks": "biomesmod:patagonian_icefield"
+        "minecraft:badlands": "biomesmod:lake_gairdner",
+        "minecraft:beach": "biomesmod:giants_causeway",
+        "minecraft:deep_lukewarm_ocean": "biomesmod:ha_long_bay",
+        "minecraft:desert": "biomesmod:lake_gairdner",
+        "minecraft:eroded_badlands": "biomesmod:lake_gairdner",
+        "minecraft:frozen_peaks": "biomesmod:patagonian_icefield",
+        "minecraft:grove": "biomesmod:sarek",
+        "minecraft:jagged_peaks": "biomesmod:patagonian_icefield",
+        "minecraft:lukewarm_ocean": "biomesmod:ha_long_bay",
+        "minecraft:meadow": "biomesmod:sarek",
+        "minecraft:plains": "biomesmod:patagonian_steppe",
+        "minecraft:snowy_beach": "biomesmod:giants_causeway",
+        "minecraft:snowy_slopes": "biomesmod:sarek",
+        "minecraft:stony_peaks": "biomesmod:patagonian_icefield",
+        "minecraft:stony_shore": "biomesmod:giants_causeway",
+        "minecraft:sunflower_plains": "biomesmod:patagonian_steppe",
+        "minecraft:warm_ocean": "biomesmod:ha_long_bay",
+        "minecraft:wooded_badlands": "biomesmod:lake_gairdner"
       }
     },
     {
       "name": "biomesmod:overworld_5",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:desert": "biomesmod:sossusvlei"
+        "minecraft:badlands": "biomesmod:lencois_maranhenses",
+        "minecraft:beach": "biomesmod:lofoten_reine",
+        "minecraft:desert": "biomesmod:lencois_maranhenses",
+        "minecraft:eroded_badlands": "biomesmod:lencois_maranhenses",
+        "minecraft:frozen_peaks": "biomesmod:puna_de_atacama",
+        "minecraft:jagged_peaks": "biomesmod:puna_de_atacama",
+        "minecraft:snowy_beach": "biomesmod:lofoten_reine",
+        "minecraft:stony_peaks": "biomesmod:puna_de_atacama",
+        "minecraft:stony_shore": "biomesmod:lofoten_reine",
+        "minecraft:wooded_badlands": "biomesmod:lencois_maranhenses"
       }
     },
     {
       "name": "biomesmod:overworld_6",
-      "weight": 2,
+      "weight": 1,
       "replace": {
-        "minecraft:desert": "biomesmod:wadi_rum"
+        "minecraft:badlands": "biomesmod:monument_valley",
+        "minecraft:beach": "biomesmod:svalbard_coast",
+        "minecraft:desert": "biomesmod:monument_valley",
+        "minecraft:eroded_badlands": "biomesmod:monument_valley",
+        "minecraft:frozen_peaks": "biomesmod:tre_cime",
+        "minecraft:jagged_peaks": "biomesmod:tre_cime",
+        "minecraft:snowy_beach": "biomesmod:svalbard_coast",
+        "minecraft:stony_peaks": "biomesmod:tre_cime",
+        "minecraft:stony_shore": "biomesmod:svalbard_coast",
+        "minecraft:wooded_badlands": "biomesmod:monument_valley"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_7",
+      "weight": 1,
+      "replace": {
+        "minecraft:badlands": "biomesmod:salar_de_tara",
+        "minecraft:desert": "biomesmod:salar_de_tara",
+        "minecraft:eroded_badlands": "biomesmod:salar_de_tara",
+        "minecraft:wooded_badlands": "biomesmod:salar_de_tara"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_8",
+      "weight": 1,
+      "replace": {
+        "minecraft:badlands": "biomesmod:salar_de_uyuni",
+        "minecraft:desert": "biomesmod:salar_de_uyuni",
+        "minecraft:eroded_badlands": "biomesmod:salar_de_uyuni",
+        "minecraft:wooded_badlands": "biomesmod:salar_de_uyuni"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_9",
+      "weight": 1,
+      "replace": {
+        "minecraft:badlands": "biomesmod:sossusvlei",
+        "minecraft:desert": "biomesmod:sossusvlei",
+        "minecraft:eroded_badlands": "biomesmod:sossusvlei",
+        "minecraft:wooded_badlands": "biomesmod:sossusvlei"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_10",
+      "weight": 1,
+      "replace": {
+        "minecraft:badlands": "biomesmod:wadi_rum",
+        "minecraft:desert": "biomesmod:wadi_rum",
+        "minecraft:eroded_badlands": "biomesmod:wadi_rum",
+        "minecraft:wooded_badlands": "biomesmod:wadi_rum"
       }
     }
   ],
@@ -385,6 +516,19 @@
         "top": "minecraft:smooth_basalt",
         "under": "minecraft:basalt",
         "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:grand_canyon",
+        "top": "minecraft:red_sand",
+        "under": "minecraft:orange_terracotta",
+        "under_depth": 4,
+        "top_patches": [
+          {
+            "block": "minecraft:coarse_dirt",
+            "noise": "minecraft:surface",
+            "min": 0.25
+          }
+        ]
       },
       {
         "biome": "biomesmod:lake_gairdner",

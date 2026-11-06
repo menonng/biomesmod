@@ -11,7 +11,8 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:ocean"
+      "minecraft:ocean",
+      "minecraft:deep_ocean"
     ]
   },
   "base": "minecraft:ocean",

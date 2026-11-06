@@ -7,19 +7,20 @@
       "biomes": [
         "biomesmod:devils_tower"
       ],
-      "spacing": 300,
-      "chance": 0.9,
+      "spacing": 32,
+      "chance": 1.0,
       "salt": 54194,
+      "min_distance": 1000,
       "radius": [
-        13,
-        17
+        8,
+        11
       ],
       "height": [
-        60,
-        85
+        42,
+        60
       ],
       "flute": 0.12,
-      "columns": 40
+      "columns": 32
     }
   },
   "placement": []

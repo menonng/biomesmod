@@ -12,8 +12,8 @@
     },
     "chance": 1.0,
     "cluster_radius": [
-      26,
-      40
+      18,
+      28
     ],
     "density": 0.75,
     "height": [
@@ -24,10 +24,10 @@
       3,
       6
     ],
-    "pillar_spacing": 10,
+    "pillar_spacing": 9,
     "salt": 38456,
     "shape": "pillar_forest",
-    "spacing": 100
+    "spacing": 40
   },
   "type": "biomesmod:landform"
 }

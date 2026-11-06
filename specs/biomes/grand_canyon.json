@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
+      "minecraft:desert",
       "minecraft:badlands",
+      "minecraft:eroded_badlands",
       "minecraft:wooded_badlands"
     ]
   },
@@ -37,5 +39,17 @@
     }
   },
   "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:coarse_dirt",
+        "noise": "minecraft:surface",
+        "min": 0.25
+      }
+    ],
+    "top": "minecraft:red_sand",
+    "under": "minecraft:orange_terracotta",
+    "under_depth": 4
+  },
   "carvers": "underground"
 }

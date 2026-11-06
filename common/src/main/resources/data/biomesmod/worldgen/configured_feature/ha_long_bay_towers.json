@@ -34,7 +34,7 @@
     "rise_from": "sea_level",
     "salt": 14139,
     "shape": "pillar_forest",
-    "spacing": 110
+    "spacing": 56
   },
   "type": "biomesmod:landform"
 }

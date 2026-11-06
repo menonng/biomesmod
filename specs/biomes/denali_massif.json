@@ -12,7 +12,8 @@
   "placement": {
     "replace": [
       "minecraft:jagged_peaks",
-      "minecraft:frozen_peaks"
+      "minecraft:frozen_peaks",
+      "minecraft:stony_peaks"
     ]
   },
   "base": "minecraft:jagged_peaks",

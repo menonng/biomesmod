@@ -18,7 +18,7 @@
     "biomes": [
       "biomesmod:dallol"
     ],
-    "chance": 0.85,
+    "chance": 1.0,
     "chimneys": 0.8,
     "depth": 2,
     "pool_radius": [
@@ -28,7 +28,7 @@
     "pools": 14,
     "salt": 25499,
     "shape": "hot_spring",
-    "spacing": 90,
+    "spacing": 48,
     "spread": [
       18,
       32

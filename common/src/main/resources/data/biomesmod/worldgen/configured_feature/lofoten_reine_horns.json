@@ -7,23 +7,28 @@
     "biomes": [
       "biomesmod:lofoten_reine"
     ],
-    "chance": 0.75,
+    "chance": 1.0,
     "columns": 0,
     "count": 2,
     "flute": 0.0,
     "height": [
-      45,
-      75
+      40,
+      64
     ],
     "max_relief": 80,
+    "min_distance": 160,
     "radius": [
-      12,
-      18
+      8,
+      12
     ],
     "rise_from": "sea_level",
     "salt": 63473,
     "shape": "monolith",
-    "spacing": 150,
+    "spacing": 36,
+    "spread": [
+      10,
+      16
+    ],
     "taper": 0.9
   },
   "type": "biomesmod:landform"

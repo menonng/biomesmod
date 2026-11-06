@@ -7,21 +7,23 @@
       "biomes": [
         "biomesmod:ushishir_caldera"
       ],
-      "spacing": 220,
+      "spacing": 48,
       "chance": 1.0,
       "salt": 15879,
+      "min_distance": 700,
       "floor": "sea",
+      "breach_width": 0.2,
       "radius": [
-        36,
-        52
+        26,
+        36
       ],
       "rim_height": [
-        20,
-        32
+        16,
+        26
       ],
       "flank": [
-        18,
-        28
+        12,
+        18
       ],
       "rise_from": "sea_level",
       "cap": {

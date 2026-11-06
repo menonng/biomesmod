@@ -3,20 +3,21 @@
     "biomes": [
       "biomesmod:devils_tower"
     ],
-    "chance": 0.9,
-    "columns": 40,
+    "chance": 1.0,
+    "columns": 32,
     "flute": 0.12,
     "height": [
-      60,
-      85
+      42,
+      60
     ],
+    "min_distance": 1000,
     "radius": [
-      13,
-      17
+      8,
+      11
     ],
     "salt": 54194,
     "shape": "monolith",
-    "spacing": 300
+    "spacing": 32
   },
   "type": "biomesmod:landform"
 }

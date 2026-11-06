@@ -5,8 +5,9 @@
     ],
     "depth": 7,
     "dike_height": 2,
-    "dike_width": 5,
-    "edge_blend": 10,
+    "dike_width": 4,
+    "edge_blend": 6,
+    "edge_noise": 0.2,
     "mode": "depression",
     "relief": 1.5
   },

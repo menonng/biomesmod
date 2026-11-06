@@ -7,18 +7,23 @@
       "biomes": [
         "biomesmod:tre_cime"
       ],
-      "spacing": 240,
-      "chance": 0.9,
+      "spacing": 40,
+      "chance": 1.0,
       "salt": 53627,
+      "min_distance": 700,
       "count": 3,
-      "taper": 0.8,
-      "radius": [
+      "spread": [
         10,
         14
       ],
+      "taper": 0.8,
+      "radius": [
+        6,
+        9
+      ],
       "height": [
-        60,
-        90
+        48,
+        70
       ],
       "columns": 0,
       "flute": 0.0,

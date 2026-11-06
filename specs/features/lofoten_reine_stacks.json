@@ -7,8 +7,8 @@
       "biomes": [
         "biomesmod:lofoten_reine"
       ],
-      "spacing": 80,
-      "chance": 0.7,
+      "spacing": 40,
+      "chance": 1.0,
       "salt": 34152,
       "count": 6
     }

@@ -8,12 +8,12 @@
         "biomesmod:grand_canyon"
       ],
       "plateau": 16,
-      "depth": 80,
-      "width": 160,
-      "floor_width": 14,
+      "depth": 70,
+      "width": 110,
+      "floor_width": 12,
       "benches": 6,
-      "spacing": 560,
-      "side_spacing": 170
+      "spacing": 210,
+      "side_spacing": 110
     }
   },
   "placement": []

@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:sparse_jungle"
+      "minecraft:jungle",
+      "minecraft:sparse_jungle",
+      "minecraft:bamboo_jungle"
     ]
   },
   "base": "minecraft:jungle",

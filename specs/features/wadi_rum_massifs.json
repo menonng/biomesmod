@@ -7,12 +7,21 @@
       "biomes": [
         "biomesmod:wadi_rum"
       ],
-      "spacing": 170,
-      "chance": 0.95,
+      "spacing": 40,
+      "chance": 1.0,
       "salt": 3863,
+      "min_distance": 110,
       "dome": 0.6,
       "clefts": 0.6,
       "thumbs": 0.0,
+      "radius": [
+        14,
+        24
+      ],
+      "height": [
+        30,
+        55
+      ],
       "palette": {
         "strata": [
           {

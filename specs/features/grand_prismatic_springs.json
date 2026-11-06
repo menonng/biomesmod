@@ -7,9 +7,10 @@
       "biomes": [
         "biomesmod:grand_prismatic"
       ],
-      "spacing": 120,
-      "chance": 0.9,
+      "spacing": 40,
+      "chance": 1.0,
       "salt": 51622,
+      "min_distance": 180,
       "pool_radius": [
         10,
         18

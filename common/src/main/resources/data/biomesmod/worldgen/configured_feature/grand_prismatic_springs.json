@@ -4,14 +4,15 @@
     "biomes": [
       "biomesmod:grand_prismatic"
     ],
-    "chance": 0.9,
+    "chance": 1.0,
+    "min_distance": 180,
     "pool_radius": [
       10,
       18
     ],
     "salt": 51622,
     "shape": "hot_spring",
-    "spacing": 120
+    "spacing": 40
   },
   "type": "biomesmod:landform"
 }

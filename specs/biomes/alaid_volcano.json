@@ -11,12 +11,13 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:cold_ocean"
+      "minecraft:cold_ocean",
+      "minecraft:deep_cold_ocean"
     ]
   },
   "base": "minecraft:cold_ocean",
   "climate": {
-    "temperature": 0.0,
+    "temperature": 0.3,
     "downfall": 0.8
   },
   "colors": {

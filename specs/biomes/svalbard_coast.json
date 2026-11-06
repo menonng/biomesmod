@@ -11,6 +11,8 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
+      "minecraft:beach",
+      "minecraft:stony_shore",
       "minecraft:snowy_beach"
     ]
   },

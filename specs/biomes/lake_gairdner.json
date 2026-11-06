@@ -11,7 +11,10 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:badlands"
+      "minecraft:desert",
+      "minecraft:badlands",
+      "minecraft:eroded_badlands",
+      "minecraft:wooded_badlands"
     ]
   },
   "base": "minecraft:desert",

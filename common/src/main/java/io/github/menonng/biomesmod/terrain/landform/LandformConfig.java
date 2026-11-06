@@ -32,11 +32,14 @@ public final class LandformConfig implements FeatureConfiguration {
 			Cap.CODEC.optionalFieldOf("cap").forGetter(c -> c.cap),
 			Span.CODEC.optionalFieldOf("base_y_range").forGetter(c -> c.baseYRange),
 			Codec.intRange(0, 512).optionalFieldOf("max_relief").forGetter(c -> c.maxRelief),
-			RISE.optionalFieldOf("rise_from", "ground").forGetter(c -> c.riseFrom)
+			RISE.optionalFieldOf("rise_from", "ground").forGetter(c -> c.riseFrom),
+			Codec.intRange(0, 4096).optionalFieldOf("min_distance", 0).forGetter(c -> c.minDistance)
 	).apply(i, LandformConfig::new));
 
 	private final LandformShape shape;
 	final int spacing;
+	/** Minimum centre distance between two instances (unique landmarks: Devils Tower, Alaid). */
+	final int minDistance;
 	final float chance;
 	final float jitter;
 	final int salt;
@@ -52,6 +55,8 @@ public final class LandformConfig implements FeatureConfiguration {
 
 	/** Resolved instances per (generator, seed, cell). Never shared between configs. */
 	final ConcurrentHashMap<CellKey, Object> cache = new ConcurrentHashMap<>();
+	final ConcurrentHashMap<CellKey, Object> rawCache = new ConcurrentHashMap<>();
+	final ConcurrentHashMap<CellKey, Object> superCache = new ConcurrentHashMap<>();
 
 	record CellKey(Object generator, long seed, int cx, int cz) {
 		@Override
@@ -67,7 +72,7 @@ public final class LandformConfig implements FeatureConfiguration {
 
 	public LandformConfig(LandformShape shape, int spacing, float chance, float jitter, int salt, BiomeFilter biomes,
 			boolean requireInside, Optional<StrataPalette> palette, List<BlockState> talusBlocks, List<BlockState> surfaceBlocks,
-			Optional<Cap> cap, Optional<Span> baseYRange, Optional<Integer> maxRelief, String riseFrom) {
+			Optional<Cap> cap, Optional<Span> baseYRange, Optional<Integer> maxRelief, String riseFrom, int minDistance) {
 		this.shape = shape;
 		this.spacing = spacing;
 		this.chance = chance;
@@ -82,6 +87,7 @@ public final class LandformConfig implements FeatureConfiguration {
 		this.baseYRange = baseYRange;
 		this.maxRelief = maxRelief;
 		this.riseFrom = riseFrom;
+		this.minDistance = minDistance;
 	}
 
 	public LandformShape shape() {
@@ -115,6 +121,6 @@ public final class LandformConfig implements FeatureConfiguration {
 	/** Builds a config in code (showcase/tests) from a shape with all other settings at their defaults. */
 	public static LandformConfig of(LandformShape shape, int spacing, float chance, int salt) {
 		return new LandformConfig(shape, spacing, chance, 0.75f, salt, BiomeFilter.ANY, true, Optional.empty(), List.of(),
-				List.of(), Optional.empty(), Optional.empty(), Optional.empty(), "ground");
+				List.of(), Optional.empty(), Optional.empty(), Optional.empty(), "ground", 0);
 	}
 }

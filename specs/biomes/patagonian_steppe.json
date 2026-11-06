@@ -11,7 +11,8 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:plains"
+      "minecraft:plains",
+      "minecraft:sunflower_plains"
     ]
   },
   "base": "minecraft:plains",

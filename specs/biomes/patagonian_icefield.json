@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:frozen_peaks"
+      "minecraft:jagged_peaks",
+      "minecraft:frozen_peaks",
+      "minecraft:stony_peaks"
     ]
   },
   "base": "minecraft:frozen_peaks",

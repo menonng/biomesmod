@@ -19,8 +19,9 @@ import net.minecraft.world.level.block.state.BlockState;
  * {@code flatten}: a dead-flat pan (Salar de Uyuni, Lake Gairdner). Optional 1-block water film in noise patches
  * (the Uyuni mirror) and a polygonal crust pattern of raised salt ridges drawn with a second surface block.
  *
- * @param level         absolute pan Y; default sea level + {@code offset}
- * @param offset        pan height above sea level when {@code level} is absent
+ * @param level         absolute pan Y; default: the regional terrain height (heavily smoothed) + {@code offset},
+ *                      never below sea level + 1, so a pan on a plateau stays on the plateau instead of carving a pit
+ * @param offset        added to the regional height when {@code level} is absent
  * @param relief        amplitude (blocks) of a very gentle undulation; keep under 1 for a true pan
  * @param waterCoverage fraction of the pan covered by a 1-block water film (0 = dry)
  * @param waterScale    size of the film patches
@@ -33,7 +34,7 @@ public record FlattenMode(Common common, Optional<Integer> level, int offset, do
 	public static final MapCodec<FlattenMode> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			Common.MAP_CODEC.forGetter(FlattenMode::common),
 			Codec.INT.optionalFieldOf("level").forGetter(FlattenMode::level),
-			Codec.intRange(-64, 128).optionalFieldOf("offset", 2).forGetter(FlattenMode::offset),
+			Codec.intRange(-64, 128).optionalFieldOf("offset", 0).forGetter(FlattenMode::offset),
 			Codec.doubleRange(0, 8).optionalFieldOf("relief", 0.0).forGetter(FlattenMode::relief),
 			Codec.doubleRange(0, 1).optionalFieldOf("water_coverage", 0.0).forGetter(FlattenMode::waterCoverage),
 			Codec.doubleRange(8, 4096).optionalFieldOf("water_scale", 160.0).forGetter(FlattenMode::waterScale),
@@ -68,8 +69,15 @@ public record FlattenMode(Common common, Optional<Integer> level, int offset, do
 		}
 
 		@Override
+		public void prepare(ChunkFrame frame) {
+			if (level.isEmpty()) {
+				frame.prepareBase(8);
+			}
+		}
+
+		@Override
 		public void column(ChunkFrame frame, int x, int z, int i, Column out) {
-			int pan = level.orElse(frame.seaLevel + offset);
+			int pan = level.orElseGet(() -> Math.max(frame.seaLevel + 1, (int) Math.floor(frame.blurBase(x, z) + 0.5) + offset));
 			out.ground = pan + (relief > 0 ? relief * noise.fbm(x, z, 220, 2) : 0);
 			if (waterCoverage > 0 && noise.fbm(x + 4111, z - 977, waterScale, 3) > waterT) {
 				out.water = pan + 2; // one block of water over the pan

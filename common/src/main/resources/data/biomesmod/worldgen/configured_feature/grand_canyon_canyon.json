@@ -4,13 +4,13 @@
     "biomes": [
       "biomesmod:grand_canyon"
     ],
-    "depth": 80,
-    "floor_width": 14,
+    "depth": 70,
+    "floor_width": 12,
     "mode": "canyon",
     "plateau": 16,
-    "side_spacing": 170,
-    "spacing": 560,
-    "width": 160
+    "side_spacing": 110,
+    "spacing": 210,
+    "width": 110
   },
   "type": "biomesmod:terrain_shaper"
 }

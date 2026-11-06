@@ -12,13 +12,18 @@
     },
     "chance": 1.0,
     "max_relief": 40,
+    "min_distance": 600,
     "radius": [
-      26,
-      36
+      18,
+      26
+    ],
+    "river_width": [
+      24,
+      40
     ],
     "salt": 80184,
     "shape": "cascade",
-    "spacing": 200
+    "spacing": 48
   },
   "type": "biomesmod:landform"
 }

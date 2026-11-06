@@ -21,10 +21,22 @@
     "cap": {"block": {...}, "under": {...}, "depth": 1, "feature": "minecraft:pine_checked", "chance": 0.05},
     "base_y_range": [1, 400],                  // allowed centre floor, relative to sea level
     "max_relief": 24,                          // max floor difference over the footprint
-    "rise_from": "ground"                      // or "sea_level": heights count from the sea surface
+    "rise_from": "ground",                     // or "sea_level": heights count from the sea surface
+    "min_distance": 0                          // > 0: at most one instance per min_distance super-cell (unique landmarks)
   }
 }
 ```
+
+### How instances are chosen
+
+Mod biome patches are often only 50-250 blocks across. Instances are therefore picked on a **dense** grid (`spacing` about 0.6-1x the landform's reach) and thinned afterwards:
+
+* **Multiple tries.** Each cell tries up to 6 positions (deterministic from the cell seed) and keeps the first one that passes the height range, biome, shape and footprint checks.
+* **Footprint check.** 16 points at 0.65x the reach and 8 at 0.4x must lie in the biome. The outer part is low talus or skirt, which may run slightly past the edge.
+* **Separation** (`min_distance` 0). A candidate is dropped if a neighbouring candidate with a higher hash priority stands closer than 0.75x their combined reach.
+* **Unique landmarks** (`min_distance` > 0). The world is cut into super-cells of `min_distance`. Each keeps only its highest-priority candidate whose centre lies in the cell's central 70%, so winners are at least 0.3x `min_distance` apart, and chained rejections cannot empty a region. Examples: Devils Tower 1000, Alaid 900, calderas 700.
+
+All of this is a pure function of the seed and the cells, with caches. `SelfCheck` logs a per-biome breakdown of why candidates were rejected (`LandformFeature.diagnose`).
 
 Ranges such as `[8, 20]` are drawn separately for each instance, so no two look alike.
 

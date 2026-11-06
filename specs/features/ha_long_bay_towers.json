@@ -7,7 +7,7 @@
       "biomes": [
         "biomesmod:ha_long_bay"
       ],
-      "spacing": 110,
+      "spacing": 56,
       "chance": 1.0,
       "salt": 14139,
       "rise_from": "sea_level",

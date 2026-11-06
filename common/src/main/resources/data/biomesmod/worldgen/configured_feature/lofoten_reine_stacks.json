@@ -3,11 +3,11 @@
     "biomes": [
       "biomesmod:lofoten_reine"
     ],
-    "chance": 0.7,
+    "chance": 1.0,
     "count": 6,
     "salt": 34152,
     "shape": "sea_stack",
-    "spacing": 80
+    "spacing": 40
   },
   "type": "biomesmod:landform"
 }

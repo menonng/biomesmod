@@ -7,13 +7,13 @@
       "biomes": [
         "biomesmod:coast_archipelago"
       ],
-      "coverage": 0.24,
-      "scale": 60,
+      "coverage": 0.35,
+      "scale": 70,
       "height": 12,
       "beach": 2,
-      "depth": 7,
+      "depth": 5,
       "rocky": 0.2,
-      "edge_blend": 40
+      "edge_blend": 32
     }
   },
   "placement": []

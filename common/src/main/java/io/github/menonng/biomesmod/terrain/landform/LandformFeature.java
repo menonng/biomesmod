@@ -82,17 +82,140 @@ public final class LandformFeature extends Feature<LandformConfig> {
 		return v == NONE ? null : (Landform) v;
 	}
 
+	/** Cached candidate of cell (gx, gz) before the separation rule (all other checks passed), or null. */
+	static Landform rawInstance(WorldSampler sampler, LandformConfig cfg, int gx, int gz) {
+		LandformConfig.CellKey key = new LandformConfig.CellKey(sampler.level().getLevel(), sampler.seed(), gx, gz);
+		Object v = cfg.rawCache.get(key);
+		if (v == null) {
+			v = resolveRaw(sampler, cfg, gx, gz);
+			if (v == null) {
+				v = NONE;
+			}
+			if (cfg.rawCache.size() > CACHE_LIMIT) {
+				cfg.rawCache.clear();
+			}
+			Object prev = cfg.rawCache.putIfAbsent(key, v);
+			if (prev != null) {
+				v = prev;
+			}
+		}
+		return v == NONE ? null : (Landform) v;
+	}
+
+
+	private static boolean central(LandformConfig cfg, Landform lf, int sx, int sz) {
+		int m = cfg.minDistance;
+		double fx = (lf.cx - (double) sx * m) / m;
+		double fz = (lf.cz - (double) sz * m) / m;
+		return fx >= 0.15 && fx <= 0.85 && fz >= 0.15 && fz <= 0.85;
+	}
+
+	/** The best candidate of super-cell (sx, sz), or null. Cached; pure function of seed, config and super-cell. */
+	private static Landform superWinner(WorldSampler sampler, LandformConfig cfg, int sx, int sz) {
+		LandformConfig.CellKey key = new LandformConfig.CellKey(sampler.level().getLevel(), sampler.seed() ^ 0x5C, sx, sz);
+		Object v = cfg.superCache.get(key);
+		if (v == null) {
+			int m = cfg.minDistance;
+			int sp = cfg.spacing;
+			Landform best = null;
+			long bestPr = Long.MIN_VALUE;
+			for (int gz = Math.floorDiv(sz * m - sp, sp); gz <= Math.floorDiv((sz + 1) * m + sp, sp); gz++) {
+				for (int gx = Math.floorDiv(sx * m - sp, sp); gx <= Math.floorDiv((sx + 1) * m + sp, sp); gx++) {
+					Landform c = rawInstance(sampler, cfg, gx, gz);
+					if (c == null || Math.floorDiv(c.cx, m) != sx || Math.floorDiv(c.cz, m) != sz || !central(cfg, c, sx, sz)) {
+						continue;
+					}
+					long pr = priority(sampler, cfg, gx, gz);
+					if (best == null || pr > bestPr) {
+						best = c;
+						bestPr = pr;
+					}
+				}
+			}
+			v = best == null ? NONE : best;
+			if (cfg.superCache.size() > CACHE_LIMIT) {
+				cfg.superCache.clear();
+			}
+			Object prev = cfg.superCache.putIfAbsent(key, v);
+			if (prev != null) {
+				v = prev;
+			}
+		}
+		return v == NONE ? null : (Landform) v;
+	}
+
+	private static long priority(WorldSampler sampler, LandformConfig cfg, int gx, int gz) {
+		return LNoise.hash(sampler.seed() ^ LNoise.mix(cfg.salt * 0x632BE59BD9B4E019L + 0x5EED), gx, gz);
+	}
+
+	/**
+	 * Separation rule on a dense grid: a valid candidate survives unless a neighbouring valid candidate with a higher
+	 * (hash) priority stands closer than 3/4 of their combined reach. Only one level deep, so it is a pure function of
+	 * seed and cells: neighbouring chunks always agree, and two accepted landforms never pile onto each other.
+	 */
 	private static Landform resolve(WorldSampler sampler, LandformConfig cfg, int gx, int gz) {
+		Landform lf = rawInstance(sampler, cfg, gx, gz);
+		if (lf == null) {
+			return null;
+		}
+		if (cfg.minDistance > 0) {
+			// Sparse landmarks: the world is cut into super-cells of min_distance; each keeps only its best candidate
+			// (highest priority) whose centre lies in the cell's central 70%, so two winners are at least
+			// 0.3 * min_distance apart and, unlike a pairwise rule, a chain of rejections can never empty a region.
+			int m = cfg.minDistance;
+			int sx = Math.floorDiv(lf.cx, m);
+			int sz = Math.floorDiv(lf.cz, m);
+			return superWinner(sampler, cfg, sx, sz) == (Object) lf ? lf : null;
+		}
+		long pr = priority(sampler, cfg, gx, gz);
+		int k = Math.max(1, (int) Math.ceil(Math.max(1.5 * cfg.shape().maxReach(), cfg.minDistance) / cfg.spacing));
+		for (int dz = -k; dz <= k; dz++) {
+			for (int dx = -k; dx <= k; dx++) {
+				if (dx == 0 && dz == 0) {
+					continue;
+				}
+				Landform o = rawInstance(sampler, cfg, gx + dx, gz + dz);
+				if (o == null) {
+					continue;
+				}
+				double d = Math.hypot(o.cx - lf.cx, o.cz - lf.cz);
+				if (d < Math.max((lf.reach + o.reach) * 0.75, cfg.minDistance) && priority(sampler, cfg, gx + dx, gz + dz) > pr) {
+					return null;
+				}
+			}
+		}
+		return lf;
+	}
+
+	private static Landform resolveRaw(WorldSampler sampler, LandformConfig cfg, int gx, int gz) {
 		long cellSeed = LNoise.hash(sampler.seed() ^ LNoise.mix(cfg.salt * 0x9E3779B97F4A7C15L + cfg.shape().name().hashCode()), gx, gz);
 		LNoise.Rng r = new LNoise.Rng(cellSeed);
 		if (!r.chance(cfg.chance)) {
 			return null;
 		}
+		// Mod biome patches are often small and irregular, so a cell tries a few positions (deterministic from the
+		// cell seed) and keeps the first whose site and footprint fit, instead of giving up after one.
+		for (int attempt = 0; attempt < TRIES; attempt++) {
+			Landform lf = tryAt(sampler, cfg, cellSeed + attempt * 0x9E3779B97F4A7C15L, r, gx, gz);
+			if (lf != null) {
+				return lf;
+			}
+		}
+		return null;
+	}
+
+	private static final int TRIES = 6;
+
+	private static Landform tryAt(WorldSampler sampler, LandformConfig cfg, long siteSeed, LNoise.Rng r, int gx, int gz) {
 		int sp = cfg.spacing;
 		int x = LNoise.floor((gx + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
 		int z = LNoise.floor((gz + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
-		int floor0 = sampler.baseFloorHeight(x, z) - 1;
 		int sea = sampler.seaLevel();
+		// Cheap pre-check (biome near the surface) before sampling the noise terrain height, which costs far more.
+		if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, sea, z)) && !cfg.biomes.test(sampler.biomeAt(x, sea + 48, z))) {
+			return null;
+		}
+		int floor0 = sampler.baseFloorHeight(x, z) - 1;
 		Span range = cfg.baseYRange();
 		if (floor0 - sea < range.min() || floor0 - sea > range.max()) {
 			return null;
@@ -101,14 +224,15 @@ public final class LandformFeature extends Feature<LandformConfig> {
 		if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, biomeY, z))) {
 			return null;
 		}
-		Site site = new Site(sampler, cfg, cellSeed, x, z, floor0);
+		Site site = new Site(sampler, cfg, siteSeed, x, z, floor0);
 		Landform lf = cfg.shape().create(site);
 		if (lf == null) {
 			return null;
 		}
 		if (cfg.requireInside && !cfg.biomes.everywhere()) {
 			for (int ring = 0; ring < 2; ring++) {
-				double rad = lf.reach * (ring == 0 ? 0.95 : 0.55);
+				// Outer ring at 0.65 of the reach: the rest is low skirt/talus that may run a little past the edge.
+				double rad = lf.reach * (ring == 0 ? 0.65 : 0.4);
 				int n = ring == 0 ? 16 : 8;
 				for (int i = 0; i < n; i++) {
 					double a = Math.PI * 2 * (i + 0.5 * ring) / n;
@@ -121,6 +245,53 @@ public final class LandformFeature extends Feature<LandformConfig> {
 			}
 		}
 		return lf;
+	}
+
+	/**
+	 * Diagnostic: replays the placement decision for every grid cell whose centre lies within {@code radius} of
+	 * (cx, cz) and counts where candidates drop out. Mirrors {@link #resolve} step by step.
+	 */
+	public static String diagnose(WorldSampler sampler, LandformConfig cfg, int cx, int cz, int radius) {
+		int sp = cfg.spacing;
+		int cells = 0, chance = 0, range = 0, biome = 0, shape = 0, inside = 0, sep = 0, ok = 0;
+		for (int gz = Math.floorDiv(cz - radius, sp); gz <= Math.floorDiv(cz + radius, sp); gz++) {
+			for (int gx = Math.floorDiv(cx - radius, sp); gx <= Math.floorDiv(cx + radius, sp); gx++) {
+				cells++;
+				long cellSeed = LNoise.hash(sampler.seed() ^ LNoise.mix(cfg.salt * 0x9E3779B97F4A7C15L + cfg.shape().name().hashCode()), gx, gz);
+				LNoise.Rng r = new LNoise.Rng(cellSeed);
+				if (!r.chance(cfg.chance)) {
+					chance++;
+					continue;
+				}
+				int x = LNoise.floor((gx + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
+				int z = LNoise.floor((gz + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
+				int floor0 = sampler.baseFloorHeight(x, z) - 1;
+				int sea = sampler.seaLevel();
+				Span rg = cfg.baseYRange();
+				if (floor0 - sea < rg.min() || floor0 - sea > rg.max()) {
+					range++;
+					continue;
+				}
+				int biomeY = Math.max(floor0, sea);
+				if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, biomeY, z))) {
+					biome++;
+					continue;
+				}
+				if (rawInstance(sampler, cfg, gx, gz) == null) {
+					if (cfg.shape().create(new Site(sampler, cfg, cellSeed, x, z, floor0)) == null) {
+						shape++;
+					} else {
+						inside++;
+					}
+				} else if (instance(sampler, cfg, gx, gz) == null) {
+					sep++;
+				} else {
+					ok++;
+				}
+			}
+		}
+		return String.format("%s: %d cells, rejected chance %d, base-y %d, biome %d, shape %d, footprint %d, separation %d -> %d placed",
+				cfg.shape().name(), cells, chance, range, biome, shape, inside, sep, ok);
 	}
 
 	// ---- timing ----

@@ -6,29 +6,30 @@
     "chance": 1.0,
     "cone": 1,
     "cone_height": [
-      24,
-      38
+      16,
+      26
     ],
     "cone_radius": [
+      8,
+      12
+    ],
+    "flank": [
       12,
       18
     ],
-    "flank": [
-      20,
-      30
-    ],
     "floor": "lake",
+    "min_distance": 700,
     "radius": [
-      38,
-      55
+      26,
+      36
     ],
     "rim_height": [
-      24,
-      38
+      18,
+      28
     ],
     "salt": 52421,
     "shape": "caldera",
-    "spacing": 240
+    "spacing": 48
   },
   "type": "biomesmod:landform"
 }

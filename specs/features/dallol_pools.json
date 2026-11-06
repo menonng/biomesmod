@@ -7,8 +7,8 @@
       "biomes": [
         "biomesmod:dallol"
       ],
-      "spacing": 90,
-      "chance": 0.85,
+      "spacing": 48,
+      "chance": 1.0,
       "salt": 25499,
       "pools": 14,
       "pool_radius": [

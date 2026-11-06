@@ -3,9 +3,14 @@
     "biomes": [
       "biomesmod:wadi_rum"
     ],
-    "chance": 0.95,
+    "chance": 1.0,
     "clefts": 0.6,
     "dome": 0.6,
+    "height": [
+      30,
+      55
+    ],
+    "min_distance": 110,
     "palette": {
       "strata": [
         {
@@ -34,9 +39,13 @@
         }
       ]
     },
+    "radius": [
+      14,
+      24
+    ],
     "salt": 3863,
     "shape": "butte",
-    "spacing": 170,
+    "spacing": 40,
     "thumbs": 0.0
   },
   "type": "biomesmod:landform"

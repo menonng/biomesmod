@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:snowy_plains"
+      "minecraft:snowy_plains",
+      "minecraft:ice_spikes",
+      "minecraft:snowy_taiga"
     ]
   },
   "base": "minecraft:snowy_plains",

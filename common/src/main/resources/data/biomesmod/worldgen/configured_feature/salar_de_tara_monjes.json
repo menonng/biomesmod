@@ -3,7 +3,7 @@
     "biomes": [
       "biomesmod:salar_de_tara"
     ],
-    "chance": 0.5,
+    "chance": 1.0,
     "columns": 0,
     "count": 3,
     "flute": 0.0,
@@ -33,7 +33,7 @@
     ],
     "salt": 21519,
     "shape": "monolith",
-    "spacing": 160,
+    "spacing": 48,
     "talus": 0.6,
     "taper": 0.5
   },

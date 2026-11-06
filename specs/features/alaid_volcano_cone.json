@@ -7,17 +7,18 @@
       "biomes": [
         "biomesmod:alaid_volcano"
       ],
-      "spacing": 260,
+      "spacing": 48,
       "chance": 1.0,
       "salt": 85028,
+      "min_distance": 900,
       "rise_from": "sea_level",
       "radius": [
-        45,
-        65
+        32,
+        42
       ],
       "height": [
-        80,
-        115
+        60,
+        90
       ],
       "snowline": 150,
       "crater": "dry"

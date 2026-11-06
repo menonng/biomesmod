@@ -11,7 +11,9 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:windswept_gravelly_hills"
+      "minecraft:windswept_hills",
+      "minecraft:windswept_gravelly_hills",
+      "minecraft:windswept_forest"
     ]
   },
   "base": "minecraft:windswept_hills",

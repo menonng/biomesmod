@@ -7,16 +7,17 @@
       "biomes": [
         "biomesmod:puna_de_atacama"
       ],
-      "spacing": 300,
-      "chance": 0.8,
+      "spacing": 48,
+      "chance": 1.0,
       "salt": 39964,
+      "min_distance": 300,
       "radius": [
-        35,
-        55
+        26,
+        36
       ],
       "height": [
-        40,
-        70
+        34,
+        56
       ],
       "snowline": 165,
       "crater": "dry",

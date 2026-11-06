@@ -11,7 +11,8 @@
   "dimension": "overworld",
   "placement": {
     "replace": [
-      "minecraft:swamp"
+      "minecraft:swamp",
+      "minecraft:mangrove_swamp"
     ]
   },
   "base": "minecraft:jungle",

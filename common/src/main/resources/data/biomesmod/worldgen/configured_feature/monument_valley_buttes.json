@@ -3,10 +3,19 @@
     "biomes": [
       "biomesmod:monument_valley"
     ],
-    "chance": 0.9,
+    "chance": 1.0,
+    "height": [
+      30,
+      55
+    ],
+    "min_distance": 110,
+    "radius": [
+      14,
+      24
+    ],
     "salt": 17953,
     "shape": "butte",
-    "spacing": 180,
+    "spacing": 40,
     "thumbs": 0.7
   },
   "type": "biomesmod:landform"

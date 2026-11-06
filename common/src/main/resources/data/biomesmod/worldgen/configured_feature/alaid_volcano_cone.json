@@ -6,18 +6,19 @@
     "chance": 1.0,
     "crater": "dry",
     "height": [
-      80,
-      115
+      60,
+      90
     ],
+    "min_distance": 900,
     "radius": [
-      45,
-      65
+      32,
+      42
     ],
     "rise_from": "sea_level",
     "salt": 85028,
     "shape": "cone",
     "snowline": 150,
-    "spacing": 260
+    "spacing": 48
   },
   "type": "biomesmod:landform"
 }

@@ -3,15 +3,16 @@
     "biomes": [
       "biomesmod:tre_cime"
     ],
-    "chance": 0.9,
+    "chance": 1.0,
     "columns": 0,
     "count": 3,
     "flute": 0.0,
     "height": [
-      60,
-      90
+      48,
+      70
     ],
     "max_relief": 60,
+    "min_distance": 700,
     "palette": {
       "strata": [
         {
@@ -41,12 +42,16 @@
       ]
     },
     "radius": [
-      10,
-      14
+      6,
+      9
     ],
     "salt": 53627,
     "shape": "monolith",
-    "spacing": 240,
+    "spacing": 40,
+    "spread": [
+      10,
+      14
+    ],
     "talus_blocks": [
       {
         "Name": "minecraft:gravel"

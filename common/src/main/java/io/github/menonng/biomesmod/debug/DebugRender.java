@@ -35,6 +35,7 @@ public final class DebugRender {
 		int[][] height = new int[size][size];
 		BufferedImage map = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		java.util.Set<String> noColour = new java.util.LinkedHashSet<>();
 		// Generate (to FULL status) every chunk the image covers, otherwise heightmaps read as empty.
 		for (int cz = (center.getZ() - half) >> 4; cz <= (center.getZ() - half + size - 1) >> 4; cz++) {
 			for (int cx = (center.getX() - half) >> 4; cx <= (center.getX() - half + size - 1) >> 4; cx++) {
@@ -51,6 +52,9 @@ public final class DebugRender {
 				pos.set(x, top, z);
 				BlockState state = level.getBlockState(pos);
 				int rgb = state.getMapColor(level, pos).col;
+				if (rgb == 0 && noColour.size() < 6) {
+					noColour.add(state.getBlock().getName().getString() + "@" + x + "," + top + "," + z);
+				}
 				if (!state.getFluidState().isEmpty() && top > floor) {
 					// water: blend towards floor colour by depth
 					pos.set(x, floor, z);
@@ -100,7 +104,7 @@ public final class DebugRender {
 		} catch (IOException e) {
 			BiomesMod.LOGGER.error("[render] failed to write {}", top, e);
 		}
-		BiomesMod.LOGGER.info("[render] {} -> {}", name, top.toAbsolutePath());
+		BiomesMod.LOGGER.info("[render] {} -> {}{}", name, top.toAbsolutePath(), noColour.isEmpty() ? "" : " (uncoloured tops: " + noColour + ")");
 		return top;
 	}
 
