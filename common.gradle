@@ -3,6 +3,10 @@ version = "${rootProject.mod_version}+${project.minecraft_version}"
 group = rootProject.maven_group
 base { archivesName = rootProject.archives_base_name }
 
+repositories {
+	maven { name = 'Glitchfiend (TerraBlender)'; url = 'https://maven.minecraftforge.net/' }
+}
+
 def commonDir = rootProject.file('common/src/main')
 sourceSets.main {
 	java.srcDir(new File(commonDir, 'java'))
@@ -29,18 +33,40 @@ processResources {
 }
 
 
-// Headless self-check: boots Fabric's gametest server (no EULA, no client),
-// verifies the biome is registered + placed in the End, then exits 0/1.
+// Dev-only 'gametest' source set (never packaged into the release jar):
+//   common/src/gametest      - mixin that makes the test server use the normal world preset
+//   versions/<mc>/src/gametest - per-version fabric.mod.json / test classes
+def gametestDir = rootProject.file('common/src/gametest')
+sourceSets {
+	gametest {
+		java.srcDir(new File(gametestDir, 'java'))
+		resources.srcDir(new File(gametestDir, 'resources'))
+		compileClasspath += main.compileClasspath + main.output
+		runtimeClasspath += main.runtimeClasspath + main.output
+	}
+}
+
+// Headless self-check: boots Fabric's gametest server (no EULA, no client) on a normal
+// (non-flat) world, checks every mod biome in its dimension, then exits 0/1.
 loom {
+	mods {
+		biomesmod { sourceSet sourceSets.main }
+		'biomesmod-gametest' { sourceSet sourceSets.gametest }
+	}
 	runs {
 		selfCheck {
 			server()
 			name = "Self Check (${project.minecraft_version})"
 			runDir = "run/selfcheck"
+			source sourceSets.gametest
 			vmArg '-Dfabric-api.gametest'
 			vmArg '-Dbiomesmod.selfcheck=true'
 		}
 	}
+}
+// Fresh world every run, so worldgen changes are always exercised.
+tasks.matching { it.name == 'runSelfCheck' }.configureEach {
+	doFirst { delete file('run/selfcheck/world') }
 }
 
 // Vanilla-compatible data pack (biome + features only) for Paper/vanilla servers.

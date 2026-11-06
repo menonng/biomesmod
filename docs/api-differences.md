@@ -26,6 +26,10 @@ Sources: decompiled 1.21.1 and 26.2 with minecraft-dev-cli (Mojmap) plus the Fab
 | Fabric `TheEndBiomes` | `addHighlandsBiome/addMidlandsBiome/addBarrensBiome/addSmallIslandsBiome/addMainIslandBiome(ResourceKey<Biome>, double)` | **identical** |
 | Fabric gametest | `FabricGameTest` + vanilla `@GameTest`; server needs ≥1 test | Fabric `@GameTest`; server boots with 0 tests |
 
+| Lowest build Y | `LevelHeightAccessor#getMinBuildHeight()` | `#getMinY()` |
+| `SurfaceRules.isBiome` | `isBiome(ResourceKey...)` | `isBiome(HolderGetter<Biome>, ResourceKey...)` |
+| Surface noise condition | `noiseCondition(...)` | `noiseCondition2d(...)` / `noiseCondition3d(...)` |
+
 Unchanged in both: `Registries.BIOME`, `ResourceKey.create`, `Level.END`, `ServerLevel#findClosestBiome3d`, `BiomeSource#possibleBiomes`, and the `HolderGetter#get` lookup.
 
 ## Biome JSON
@@ -45,3 +49,17 @@ Unchanged in both: `Registries.BIOME`, `ResourceKey.create`, `Level.END`, `Serve
 - Java code is shared (`common/`). Each version adds one shim, `compat/Ids.java`.
 - Biome JSON is per version (`versions/<mc>/src/main/resources/data/biomesmod/worldgen/biome/`).
 - Placed and configured features, lang files and `fabric.mod.json` are shared.
+
+## TerraBlender (Fabric: `1.21.1-4.1.0.8`, `26.2-26.2.0.0.2`)
+
+| | 1.21.1 | 26.2 |
+|---|---|---|
+| `Region(name, RegionType, weight)` | `ResourceLocation` name | `Identifier` name |
+| `addBiome`, `addModifiedVanillaOverworldBiomes`, `replaceBiome` | same | same |
+| `EndBiomeRegistry.register*Biome(key, int)` | same | same |
+| `SurfaceRuleManager.addSurfaceRules` | takes a `RuleSource` | takes a `RuleBuilder` (`HolderGetter<Biome> -> RuleSource`) |
+| Entrypoint | `"terrablender"` → `TerraBlenderApi#onTerraBlenderInitialized` | same |
+
+**TerraBlender replaces Fabric's End hook.** TerraBlender's `TheEndBiomeSource` mixin cancels `getNoiseBiome` at HEAD. Once TerraBlender is installed, biomes added through Fabric `TheEndBiomes` are listed as possible but never generate. The self-check caught this. End biomes must go through `EndBiomeRegistry`.
+
+**The test server needs a mixin.** The vanilla gametest server always builds a superflat world, whose Overworld can only produce plains. The dev-only mixin in `common/src/gametest` switches it to the normal preset so Overworld and Nether placement can be tested.

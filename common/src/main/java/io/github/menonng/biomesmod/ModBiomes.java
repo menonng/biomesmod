@@ -2,20 +2,31 @@ package io.github.menonng.biomesmod;
 
 import io.github.menonng.biomesmod.compat.Ids;
 import java.util.List;
-import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 
 /**
- * Biome keys + End placement. The biome definitions themselves are data-driven
- * (data/biomesmod/worldgen/biome/*.json) because their JSON schema differs per version.
+ * All mod biomes and the dimension each one generates in.
+ * Biome definitions are data-driven (data/biomesmod/worldgen/biome/*.json, one set per version).
+ * Placement for all dimensions is registered in {@link io.github.menonng.biomesmod.worldgen.TerraBlenderEntry}.
  */
 public final class ModBiomes {
-	/** Dense chorus forest in the outer End highlands, with violet fog and portal motes. */
+	public record Entry(ResourceKey<Biome> key, ResourceKey<Level> dimension) {
+	}
+
+	/** Overworld. Motif: Jeju Gotjawal, a humid evergreen forest over broken lava rock. */
+	public static final ResourceKey<Biome> GOTJAWAL = key("gotjawal");
+	/** Nether. Motif: Danakil Depression, salt crust, sulfur haze and lava pools. */
+	public static final ResourceKey<Biome> DANAKIL_FLATS = key("danakil_flats");
+	/** End. Dense chorus forest in the outer highlands, violet fog and portal motes. */
 	public static final ResourceKey<Biome> CHORUS_THICKET = key("chorus_thicket");
 
-	public static final List<ResourceKey<Biome>> ALL = List.of(CHORUS_THICKET);
+	public static final List<Entry> ALL = List.of(
+			new Entry(GOTJAWAL, Level.OVERWORLD),
+			new Entry(DANAKIL_FLATS, Level.NETHER),
+			new Entry(CHORUS_THICKET, Level.END));
 
 	private ModBiomes() {
 	}
@@ -24,10 +35,4 @@ public final class ModBiomes {
 		return ResourceKey.create(Registries.BIOME, Ids.id(path));
 	}
 
-	static void init() {
-		// Vanilla end_highlands has weight 1.0; 0.5 => roughly 1/3 of highland area.
-		// Midlands/barrens default to the biome itself, so the thicket edges stay coherent.
-		TheEndBiomes.addHighlandsBiome(CHORUS_THICKET, 0.5);
-		BiomesMod.LOGGER.info("Registered {} End biome(s)", ALL.size());
-	}
 }

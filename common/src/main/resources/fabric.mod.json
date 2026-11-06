@@ -3,20 +3,28 @@
 	"id": "biomesmod",
 	"version": "${version}",
 	"name": "Biomes Mod",
-	"description": "Adds new biomes to the End.",
-	"authors": ["menonng"],
+	"description": "Adds new Overworld, Nether and End biomes inspired by real places.",
+	"authors": [
+		"menonng"
+	],
 	"contact": {
 		"sources": "https://github.com/menonng/biomesmod"
 	},
 	"license": "ARR",
 	"environment": "*",
 	"entrypoints": {
-		"main": ["io.github.menonng.biomesmod.BiomesMod"]
+		"main": [
+			"io.github.menonng.biomesmod.BiomesMod"
+		],
+		"terrablender": [
+			"io.github.menonng.biomesmod.worldgen.TerraBlenderEntry"
+		]
 	},
 	"depends": {
 		"fabricloader": ">=0.16.0",
 		"minecraft": "${minecraft_dependency}",
 		"java": ">=${java_version}",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"terrablender": "*"
 	}
 }

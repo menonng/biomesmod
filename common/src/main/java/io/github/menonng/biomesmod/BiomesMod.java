@@ -11,7 +11,7 @@ public final class BiomesMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModBiomes.init();
+		LOGGER.info("Loaded {} biome(s)", ModBiomes.ALL.size());
 
 		if (Boolean.getBoolean("biomesmod.selfcheck")) {
 			ServerLifecycleEvents.SERVER_STARTED.register(SelfCheck::run);

@@ -5,4 +5,5 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	implementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 }
