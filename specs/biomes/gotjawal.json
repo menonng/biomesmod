@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "gotjawal",
+  "names": { "en_us": "Gotjawal", "ko_kr": "곶자왈" },
+  "places": [],
+  "dimension": "overworld",
+  "placement": { "replace": ["minecraft:forest"] },
+  "base": "minecraft:forest",
+  "climate": { "temperature": 0.8, "downfall": 0.9, "has_precipitation": true },
+  "colors": { "water": "#3d7a8a", "water_fog": "#0a2a33", "grass": "#5a8a32", "foliage": "#3f6e26" },
+  "features": {
+    "remove": [
+      "minecraft:forest_flowers",
+      "minecraft:trees_birch_and_oak",
+      "minecraft:trees_birch_and_oak_leaf_litter",
+      "minecraft:patch_bush",
+      "minecraft:patch_grass_forest"
+    ],
+    "add": {
+      "local_modifications": ["minecraft:forest_rock"],
+      "vegetal_decoration": [
+        "minecraft:patch_large_fern",
+        "minecraft:patch_grass_taiga",
+        "minecraft:brown_mushroom_old_growth",
+        "minecraft:red_mushroom_old_growth"
+      ]
+    },
+    "mod": { "vegetal_decoration": ["biomesmod:gotjawal_trees"] }
+  },
+  "spawners": "base"
+}

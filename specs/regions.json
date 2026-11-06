@@ -1,0 +1,10 @@
+{
+  "_comment": "TerraBlender region weights. Vanilla's own region has weight 10 (TerraBlender config). Overworld biomes are packed into regions overworld_1..N by the generator; 'weights' overrides single regions by their 1-based number.",
+  "overworld": {
+    "default_weight": 3,
+    "weights": {}
+  },
+  "nether": {
+    "default_weight": 2
+  }
+}

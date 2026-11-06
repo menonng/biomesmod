@@ -1,6 +1,9 @@
 {
-  "has_precipitation": false,
-  "temperature": 2.0,
+  "carvers": {
+    "air": [
+      "minecraft:nether_cave"
+    ]
+  },
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
@@ -31,9 +34,6 @@
     "water_color": 13156410,
     "water_fog_color": 4867088
   },
-  "carvers": {
-    "air": "minecraft:nether_cave"
-  },
   "features": [
     [],
     [],
@@ -61,35 +61,37 @@
       "minecraft:ore_debris_small"
     ]
   ],
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],
     "axolotls": [],
     "creature": [
       {
-        "type": "minecraft:strider",
         "maxCount": 2,
         "minCount": 1,
+        "type": "minecraft:strider",
         "weight": 60
       }
     ],
     "misc": [],
     "monster": [
       {
-        "type": "minecraft:ghast",
         "maxCount": 1,
         "minCount": 1,
+        "type": "minecraft:ghast",
         "weight": 40
       },
       {
-        "type": "minecraft:magma_cube",
         "maxCount": 5,
         "minCount": 2,
+        "type": "minecraft:magma_cube",
         "weight": 100
       }
     ],
     "underground_water_creature": [],
     "water_ambient": [],
     "water_creature": []
-  }
+  },
+  "temperature": 2.0
 }

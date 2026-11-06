@@ -1,36 +1,41 @@
 {
-  "has_precipitation": false,
-  "temperature": 0.5,
+  "carvers": {},
   "downfall": 0.5,
   "effects": {
     "fog_color": 5974638,
-    "sky_color": 1706532,
-    "water_color": 9396182,
-    "water_fog_color": 2822720,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
     "particle": {
-      "options": { "type": "minecraft:portal" },
+      "options": {
+        "type": "minecraft:portal"
+      },
       "probability": 0.012
     },
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    }
+    "sky_color": 1706532,
+    "water_color": 9396182,
+    "water_fog_color": 2822720
   },
-  "carvers": {},
   "features": [
     [],
     [],
     [],
     [],
-    ["minecraft:end_gateway_return"],
+    [
+      "minecraft:end_gateway_return"
+    ],
     [],
     [],
     [],
     [],
-    ["biomesmod:dense_chorus_plant"]
+    [
+      "biomesmod:chorus_thicket_chorus"
+    ]
   ],
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],
@@ -38,10 +43,16 @@
     "creature": [],
     "misc": [],
     "monster": [
-      { "type": "minecraft:enderman", "weight": 10, "minCount": 4, "maxCount": 4 }
+      {
+        "maxCount": 4,
+        "minCount": 4,
+        "type": "minecraft:enderman",
+        "weight": 10
+      }
     ],
     "underground_water_creature": [],
     "water_ambient": [],
     "water_creature": []
-  }
+  },
+  "temperature": 0.5
 }

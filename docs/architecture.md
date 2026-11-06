@@ -63,6 +63,16 @@ tools/biomegen/                       Python generator: specs -> per-version JSO
 5. **Configs are Codec-based JSON.** Every behaviour is a `mode`/`shape` value plus parameters, so biome authors only write data. Biome gating is a config field (`"biomes": ["biomesmod:x", ...]`). An empty list means "everywhere", which showcases use.
 6. **Document every mode/shape** in your `docs/engine-*.md` with a copy-pasteable JSON example and a render.
 
+### Naturalness rules (user requirement: avoid unnatural terrain as much as possible)
+
+The user rejected the crescent-shaped, water-filled gorges seen in early renders (cause: vanilla `minecraft:canyon` ravines breaching the surface near sea level and flooding; a global override in `data/minecraft/worldgen/configured_carver/canyon.json` keeps ravines underground). Treat these as defects everywhere:
+
+* No crescent/arc gashes or thin water-filled slots. Do not reintroduce surface-breaching carvers.
+* No geometric tells: perfect circles or rings, straight edges, 16-block chunk lines, stair-step cones, constant-width bands. Displace outlines with multi-octave noise, vary sizes, taper and blend.
+* Water only in plausible basins: shores, connected channels, no one-block water lines, no water hanging on slopes, no dry holes punched into the sea.
+* Landforms have context: talus at bases, eroded tops, plausible vegetation, transitions at biome edges.
+* Compare renders side by side with photos of the real place.
+
 ### Feature steps (`GenerationStep.Decoration` order)
 
 `raw_generation`, `lakes`, `local_modifications`, `underground_structures`, `surface_structures`, `strongholds`, `underground_ores`, `underground_decoration`, `fluid_springs`, `vegetal_decoration`, `top_layer_modification`. Terrain-reshaping features go in `raw_generation` (before lakes, trees and snow). Surface dressing goes in `local_modifications`.

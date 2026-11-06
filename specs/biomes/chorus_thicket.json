@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "chorus_thicket",
+  "names": { "en_us": "Chorus Thicket", "ko_kr": "코러스 덤불" },
+  "places": [],
+  "dimension": "end",
+  "placement": { "end": "highlands", "weight": 5 },
+  "base": "minecraft:end_highlands",
+  "colors": { "sky": "#1a0a24", "fog": "#5b2a6e", "water": "#8f5fd6", "water_fog": "#2b1240" },
+  "particles": [{ "type": "minecraft:portal", "probability": 0.012 }],
+  "features": {
+    "remove": ["minecraft:chorus_plant"],
+    "mod": { "vegetal_decoration": ["biomesmod:chorus_thicket_chorus"] }
+  },
+  "spawners": "base"
+}

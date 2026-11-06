@@ -1,0 +1,63 @@
+{
+  "_generated": "by tools/biomegen/generate.py from specs/ - do not edit",
+  "format": 1,
+  "biomes": [
+    {
+      "id": "biomesmod:gotjawal",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:danakil_flats",
+      "dimension": "minecraft:the_nether"
+    },
+    {
+      "id": "biomesmod:chorus_thicket",
+      "dimension": "minecraft:the_end"
+    }
+  ],
+  "overworld_regions": [
+    {
+      "name": "biomesmod:overworld_1",
+      "weight": 3,
+      "replace": {
+        "minecraft:forest": "biomesmod:gotjawal"
+      }
+    }
+  ],
+  "nether_regions": [
+    {
+      "name": "biomesmod:nether_1",
+      "weight": 2,
+      "vanilla_points": true,
+      "points": [
+        {
+          "biome": "biomesmod:danakil_flats",
+          "temperature": 0.75,
+          "humidity": -0.35,
+          "continentalness": 0.0,
+          "erosion": 0.0,
+          "depth": 0.0,
+          "weirdness": 0.0,
+          "offset": 0.0
+        }
+      ]
+    }
+  ],
+  "end": [
+    {
+      "biome": "biomesmod:chorus_thicket",
+      "type": "highlands",
+      "weight": 5
+    }
+  ],
+  "surface": {
+    "overworld": [],
+    "nether": [
+      {
+        "biome": "biomesmod:danakil_flats",
+        "top": "minecraft:calcite",
+        "under": "minecraft:basalt"
+      }
+    ]
+  }
+}

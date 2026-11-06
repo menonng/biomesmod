@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "danakil_flats",
+  "names": { "en_us": "Danakil Flats", "ko_kr": "다나킬 평원" },
+  "places": [],
+  "dimension": "nether",
+  "placement": { "nether_point": { "temperature": 0.75, "humidity": -0.35, "offset": 0.0 } },
+  "base": "minecraft:basalt_deltas",
+  "climate": { "temperature": 2.0, "downfall": 0.0, "has_precipitation": false },
+  "colors": { "fog": "#8e8a3a", "water": "#c8c03a", "water_fog": "#4a4410" },
+  "particles": [{ "type": "minecraft:white_ash", "probability": 0.06 }],
+  "features": {
+    "remove": ["minecraft:large_basalt_columns", "minecraft:blackstone_blobs", "minecraft:patch_soul_fire"]
+  },
+  "spawners": "base",
+  "surface": { "top": "minecraft:calcite", "under": "minecraft:basalt" }
+}

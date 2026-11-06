@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "biomesmod/feature.schema.json",
+  "title": "biomesmod feature spec (specs/features/<id>.json -> placed feature biomesmod:<id>)",
+  "description": "Editor hints only; tools/biomegen/generate.py validates. See docs/biome-specs.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": { "^_": {} },
+  "definitions": {
+    "configured": {
+      "type": "object",
+      "required": ["type"],
+      "properties": { "type": { "type": "string" }, "config": { "type": "object" } }
+    },
+    "placement": {
+      "type": "array",
+      "items": { "type": "object", "required": ["type"], "properties": { "type": { "type": "string" } } }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "configured": { "$ref": "#/definitions/configured" },
+    "configured_by_version": { "type": "object", "additionalProperties": { "$ref": "#/definitions/configured" } },
+    "feature": { "type": "string", "description": "Reference an existing configured feature instead of defining one." },
+    "placement": { "$ref": "#/definitions/placement", "description": "[] = once per chunk at the chunk origin (engine features)." },
+    "placement_by_version": { "type": "object", "additionalProperties": { "$ref": "#/definitions/placement" } }
+  },
+  "not": { "required": ["feature", "configured"] }
+}

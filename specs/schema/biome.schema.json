@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "biomesmod/biome.schema.json",
+  "title": "biomesmod biome spec (specs/biomes/<id>.json)",
+  "description": "Editor hints only. tools/biomegen/generate.py is the real validator (it also checks every id against vanilla data per version). See docs/biome-specs.md.",
+  "type": "object",
+  "required": ["id", "names", "dimension", "placement", "base"],
+  "additionalProperties": false,
+  "patternProperties": { "^_": {} },
+  "definitions": {
+    "rl": { "type": "string", "pattern": "^([a-z0-9_.-]+:)?[a-z0-9_./-]+$" },
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "step": {
+      "enum": ["raw_generation", "lakes", "local_modifications", "underground_structures", "surface_structures", "strongholds",
+               "underground_ores", "underground_decoration", "fluid_springs", "vegetal_decoration", "top_layer_modification"]
+    },
+    "stepLists": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/step" },
+      "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/rl" }, "uniqueItems": true }
+    },
+    "featureEdits": {
+      "type": "object",
+      "properties": {
+        "clear": { "type": "array", "items": { "$ref": "#/definitions/step" } },
+        "remove": { "type": "array", "items": { "$ref": "#/definitions/rl" } },
+        "add": { "$ref": "#/definitions/stepLists" },
+        "mod": { "$ref": "#/definitions/stepLists" }
+      }
+    },
+    "spawner": {
+      "type": "object",
+      "required": ["type", "weight", "minCount", "maxCount"],
+      "properties": {
+        "type": { "$ref": "#/definitions/rl" },
+        "weight": { "type": "integer", "minimum": 1 },
+        "minCount": { "type": "integer", "minimum": 1 },
+        "maxCount": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9_]+$", "description": "Must equal the file name." },
+    "names": {
+      "type": "object",
+      "required": ["en_us", "ko_kr"],
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "places": { "type": "array", "items": { "type": "integer" }, "description": "n values from specs/places.json" },
+    "dimension": { "enum": ["overworld", "nether", "end"] },
+    "placement": {
+      "type": "object",
+      "properties": {
+        "replace": { "type": "array", "items": { "$ref": "#/definitions/rl" }, "minItems": 1, "uniqueItems": true,
+                     "description": "Overworld: vanilla climate slots taken inside a mod region." },
+        "nether_point": {
+          "type": "object",
+          "required": ["temperature", "humidity"],
+          "properties": {
+            "temperature": { "type": "number", "minimum": -2, "maximum": 2 },
+            "humidity": { "type": "number", "minimum": -2, "maximum": 2 },
+            "continentalness": { "type": "number", "minimum": -2, "maximum": 2 },
+            "erosion": { "type": "number", "minimum": -2, "maximum": 2 },
+            "depth": { "type": "number", "minimum": -2, "maximum": 2 },
+            "weirdness": { "type": "number", "minimum": -2, "maximum": 2 },
+            "offset": { "type": "number", "minimum": -2, "maximum": 2 }
+          },
+          "additionalProperties": false
+        },
+        "end": { "enum": ["highlands", "midlands", "edge", "islands"] },
+        "weight": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "base": { "$ref": "#/definitions/rl", "description": "Vanilla biome inherited per version." },
+    "climate": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "number" },
+        "downfall": { "type": "number" },
+        "has_precipitation": { "type": "boolean" },
+        "temperature_modifier": { "enum": ["none", "frozen"] }
+      },
+      "additionalProperties": false
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "sky": { "$ref": "#/definitions/color" },
+        "fog": { "$ref": "#/definitions/color" },
+        "water": { "$ref": "#/definitions/color" },
+        "water_fog": { "$ref": "#/definitions/color" },
+        "grass": { "$ref": "#/definitions/color" },
+        "foliage": { "$ref": "#/definitions/color" },
+        "dry_foliage": { "$ref": "#/definitions/color" },
+        "grass_modifier": { "enum": ["none", "dark_forest", "swamp"] }
+      },
+      "additionalProperties": false
+    },
+    "particles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "probability"],
+        "properties": { "type": { "$ref": "#/definitions/rl" }, "probability": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } },
+        "additionalProperties": false
+      }
+    },
+    "music": {
+      "oneOf": [
+        { "$ref": "#/definitions/rl" },
+        {
+          "type": "object",
+          "required": ["sound"],
+          "properties": {
+            "sound": { "$ref": "#/definitions/rl" },
+            "min_delay": { "type": "integer" },
+            "max_delay": { "type": "integer" },
+            "replace_current_music": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "features": {
+      "allOf": [{ "$ref": "#/definitions/featureEdits" }],
+      "properties": {
+        "clear": {}, "remove": {}, "add": {}, "mod": {},
+        "by_version": { "type": "object", "additionalProperties": { "$ref": "#/definitions/featureEdits" } }
+      },
+      "additionalProperties": false
+    },
+    "spawners": {
+      "oneOf": [
+        { "const": "base" },
+        {
+          "type": "object",
+          "propertyNames": { "enum": ["ambient", "axolotls", "creature", "misc", "monster", "underground_water_creature", "water_ambient", "water_creature"] },
+          "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/spawner" } }
+        }
+      ]
+    },
+    "spawn_costs": { "oneOf": [{ "const": "base" }, { "type": "object" }] },
+    "creature_spawn_probability": { "type": "number", "minimum": 0, "exclusiveMaximum": 1 },
+    "surface": {
+      "type": "object",
+      "properties": {
+        "top": { "$ref": "#/definitions/rl" },
+        "under": { "$ref": "#/definitions/rl" },
+        "under_depth": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "underwater": { "$ref": "#/definitions/rl" },
+        "top_patches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["block", "min"],
+            "properties": {
+              "block": { "$ref": "#/definitions/rl" },
+              "noise": { "$ref": "#/definitions/rl" },
+              "min": { "type": "number" },
+              "max": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "carvers": {
+      "oneOf": [
+        { "enum": ["base", "underground"] },
+        { "type": "array", "items": { "$ref": "#/definitions/rl" }, "uniqueItems": true }
+      ]
+    }
+  }
+}
