@@ -1,0 +1,23 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:alaid_volcano"
+    ],
+    "chance": 1.0,
+    "crater": "dry",
+    "height": [
+      80,
+      115
+    ],
+    "radius": [
+      45,
+      65
+    ],
+    "rise_from": "sea_level",
+    "salt": 85028,
+    "shape": "cone",
+    "snowline": 150,
+    "spacing": 260
+  },
+  "type": "biomesmod:landform"
+}

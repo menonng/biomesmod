@@ -1,0 +1,54 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:coast_eroded_cliffs"
+    ],
+    "edge_blend": 16,
+    "lobe": 1.6,
+    "lobe_scale": 30,
+    "mode": "terraces",
+    "palette": {
+      "strata": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:stone"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:andesite"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:cobblestone"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:tuff"
+            },
+            "thickness": 1
+          }
+        ]
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:stone"
+          },
+          "depth": 1
+        }
+      ]
+    },
+    "pool_depth": 0,
+    "rim_width": 1.0,
+    "step": 3,
+    "tilt": 10
+  },
+  "type": "biomesmod:terrain_shaper"
+}

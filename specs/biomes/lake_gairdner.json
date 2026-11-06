@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "lake_gairdner",
+  "names": {
+    "en_us": "Lake Gairdner",
+    "ko_kr": "게어드너 호"
+  },
+  "places": [
+    42
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:badlands"
+    ]
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 1.6,
+    "downfall": 0.05,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#4f86e0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:lake_gairdner_salt"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:red_sand",
+    "under": "minecraft:red_sandstone",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

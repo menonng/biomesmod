@@ -54,6 +54,12 @@ public record TerracesMode(Common common, int step, int poolDepth, double tilt, 
 			super(seed);
 		}
 
+		/**
+		 * Rim meander warp (blocks). The frame's base grid only covers columns with margin + warp <= 16 around the
+		 * chunk (bicubic needs one node either side), so the warp is capped and the noise clamped to [-1, 1].
+		 */
+		private final double warp = Math.min(9.0, lobe * 7);
+
 		@Override
 		public int margin() {
 			return 3;
@@ -72,8 +78,8 @@ public record TerracesMode(Common common, int step, int poolDepth, double tilt, 
 
 		/** Continuous slope height (before cutting into steps). Pure. */
 		private double slope(ChunkFrame frame, double x, double z) {
-			double warpX = x + lobe * 7 * noise.fbm(x, z, lobeScale, 2);
-			double warpZ = z + lobe * 7 * noise.fbm(x + 517, z - 233, lobeScale, 2);
+			double warpX = x + warp * Noise.clamp(noise.fbm(x, z, lobeScale, 2), -1, 1);
+			double warpZ = z + warp * Noise.clamp(noise.fbm(x + 517, z - 233, lobeScale, 2), -1, 1);
 			return frame.blurBase((int) Math.floor(warpX), (int) Math.floor(warpZ)) + lift
 					+ tilt * noise.fbm01(warpX, warpZ, tiltScale, 2);
 		}

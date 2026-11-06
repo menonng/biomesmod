@@ -1,0 +1,21 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "hot_spring",
+      "biomes": [
+        "biomesmod:grand_prismatic"
+      ],
+      "spacing": 120,
+      "chance": 0.9,
+      "salt": 51622,
+      "pool_radius": [
+        10,
+        18
+      ],
+      "band_width": 2.6
+    }
+  },
+  "placement": []
+}

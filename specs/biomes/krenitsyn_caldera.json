@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "krenitsyn_caldera",
+  "names": {
+    "en_us": "Krenitsyn Caldera",
+    "ko_kr": "크레니친 칼데라"
+  },
+  "places": [
+    2
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:windswept_gravelly_hills"
+    ]
+  },
+  "base": "minecraft:windswept_hills",
+  "climate": {
+    "temperature": 0.1,
+    "downfall": 0.8
+  },
+  "colors": {
+    "water": "#2f5f7a",
+    "water_fog": "#0d2533",
+    "grass": "#7e9a6a",
+    "foliage": "#6c8a58"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:krenitsyn_caldera_caldera"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

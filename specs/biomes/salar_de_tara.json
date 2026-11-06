@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "salar_de_tara",
+  "names": {
+    "en_us": "Salar de Tara",
+    "ko_kr": "타라 염호"
+  },
+  "places": [
+    33
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:badlands"
+    ]
+  },
+  "base": "minecraft:badlands",
+  "climate": {
+    "temperature": 0.3,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "water": "#9fd0d8",
+    "water_fog": "#6aa0aa",
+    "sky": "#3f70d0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:salar_de_tara_salar"
+      ],
+      "local_modifications": [
+        "biomesmod:salar_de_tara_monjes"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

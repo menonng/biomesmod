@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "rolling",
+      "biomes": [
+        "biomesmod:patagonian_steppe"
+      ],
+      "smooth": 0.8,
+      "hills": 4,
+      "mesa_step": 10
+    }
+  },
+  "placement": []
+}

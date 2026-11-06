@@ -1,0 +1,14 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:everglades"
+    ],
+    "channels": 0.35,
+    "dry_coverage": 0.35,
+    "hummock": 1.5,
+    "mode": "wetland",
+    "scale": 60,
+    "shallow": 1
+  },
+  "type": "biomesmod:terrain_shaper"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "great_barrier_reef",
+  "names": {
+    "en_us": "Great Barrier Reef",
+    "ko_kr": "그레이트 배리어 리프"
+  },
+  "places": [
+    41
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:warm_ocean"
+    ]
+  },
+  "base": "minecraft:warm_ocean",
+  "colors": {
+    "water": "#2fd0d0",
+    "water_fog": "#0e7f88"
+  },
+  "features": {
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:warm_ocean_vegetation",
+        "minecraft:sea_pickle"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:great_barrier_reef_reef"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

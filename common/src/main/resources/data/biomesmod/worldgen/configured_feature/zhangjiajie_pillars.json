@@ -1,0 +1,33 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:zhangjiajie"
+    ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.06,
+      "feature": "minecraft:pine_checked"
+    },
+    "chance": 1.0,
+    "cluster_radius": [
+      26,
+      40
+    ],
+    "density": 0.75,
+    "height": [
+      45,
+      95
+    ],
+    "pillar_radius": [
+      3,
+      6
+    ],
+    "pillar_spacing": 10,
+    "salt": 38456,
+    "shape": "pillar_forest",
+    "spacing": 100
+  },
+  "type": "biomesmod:landform"
+}

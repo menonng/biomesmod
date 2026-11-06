@@ -1,0 +1,46 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "lencois_maranhenses",
+  "names": {
+    "en_us": "Lençóis Maranhenses",
+    "ko_kr": "렌소이스 마라냥세스"
+  },
+  "places": [
+    7,
+    20
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:desert"
+    ]
+  },
+  "base": "minecraft:beach",
+  "climate": {
+    "temperature": 1.2,
+    "downfall": 0.6,
+    "has_precipitation": true
+  },
+  "colors": {
+    "water": "#3fb8c8",
+    "water_fog": "#127080",
+    "sky": "#7fb2ff"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:lencois_maranhenses_dunes"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:white_concrete_powder",
+    "under": "minecraft:sand",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

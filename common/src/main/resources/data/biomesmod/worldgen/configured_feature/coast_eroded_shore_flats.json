@@ -1,0 +1,46 @@
+{
+  "config": {
+    "beach": 4,
+    "biomes": [
+      "biomesmod:coast_eroded_shore"
+    ],
+    "coverage": 0.32,
+    "depth": 3,
+    "edge_blend": 20,
+    "height": 3,
+    "mode": "islands",
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:sand"
+          },
+          "depth": 3
+        },
+        {
+          "block": {
+            "Name": "minecraft:sandstone"
+          },
+          "depth": 2
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:sand"
+          },
+          "depth": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:gravel"
+          },
+          "depth": 1
+        }
+      ]
+    },
+    "rocky": 0.05,
+    "scale": 34
+  },
+  "type": "biomesmod:terrain_shaper"
+}

@@ -1,0 +1,15 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:coast_polder_tulips"
+    ],
+    "depth": 6,
+    "dike_height": 2,
+    "dike_width": 5,
+    "ditch_spacing": 34,
+    "edge_blend": 10,
+    "mode": "depression",
+    "relief": 0.6
+  },
+  "type": "biomesmod:terrain_shaper"
+}

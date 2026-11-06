@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:denali_massif"
+    ],
+    "blur": 6,
+    "drop": 6,
+    "mode": "glacier",
+    "moraine_spacing": 44,
+    "snowline": 175
+  },
+  "type": "biomesmod:terrain_shaper"
+}

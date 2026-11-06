@@ -1,0 +1,15 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:sarek"
+    ],
+    "falls": 0.6,
+    "floor_width": 50,
+    "mode": "u_valley",
+    "shoulder": 40,
+    "spacing": 360,
+    "steepness": 3,
+    "width": 130
+  },
+  "type": "biomesmod:terrain_shaper"
+}

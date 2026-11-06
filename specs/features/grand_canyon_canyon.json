@@ -1,0 +1,20 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "canyon",
+      "biomes": [
+        "biomesmod:grand_canyon"
+      ],
+      "plateau": 16,
+      "depth": 80,
+      "width": 160,
+      "floor_width": 14,
+      "benches": 6,
+      "spacing": 560,
+      "side_spacing": 170
+    }
+  },
+  "placement": []
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "bromo_tengger",
+  "names": {
+    "en_us": "Bromo Tengger",
+    "ko_kr": "브로모 텡게르"
+  },
+  "places": [
+    17
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:windswept_savanna"
+    ]
+  },
+  "base": "minecraft:savanna",
+  "climate": {
+    "temperature": 0.5,
+    "downfall": 0.6
+  },
+  "colors": {
+    "fog": "#c9c3b8",
+    "sky": "#9ab0c8"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.01
+    }
+  ],
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:bromo_tengger_caldera"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

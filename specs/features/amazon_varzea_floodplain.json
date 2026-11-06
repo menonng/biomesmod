@@ -1,0 +1,18 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "wetland",
+      "biomes": [
+        "biomesmod:amazon_varzea"
+      ],
+      "dry_coverage": 0.5,
+      "hummock": 2.5,
+      "shallow": 2,
+      "channels": 0.3,
+      "scale": 90
+    }
+  },
+  "placement": []
+}

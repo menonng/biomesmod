@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "pillar_forest",
+      "biomes": [
+        "biomesmod:zhangjiajie"
+      ],
+      "spacing": 100,
+      "chance": 1.0,
+      "salt": 38456,
+      "cluster_radius": [
+        26,
+        40
+      ],
+      "pillar_spacing": 10,
+      "density": 0.75,
+      "pillar_radius": [
+        3,
+        6
+      ],
+      "height": [
+        45,
+        95
+      ],
+      "cap": {
+        "block": {
+          "Name": "minecraft:grass_block"
+        },
+        "feature": "minecraft:pine_checked",
+        "chance": 0.06
+      }
+    }
+  },
+  "placement": []
+}

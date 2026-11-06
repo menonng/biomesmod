@@ -1,0 +1,15 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:ross_ice_shelf"
+    ],
+    "dome": 4,
+    "dome_scale": 120,
+    "freeboard": 16,
+    "mode": "ice_sheet",
+    "roughness": 0.4,
+    "shelf": true,
+    "thickness": 8
+  },
+  "type": "biomesmod:terrain_shaper"
+}

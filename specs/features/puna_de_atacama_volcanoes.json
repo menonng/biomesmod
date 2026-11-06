@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "cone",
+      "biomes": [
+        "biomesmod:puna_de_atacama"
+      ],
+      "spacing": 300,
+      "chance": 0.8,
+      "salt": 39964,
+      "radius": [
+        35,
+        55
+      ],
+      "height": [
+        40,
+        70
+      ],
+      "snowline": 165,
+      "crater": "dry",
+      "max_relief": 200
+    }
+  },
+  "placement": []
+}

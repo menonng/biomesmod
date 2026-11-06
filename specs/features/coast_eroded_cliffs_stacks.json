@@ -1,0 +1,21 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "sea_stack",
+      "biomes": [
+        "biomesmod:coast_eroded_cliffs"
+      ],
+      "spacing": 72,
+      "chance": 0.8,
+      "salt": 73518,
+      "count": 7,
+      "height": [
+        6,
+        24
+      ]
+    }
+  },
+  "placement": []
+}

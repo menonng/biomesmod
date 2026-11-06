@@ -3,7 +3,223 @@
   "format": 1,
   "biomes": [
     {
+      "id": "biomesmod:alaid_volcano",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:aletsch_glacier",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:amazon_varzea",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:antarctic_peninsula",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:bromo_tengger",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:cliffs_of_moher",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:coast_archipelago",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:coast_eroded_cliffs",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:coast_eroded_shore",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:coast_polder_tulips",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:coast_sunken_pines",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:cordillera_darwin",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:daintree",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:dallol",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:dasht_e_lut",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:denali_massif",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:devils_tower",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:everglades",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:exuma_cays",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:franz_josef_land",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:geirangerfjord",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:giants_causeway",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:gotjawal",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:grand_canyon",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:grand_prismatic",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:great_barrier_reef",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:ha_long_bay",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:iguazu_falls",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:krenitsyn_caldera",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:lake_gairdner",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:lake_vostok_plateau",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:lauterbrunnen",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:lencois_maranhenses",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:lofoten_reine",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:magellanic_fjords",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:mcmurdo_dry_valleys",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:monument_valley",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:moraine_lake",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:orkhon_steppe",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:pamukkale",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:patagonian_icefield",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:patagonian_steppe",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:plitvice_lakes",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:puna_de_atacama",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:ross_ice_shelf",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:salar_de_tara",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:salar_de_uyuni",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:sarek",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:socotra",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:sossusvlei",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:svalbard_coast",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:tre_cime",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:ushishir_caldera",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:wadi_rum",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:zhangjiajie",
       "dimension": "minecraft:overworld"
     },
     {
@@ -18,9 +234,97 @@
   "overworld_regions": [
     {
       "name": "biomesmod:overworld_1",
-      "weight": 3,
+      "weight": 2,
       "replace": {
-        "minecraft:forest": "biomesmod:gotjawal"
+        "minecraft:badlands": "biomesmod:grand_canyon",
+        "minecraft:beach": "biomesmod:coast_eroded_shore",
+        "minecraft:birch_forest": "biomesmod:plitvice_lakes",
+        "minecraft:cold_ocean": "biomesmod:alaid_volcano",
+        "minecraft:desert": "biomesmod:dallol",
+        "minecraft:eroded_badlands": "biomesmod:dallol",
+        "minecraft:forest": "biomesmod:gotjawal",
+        "minecraft:frozen_ocean": "biomesmod:ross_ice_shelf",
+        "minecraft:frozen_peaks": "biomesmod:denali_massif",
+        "minecraft:grove": "biomesmod:sarek",
+        "minecraft:ice_spikes": "biomesmod:mcmurdo_dry_valleys",
+        "minecraft:jagged_peaks": "biomesmod:denali_massif",
+        "minecraft:jungle": "biomesmod:iguazu_falls",
+        "minecraft:lukewarm_ocean": "biomesmod:coast_archipelago",
+        "minecraft:mangrove_swamp": "biomesmod:everglades",
+        "minecraft:meadow": "biomesmod:lauterbrunnen",
+        "minecraft:ocean": "biomesmod:ushishir_caldera",
+        "minecraft:old_growth_spruce_taiga": "biomesmod:magellanic_fjords",
+        "minecraft:plains": "biomesmod:coast_polder_tulips",
+        "minecraft:savanna": "biomesmod:pamukkale",
+        "minecraft:savanna_plateau": "biomesmod:socotra",
+        "minecraft:snowy_beach": "biomesmod:svalbard_coast",
+        "minecraft:snowy_plains": "biomesmod:franz_josef_land",
+        "minecraft:snowy_slopes": "biomesmod:antarctic_peninsula",
+        "minecraft:sparse_jungle": "biomesmod:daintree",
+        "minecraft:stony_peaks": "biomesmod:puna_de_atacama",
+        "minecraft:stony_shore": "biomesmod:cliffs_of_moher",
+        "minecraft:sunflower_plains": "biomesmod:orkhon_steppe",
+        "minecraft:swamp": "biomesmod:amazon_varzea",
+        "minecraft:taiga": "biomesmod:coast_sunken_pines",
+        "minecraft:warm_ocean": "biomesmod:great_barrier_reef",
+        "minecraft:windswept_forest": "biomesmod:geirangerfjord",
+        "minecraft:windswept_gravelly_hills": "biomesmod:krenitsyn_caldera",
+        "minecraft:windswept_savanna": "biomesmod:bromo_tengger",
+        "minecraft:wooded_badlands": "biomesmod:grand_canyon"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_2",
+      "weight": 2,
+      "replace": {
+        "minecraft:badlands": "biomesmod:lake_gairdner",
+        "minecraft:beach": "biomesmod:giants_causeway",
+        "minecraft:desert": "biomesmod:dasht_e_lut",
+        "minecraft:eroded_badlands": "biomesmod:dasht_e_lut",
+        "minecraft:frozen_peaks": "biomesmod:aletsch_glacier",
+        "minecraft:jungle": "biomesmod:zhangjiajie",
+        "minecraft:lukewarm_ocean": "biomesmod:exuma_cays",
+        "minecraft:plains": "biomesmod:devils_tower",
+        "minecraft:snowy_plains": "biomesmod:lake_vostok_plateau",
+        "minecraft:snowy_slopes": "biomesmod:moraine_lake",
+        "minecraft:stony_peaks": "biomesmod:tre_cime",
+        "minecraft:stony_shore": "biomesmod:coast_eroded_cliffs",
+        "minecraft:taiga": "biomesmod:grand_prismatic",
+        "minecraft:warm_ocean": "biomesmod:ha_long_bay"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_3",
+      "weight": 2,
+      "replace": {
+        "minecraft:badlands": "biomesmod:monument_valley",
+        "minecraft:desert": "biomesmod:lencois_maranhenses",
+        "minecraft:frozen_peaks": "biomesmod:cordillera_darwin",
+        "minecraft:plains": "biomesmod:patagonian_steppe",
+        "minecraft:stony_shore": "biomesmod:lofoten_reine"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_4",
+      "weight": 2,
+      "replace": {
+        "minecraft:badlands": "biomesmod:salar_de_tara",
+        "minecraft:desert": "biomesmod:salar_de_uyuni",
+        "minecraft:frozen_peaks": "biomesmod:patagonian_icefield"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_5",
+      "weight": 2,
+      "replace": {
+        "minecraft:desert": "biomesmod:sossusvlei"
+      }
+    },
+    {
+      "name": "biomesmod:overworld_6",
+      "weight": 2,
+      "replace": {
+        "minecraft:desert": "biomesmod:wadi_rum"
       }
     }
   ],
@@ -51,7 +355,107 @@
     }
   ],
   "surface": {
-    "overworld": [],
+    "overworld": [
+      {
+        "biome": "biomesmod:cliffs_of_moher",
+        "top": "minecraft:grass_block",
+        "under": "minecraft:dirt",
+        "under_depth": 2
+      },
+      {
+        "biome": "biomesmod:coast_eroded_cliffs",
+        "top": "minecraft:stone",
+        "top_patches": [
+          {
+            "block": "minecraft:gravel",
+            "noise": "minecraft:surface",
+            "min": 0.35
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:coast_eroded_shore",
+        "top": "minecraft:sand",
+        "under": "minecraft:sandstone",
+        "under_depth": 3,
+        "underwater": "minecraft:sand"
+      },
+      {
+        "biome": "biomesmod:giants_causeway",
+        "top": "minecraft:smooth_basalt",
+        "under": "minecraft:basalt",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:lake_gairdner",
+        "top": "minecraft:red_sand",
+        "under": "minecraft:red_sandstone",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:lencois_maranhenses",
+        "top": "minecraft:white_concrete_powder",
+        "under": "minecraft:sand",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:mcmurdo_dry_valleys",
+        "top": "minecraft:coarse_dirt",
+        "top_patches": [
+          {
+            "block": "minecraft:gravel",
+            "noise": "minecraft:surface",
+            "min": 0.2
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:monument_valley",
+        "top": "minecraft:red_sand",
+        "under": "minecraft:red_sandstone",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:puna_de_atacama",
+        "top": "minecraft:coarse_dirt",
+        "top_patches": [
+          {
+            "block": "minecraft:brown_terracotta",
+            "noise": "minecraft:surface",
+            "min": 0.4
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:salar_de_uyuni",
+        "top": "minecraft:white_concrete_powder",
+        "under": "minecraft:calcite",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:socotra",
+        "top": "minecraft:coarse_dirt",
+        "top_patches": [
+          {
+            "block": "minecraft:calcite",
+            "noise": "minecraft:surface",
+            "min": 0.3
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:sossusvlei",
+        "top": "minecraft:red_sand",
+        "under": "minecraft:red_sandstone",
+        "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:wadi_rum",
+        "top": "minecraft:red_sand",
+        "under": "minecraft:red_sandstone",
+        "under_depth": 3
+      }
+    ],
     "nether": [
       {
         "biome": "biomesmod:danakil_flats",

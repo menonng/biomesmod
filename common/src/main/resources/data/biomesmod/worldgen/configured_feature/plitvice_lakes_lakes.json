@@ -1,0 +1,40 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:plitvice_lakes"
+    ],
+    "falls": 0.45,
+    "mode": "terraces",
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:moss_block"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 2
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "pool_coverage": 0.4,
+    "pool_depth": 5,
+    "pool_scale": 200,
+    "rim_width": 2.5,
+    "step": 7,
+    "tilt": 45
+  },
+  "type": "biomesmod:terrain_shaper"
+}

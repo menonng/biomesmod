@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "coast_archipelago",
+  "names": {
+    "en_us": "Archipelago",
+    "ko_kr": "열도"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:lukewarm_ocean"
+    ]
+  },
+  "base": "minecraft:lukewarm_ocean",
+  "colors": {
+    "water": "#36c0c8",
+    "water_fog": "#0e5a66"
+  },
+  "features": {
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_grass_plain"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:coast_archipelago_islands"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:coast_archipelago_trees"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "giants_causeway",
+  "names": {
+    "en_us": "Giant's Causeway",
+    "ko_kr": "자이언츠 코즈웨이"
+  },
+  "places": [
+    39
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:beach"
+    ]
+  },
+  "base": "minecraft:stony_shore",
+  "climate": {
+    "temperature": 0.5,
+    "downfall": 0.8
+  },
+  "colors": {
+    "water": "#3a6f80",
+    "water_fog": "#0f2a33",
+    "grass": "#5fa04a"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:giants_causeway_columns"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:smooth_basalt",
+    "under": "minecraft:basalt",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

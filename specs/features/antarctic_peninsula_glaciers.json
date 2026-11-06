@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "glacier",
+      "biomes": [
+        "biomesmod:antarctic_peninsula"
+      ],
+      "drop": 3,
+      "blur": 6,
+      "snowline": 90,
+      "moraine_spacing": 0
+    }
+  },
+  "placement": []
+}

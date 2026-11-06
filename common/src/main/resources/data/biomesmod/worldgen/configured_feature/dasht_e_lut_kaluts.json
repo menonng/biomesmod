@@ -1,0 +1,45 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:dasht_e_lut"
+    ],
+    "direction": -25,
+    "height": 22,
+    "length": 170,
+    "mode": "yardangs",
+    "palette": {
+      "strata": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:sandstone"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:terracotta"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_sandstone"
+            },
+            "thickness": 1
+          }
+        ]
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:sand"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "spacing": 32
+  },
+  "type": "biomesmod:terrain_shaper"
+}

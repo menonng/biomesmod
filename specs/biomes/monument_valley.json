@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "monument_valley",
+  "names": {
+    "en_us": "Monument Valley",
+    "ko_kr": "모뉴먼트 밸리"
+  },
+  "places": [
+    14
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:badlands"
+    ]
+  },
+  "base": "minecraft:badlands",
+  "climate": {
+    "temperature": 1.4,
+    "downfall": 0.1,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#7fa8e8",
+    "fog": "#e8c9a8"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:monument_valley_buttes"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:red_sand",
+    "under": "minecraft:red_sandstone",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

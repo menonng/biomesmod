@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "ross_ice_shelf",
+  "names": {
+    "en_us": "Ross Ice Shelf",
+    "ko_kr": "로스 빙붕"
+  },
+  "places": [
+    45
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:frozen_ocean"
+    ]
+  },
+  "base": "minecraft:frozen_ocean",
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:ross_ice_shelf_shelf"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

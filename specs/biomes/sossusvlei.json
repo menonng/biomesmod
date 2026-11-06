@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "sossusvlei",
+  "names": {
+    "en_us": "Sossusvlei",
+    "ko_kr": "소수스블레이"
+  },
+  "places": [
+    38
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:desert"
+    ]
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 1.8,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#3a74d8",
+    "fog": "#f0b080"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:sossusvlei_dunes"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:red_sand",
+    "under": "minecraft:red_sandstone",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

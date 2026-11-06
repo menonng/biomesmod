@@ -1,0 +1,34 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:pamukkale"
+    ],
+    "lobe": 1.4,
+    "lobe_scale": 55,
+    "mode": "terraces",
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 3
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "pool_coverage": 0.6,
+    "pool_depth": 1,
+    "pool_scale": 220,
+    "step": 2,
+    "tilt": 30
+  },
+  "type": "biomesmod:terrain_shaper"
+}

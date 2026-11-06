@@ -1,0 +1,45 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "moraine_lake",
+  "names": {
+    "en_us": "Moraine Lake",
+    "ko_kr": "모레인 호수"
+  },
+  "places": [
+    35
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:snowy_slopes"
+    ]
+  },
+  "base": "minecraft:grove",
+  "climate": {
+    "temperature": 0.1,
+    "downfall": 0.6
+  },
+  "colors": {
+    "water": "#2ad0d8",
+    "water_fog": "#0f7a80",
+    "grass": "#6a9a5a",
+    "foliage": "#3f6f3a"
+  },
+  "features": {
+    "add": {
+      "lakes": [
+        "minecraft:lake_lava_underground"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:moraine_lake_valley"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:moraine_lake_conifers"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

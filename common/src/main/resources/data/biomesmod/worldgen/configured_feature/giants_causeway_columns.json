@@ -1,0 +1,21 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:giants_causeway"
+    ],
+    "cell": 2.2,
+    "chance": 0.85,
+    "length": [
+      36,
+      60
+    ],
+    "salt": 61323,
+    "shape": "column_field",
+    "spacing": 70,
+    "width": [
+      16,
+      26
+    ]
+  },
+  "type": "biomesmod:landform"
+}

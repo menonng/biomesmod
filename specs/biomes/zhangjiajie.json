@@ -1,0 +1,52 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "zhangjiajie",
+  "names": {
+    "en_us": "Zhangjiajie Pillars",
+    "ko_kr": "장자제 석주림"
+  },
+  "places": [
+    5
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:jungle"
+    ]
+  },
+  "base": "minecraft:jungle",
+  "climate": {
+    "temperature": 0.75,
+    "downfall": 0.95
+  },
+  "colors": {
+    "fog": "#c9d4cf",
+    "sky": "#9fb4c4",
+    "grass": "#4f8a3a",
+    "foliage": "#3e7a2e",
+    "water": "#3a8f7a"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.006
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:trees_jungle",
+      "minecraft:bamboo_light",
+      "minecraft:patch_melon"
+    ],
+    "mod": {
+      "local_modifications": [
+        "biomesmod:zhangjiajie_pillars"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:zhangjiajie_forest"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "devils_tower",
+  "names": {
+    "en_us": "Devils Tower",
+    "ko_kr": "데빌스 타워"
+  },
+  "places": [
+    11
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:plains"
+    ]
+  },
+  "base": "minecraft:plains",
+  "climate": {
+    "temperature": 0.6,
+    "downfall": 0.4
+  },
+  "colors": {
+    "grass": "#9fb36a",
+    "foliage": "#6f8a46"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_plains"
+    ],
+    "mod": {
+      "local_modifications": [
+        "biomesmod:devils_tower_tower"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:devils_tower_pines"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

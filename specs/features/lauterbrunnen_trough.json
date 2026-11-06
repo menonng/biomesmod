@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "u_valley",
+      "biomes": [
+        "biomesmod:lauterbrunnen"
+      ],
+      "spacing": 420,
+      "width": 110,
+      "floor_width": 42,
+      "shoulder": 60,
+      "falls": 2.0,
+      "steepness": 6
+    }
+  },
+  "placement": []
+}

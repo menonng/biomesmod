@@ -64,6 +64,7 @@ loom {
 			vmArg "-Dbiomesmod.showcase=${project.findProperty('showcase') ?: ''}"
 			vmArg "-Dbiomesmod.showcase.only=${project.findProperty('only') ?: ''}"
 			vmArg "-Dbiomesmod.render=${project.findProperty('render') ?: 'false'}"
+			vmArg "-Dbiomesmod.render.only=${project.findProperty('renderOnly') ?: ''}"
 		}
 	}
 }
@@ -72,13 +73,48 @@ tasks.matching { it.name == 'runSelfCheck' }.configureEach {
 	doFirst { delete file('run/selfcheck/world') }
 }
 
-// Vanilla-compatible data pack (biome + features only) for Paper/vanilla servers.
-tasks.register('datapack', Zip) {
-	group = 'build'
-	description = 'Packages the worldgen data as a standalone data pack'
-	archiveFileName = "biomesmod-datapack-${project.version}.zip"
-	destinationDirectory = layout.buildDirectory.dir('datapack')
+// Vanilla-compatible data pack for Paper/vanilla servers: biomes, vanilla-typed features and the vanilla
+// worldgen overrides (wider coasts, underground ravines). Features of this mod's own types (terrain_shaper,
+// landform, umbrella_tree...) cannot load without the mod, so they are dropped and unlinked from the biomes.
+def datapackDir = layout.buildDirectory.dir('datapack-src')
+tasks.register('prepareDatapack', Sync) {
 	from(new File(commonDir, 'resources')) { include 'data/**' }
 	from('src/main/resources') { include 'data/**' }
 	from(rootProject.file("common/datapack/pack.mcmeta.${project.minecraft_version}")) { rename { 'pack.mcmeta' } }
+	into datapackDir
+	doLast {
+		def root = datapackDir.get().asFile
+		def wg = new File(root, 'data/biomesmod/worldgen')
+		def slurper = new groovy.json.JsonSlurper()
+		def modTyped = { cfg -> cfg instanceof Map && cfg.type instanceof String && cfg.type.startsWith('biomesmod:') }
+		Set<String> dropConfigured = [] as Set
+		new File(wg, 'configured_feature').eachFileMatch(~/.*\.json/) { f ->
+			if (modTyped(slurper.parse(f))) {
+				dropConfigured << 'biomesmod:' + f.name - '.json'
+				f.delete()
+			}
+		}
+		Set<String> dropPlaced = [] as Set
+		new File(wg, 'placed_feature').eachFileMatch(~/.*\.json/) { f ->
+			def p = slurper.parse(f)
+			if ((p.feature instanceof String && dropConfigured.contains(p.feature)) || modTyped(p.feature)) {
+				dropPlaced << 'biomesmod:' + f.name - '.json'
+				f.delete()
+			}
+		}
+		new File(wg, 'biome').eachFileMatch(~/.*\.json/) { f ->
+			def b = slurper.parse(f)
+			b.features = b.features.collect { step -> step.findAll { !dropPlaced.contains(it) } }
+			f.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(b))
+		}
+		logger.lifecycle("datapack: dropped ${dropPlaced.size()} mod-typed feature(s) for vanilla compatibility")
+	}
+}
+tasks.register('datapack', Zip) {
+	group = 'build'
+	description = 'Packages the worldgen data as a standalone (vanilla/Paper) data pack'
+	dependsOn 'prepareDatapack'
+	archiveFileName = "biomesmod-datapack-${project.version}.zip"
+	destinationDirectory = layout.buildDirectory.dir('datapack')
+	from datapackDir
 }

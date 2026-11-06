@@ -1,0 +1,36 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "alaid_volcano",
+  "names": {
+    "en_us": "Alaid Volcano",
+    "ko_kr": "알라이드 화산"
+  },
+  "places": [
+    3
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:cold_ocean"
+    ]
+  },
+  "base": "minecraft:cold_ocean",
+  "climate": {
+    "temperature": 0.0,
+    "downfall": 0.8
+  },
+  "colors": {
+    "water": "#3d5f80",
+    "water_fog": "#0d2236",
+    "fog": "#c0c8d0"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:alaid_volcano_cone"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

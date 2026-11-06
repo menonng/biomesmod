@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "lofoten_reine",
+  "names": {
+    "en_us": "Lofoten Peaks",
+    "ko_kr": "로포텐 봉우리"
+  },
+  "places": [
+    26,
+    28
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:stony_shore"
+    ]
+  },
+  "base": "minecraft:stony_shore",
+  "climate": {
+    "temperature": 0.2,
+    "downfall": 0.8
+  },
+  "colors": {
+    "water": "#2f6f8f",
+    "water_fog": "#0d2a3a"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:lofoten_reine_horns",
+        "biomesmod:lofoten_reine_stacks"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,12 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:patagonian_steppe"
+    ],
+    "hills": 4,
+    "mesa_step": 10,
+    "mode": "rolling",
+    "smooth": 0.8
+  },
+  "type": "biomesmod:terrain_shaper"
+}

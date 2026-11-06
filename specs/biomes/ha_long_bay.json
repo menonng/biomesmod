@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "ha_long_bay",
+  "names": {
+    "en_us": "Ha Long Bay",
+    "ko_kr": "하롱베이"
+  },
+  "places": [
+    22
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:warm_ocean"
+    ]
+  },
+  "base": "minecraft:warm_ocean",
+  "colors": {
+    "water": "#2fa38a",
+    "water_fog": "#0e4f44",
+    "fog": "#cfd8d2"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:ha_long_bay_towers"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

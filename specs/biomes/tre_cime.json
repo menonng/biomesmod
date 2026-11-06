@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "tre_cime",
+  "names": {
+    "en_us": "Tre Cime",
+    "ko_kr": "트레 치메"
+  },
+  "places": [
+    24
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:stony_peaks"
+    ]
+  },
+  "base": "minecraft:stony_peaks",
+  "colors": {
+    "sky": "#7aa6e6"
+  },
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:tre_cime_spires"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

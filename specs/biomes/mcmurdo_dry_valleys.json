@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "mcmurdo_dry_valleys",
+  "names": {
+    "en_us": "McMurdo Dry Valleys",
+    "ko_kr": "맥머도 드라이 밸리"
+  },
+  "places": [
+    46
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:ice_spikes"
+    ]
+  },
+  "base": "minecraft:snowy_plains",
+  "climate": {
+    "temperature": -0.5,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#6f9ae0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:mcmurdo_dry_valleys_valley"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:gravel",
+        "noise": "minecraft:surface",
+        "min": 0.2
+      }
+    ],
+    "top": "minecraft:coarse_dirt"
+  },
+  "carvers": "underground"
+}

@@ -1,0 +1,17 @@
+{
+  "config": {
+    "band_width": 2.6,
+    "biomes": [
+      "biomesmod:grand_prismatic"
+    ],
+    "chance": 0.9,
+    "pool_radius": [
+      10,
+      18
+    ],
+    "salt": 51622,
+    "shape": "hot_spring",
+    "spacing": 120
+  },
+  "type": "biomesmod:landform"
+}

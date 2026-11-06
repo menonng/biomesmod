@@ -1,0 +1,42 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "ushishir_caldera",
+  "names": {
+    "en_us": "Ushishir Caldera",
+    "ko_kr": "우시시르 칼데라"
+  },
+  "places": [
+    1
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:ocean"
+    ]
+  },
+  "base": "minecraft:ocean",
+  "climate": {
+    "temperature": 0.2,
+    "downfall": 0.9
+  },
+  "colors": {
+    "water": "#3c6f87",
+    "water_fog": "#0f2b38",
+    "fog": "#b9c6cf"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.004
+    }
+  ],
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:ushishir_caldera_caldera"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "rolling",
+      "biomes": [
+        "biomesmod:puna_de_atacama"
+      ],
+      "smooth": 0.9,
+      "hills": 6,
+      "hill_scale": 260
+    }
+  },
+  "placement": []
+}

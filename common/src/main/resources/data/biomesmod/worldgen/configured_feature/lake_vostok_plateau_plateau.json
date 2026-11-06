@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:lake_vostok_plateau"
+    ],
+    "dome": 10,
+    "dome_scale": 300,
+    "mode": "ice_sheet",
+    "roughness": 0.6,
+    "thickness": 24
+  },
+  "type": "biomesmod:terrain_shaper"
+}

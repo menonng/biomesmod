@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "rolling",
+      "biomes": [
+        "biomesmod:cliffs_of_moher"
+      ],
+      "smooth": 0.3,
+      "hills": 2,
+      "lift": 22,
+      "edge_blend": 6
+    }
+  },
+  "placement": []
+}

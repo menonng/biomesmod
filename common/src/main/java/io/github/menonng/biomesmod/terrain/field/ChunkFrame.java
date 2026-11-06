@@ -336,6 +336,13 @@ public final class ChunkFrame {
 		int cj = (int) Math.floor(fz);
 		double tx = fx - ci;
 		double tz = fz - cj;
+		// Defensive: a sample outside the prepared grid is clamped to its edge instead of crashing worldgen.
+		if (ci < 1 || ci > bcnt - 3 || cj < 1 || cj > bcnt - 3) {
+			ci = Math.max(1, Math.min(bcnt - 3, ci));
+			cj = Math.max(1, Math.min(bcnt - 3, cj));
+			tx = Noise.clamp(tx, 0, 1);
+			tz = Noise.clamp(tz, 0, 1);
+		}
 		double r0 = row(a, ci, cj - 1, tx);
 		double r1 = row(a, ci, cj, tx);
 		double r2 = row(a, ci, cj + 1, tx);

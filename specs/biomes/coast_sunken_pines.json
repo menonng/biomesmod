@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "coast_sunken_pines",
+  "names": {
+    "en_us": "Sunken Pine Barrens",
+    "ko_kr": "저지대 성긴 침엽수림"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:taiga"
+    ]
+  },
+  "base": "minecraft:taiga",
+  "colors": {
+    "grass": "#86a85a",
+    "foliage": "#5f8a3c"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_grass_taiga",
+        "minecraft:patch_large_fern"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:coast_sunken_pines_basin"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:coast_sunken_pines_trees"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

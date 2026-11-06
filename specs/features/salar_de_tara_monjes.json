@@ -1,0 +1,45 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "monolith",
+      "biomes": [
+        "biomesmod:salar_de_tara"
+      ],
+      "spacing": 160,
+      "chance": 0.5,
+      "salt": 21519,
+      "count": 3,
+      "taper": 0.5,
+      "radius": [
+        4,
+        7
+      ],
+      "height": [
+        14,
+        28
+      ],
+      "columns": 0,
+      "flute": 0.0,
+      "talus": 0.6,
+      "palette": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:light_gray_terracotta"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:terracotta"
+            },
+            "thickness": 2
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

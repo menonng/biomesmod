@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "islands",
+      "biomes": [
+        "biomesmod:exuma_cays"
+      ],
+      "coverage": 0.18,
+      "scale": 45,
+      "height": 4,
+      "beach": 4,
+      "depth": 3,
+      "rocky": 0.0,
+      "edge_blend": 48,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:sand"
+            },
+            "depth": 3
+          }
+        ],
+        "underwater": [
+          {
+            "block": {
+              "Name": "minecraft:sand"
+            },
+            "depth": 3
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

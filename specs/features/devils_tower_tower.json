@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "monolith",
+      "biomes": [
+        "biomesmod:devils_tower"
+      ],
+      "spacing": 300,
+      "chance": 0.9,
+      "salt": 54194,
+      "radius": [
+        13,
+        17
+      ],
+      "height": [
+        60,
+        85
+      ],
+      "flute": 0.12,
+      "columns": 40
+    }
+  },
+  "placement": []
+}

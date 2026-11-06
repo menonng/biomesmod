@@ -1,0 +1,33 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "everglades",
+  "names": {
+    "en_us": "Everglades",
+    "ko_kr": "에버글레이즈"
+  },
+  "places": [
+    36
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:mangrove_swamp"
+    ]
+  },
+  "base": "minecraft:mangrove_swamp",
+  "colors": {
+    "water": "#5a6a3a",
+    "water_fog": "#2a3018",
+    "grass": "#8aa04a",
+    "foliage": "#5a7a2e"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:everglades_marsh"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

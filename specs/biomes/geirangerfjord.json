@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "geirangerfjord",
+  "names": {
+    "en_us": "Geirangerfjord",
+    "ko_kr": "예이랑에르피오르"
+  },
+  "places": [
+    27
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:windswept_forest"
+    ]
+  },
+  "base": "minecraft:windswept_forest",
+  "colors": {
+    "water": "#1f5f5a",
+    "water_fog": "#082a28"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:geirangerfjord_fjord"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

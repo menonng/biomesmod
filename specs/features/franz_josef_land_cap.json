@@ -1,0 +1,18 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "ice_sheet",
+      "biomes": [
+        "biomesmod:franz_josef_land"
+      ],
+      "thickness": 14,
+      "dome": 24,
+      "dome_scale": 260,
+      "shelf": true,
+      "freeboard": 10
+    }
+  },
+  "placement": []
+}

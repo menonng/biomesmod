@@ -1,0 +1,20 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "islands",
+      "biomes": [
+        "biomesmod:coast_archipelago"
+      ],
+      "coverage": 0.24,
+      "scale": 60,
+      "height": 12,
+      "beach": 2,
+      "depth": 7,
+      "rocky": 0.2,
+      "edge_blend": 40
+    }
+  },
+  "placement": []
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "franz_josef_land",
+  "names": {
+    "en_us": "Franz Josef Land",
+    "ko_kr": "프란츠요제프 제도"
+  },
+  "places": [
+    44
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:snowy_plains"
+    ]
+  },
+  "base": "minecraft:snowy_plains",
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:franz_josef_land_cap"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

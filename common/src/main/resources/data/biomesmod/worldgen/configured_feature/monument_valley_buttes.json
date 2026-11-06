@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:monument_valley"
+    ],
+    "chance": 0.9,
+    "salt": 17953,
+    "shape": "butte",
+    "spacing": 180,
+    "thumbs": 0.7
+  },
+  "type": "biomesmod:landform"
+}

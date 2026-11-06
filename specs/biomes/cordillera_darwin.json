@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "cordillera_darwin",
+  "names": {
+    "en_us": "Cordillera Darwin",
+    "ko_kr": "다윈 산맥"
+  },
+  "places": [
+    49
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:frozen_peaks"
+    ]
+  },
+  "base": "minecraft:frozen_peaks",
+  "colors": {
+    "fog": "#c8d2dc"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:cordillera_darwin_ice"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

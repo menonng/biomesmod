@@ -8,6 +8,7 @@ import io.github.menonng.biomesmod.terrain.field.mode.DepressionMode;
 import io.github.menonng.biomesmod.terrain.field.mode.DunesMode;
 import io.github.menonng.biomesmod.terrain.field.mode.FlattenMode;
 import io.github.menonng.biomesmod.terrain.field.mode.GlacierMode;
+import io.github.menonng.biomesmod.terrain.field.mode.IslandsMode;
 import io.github.menonng.biomesmod.terrain.field.mode.IceSheetMode;
 import io.github.menonng.biomesmod.terrain.field.mode.RollingMode;
 import io.github.menonng.biomesmod.terrain.field.mode.TerracesMode;
@@ -46,7 +47,8 @@ public interface ShaperMode extends FeatureConfiguration {
 		GLACIER("glacier", () -> GlacierMode.CODEC),
 		WETLAND("wetland", () -> WetlandMode.CODEC),
 		YARDANGS("yardangs", () -> YardangsMode.CODEC),
-		ROLLING("rolling", () -> RollingMode.CODEC);
+		ROLLING("rolling", () -> RollingMode.CODEC),
+		ISLANDS("islands", () -> IslandsMode.CODEC);
 
 		private static final Map<String, Type> BY_ID = Arrays.stream(values()).collect(Collectors.toMap(Type::id, Function.identity()));
 		public static final Codec<Type> CODEC = Codec.STRING.comapFlatMap(Type::byId, Type::id);

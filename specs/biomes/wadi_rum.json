@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "wadi_rum",
+  "names": {
+    "en_us": "Wadi Rum",
+    "ko_kr": "와디 럼"
+  },
+  "places": [
+    31
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:desert"
+    ]
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 1.8,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#7aa8e8",
+    "fog": "#f0c8a0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "local_modifications": [
+        "biomesmod:wadi_rum_massifs"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:red_sand",
+    "under": "minecraft:red_sandstone",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

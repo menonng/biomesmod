@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "grand_canyon",
+  "names": {
+    "en_us": "Grand Canyon",
+    "ko_kr": "그랜드 캐니언"
+  },
+  "places": [
+    34
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:badlands",
+      "minecraft:wooded_badlands"
+    ]
+  },
+  "base": "minecraft:badlands",
+  "climate": {
+    "temperature": 1.3,
+    "downfall": 0.15,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#86aee8",
+    "fog": "#e8c8a8",
+    "water": "#6a8f6a"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:grand_canyon_canyon"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:grand_canyon_junipers"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

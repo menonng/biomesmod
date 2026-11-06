@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "minecraft:random_selector",
+    "config": {
+      "features": [
+        {
+          "chance": 0.3,
+          "feature": "minecraft:dark_oak_checked"
+        },
+        {
+          "chance": 0.1,
+          "feature": "minecraft:birch_checked"
+        }
+      ],
+      "default": "minecraft:oak_checked"
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 6
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:surface_water_depth_filter",
+      "max_water_depth": 0
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "puna_de_atacama",
+  "names": {
+    "en_us": "Puna de Atacama",
+    "ko_kr": "푸나 데 아타카마"
+  },
+  "places": [
+    18
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:stony_peaks"
+    ]
+  },
+  "base": "minecraft:badlands",
+  "climate": {
+    "temperature": 0.3,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#3f6fd0",
+    "fog": "#d8c8a8",
+    "grass": "#b8a868"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:puna_de_atacama_plateau"
+      ],
+      "local_modifications": [
+        "biomesmod:puna_de_atacama_volcanoes"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:brown_terracotta",
+        "noise": "minecraft:surface",
+        "min": 0.4
+      }
+    ],
+    "top": "minecraft:coarse_dirt"
+  },
+  "carvers": "underground"
+}

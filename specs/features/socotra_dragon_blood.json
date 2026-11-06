@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:umbrella_tree",
+    "config": {
+      "trunk": {
+        "Name": "minecraft:dark_oak_log"
+      },
+      "leaves": {
+        "Name": "minecraft:jungle_leaves"
+      },
+      "trunk_height": [
+        3,
+        5
+      ],
+      "crown_radius": [
+        3.5,
+        5.5
+      ],
+      "crown_thickness": [
+        2,
+        3
+      ],
+      "branches": 7
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "config": {
+    "default": "minecraft:jungle_bush",
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": "minecraft:pine_checked"
+      },
+      {
+        "chance": 0.2,
+        "feature": "minecraft:fancy_oak_checked"
+      }
+    ]
+  },
+  "type": "minecraft:random_selector"
+}

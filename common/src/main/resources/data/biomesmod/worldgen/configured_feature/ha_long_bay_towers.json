@@ -1,0 +1,40 @@
+{
+  "config": {
+    "base_y_range": [
+      -30,
+      2
+    ],
+    "biomes": [
+      "biomesmod:ha_long_bay"
+    ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.12,
+      "feature": "minecraft:jungle_bush"
+    },
+    "chance": 1.0,
+    "cluster_radius": [
+      30,
+      46
+    ],
+    "dome": 1.0,
+    "height": [
+      22,
+      55
+    ],
+    "max_relief": 60,
+    "notch": 2,
+    "pillar_radius": [
+      5,
+      11
+    ],
+    "pillar_spacing": 22,
+    "rise_from": "sea_level",
+    "salt": 14139,
+    "shape": "pillar_forest",
+    "spacing": 110
+  },
+  "type": "biomesmod:landform"
+}

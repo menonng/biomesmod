@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:patagonian_icefield"
+    ],
+    "blur": 7,
+    "drop": 2,
+    "mode": "glacier",
+    "moraine_spacing": 60,
+    "snowline": 140
+  },
+  "type": "biomesmod:terrain_shaper"
+}

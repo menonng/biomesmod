@@ -1,0 +1,21 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "sea_stack",
+      "biomes": [
+        "biomesmod:cliffs_of_moher"
+      ],
+      "spacing": 90,
+      "chance": 0.7,
+      "salt": 5750,
+      "count": 4,
+      "height": [
+        16,
+        34
+      ]
+    }
+  },
+  "placement": []
+}

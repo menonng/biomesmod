@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "glacier",
+      "biomes": [
+        "biomesmod:aletsch_glacier"
+      ],
+      "drop": 5,
+      "blur": 7,
+      "snowline": 185,
+      "moraine_spacing": 38
+    }
+  },
+  "placement": []
+}

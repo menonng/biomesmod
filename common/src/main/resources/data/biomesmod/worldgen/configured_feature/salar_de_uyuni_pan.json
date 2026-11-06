@@ -1,0 +1,48 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:salar_de_uyuni"
+    ],
+    "crust": 0.75,
+    "crust_block": {
+      "Name": "minecraft:calcite"
+    },
+    "crust_cell": 7,
+    "edge_blend": 40,
+    "mode": "flatten",
+    "offset": 2,
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:white_concrete_powder"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 3
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:white_concrete_powder"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "water_coverage": 0.25,
+    "water_scale": 180
+  },
+  "type": "biomesmod:terrain_shaper"
+}

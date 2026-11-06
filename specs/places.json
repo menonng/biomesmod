@@ -1,0 +1,1411 @@
+[
+ {
+  "n": 1,
+  "input": "47.5160, 152.8060",
+  "lat": 47.516,
+  "lon": 152.806,
+  "name": "Ushishir Islands (Yankicha, Kraternaya Bay)",
+  "country": "Russia (Kuril Islands)",
+  "confidence": "high",
+  "summary": "A small volcanic island group whose main island Yankicha is a collapsed caldera ring, breached on one side so the sea floods the crater as Kraternaya Bay; steaming fumaroles, seabird cliffs, low tundra.",
+  "landforms": "caldera ring breached to the sea, flooded crater bay, fumaroles",
+  "signature": "a ring of cliffs open to the sea with a bay inside",
+  "biome": "biomesmod:ushishir_caldera",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Severo-Kurilsky District, Sakhalin Oblast, Far Eastern Federal District, 694550, Russia",
+   "wikipedia_geosearch_10km": [
+    "Ushishir (0.6km)",
+    "Crater Bay (0.7km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 145.0,
+   "temp_mean_c": 2.4,
+   "precip_mm": 1294,
+   "snow_cm": 245
+  }
+ },
+ {
+  "n": 2,
+  "input": "49°21'00.0\"N 154°42'00.0\"E",
+  "lat": 49.35,
+  "lon": 154.7,
+  "name": "Krenitsyn Peak in Lake Koltsevoye (Tao-Rusyr caldera), Onekotan",
+  "country": "Russia (Kuril Islands)",
+  "confidence": "high",
+  "summary": "Onekotan's southern Tao-Rusyr caldera holds the ring-shaped Lake Koltsevoye, with the young Krenitsyn cone (1324 m) rising from the water as an island.",
+  "landforms": "caldera rim, ring lake, central cone island",
+  "signature": "a cone island standing in a crater lake ringed by cliffs",
+  "biome": "biomesmod:krenitsyn_caldera",
+  "notes": "The point sits on the Krenitsyn cone; Wikipedia geosearch returns no article within 10 km, identification from coordinates of Krenitsyn Peak (49.35 N, 154.70 E).",
+  "sources": {
+   "osm_reverse": "Severo-Kurilsky District, Sakhalin Oblast, Far Eastern Federal District, 694550, Russia",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 1028.0,
+   "temp_mean_c": -3.6,
+   "precip_mm": 1575,
+   "snow_cm": 449
+  }
+ },
+ {
+  "n": 3,
+  "input": "50°51'39.6\"N 155°33'54.0\"E",
+  "lat": 50.861,
+  "lon": 155.565,
+  "name": "Alaid volcano (Atlasov Island)",
+  "country": "Russia (Kuril Islands)",
+  "confidence": "high",
+  "summary": "The highest Kuril volcano (2339 m): an almost perfect stratovolcano rising straight out of the sea as Atlasov Island, snow-capped, with a summit crater.",
+  "landforms": "symmetric stratovolcano island, summit crater, snow cap",
+  "signature": "a lone snow-capped cone standing in the open sea",
+  "biome": "biomesmod:alaid_volcano",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Severo-Kurilsky District, Sakhalin Oblast, Far Eastern Federal District, 694550, Russia",
+   "wikipedia_geosearch_10km": [
+    "Atlasov Island (0.1km)",
+    "Alaid volcano (0.6km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2278.0,
+   "temp_mean_c": -11.7,
+   "precip_mm": 1678,
+   "snow_cm": 521
+  }
+ },
+ {
+  "n": 4,
+  "input": "20°08'01.7\"S 67°29'20.8\"W",
+  "lat": -20.13381,
+  "lon": -67.48911,
+  "name": "Salar de Uyuni",
+  "country": "Bolivia",
+  "confidence": "high",
+  "summary": "The world's largest salt flat (10,582 km2) at 3,656 m: dead-flat white crust in polygonal hexagons; a thin film of rain water turns it into a sky mirror.",
+  "landforms": "dead-flat pan, hexagonal salt crust, water film",
+  "signature": "a white plain to the horizon with hexagon cracks and mirror pools",
+  "biome": "biomesmod:salar_de_uyuni",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Municipio Colcha K, Provincia Nor Lípez, Potosí, Bolivia",
+   "wikipedia_geosearch_10km": [
+    "Salar de Uyuni (0.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 3654.0,
+   "temp_mean_c": 7.3,
+   "precip_mm": 179,
+   "snow_cm": 4
+  }
+ },
+ {
+  "n": 5,
+  "input": "29°19'26.4\"N 110°26'02.4\"E",
+  "lat": 29.324,
+  "lon": 110.434,
+  "name": "Zhangjiajie National Forest Park (Wulingyuan)",
+  "country": "China",
+  "confidence": "high",
+  "summary": "Over 3,000 quartz-sandstone pillars, many above 200 m, rise from a misty subtropical forest; their flat tops carry pines.",
+  "landforms": "dense clusters of tall thin sandstone pillars with pine-topped caps, misty gorges",
+  "signature": "a forest of vertical stone towers with trees on top in mist",
+  "biome": "biomesmod:zhangjiajie",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Luoguta, Wulingyuan District, Zhangjiajie, Hunan, China",
+   "wikipedia_geosearch_10km": [
+    "Zhangjiajie National Forest Park (2.9km)",
+    "Bailong Elevator (4.1km)",
+    "Wulingyuan (6.5km)",
+    "Wulingyuan, Zhangjiajie (6.7km)",
+    "Zhonghu Township (7.0km)",
+    "Huanglong Cave (9.1km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 604.0,
+   "temp_mean_c": 15.2,
+   "precip_mm": 1888,
+   "snow_cm": 10
+  }
+ },
+ {
+  "n": 6,
+  "input": "44°51'55.4\"N 15°34'55.2\"E",
+  "lat": 44.86539,
+  "lon": 15.582,
+  "name": "Plitvice Lakes National Park",
+  "country": "Croatia",
+  "confidence": "high",
+  "summary": "Sixteen terraced lakes in karst, separated by travertine barriers over which countless waterfalls spill; turquoise water inside beech-fir forest.",
+  "landforms": "staircase of turquoise lakes, travertine barriers, waterfalls",
+  "signature": "turquoise lakes stepping down through forest with falls between them",
+  "biome": "biomesmod:plitvice_lakes",
+  "notes": "Listed twice in the input (n=6 and n=30): same coordinates.",
+  "sources": {
+   "osm_reverse": "Plitvički Ljeskovac, Općina Plitvička Jezera, Lika-Senj County, Croatia",
+   "wikipedia_geosearch_10km": [
+    "Batinovac (1.8km)",
+    "Plitvice Lakes incident (2.7km)",
+    "Plitvička Jezera (3.2km)",
+    "Plitvice Lakes National Park (3.2km)",
+    "Jezerce, Croatia (3.4km)",
+    "Vrhovine (3.6km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 819.0,
+   "temp_mean_c": 10.5,
+   "precip_mm": 2004,
+   "snow_cm": 233
+  }
+ },
+ {
+  "n": 7,
+  "input": "2°28'57.4\"S 43°07'30.0\"W",
+  "lat": -2.48261,
+  "lon": -43.125,
+  "name": "Lençóis Maranhenses National Park",
+  "country": "Brazil",
+  "confidence": "high",
+  "summary": "A coastal field of white quartz dunes up to 40 m; in the rainy season every hollow between the crests fills with blue-green rain lagoons.",
+  "landforms": "white transverse dunes, rain lagoons in the interdunes",
+  "signature": "white dunes with blue lagoons between every crest",
+  "biome": "biomesmod:lencois_maranhenses",
+  "notes": "Listed twice in the input (n=7 and n=20): same coordinates.",
+  "sources": {
+   "osm_reverse": "Santo Amaro do Maranhão, Maranhão, Northeast Region, 65195-000, Brazil",
+   "wikipedia_geosearch_10km": [
+    "Lençóis Maranhenses National Park (5.7km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 14.0,
+   "temp_mean_c": 27.0,
+   "precip_mm": 1639,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 8,
+  "input": "44°31'30.4\"N 110°50'17.5\"W",
+  "lat": 44.52511,
+  "lon": -110.83819,
+  "name": "Grand Prismatic Spring, Midway Geyser Basin (Yellowstone)",
+  "country": "United States",
+  "confidence": "high",
+  "summary": "The largest hot spring in the US: a deep-blue pool ringed by green, yellow and orange microbial mats that streak outward over white sinter, in lodgepole-pine country.",
+  "landforms": "rainbow hot spring rings, sinter apron, steam, geyser basin in pine forest",
+  "signature": "a blue pool ringed by rainbow bands of orange and yellow",
+  "biome": "biomesmod:grand_prismatic",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Teton County, Wyoming, United States",
+   "wikipedia_geosearch_10km": [
+    "Grand Prismatic Spring (0.0km)",
+    "Excelsior Geyser (0.2km)",
+    "Young Hopeful and Grey Bulger Geysers (3.2km)",
+    "White Dome Geyser (3.2km)",
+    "Surprise Pool (3.2km)",
+    "Botryoidal Spring (3.3km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2214.0,
+   "temp_mean_c": 2.1,
+   "precip_mm": 675,
+   "snow_cm": 221
+  }
+ },
+ {
+  "n": 9,
+  "input": "25°41'43.1\"S 54°26'12.1\"W",
+  "lat": -25.69531,
+  "lon": -54.43669,
+  "name": "Iguazu Falls (Devil's Throat)",
+  "country": "Argentina / Brazil",
+  "confidence": "high",
+  "summary": "275 falls along 2.7 km of a basalt escarpment; the Devil's Throat is a U-shaped chasm where half the river plunges 80 m, in dense Atlantic rainforest with constant spray.",
+  "landforms": "horseshoe basalt escarpment, curtain of falls broken by islets, plunge gorge, spray",
+  "signature": "a horseshoe of many waterfalls into a misty gorge in jungle",
+  "biome": "biomesmod:iguazu_falls",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Puerto Iguazú, Departamento Iguazú, Misiones, Argentina",
+   "wikipedia_geosearch_10km": [
+    "Devil's Throat, Iguazu Falls (0.1km)",
+    "Isla de San Martín (Argentina) (1.0km)",
+    "Belmond Hotel das Cataratas (1.2km)",
+    "Iguazu Falls (1.3km)",
+    "Iguaçu National Park (1.4km)",
+    "Rainforest Ecological Train (1.7km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 162.0,
+   "temp_mean_c": 22.3,
+   "precip_mm": 2079,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 10,
+  "input": "50°56'32.3\"S 73°24'24.5\"W",
+  "lat": -50.94231,
+  "lon": -73.40681,
+  "name": "Southern Patagonian Ice Field above Grey Glacier (Torres del Paine)",
+  "country": "Chile",
+  "confidence": "medium",
+  "summary": "West of the Torres del Paine massif the land is buried under the Southern Patagonian Ice Field, which feeds Grey Glacier; 8.5 m of yearly precipitation, crevassed ice and nunataks.",
+  "landforms": "ice field with crevasses and rock nunataks, outlet glaciers",
+  "signature": "endless crevassed ice with dark rock peaks poking through",
+  "biome": "biomesmod:patagonian_icefield",
+  "notes": "No named landmark at the point (1,441 m, ERA5 8.5 m precipitation/yr); it lies on the ice field ~15 km west-northwest of Grey Glacier's front, inside Torres del Paine park.",
+  "sources": {
+   "osm_reverse": "Torres del Paine, Provincia de Última Esperanza, Magallanes and Chilean Antarctica Region, 6170000, Chile",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 1441.0,
+   "temp_mean_c": -3.5,
+   "precip_mm": 8529,
+   "snow_cm": 5308
+  }
+ },
+ {
+  "n": 11,
+  "input": "44°35'24.0\"N 104°42'55.0\"W",
+  "lat": 44.59,
+  "lon": -104.71528,
+  "name": "Devils Tower",
+  "country": "United States",
+  "confidence": "high",
+  "summary": "A 265 m igneous butte of hexagonal columns rising above the Belle Fourche River prairie, ringed by a talus apron and ponderosa pines.",
+  "landforms": "single fluted columnar monolith on a talus skirt, prairie and pines",
+  "signature": "one giant ribbed rock tower above grassland",
+  "biome": "biomesmod:devils_tower",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Crook County, Wyoming, United States",
+   "wikipedia_geosearch_10km": [
+    "Devils Tower (0.1km)",
+    "Tower Ladder (Devils Tower National Monument) (0.1km)",
+    "Old Headquarters Area Historic District (0.4km)",
+    "Entrance Station (1.1km)",
+    "Missouri Buttes (5.5km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 1386.0,
+   "temp_mean_c": 7.9,
+   "precip_mm": 486,
+   "snow_cm": 92
+  }
+ },
+ {
+  "n": 12,
+  "input": "37°55'26.0\"N 29°07'24.0\"E",
+  "lat": 37.92389,
+  "lon": 29.12333,
+  "name": "Pamukkale travertines (Hierapolis)",
+  "country": "Turkey",
+  "confidence": "high",
+  "summary": "A hillside of snow-white travertine terraces built by hot calcium-rich springs: scalloped pools of milky turquoise water stepping down the slope.",
+  "landforms": "white travertine terrace pools on a hillside",
+  "signature": "a white hillside of scalloped pools full of turquoise water",
+  "biome": "biomesmod:pamukkale",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Denizli, Pamukkale, Denizli, Aegean Region, 20175, Turkey",
+   "wikipedia_geosearch_10km": [
+    "Pamukkale (0.0km)",
+    "Hierapolis Archaeological Museum (0.1km)",
+    "Hierapolis (0.3km)",
+    "Ploutonion at Hierapolis (0.4km)",
+    "Pamukkale, Denizli (1.0km)",
+    "Develi, Pamukkale (2.2km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 349.0,
+   "temp_mean_c": 18.3,
+   "precip_mm": 428,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 13,
+  "input": "12°27'00.0\"N 53°49'00.0\"E",
+  "lat": 12.45,
+  "lon": 53.81667,
+  "name": "Socotra highlands west of the Diksam plateau",
+  "country": "Yemen",
+  "confidence": "medium",
+  "summary": "Socotra's limestone plateaus and wadis carry endemic dragon's blood trees with dense umbrella crowns, bottle trees and frankincense on pale rock.",
+  "landforms": "umbrella-crowned dragon's blood trees on pale limestone plateau",
+  "signature": "mushroom-shaped trees standing over pale rocky ground",
+  "biome": "biomesmod:socotra",
+  "notes": "No named landmark at the point (191 m); it lies in western-central Socotra between the Hadibu coast and the Diksam plateau, a landscape of limestone wadis and dragon's blood woodland.",
+  "sources": {
+   "osm_reverse": "Hidaybu District, Socotra Governorate, Yemen",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 191.0,
+   "temp_mean_c": 25.3,
+   "precip_mm": 410,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 14,
+  "input": "36°59'15.0\"N 110°05'42.0\"W",
+  "lat": 36.9875,
+  "lon": -110.095,
+  "name": "Monument Valley (Mitten Buttes, Merrick Butte)",
+  "country": "United States",
+  "confidence": "high",
+  "summary": "Sandstone buttes up to 300 m stand on red sand plains; the Mittens have a slender 'thumb' spire beside their main block, all on talus aprons of shale.",
+  "landforms": "flat-topped buttes with thumbs, layered sandstone, red sand",
+  "signature": "red flat-topped buttes with thumb spires on a red plain",
+  "biome": "biomesmod:monument_valley",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Navajo County, Arizona, United States",
+   "wikipedia_geosearch_10km": [
+    "Monument Valley (0.6km)",
+    "Merrick Butte (1.1km)",
+    "West and East Mitten Buttes (2.2km)",
+    "Mitchell Mesa (2.3km)",
+    "Sentinel Mesa (2.8km)",
+    "Elephant Butte (Monument Valley) (3.2km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 1638.0,
+   "temp_mean_c": 12.4,
+   "precip_mm": 187,
+   "snow_cm": 49
+  }
+ },
+ {
+  "n": 15,
+  "input": "30°12'58.0\"N 58°50'20.0\"E",
+  "lat": 30.21611,
+  "lon": 58.83889,
+  "name": "Dasht-e Lut (Kaluts yardang field)",
+  "country": "Iran",
+  "confidence": "medium",
+  "summary": "One of the hottest places on Earth (70 C ground): wind has carved the Lut's silty sediments into the Kaluts, long parallel yardang ridges separated by sandy corridors.",
+  "landforms": "long parallel wind-carved ridges, flat corridors, no life",
+  "signature": "endless parallel ridges like stranded hulls in a burning desert",
+  "biome": "biomesmod:dasht_e_lut",
+  "notes": "No named landmark at the point (418 m); it lies in the Shahdad district of the central Lut, east of the main Kalut belt toward the Rig-e Yalan sand sea.",
+  "sources": {
+   "osm_reverse": "دهستان تکاب, بخش شهداد, Kerman County, Kerman Province, Iran",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 418.0,
+   "temp_mean_c": 28.0,
+   "precip_mm": 24,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 16,
+  "input": "16°10'12.0\"S 145°25'04.8\"E",
+  "lat": -16.17,
+  "lon": 145.418,
+  "name": "Daintree Rainforest at Cape Tribulation coast",
+  "country": "Australia",
+  "confidence": "high",
+  "summary": "The world's oldest tropical rainforest runs right down to white beaches and fringing reef: buttressed trees, fan palms, strangler figs, mangroves in the creeks.",
+  "landforms": "dense rainforest to the beach, creeks with mangroves",
+  "signature": "jungle that ends on a white beach by turquoise water",
+  "biome": "biomesmod:daintree",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Queensland, Australia",
+   "wikipedia_geosearch_10km": [
+    "Diwan, Queensland (1.9km)",
+    "Thornton Beach, Queensland (2.4km)",
+    "Bouncing Stones (3.3km)",
+    "Fan Palm Reserve (3.4km)",
+    "Daintree Rainforest (3.9km)",
+    "Thornton Peak (4.7km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 23.0,
+   "temp_mean_c": 23.8,
+   "precip_mm": 3930,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 17,
+  "input": "7°56'29.0\"S 112°57'02.9\"E",
+  "lat": -7.94139,
+  "lon": 112.95081,
+  "name": "Mount Bromo in the Tengger caldera",
+  "country": "Indonesia (East Java)",
+  "confidence": "high",
+  "summary": "Inside the 10 km Tengger caldera lies a 'sea of sand' of grey volcanic ash, from which rise the smoking Bromo crater and the perfectly fluted Batok cone.",
+  "landforms": "large caldera, flat grey sand sea, fluted cone",
+  "signature": "a grey sand plain inside crater walls with a ribbed cone",
+  "biome": "biomesmod:bromo_tengger",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Pasuruan, East Java, Indonesia",
+   "wikipedia_geosearch_10km": [
+    "Mount Bromo (0.1km)",
+    "Mount Batok (0.8km)",
+    "Cemoro Lawang (2.6km)",
+    "Podokoyo (3.8km)",
+    "Wonotoro (6.5km)",
+    "Ngadas (6.6km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2252.0,
+   "temp_mean_c": 13.3,
+   "precip_mm": 2829,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 18,
+  "input": "24°00'00.0\"S 67°30'00.0\"W",
+  "lat": -24.0,
+  "lon": -67.5,
+  "name": "Puna de Atacama high plateau",
+  "country": "Chile / Argentina",
+  "confidence": "low",
+  "summary": "At 4,500 m the Puna is a cold, hyper-dry plateau of ochre gravel plains, salt pans and snow-dusted volcanic cones; vicuñas graze the sparse bunchgrass.",
+  "landforms": "high barren plateau, distant volcanic cones, salt pans",
+  "signature": "ochre gravel plain under a dark-blue sky with volcanoes around",
+  "biome": "biomesmod:puna_de_atacama",
+  "notes": "No named landmark within 10 km (4,531 m); OSM places it in the San Pedro de Atacama commune near the Chile-Argentina border, on the Puna plateau between the Salar de Pular and Salar de Arizaro basins.",
+  "sources": {
+   "osm_reverse": "San Pedro de Atacama, Provincia de El Loa, Antofagasta Region, Chile",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 4531.0,
+   "temp_mean_c": 3.2,
+   "precip_mm": 128,
+   "snow_cm": 54
+  }
+ },
+ {
+  "n": 19,
+  "input": "49°30'00.0\"S 70°30'00.0\"W",
+  "lat": -49.5,
+  "lon": -70.5,
+  "name": "Patagonian steppe of Santa Cruz (Corpen Aike)",
+  "country": "Argentina",
+  "confidence": "high",
+  "summary": "Wind-scoured, treeless steppe of golden coirón grass and cushion shrubs on stepped basalt-capped mesetas; guanacos, rheas and endless sky.",
+  "landforms": "rolling dry grassland on stepped mesetas, no trees",
+  "signature": "golden grass to the horizon over stepped tablelands",
+  "biome": "biomesmod:patagonian_steppe",
+  "notes": "No named landmark within 10 km (215 m); the point is open steppe in Corpen Aike department, Santa Cruz.",
+  "sources": {
+   "osm_reverse": "Corpen Aike, Santa Cruz, Argentina",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 215.0,
+   "temp_mean_c": 8.4,
+   "precip_mm": 213,
+   "snow_cm": 44
+  }
+ },
+ {
+  "n": 20,
+  "input": "2°28'57.4\"S 43°07'30.0\"W",
+  "lat": -2.48261,
+  "lon": -43.125,
+  "duplicate_of": 7
+ },
+ {
+  "n": 21,
+  "input": "63°06'53.3\"N 151°11'33.4\"W",
+  "lat": 63.11481,
+  "lon": -151.19261,
+  "name": "Denali massif, north flank near Peters Dome and Jeffery Glacier",
+  "country": "United States (Alaska)",
+  "confidence": "high",
+  "summary": "The flanks of North America's highest peak: knife-edge ridges and domes above heavily crevassed glaciers that pour into the Muldrow and Peters basins.",
+  "landforms": "glaciers filling valleys between jagged snowy ridges",
+  "signature": "ice rivers between towering snow ridges",
+  "biome": "biomesmod:denali_massif",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Denali Borough, Alaska, United States",
+   "wikipedia_geosearch_10km": [
+    "Peters Dome (2.5km)",
+    "Mount Capps (3.9km)",
+    "Jeffery Glacier (6.4km)",
+    "Kahiltna Dome (7.0km)",
+    "Straightaway Glacier (7.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2295.0,
+   "temp_mean_c": -8.5,
+   "precip_mm": 990,
+   "snow_cm": 429
+  }
+ },
+ {
+  "n": 22,
+  "input": "20°49'58.8\"N 107°09'39.6\"E",
+  "lat": 20.833,
+  "lon": 107.161,
+  "name": "Hạ Long Bay (Bái Tử Long side, Vân Đồn)",
+  "country": "Vietnam",
+  "confidence": "high",
+  "summary": "Some 1,600 limestone karst towers and islets, sheer-sided and jungle-capped, rise from emerald water, notched at the waterline by waves.",
+  "landforms": "karst towers in emerald sea, wave notches, vegetated domes",
+  "signature": "tall green-topped rock towers standing in calm emerald water",
+  "biome": "biomesmod:ha_long_bay",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Vân Đồn, Vietnam",
+   "wikipedia_geosearch_10km": [
+    "Hạ Long Bay (8.5km)",
+    "Capsizing of the Wonder Sea (10.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 24.5,
+   "precip_mm": 1604,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 23,
+  "input": "46°35'34.8\"N 7°54'32.4\"E",
+  "lat": 46.593,
+  "lon": 7.909,
+  "name": "Lauterbrunnen Valley (Staubbach Falls)",
+  "country": "Switzerland",
+  "confidence": "high",
+  "summary": "A textbook glacial trough: flat green floor between 300-500 m limestone cliffs from which 72 waterfalls, Staubbach the best known, drop free into the valley.",
+  "landforms": "U-shaped valley, vertical walls, free-falling waterfalls, meadows",
+  "signature": "a flat green valley between sheer walls with ribbon waterfalls",
+  "biome": "biomesmod:lauterbrunnen",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Lauterbrunnen, Interlaken-Oberhasli administrative district, Oberland administrative region, Bern, Switzerland",
+   "wikipedia_geosearch_10km": [
+    "Lauterbrunnen (0.3km)",
+    "Staubbach Falls (0.5km)",
+    "Lauterbrunnen railway station (0.6km)",
+    "Lauberhorn (downhill ski course) (1.1km)",
+    "Männlichen (ski course) (1.2km)",
+    "Lauberhorn ski races (1.2km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 799.0,
+   "temp_mean_c": 11.1,
+   "precip_mm": 2086,
+   "snow_cm": 58
+  }
+ },
+ {
+  "n": 24,
+  "input": "46°37'07.0\"N 12°18'20.2\"E",
+  "lat": 46.61861,
+  "lon": 12.30561,
+  "name": "Tre Cime di Lavaredo",
+  "country": "Italy (Dolomites)",
+  "confidence": "high",
+  "summary": "Three free-standing dolomite towers (up to 2,999 m) with vertical north faces, rising from pale scree fans above alpine meadows.",
+  "landforms": "three sharp pale rock towers on scree",
+  "signature": "three pale stone spires in a row above scree and grass",
+  "biome": "biomesmod:tre_cime",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Auronzo di Cadore, Belluno, Veneto, 32041, Italy",
+   "wikipedia_geosearch_10km": [
+    "Tre Cime di Lavaredo (0.5km)",
+    "Paternkofel (1.0km)",
+    "Croda Passaporto (1.2km)",
+    "Antonio Locatelli Hut (2.1km)",
+    "Torre di Toblin (2.6km)",
+    "Torre dei Scarperi (3.3km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2564.0,
+   "temp_mean_c": -2.0,
+   "precip_mm": 1248,
+   "snow_cm": 284
+  }
+ },
+ {
+  "n": 25,
+  "input": "46°29'34.8\"N 8°02'09.6\"E",
+  "lat": 46.493,
+  "lon": 8.036,
+  "name": "Great Aletsch Glacier at Konkordiaplatz",
+  "country": "Switzerland",
+  "confidence": "high",
+  "summary": "The Alps' largest glacier (23 km): at Konkordiaplatz four ice streams merge into a 900 m thick ice plain, striped by dark medial moraines, below the Jungfrau peaks.",
+  "landforms": "confluence of ice streams, medial moraine stripes, snowfields above",
+  "signature": "a wide white ice river striped with dark moraine lines",
+  "biome": "biomesmod:aletsch_glacier",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Fieschertal, Goms, Oberwallis, Valais/Wallis, 3801, Switzerland",
+   "wikipedia_geosearch_10km": [
+    "Jungfrau-Aletsch protected area (0.8km)",
+    "Konkordiaplatz (1.0km)",
+    "Konkordia Hut (1.6km)",
+    "Dreieckhorn (2.1km)",
+    "Fiescher Gabelhorn (3.8km)",
+    "Mittelaletsch Glacier (4.2km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2691.0,
+   "temp_mean_c": -2.1,
+   "precip_mm": 1873,
+   "snow_cm": 1065
+  }
+ },
+ {
+  "n": 26,
+  "input": "67° 55' 57.3\" N 13° 01' 08.9\" E",
+  "lat": 67.93258,
+  "lon": 13.01914,
+  "name": "Lofoten peaks above Reine (Moskenesøya)",
+  "country": "Norway",
+  "confidence": "high",
+  "summary": "Granite horns over 700 m rise straight from the sea around Reine; red fishing cabins sit on skerries at their feet.",
+  "landforms": "sharp granite horns rising from the sea, skerries, stacks",
+  "signature": "jagged peaks standing straight out of the sea",
+  "biome": "biomesmod:lofoten_reine",
+  "notes": "Points n=26 and n=28 are 4 km apart (the ridge above Reine and Reine village on the shore) and describe one landscape; merged into one biome.",
+  "sources": {
+   "osm_reverse": "Moskenes, Nordland, Norway",
+   "wikipedia_geosearch_10km": [
+    "Moskenes Municipality (2.6km)",
+    "Reine Church (2.9km)",
+    "Reine, Norway (2.9km)",
+    "Djupfjord Bridge (3.2km)",
+    "Hermannsdalstinden (3.5km)",
+    "Moskenes Church (3.8km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 739.0,
+   "temp_mean_c": 0.5,
+   "precip_mm": 1031,
+   "snow_cm": 183
+  }
+ },
+ {
+  "n": 27,
+  "input": "62°06'14.4\"N 7°05'38.4\"E",
+  "lat": 62.104,
+  "lon": 7.094,
+  "name": "Geirangerfjord at the Seven Sisters falls",
+  "country": "Norway",
+  "confidence": "high",
+  "summary": "A 15 km fjord between near-vertical walls up to 1,400 m; the Seven Sisters waterfalls fall straight into the deep green water.",
+  "landforms": "flooded U-valley (fjord), sheer walls, waterfalls into the sea",
+  "signature": "a deep narrow fjord with waterfalls dropping straight into it",
+  "biome": "biomesmod:geirangerfjord",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Stranda, Møre og Romsdal, Norway",
+   "wikipedia_geosearch_10km": [
+    "Seven Sisters Waterfall (0.3km)",
+    "Knivsflå (0.6km)",
+    "Skageflå (1.6km)",
+    "Geirangerfjord (2.6km)",
+    "Geiranger (5.9km)",
+    "Geiranger Church (5.9km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 6.0,
+   "precip_mm": 2098,
+   "snow_cm": 128
+  }
+ },
+ {
+  "n": 28,
+  "input": "67°55'55.2\"N 13°05'20.4\"E",
+  "lat": 67.932,
+  "lon": 13.089,
+  "name": "Reine, Lofoten",
+  "country": "Norway",
+  "confidence": "high",
+  "summary": "Fishing village on skerries at the foot of the Reinebringen horns.",
+  "landforms": "skerries, fjord coast",
+  "signature": "",
+  "biome": "biomesmod:lofoten_reine",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Moskenes, Nordland, Norway",
+   "wikipedia_geosearch_10km": [
+    "Reine, Norway (0.0km)",
+    "Reine Church (0.2km)",
+    "Djupfjord Bridge (2.1km)",
+    "Hamnøya (2.4km)",
+    "Moskenes Church (3.9km)",
+    "Moskenes Municipality (5.5km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 12.0,
+   "temp_mean_c": 4.7,
+   "precip_mm": 1031,
+   "snow_cm": 189
+  }
+ },
+ {
+  "n": 29,
+  "input": "67°06'00.0\"N 17°42'00.0\"E",
+  "lat": 67.1,
+  "lon": 17.7,
+  "name": "Southern Sarek National Park (Pårte massif)",
+  "country": "Sweden (Lapland)",
+  "confidence": "medium",
+  "summary": "Sweden's wildest park: alpine tundra, small hanging glaciers and deep U-shaped valleys like Rapadalen, with mountain birch below the treeline.",
+  "landforms": "U-valleys in tundra mountains, small glaciers, birch",
+  "signature": "glacier-carved valleys through bare tundra mountains",
+  "biome": "biomesmod:sarek",
+  "notes": "No named landmark within 10 km (845 m); the point lies in the southern part of Sarek NP, north of Kvikkjokk.",
+  "sources": {
+   "osm_reverse": "Jokkmokks kommun, Norrbotten County, Sweden",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 845.0,
+   "temp_mean_c": -2.3,
+   "precip_mm": 1117,
+   "snow_cm": 373
+  }
+ },
+ {
+  "n": 30,
+  "input": "44°51'55.4\"N 15°34'55.2\"E",
+  "lat": 44.86539,
+  "lon": 15.582,
+  "duplicate_of": 6
+ },
+ {
+  "n": 31,
+  "input": "29°34'33.6\"N 35°25'12.0\"E",
+  "lat": 29.576,
+  "lon": 35.42,
+  "name": "Wadi Rum (Jabal Ram)",
+  "country": "Jordan",
+  "confidence": "high",
+  "summary": "Red sand valleys between towering sandstone and granite inselbergs with smooth domed tops and vertical walls; natural arches and narrow siqs.",
+  "landforms": "red sand plain with steep domed sandstone massifs",
+  "signature": "red sand between sheer rounded rock massifs",
+  "biome": "biomesmod:wadi_rum",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Al Quairah Sub-District, Quairah District, Aqaba, 76910, Jordan",
+   "wikipedia_geosearch_10km": [
+    "Wadi Rum (1.9km)",
+    "Jabal Ram (2.1km)",
+    "Al-Qūaīrah (9.4km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 953.0,
+   "temp_mean_c": 19.7,
+   "precip_mm": 62,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 32,
+  "input": "14°14'27.6\"N 40°18'00.0\"E",
+  "lat": 14.241,
+  "lon": 40.3,
+  "name": "Dallol hydrothermal field, Danakil Depression",
+  "country": "Ethiopia",
+  "confidence": "high",
+  "summary": "At -125 m, one of the hottest inhabited places on Earth: hot springs dissolve salt and sulfur into acid pools ringed by neon yellow, green and white crusts and salt chimneys.",
+  "landforms": "flat salt plain below sea level, acid pools with yellow/green/white crusts, salt chimneys",
+  "signature": "a neon yellow and green crust field with acid pools",
+  "biome": "biomesmod:dallol",
+  "notes": "The mod's Nether biome Danakil Flats is a separate reinterpretation; this is the real overworld Dallol.",
+  "sources": {
+   "osm_reverse": "Zone 2, Afar Region, 1212, Ethiopia",
+   "wikipedia_geosearch_10km": [
+    "Danakil Desert (0.1km)",
+    "Danakil Depression (0.1km)",
+    "Dallol (ghost town) (0.7km)",
+    "Gaet'ale Pond (3.8km)"
+   ]
+  },
+  "climate": {
+   "elev_m": -94.0,
+   "temp_mean_c": 34.3,
+   "precip_mm": 63,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 33,
+  "input": "23°00'00.0\"S 67°18'00.0\"W",
+  "lat": -23.0,
+  "lon": -67.3,
+  "name": "Salar de Tara (Los Flamencos National Reserve)",
+  "country": "Chile",
+  "confidence": "high",
+  "summary": "A salt lagoon at 4,300 m ringed by ochre hills and wind-carved ignimbrite towers (the 'Monjes de Pacana'); flamingos feed in shallow pink-white brine.",
+  "landforms": "salt lagoon with white rims, ochre hills, eroded rock towers",
+  "signature": "a shallow white-rimmed salt lake under ochre hills and rock spires",
+  "biome": "biomesmod:salar_de_tara",
+  "notes": "Wikipedia geosearch: Pastos Chicos 6.4 km; coordinates match Salar de Tara (23.03 S, 67.26 W) on the Chile-Argentina border.",
+  "sources": {
+   "osm_reverse": "San Pedro de Atacama, Provincia de El Loa, Antofagasta Region, Chile",
+   "wikipedia_geosearch_10km": [
+    "Pastos Chicos (6.4km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 4316.0,
+   "temp_mean_c": 3.0,
+   "precip_mm": 112,
+   "snow_cm": 34
+  }
+ },
+ {
+  "n": 34,
+  "input": "36°06'24.8\"N 112°06'46.4\"W",
+  "lat": 36.10689,
+  "lon": -112.11289,
+  "name": "Grand Canyon (South Rim, Plateau Point)",
+  "country": "United States",
+  "confidence": "high",
+  "summary": "The Colorado River has cut 1.8 km into the Kaibab Plateau: stepped walls of red, buff and grey rock layers, side canyons and buttes, the river far below.",
+  "landforms": "deep stepped canyon with stratified walls, side canyons, river",
+  "signature": "a vast stepped canyon of red and cream rock layers",
+  "biome": "biomesmod:grand_canyon",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Coconino County, Arizona, United States",
+   "wikipedia_geosearch_10km": [
+    "Bass Formation (0.7km)",
+    "River Trail (Arizona) (1.0km)",
+    "Plateau Point (1.5km)",
+    "Cheops Pyramid (1.6km)",
+    "Phantom Ranch (1.6km)",
+    "Bright Angel Creek (1.6km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 1009.0,
+   "temp_mean_c": 16.4,
+   "precip_mm": 404,
+   "snow_cm": 3
+  }
+ },
+ {
+  "n": 35,
+  "input": "51°19'18.1\"N 116°11'09.6\"W",
+  "lat": 51.32169,
+  "lon": -116.186,
+  "name": "Moraine Lake (Valley of the Ten Peaks, Banff)",
+  "country": "Canada",
+  "confidence": "high",
+  "summary": "A glacier-fed lake of vivid turquoise rock-flour water below the ten peaks' cliffs, dammed by a rockpile, ringed by spruce and larch.",
+  "landforms": "turquoise glacial lake under a wall of peaks, rockpile dam, conifers",
+  "signature": "a vivid turquoise lake under a ring of jagged peaks",
+  "biome": "biomesmod:moraine_lake",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Improvement District No. 9, Alberta, Canada",
+   "wikipedia_geosearch_10km": [
+    "Moraine Lake (0.1km)",
+    "Mount Bowlen (2.2km)",
+    "Consolation Valley (2.3km)",
+    "Mount Babel (Alberta) (2.3km)",
+    "Neil Colgan Hut (2.7km)",
+    "Tonsa Peak (2.9km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 1853.0,
+   "temp_mean_c": 0.4,
+   "precip_mm": 592,
+   "snow_cm": 126
+  }
+ },
+ {
+  "n": 36,
+  "input": "25°17'11.8\"N 80°53'55.3\"W",
+  "lat": 25.28661,
+  "lon": -80.89869,
+  "name": "Everglades backcountry near Hells Bay",
+  "country": "United States (Florida)",
+  "confidence": "high",
+  "summary": "Where the 'river of grass' meets the mangrove backcountry: sawgrass marsh, tree islands and a maze of tannin-dark mangrove creeks and bays.",
+  "landforms": "flooded sawgrass with tree islands, mangrove creeks",
+  "signature": "endless shallow water and grass with mangrove islands",
+  "biome": "biomesmod:everglades",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Monroe County, Florida, United States",
+   "wikipedia_geosearch_10km": [
+    "Hells Bay (4.1km)",
+    "Whitewater Bay (9.5km)"
+   ]
+  },
+  "climate": {
+   "elev_m": -1.0,
+   "temp_mean_c": 25.1,
+   "precip_mm": 1235,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 37,
+  "input": "3°27'55.1\"S 62°12'57.2\"W",
+  "lat": -3.46531,
+  "lon": -62.21589,
+  "name": "Solimões (Amazon) várzea floodplain near Codajás",
+  "country": "Brazil",
+  "confidence": "high",
+  "summary": "Seasonally flooded whitewater forest along the Solimões: a mosaic of oxbow lakes, channels and tall forest standing in water for months.",
+  "landforms": "flooded forest, floodplain lakes and channels",
+  "signature": "a jungle growing out of brown water with lakes and channels",
+  "biome": "biomesmod:amazon_varzea",
+  "notes": "No named landmark within 10 km (50 m); the point is on the north-bank floodplain of the Solimões opposite Codajás.",
+  "sources": {
+   "osm_reverse": "Codajás, Amazonas, North Region, Brazil",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 50.0,
+   "temp_mean_c": 26.9,
+   "precip_mm": 1834,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 38,
+  "input": "24°45'36.0\"S 15°17'24.0\"E",
+  "lat": -24.76,
+  "lon": 15.29,
+  "name": "Deadvlei / Sossusvlei, Namib-Naukluft",
+  "country": "Namibia",
+  "confidence": "high",
+  "summary": "Star dunes over 300 m of rust-red sand surround white clay pans; in Deadvlei the black skeletons of 900-year-old camel thorn trees stand on the cracked white floor.",
+  "landforms": "giant red star dunes, white clay pans, dead black trees",
+  "signature": "black dead trees on a white pan under red dunes",
+  "biome": "biomesmod:sossusvlei",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Hardap, Namibia",
+   "wikipedia_geosearch_10km": [
+    "Deadvlei (0.2km)",
+    "Namib (1.6km)",
+    "Sossusvlei (2.3km)",
+    "Tsauchab (8.3km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 567.0,
+   "temp_mean_c": 20.8,
+   "precip_mm": 12,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 39,
+  "input": "55°14'26.9\"N 6°30'41.8\"W",
+  "lat": 55.24081,
+  "lon": -6.51161,
+  "name": "Giant's Causeway",
+  "country": "United Kingdom (Northern Ireland)",
+  "confidence": "high",
+  "summary": "About 40,000 interlocking basalt columns, mostly hexagonal, step down from the cliff foot into the sea like paving stones, below dark basalt cliffs and green headland.",
+  "landforms": "polygonal basalt columns stepping into the sea, basalt cliffs",
+  "signature": "hexagonal stone steps leading into the sea",
+  "biome": "biomesmod:giants_causeway",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Causeway Coast and Glens District, County Londonderry, Northern Ireland, United Kingdom",
+   "wikipedia_geosearch_10km": [
+    "Giant's Causeway (0.0km)",
+    "Girona (ship) (0.8km)",
+    "Benbane Head (1.8km)",
+    "Ulster Way (2.0km)",
+    "Portbraddon Cave (2.4km)",
+    "River Bush (2.8km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 10.8,
+   "precip_mm": 1449,
+   "snow_cm": 21
+  }
+ },
+ {
+  "n": 40,
+  "input": "52°58'17.4\"N 9°25'51.2\"W",
+  "lat": 52.9715,
+  "lon": -9.43089,
+  "name": "Cliffs of Moher (O'Brien's Tower)",
+  "country": "Ireland",
+  "confidence": "high",
+  "summary": "Layered sandstone and shale cliffs rise 214 m straight from the Atlantic for 14 km, topped by green grass, with sea stacks such as Branaunmore at their foot.",
+  "landforms": "sheer layered sea cliffs, grass on top, sea stacks",
+  "signature": "a wall of layered cliffs dropping into the Atlantic with green grass on top",
+  "biome": "biomesmod:cliffs_of_moher",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "County Clare, Munster, Ireland",
+   "wikipedia_geosearch_10km": [
+    "O'Brien's Tower (0.2km)",
+    "Burren and Cliffs of Moher Geopark (0.2km)",
+    "Cliffs of Moher (0.3km)",
+    "Homestead Cottage (3.0km)",
+    "Moher Tower (3.6km)",
+    "Liscannor (4.4km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 11.6,
+   "precip_mm": 2194,
+   "snow_cm": 45
+  }
+ },
+ {
+  "n": 41,
+  "input": "18°17'13.6\"S 147°41'57.1\"E",
+  "lat": -18.28711,
+  "lon": 147.69919,
+  "name": "Central Great Barrier Reef, outer reefs off Townsville",
+  "country": "Australia",
+  "confidence": "medium",
+  "summary": "Platform reefs of the outer central GBR: coral gardens rising to the surface from a 50 m deep shelf, with sand cays, lagoons and very clear water.",
+  "landforms": "coral reef platforms near the surface, lagoons, sand cays",
+  "signature": "turquoise shallows over coral with white sand cays",
+  "biome": "biomesmod:great_barrier_reef",
+  "notes": "No named feature in OSM or Wikipedia within 10 km; the point is in the reef matrix east of Hinchinbrook Island / Townsville (central GBR).",
+  "sources": {
+   "osm_reverse": null,
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 25.6,
+   "precip_mm": 1158,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 42,
+  "input": "31°41′50″S 135°51′13″E",
+  "lat": -31.69722,
+  "lon": 135.85361,
+  "name": "Lake Gairdner",
+  "country": "Australia (South Australia)",
+  "confidence": "high",
+  "summary": "A 160 km salt lake in the outback with a crust over a metre thick, bright white against red sand and low granite hills; used for land-speed records.",
+  "landforms": "huge white salt crust, red sand shores, low hills",
+  "signature": "a blinding white salt lake rimmed by red sand",
+  "biome": "biomesmod:lake_gairdner",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "South Australia, Australia",
+   "wikipedia_geosearch_10km": [
+    "Lake Gairdner National Park (0.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 119.0,
+   "temp_mean_c": 19.0,
+   "precip_mm": 278,
+   "snow_cm": 0
+  }
+ },
+ {
+  "n": 43,
+  "input": "79.44656080241984, 18.81522772263324",
+  "lat": 79.44656,
+  "lon": 18.81523,
+  "name": "Lomfjordhalvøya coast, Ny-Friesland (Svalbard)",
+  "country": "Norway",
+  "confidence": "medium",
+  "summary": "High-Arctic coast of bare tundra, raised beaches and gravel flats below glacier tongues and flat-topped mountains, frozen sea for much of the year.",
+  "landforms": "barren arctic tundra coast, glaciers reaching the sea",
+  "signature": "grey tundra and ice under flat snowy mountains by a frozen sea",
+  "biome": "biomesmod:svalbard_coast",
+  "notes": "Wikipedia geosearch: Lovénberget 3.8 km, Lomfjordhalvøya 9.9 km; the point is on the shore of Lomfjorden.",
+  "sources": {
+   "osm_reverse": "Svalbard, 9170, Norway",
+   "wikipedia_geosearch_10km": [
+    "Lovénberget (3.8km)",
+    "Lomfjordhalvøya (9.9km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 2.0,
+   "temp_mean_c": -5.8,
+   "precip_mm": 650,
+   "snow_cm": 398
+  }
+ },
+ {
+  "n": 44,
+  "input": "80°30'00.0\"N 54°00'00.0\"E",
+  "lat": 80.5,
+  "lon": 54.0,
+  "name": "Nansen Island ice cap, Franz Josef Land",
+  "country": "Russia",
+  "confidence": "high",
+  "summary": "Basalt islands of Franz Josef Land are buried under domed ice caps that end in ice cliffs at the sea; only black basalt capes poke through.",
+  "landforms": "domed ice cap ending in ice cliffs, basalt capes",
+  "signature": "a smooth white dome of ice ending in cliffs at the sea",
+  "biome": "biomesmod:franz_josef_land",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Primorsky District, Arkhangelsk Oblast, Northwestern Federal District, Russia",
+   "wikipedia_geosearch_10km": [
+    "Nansen Island (Franz Josef Land) (1.8km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 268.0,
+   "temp_mean_c": -10.3,
+   "precip_mm": 318,
+   "snow_cm": 176
+  }
+ },
+ {
+  "n": 45,
+  "input": "78°00'00.0\"S 175°00'00.0\"E",
+  "lat": -78.0,
+  "lon": 175.0,
+  "name": "Ross Ice Shelf",
+  "country": "Antarctica",
+  "confidence": "high",
+  "summary": "The largest ice shelf on Earth, a floating plain of ice hundreds of metres thick ending at a 50 m ice cliff; utterly flat to the horizon.",
+  "landforms": "flat floating ice plain ending in an ice cliff",
+  "signature": "a flat white plain that ends in a sheer ice cliff over the sea",
+  "biome": "biomesmod:ross_ice_shelf",
+  "notes": "No feature names here; the point is on the shelf interior ~250 km from the barrier.",
+  "sources": {
+   "osm_reverse": null,
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 41.0,
+   "temp_mean_c": -25.5,
+   "precip_mm": 92,
+   "snow_cm": 65
+  }
+ },
+ {
+  "n": 46,
+  "input": "77°30'00.0\"S 162°00'00.0\"E",
+  "lat": -77.5,
+  "lon": 162.0,
+  "name": "Wright Valley, McMurdo Dry Valleys (Lake Vanda)",
+  "country": "Antarctica",
+  "confidence": "high",
+  "summary": "The largest ice-free area of Antarctica: brown gravel and sand valleys with wind-sculpted ventifacts, the frozen Lake Vanda and the Onyx River, under dark dolerite-capped walls.",
+  "landforms": "ice-free brown gravel valley, frozen lakes, dark walls",
+  "signature": "a brown, rocky, snowless valley in Antarctica with a frozen lake",
+  "biome": "biomesmod:mcmurdo_dry_valleys",
+  "notes": "",
+  "sources": {
+   "osm_reverse": null,
+   "wikipedia_geosearch_10km": [
+    "Prospect Mesa (3.2km)",
+    "Vanda Station (8.2km)",
+    "Onyx River (8.7km)",
+    "Mount Booth (9.3km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 966.0,
+   "temp_mean_c": -22.9,
+   "precip_mm": 13,
+   "snow_cm": 10
+  }
+ },
+ {
+  "n": 47,
+  "input": "64°00'00.0\"S 60°00'00.0\"W",
+  "lat": -64.0,
+  "lon": -60.0,
+  "name": "Davis Coast, Graham Land (Antarctic Peninsula)",
+  "country": "Antarctica",
+  "confidence": "high",
+  "summary": "Alpine peaks and plateau ice of the Antarctic Peninsula spill as crevassed glaciers into fjords and end in ice cliffs; 3 m of snow-equivalent a year.",
+  "landforms": "heavily glaciated mountain coast, ice cliffs, crevasses",
+  "signature": "snow-buried mountains pouring glaciers into a dark sea",
+  "biome": "biomesmod:antarctic_peninsula",
+  "notes": "",
+  "sources": {
+   "osm_reverse": null,
+   "wikipedia_geosearch_10km": [
+    "Davis Coast (0.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 574.0,
+   "temp_mean_c": -6.6,
+   "precip_mm": 3157,
+   "snow_cm": 2178
+  }
+ },
+ {
+  "n": 48,
+  "input": "-52.832695339365515, -72.24485054053353",
+  "lat": -52.8327,
+  "lon": -72.24485,
+  "name": "Riesco Island and the Magellanic channels",
+  "country": "Chile",
+  "confidence": "medium",
+  "summary": "Cold, wet hills of lenga and coigüe beech forest, peat bogs and wind-bent trees around the fjords and channels north of the Strait of Magellan.",
+  "landforms": "beech-forested hills, peat bogs, fjord channels",
+  "signature": "windswept beech forest on low hills by grey channels",
+  "biome": "biomesmod:magellanic_fjords",
+  "notes": "Wikipedia geosearch: Riesco Island 9.1 km; the point is on the mainland side of the Seno Otway / Skyring channels.",
+  "sources": {
+   "osm_reverse": "Río Verde, Provincia de Magallanes, Magallanes and Chilean Antarctica Region, Chile",
+   "wikipedia_geosearch_10km": [
+    "Riesco Island (9.1km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 236.0,
+   "temp_mean_c": 3.0,
+   "precip_mm": 2724,
+   "snow_cm": 68
+  }
+ },
+ {
+  "n": 49,
+  "input": "-54.68079087680847, -69.62120733535599",
+  "lat": -54.68079,
+  "lon": -69.62121,
+  "name": "Cordillera Darwin ice field, Tierra del Fuego",
+  "country": "Chile",
+  "confidence": "medium",
+  "summary": "An ice-capped range rising to 2,500 m out of the Beagle Channel; tidewater glaciers ('Glacier Alley') tumble from the ice field to the sea.",
+  "landforms": "ice field with outlet glaciers to fjords",
+  "signature": "glaciers tumbling from ice-capped mountains down to the sea",
+  "biome": "biomesmod:cordillera_darwin",
+  "notes": "No named landmark within 10 km (1,682 m, 3.9 m precipitation/yr); the point is on the ice field of the Cordillera Darwin.",
+  "sources": {
+   "osm_reverse": "Cape Horn, Provincia de la Antártica Chilena, Magallanes and Chilean Antarctica Region, Chile",
+   "wikipedia_geosearch_10km": []
+  },
+  "climate": {
+   "elev_m": 1682.0,
+   "temp_mean_c": -7.5,
+   "precip_mm": 3850,
+   "snow_cm": 2369
+  }
+ },
+ {
+  "n": 50,
+  "input": "77°30'00.0\"S 106°00'00.0\"E",
+  "lat": -77.5,
+  "lon": 106.0,
+  "name": "East Antarctic Plateau over Lake Vostok",
+  "country": "Antarctica",
+  "confidence": "high",
+  "summary": "The coldest place on Earth (-89 C recorded): a featureless ice plateau 3.5 km high, sitting on top of the buried subglacial Lake Vostok.",
+  "landforms": "endless smooth ice plateau, sastrugi",
+  "signature": "a perfectly empty plain of snow and ice",
+  "biome": "biomesmod:lake_vostok_plateau",
+  "notes": "",
+  "sources": {
+   "osm_reverse": null,
+   "wikipedia_geosearch_10km": [
+    "Lake Vostok (0.0km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 3520.0,
+   "temp_mean_c": -52.5,
+   "precip_mm": 2,
+   "snow_cm": 1
+  }
+ },
+ {
+  "n": 51,
+  "input": "47°00'00.0\"N 103°00'00.0\"E",
+  "lat": 47.0,
+  "lon": 103.0,
+  "name": "Orkhon Valley steppe near Kharkhorin",
+  "country": "Mongolia",
+  "confidence": "high",
+  "summary": "The Orkhon Valley's rolling grassland at 1,500 m: open steppe with gentle hills, the meandering river and scattered gers, the ancient heart of the Mongol empire.",
+  "landforms": "open rolling grassland, meandering river",
+  "signature": "green hills rolling to the horizon with no trees",
+  "biome": "biomesmod:orkhon_steppe",
+  "notes": "Wikipedia geosearch: Shankh Monastery 6.7 km; inside the Orkhon Valley Cultural Landscape (UNESCO).",
+  "sources": {
+   "osm_reverse": "Kharkhorin, Övörkhangai, Mongolia",
+   "wikipedia_geosearch_10km": [
+    "Shankh Monastery (6.7km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 1560.0,
+   "temp_mean_c": 1.2,
+   "precip_mm": 400,
+   "snow_cm": 54
+  }
+ },
+ {
+  "n": 52,
+  "input": "23°30'00.0\"N 75°45'00.0\"W",
+  "lat": 23.5,
+  "lon": -75.75,
+  "name": "Great Exuma and the Exuma Cays (George Town)",
+  "country": "Bahamas",
+  "confidence": "high",
+  "summary": "Hundreds of low limestone cays on the edge of the Great Bahama Bank: sandbars and turquoise shallows a few metres deep, with mangroves and casuarina on the islands.",
+  "landforms": "low sandy cays and sandbars in very shallow turquoise water",
+  "signature": "white sandbars and tiny islands in glowing turquoise shallows",
+  "biome": "biomesmod:exuma_cays",
+  "notes": "",
+  "sources": {
+   "osm_reverse": "Exuma, Bahamas",
+   "wikipedia_geosearch_10km": [
+    "George Town, Bahamas (3.2km)",
+    "George Town Airport (4.9km)",
+    "Moriah Harbour Cay National Park (8.7km)",
+    "Exuma (9.3km)"
+   ]
+  },
+  "climate": {
+   "elev_m": 0.0,
+   "temp_mean_c": 26.7,
+   "precip_mm": 1214,
+   "snow_cm": 0
+  }
+ }
+]

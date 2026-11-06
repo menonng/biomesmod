@@ -1,0 +1,42 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "coast_eroded_cliffs",
+  "names": {
+    "en_us": "Eroded Stony Cliffs",
+    "ko_kr": "침식 암석 절벽"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:stony_shore"
+    ]
+  },
+  "base": "minecraft:stony_shore",
+  "colors": {
+    "water": "#3f7fa0",
+    "water_fog": "#123a4f"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:coast_eroded_cliffs_ledges"
+      ],
+      "local_modifications": [
+        "biomesmod:coast_eroded_cliffs_stacks"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:gravel",
+        "noise": "minecraft:surface",
+        "min": 0.35
+      }
+    ],
+    "top": "minecraft:stone"
+  },
+  "carvers": "underground"
+}

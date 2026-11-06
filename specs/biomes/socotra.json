@@ -1,0 +1,49 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "socotra",
+  "names": {
+    "en_us": "Socotra Dragon's Blood",
+    "ko_kr": "소코트라 용혈수"
+  },
+  "places": [
+    13
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:savanna_plateau"
+    ]
+  },
+  "base": "minecraft:savanna_plateau",
+  "climate": {
+    "temperature": 1.4,
+    "downfall": 0.15
+  },
+  "colors": {
+    "grass": "#a8a46a",
+    "foliage": "#4e7a3a",
+    "sky": "#8ab4f0"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_savanna"
+    ],
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:socotra_dragon_blood"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:calcite",
+        "noise": "minecraft:surface",
+        "min": 0.3
+      }
+    ],
+    "top": "minecraft:coarse_dirt"
+  },
+  "carvers": "underground"
+}

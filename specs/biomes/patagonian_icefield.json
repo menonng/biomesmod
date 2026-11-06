@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "patagonian_icefield",
+  "names": {
+    "en_us": "Patagonian Ice Field",
+    "ko_kr": "파타고니아 빙원"
+  },
+  "places": [
+    10
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:frozen_peaks"
+    ]
+  },
+  "base": "minecraft:frozen_peaks",
+  "colors": {
+    "fog": "#d8e2ea",
+    "sky": "#9bb3cc"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:patagonian_icefield_ice"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

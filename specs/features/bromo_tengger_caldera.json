@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "caldera",
+      "biomes": [
+        "biomesmod:bromo_tengger"
+      ],
+      "spacing": 260,
+      "chance": 1.0,
+      "salt": 55506,
+      "floor": "sand",
+      "cone": 1,
+      "radius": [
+        44,
+        62
+      ],
+      "rim_height": [
+        26,
+        42
+      ],
+      "flank": [
+        22,
+        32
+      ],
+      "cone_height": [
+        22,
+        32
+      ],
+      "floor_block": {
+        "Name": "minecraft:gravel"
+      }
+    }
+  },
+  "placement": []
+}

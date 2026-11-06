@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "iguazu_falls",
+  "names": {
+    "en_us": "Iguazu Falls",
+    "ko_kr": "이구아수 폭포"
+  },
+  "places": [
+    9
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:jungle"
+    ]
+  },
+  "base": "minecraft:jungle",
+  "climate": {
+    "temperature": 0.95,
+    "downfall": 1.0
+  },
+  "colors": {
+    "water": "#7a6a3e",
+    "water_fog": "#3e3420",
+    "fog": "#d6e2dc",
+    "grass": "#3f9a2e",
+    "foliage": "#2f8a24"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.008
+    }
+  ],
+  "features": {
+    "mod": {
+      "local_modifications": [
+        "biomesmod:iguazu_falls_falls"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

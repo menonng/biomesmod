@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "u_valley",
+      "biomes": [
+        "biomesmod:sarek"
+      ],
+      "spacing": 360,
+      "width": 130,
+      "floor_width": 50,
+      "shoulder": 40,
+      "falls": 0.6,
+      "steepness": 3
+    }
+  },
+  "placement": []
+}

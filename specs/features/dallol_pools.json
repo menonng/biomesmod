@@ -1,0 +1,42 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "hot_spring",
+      "biomes": [
+        "biomesmod:dallol"
+      ],
+      "spacing": 90,
+      "chance": 0.85,
+      "salt": 25499,
+      "pools": 14,
+      "pool_radius": [
+        3,
+        7
+      ],
+      "band_width": 1.2,
+      "spread": [
+        18,
+        32
+      ],
+      "depth": 2,
+      "chimneys": 0.8,
+      "bands": [
+        {
+          "Name": "minecraft:lime_terracotta"
+        },
+        {
+          "Name": "minecraft:yellow_concrete_powder"
+        },
+        {
+          "Name": "minecraft:yellow_terracotta"
+        },
+        {
+          "Name": "minecraft:white_terracotta"
+        }
+      ]
+    }
+  },
+  "placement": []
+}

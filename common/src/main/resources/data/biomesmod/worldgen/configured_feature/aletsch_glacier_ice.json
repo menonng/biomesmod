@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:aletsch_glacier"
+    ],
+    "blur": 7,
+    "drop": 5,
+    "mode": "glacier",
+    "moraine_spacing": 38,
+    "snowline": 185
+  },
+  "type": "biomesmod:terrain_shaper"
+}

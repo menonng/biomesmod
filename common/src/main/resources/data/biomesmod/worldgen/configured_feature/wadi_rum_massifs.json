@@ -1,0 +1,43 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:wadi_rum"
+    ],
+    "chance": 0.95,
+    "clefts": 0.6,
+    "dome": 0.6,
+    "palette": {
+      "strata": [
+        {
+          "block": {
+            "Name": "minecraft:red_sandstone"
+          },
+          "thickness": 4
+        },
+        {
+          "block": {
+            "Name": "minecraft:orange_terracotta"
+          },
+          "thickness": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:smooth_red_sandstone"
+          },
+          "thickness": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:terracotta"
+          },
+          "thickness": 1
+        }
+      ]
+    },
+    "salt": 3863,
+    "shape": "butte",
+    "spacing": 170,
+    "thumbs": 0.0
+  },
+  "type": "biomesmod:landform"
+}

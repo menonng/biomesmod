@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "ice_sheet",
+      "biomes": [
+        "biomesmod:ross_ice_shelf"
+      ],
+      "thickness": 8,
+      "dome": 4,
+      "dome_scale": 120,
+      "shelf": true,
+      "freeboard": 16,
+      "roughness": 0.4
+    }
+  },
+  "placement": []
+}

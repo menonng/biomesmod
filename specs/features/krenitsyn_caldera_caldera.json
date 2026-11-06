@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "caldera",
+      "biomes": [
+        "biomesmod:krenitsyn_caldera"
+      ],
+      "spacing": 240,
+      "chance": 1.0,
+      "salt": 52421,
+      "floor": "lake",
+      "cone": 1,
+      "radius": [
+        38,
+        55
+      ],
+      "rim_height": [
+        24,
+        38
+      ],
+      "flank": [
+        20,
+        30
+      ],
+      "cone_height": [
+        24,
+        38
+      ],
+      "cone_radius": [
+        12,
+        18
+      ]
+    }
+  },
+  "placement": []
+}

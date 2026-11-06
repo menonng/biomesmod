@@ -1,0 +1,30 @@
+{
+  "config": {
+    "base_y_range": [
+      -10,
+      30
+    ],
+    "biomes": [
+      "biomesmod:lofoten_reine"
+    ],
+    "chance": 0.75,
+    "columns": 0,
+    "count": 2,
+    "flute": 0.0,
+    "height": [
+      45,
+      75
+    ],
+    "max_relief": 80,
+    "radius": [
+      12,
+      18
+    ],
+    "rise_from": "sea_level",
+    "salt": 63473,
+    "shape": "monolith",
+    "spacing": 150,
+    "taper": 0.9
+  },
+  "type": "biomesmod:landform"
+}

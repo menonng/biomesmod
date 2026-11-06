@@ -1,0 +1,7 @@
+{
+  "config": {
+    "default": "minecraft:spruce_checked",
+    "features": []
+  },
+  "type": "minecraft:random_selector"
+}

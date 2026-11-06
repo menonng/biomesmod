@@ -1,0 +1,28 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "cascade",
+      "biomes": [
+        "biomesmod:iguazu_falls"
+      ],
+      "spacing": 200,
+      "chance": 1.0,
+      "salt": 80184,
+      "radius": [
+        26,
+        36
+      ],
+      "max_relief": 40,
+      "cap": {
+        "block": {
+          "Name": "minecraft:grass_block"
+        },
+        "feature": "minecraft:jungle_bush",
+        "chance": 0.05
+      }
+    }
+  },
+  "placement": []
+}

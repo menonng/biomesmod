@@ -1,0 +1,32 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:ushishir_caldera"
+    ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.0
+    },
+    "chance": 1.0,
+    "flank": [
+      18,
+      28
+    ],
+    "floor": "sea",
+    "radius": [
+      36,
+      52
+    ],
+    "rim_height": [
+      20,
+      32
+    ],
+    "rise_from": "sea_level",
+    "salt": 15879,
+    "shape": "caldera",
+    "spacing": 220
+  },
+  "type": "biomesmod:landform"
+}

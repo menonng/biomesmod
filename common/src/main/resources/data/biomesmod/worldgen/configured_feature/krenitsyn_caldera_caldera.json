@@ -1,0 +1,34 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:krenitsyn_caldera"
+    ],
+    "chance": 1.0,
+    "cone": 1,
+    "cone_height": [
+      24,
+      38
+    ],
+    "cone_radius": [
+      12,
+      18
+    ],
+    "flank": [
+      20,
+      30
+    ],
+    "floor": "lake",
+    "radius": [
+      38,
+      55
+    ],
+    "rim_height": [
+      24,
+      38
+    ],
+    "salt": 52421,
+    "shape": "caldera",
+    "spacing": 240
+  },
+  "type": "biomesmod:landform"
+}

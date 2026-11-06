@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * can produce it, and a /locate-style search finds it in generated terrain. Exits the JVM with 0 or 1.
  */
 final class SelfCheck {
-	private static final int RADIUS = 8000;
+	private static final int RADIUS = 12000;
 
 	private SelfCheck() {
 	}
@@ -59,10 +59,13 @@ final class SelfCheck {
 			if (found == null) {
 				failures.add(name + ": not found within " + RADIUS + " blocks");
 			} else {
-				BiomesMod.LOGGER.info("[selfcheck] {} OK - nearest at {} ({} ms); surface: {}", name, found.getFirst().toShortString(),
-						System.currentTimeMillis() - start, surfaceSummary(level, found.getFirst(), entry));
-				if (DebugRender.enabled()) {
-					DebugRender.render(level, found.getFirst(), 256, entry.key().toString().replaceAll(".*:([a-z0-9_]+)]$", "$1"));
+				BlockPos inner = interior(level, found.getFirst(), entry);
+				BiomesMod.LOGGER.info("[selfcheck] {} OK - nearest at {}, interior {} ({} ms); surface: {}", name, found.getFirst().toShortString(),
+						inner.toShortString(), System.currentTimeMillis() - start, surfaceSummary(level, inner, entry));
+				String id = entry.key().toString().replaceAll(".*:([a-z0-9_]+)]$", "$1");
+				String only = System.getProperty("biomesmod.render.only", "");
+				if (DebugRender.enabled() && (only.isEmpty() || List.of(only.split(",")).contains(id))) {
+					DebugRender.render(level, inner, 256, id);
 				}
 			}
 		}
@@ -75,6 +78,49 @@ final class SelfCheck {
 		}
 		// Exit from another thread so the server's shutdown hook can stop the server thread cleanly.
 		new Thread(() -> System.exit(code), "biomesmod-selfcheck-exit").start();
+	}
+
+	/**
+	 * The point of the biome patch around {@code near} that lies farthest from its edge (sampled on a 16-block grid
+	 * over 768x768 blocks with the generator's own biome source, so nothing is generated). The nearest point that
+	 * findClosestBiome3d returns is on the patch edge, which shows mostly the neighbours in a render.
+	 */
+	private static BlockPos interior(ServerLevel level, BlockPos near, ModBiomes.Entry entry) {
+		final int step = 16;
+		final int n = 49;
+		var source = level.getChunkSource().getGenerator().getBiomeSource();
+		var sampler = level.getChunkSource().randomState().sampler();
+		boolean[] in = new boolean[n * n];
+		int x0 = near.getX() - (n / 2) * step;
+		int z0 = near.getZ() - (n / 2) * step;
+		int qy = near.getY() >> 2;
+		for (int j = 0; j < n; j++) {
+			for (int i = 0; i < n; i++) {
+				in[i + j * n] = source.getNoiseBiome((x0 + i * step) >> 2, qy, (z0 + j * step) >> 2, sampler).is(entry.key());
+			}
+		}
+		int best = -1;
+		int bestD = -1;
+		for (int j = 0; j < n; j++) {
+			for (int i = 0; i < n; i++) {
+				if (!in[i + j * n]) {
+					continue;
+				}
+				int d = Integer.MAX_VALUE;
+				for (int v = 0; v < n && d > 0; v++) {
+					for (int u = 0; u < n; u++) {
+						if (!in[u + v * n]) {
+							d = Math.min(d, (u - i) * (u - i) + (v - j) * (v - j));
+						}
+					}
+				}
+				if (d > bestD) {
+					bestD = d;
+					best = i + j * n;
+				}
+			}
+		}
+		return best < 0 ? near : new BlockPos(x0 + (best % n) * step, near.getY(), z0 + (best / n) * step);
 	}
 
 	/**

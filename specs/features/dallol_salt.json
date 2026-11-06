@@ -1,0 +1,35 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "flatten",
+      "biomes": [
+        "biomesmod:dallol"
+      ],
+      "offset": 1,
+      "crust": 0.4,
+      "crust_cell": 6,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:white_terracotta"
+            },
+            "depth": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:calcite"
+            },
+            "depth": 2
+          }
+        ]
+      },
+      "crust_block": {
+        "Name": "minecraft:yellow_terracotta"
+      }
+    }
+  },
+  "placement": []
+}

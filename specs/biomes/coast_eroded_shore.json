@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "coast_eroded_shore",
+  "names": {
+    "en_us": "Eroded Shore",
+    "ko_kr": "침식 해안"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:beach"
+    ]
+  },
+  "base": "minecraft:beach",
+  "colors": {
+    "water": "#4fb7c9",
+    "water_fog": "#1f6f7a",
+    "sky": "#86b4ff"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:coast_eroded_shore_flats"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:coast_eroded_shore_trees"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:sand",
+    "under": "minecraft:sandstone",
+    "under_depth": 3,
+    "underwater": "minecraft:sand"
+  },
+  "carvers": "underground"
+}

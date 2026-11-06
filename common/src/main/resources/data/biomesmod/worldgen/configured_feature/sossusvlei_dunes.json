@@ -1,0 +1,32 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:sossusvlei"
+    ],
+    "height": 38,
+    "mode": "dunes",
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:red_sand"
+          },
+          "depth": 4
+        },
+        {
+          "block": {
+            "Name": "minecraft:red_sandstone"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "pan_block": {
+      "Name": "minecraft:white_terracotta"
+    },
+    "pan_coverage": 0.16,
+    "style": "star",
+    "wavelength": 95
+  },
+  "type": "biomesmod:terrain_shaper"
+}

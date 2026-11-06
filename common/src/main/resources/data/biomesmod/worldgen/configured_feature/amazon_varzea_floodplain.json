@@ -1,0 +1,14 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:amazon_varzea"
+    ],
+    "channels": 0.3,
+    "dry_coverage": 0.5,
+    "hummock": 2.5,
+    "mode": "wetland",
+    "scale": 90,
+    "shallow": 2
+  },
+  "type": "biomesmod:terrain_shaper"
+}

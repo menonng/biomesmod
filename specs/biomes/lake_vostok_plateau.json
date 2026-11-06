@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "lake_vostok_plateau",
+  "names": {
+    "en_us": "Vostok Plateau",
+    "ko_kr": "보스토크 고원"
+  },
+  "places": [
+    50
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:snowy_plains"
+    ]
+  },
+  "base": "minecraft:snowy_plains",
+  "climate": {
+    "temperature": -0.7,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#5f8fe0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:lake_vostok_plateau_plateau"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

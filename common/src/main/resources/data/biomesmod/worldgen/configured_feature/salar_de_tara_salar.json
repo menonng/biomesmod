@@ -1,0 +1,30 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:salar_de_tara"
+    ],
+    "crust": 0.3,
+    "edge_blend": 48,
+    "mode": "flatten",
+    "offset": 1,
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:white_terracotta"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "water_coverage": 0.45,
+    "water_scale": 120
+  },
+  "type": "biomesmod:terrain_shaper"
+}

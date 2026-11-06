@@ -1,0 +1,34 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "flatten",
+      "biomes": [
+        "biomesmod:salar_de_tara"
+      ],
+      "offset": 1,
+      "water_coverage": 0.45,
+      "water_scale": 120,
+      "crust": 0.3,
+      "edge_blend": 48,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:calcite"
+            },
+            "depth": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:white_terracotta"
+            },
+            "depth": 2
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

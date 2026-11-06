@@ -1,0 +1,18 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "depression",
+      "biomes": [
+        "biomesmod:coast_sunken_pines"
+      ],
+      "depth": 7,
+      "relief": 1.5,
+      "dike_height": 2,
+      "dike_width": 5,
+      "edge_blend": 10
+    }
+  },
+  "placement": []
+}

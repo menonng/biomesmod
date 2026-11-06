@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:cordillera_darwin"
+    ],
+    "blur": 6,
+    "drop": 3,
+    "mode": "glacier",
+    "moraine_spacing": 55,
+    "snowline": 120
+  },
+  "type": "biomesmod:terrain_shaper"
+}

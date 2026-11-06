@@ -1,0 +1,12 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:orkhon_steppe"
+    ],
+    "hill_scale": 220,
+    "hills": 7,
+    "mode": "rolling",
+    "smooth": 0.7
+  },
+  "type": "biomesmod:terrain_shaper"
+}

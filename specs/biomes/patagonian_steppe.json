@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "patagonian_steppe",
+  "names": {
+    "en_us": "Patagonian Steppe",
+    "ko_kr": "파타고니아 스텝"
+  },
+  "places": [
+    19
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:plains"
+    ]
+  },
+  "base": "minecraft:plains",
+  "climate": {
+    "temperature": 0.45,
+    "downfall": 0.15
+  },
+  "colors": {
+    "grass": "#b9b06a",
+    "foliage": "#8f8a4e",
+    "sky": "#86b0e8"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_plains",
+      "minecraft:flower_plains",
+      "minecraft:flower_default"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_grass_savanna",
+        "minecraft:patch_dead_bush"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:patagonian_steppe_mesetas"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

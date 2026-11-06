@@ -1,0 +1,14 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:franz_josef_land"
+    ],
+    "dome": 24,
+    "dome_scale": 260,
+    "freeboard": 10,
+    "mode": "ice_sheet",
+    "shelf": true,
+    "thickness": 14
+  },
+  "type": "biomesmod:terrain_shaper"
+}

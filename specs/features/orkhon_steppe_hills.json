@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "rolling",
+      "biomes": [
+        "biomesmod:orkhon_steppe"
+      ],
+      "smooth": 0.7,
+      "hills": 7,
+      "hill_scale": 220
+    }
+  },
+  "placement": []
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "pillar_forest",
+      "biomes": [
+        "biomesmod:ha_long_bay"
+      ],
+      "spacing": 110,
+      "chance": 1.0,
+      "salt": 14139,
+      "rise_from": "sea_level",
+      "dome": 1.0,
+      "notch": 2,
+      "base_y_range": [
+        -30,
+        2
+      ],
+      "max_relief": 60,
+      "pillar_radius": [
+        5,
+        11
+      ],
+      "pillar_spacing": 22,
+      "height": [
+        22,
+        55
+      ],
+      "cluster_radius": [
+        30,
+        46
+      ],
+      "cap": {
+        "block": {
+          "Name": "minecraft:grass_block"
+        },
+        "feature": "minecraft:jungle_bush",
+        "chance": 0.12
+      }
+    }
+  },
+  "placement": []
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "dasht_e_lut",
+  "names": {
+    "en_us": "Dasht-e Lut",
+    "ko_kr": "다쉬테 루트"
+  },
+  "places": [
+    15
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:eroded_badlands",
+      "minecraft:desert"
+    ]
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 2.0,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#c8b48a",
+    "fog": "#e6cfa0"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:dasht_e_lut_kaluts"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "column_field",
+      "biomes": [
+        "biomesmod:giants_causeway"
+      ],
+      "spacing": 70,
+      "chance": 0.85,
+      "salt": 61323,
+      "cell": 2.2,
+      "length": [
+        36,
+        60
+      ],
+      "width": [
+        16,
+        26
+      ]
+    }
+  },
+  "placement": []
+}

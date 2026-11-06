@@ -1,0 +1,17 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:cliffs_of_moher"
+    ],
+    "chance": 0.7,
+    "count": 4,
+    "height": [
+      16,
+      34
+    ],
+    "salt": 5750,
+    "shape": "sea_stack",
+    "spacing": 90
+  },
+  "type": "biomesmod:landform"
+}

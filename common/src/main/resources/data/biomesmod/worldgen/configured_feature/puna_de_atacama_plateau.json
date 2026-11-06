@@ -1,0 +1,12 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:puna_de_atacama"
+    ],
+    "hill_scale": 260,
+    "hills": 6,
+    "mode": "rolling",
+    "smooth": 0.9
+  },
+  "type": "biomesmod:terrain_shaper"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "magellanic_fjords",
+  "names": {
+    "en_us": "Magellanic Forest",
+    "ko_kr": "마젤란 숲"
+  },
+  "places": [
+    48
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:old_growth_spruce_taiga"
+    ]
+  },
+  "base": "minecraft:old_growth_spruce_taiga",
+  "climate": {
+    "temperature": 0.3,
+    "downfall": 0.9
+  },
+  "colors": {
+    "grass": "#6a8a4a",
+    "foliage": "#4f6f3a",
+    "fog": "#b8c4c0"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_old_growth_spruce_taiga"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_grass_taiga"
+      ]
+    },
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:magellanic_fjords_beech"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

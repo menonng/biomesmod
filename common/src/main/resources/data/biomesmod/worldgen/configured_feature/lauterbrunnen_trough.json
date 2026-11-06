@@ -1,0 +1,15 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:lauterbrunnen"
+    ],
+    "falls": 2.0,
+    "floor_width": 42,
+    "mode": "u_valley",
+    "shoulder": 60,
+    "spacing": 420,
+    "steepness": 6,
+    "width": 110
+  },
+  "type": "biomesmod:terrain_shaper"
+}

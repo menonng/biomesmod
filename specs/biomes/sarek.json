@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "sarek",
+  "names": {
+    "en_us": "Sarek",
+    "ko_kr": "사렉"
+  },
+  "places": [
+    29
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:grove"
+    ]
+  },
+  "base": "minecraft:grove",
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:sarek_valleys"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

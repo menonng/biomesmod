@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "orkhon_steppe",
+  "names": {
+    "en_us": "Orkhon Steppe",
+    "ko_kr": "오르혼 초원"
+  },
+  "places": [
+    51
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:sunflower_plains"
+    ]
+  },
+  "base": "minecraft:plains",
+  "climate": {
+    "temperature": 0.4,
+    "downfall": 0.3
+  },
+  "colors": {
+    "grass": "#9ab85a",
+    "foliage": "#7a9a4a",
+    "sky": "#6f9ae8"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_plains"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_tall_grass"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:orkhon_steppe_hills"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "plitvice_lakes",
+  "names": {
+    "en_us": "Plitvice Lakes",
+    "ko_kr": "플리트비체 호수"
+  },
+  "places": [
+    6,
+    30
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:birch_forest"
+    ]
+  },
+  "base": "minecraft:forest",
+  "climate": {
+    "temperature": 0.6,
+    "downfall": 0.9
+  },
+  "colors": {
+    "water": "#2ec4b6",
+    "water_fog": "#0f6f68",
+    "grass": "#5f9a3a",
+    "foliage": "#4a8a2e"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_birch_and_oak",
+      "minecraft:trees_birch_and_oak_leaf_litter",
+      "minecraft:forest_flowers"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:plitvice_lakes_lakes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:plitvice_lakes_trees"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

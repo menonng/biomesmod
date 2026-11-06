@@ -1,0 +1,28 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:lake_gairdner"
+    ],
+    "crust": 0.25,
+    "edge_blend": 56,
+    "mode": "flatten",
+    "offset": 1,
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:white_concrete_powder"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "depth": 3
+        }
+      ]
+    }
+  },
+  "type": "biomesmod:terrain_shaper"
+}

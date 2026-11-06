@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "ice_sheet",
+      "biomes": [
+        "biomesmod:lake_vostok_plateau"
+      ],
+      "thickness": 24,
+      "dome": 10,
+      "dome_scale": 300,
+      "roughness": 0.6
+    }
+  },
+  "placement": []
+}

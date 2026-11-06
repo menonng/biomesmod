@@ -1,0 +1,16 @@
+{
+  "config": {
+    "benches": 6,
+    "biomes": [
+      "biomesmod:grand_canyon"
+    ],
+    "depth": 80,
+    "floor_width": 14,
+    "mode": "canyon",
+    "plateau": 16,
+    "side_spacing": 170,
+    "spacing": 560,
+    "width": 160
+  },
+  "type": "biomesmod:terrain_shaper"
+}

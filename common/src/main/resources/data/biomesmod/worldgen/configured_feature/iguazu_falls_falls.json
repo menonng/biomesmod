@@ -1,0 +1,24 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:iguazu_falls"
+    ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.05,
+      "feature": "minecraft:jungle_bush"
+    },
+    "chance": 1.0,
+    "max_relief": 40,
+    "radius": [
+      26,
+      36
+    ],
+    "salt": 80184,
+    "shape": "cascade",
+    "spacing": 200
+  },
+  "type": "biomesmod:landform"
+}

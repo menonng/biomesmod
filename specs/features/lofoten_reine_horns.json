@@ -1,0 +1,34 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "monolith",
+      "biomes": [
+        "biomesmod:lofoten_reine"
+      ],
+      "spacing": 150,
+      "chance": 0.75,
+      "salt": 63473,
+      "count": 2,
+      "taper": 0.9,
+      "radius": [
+        12,
+        18
+      ],
+      "height": [
+        45,
+        75
+      ],
+      "columns": 0,
+      "flute": 0.0,
+      "base_y_range": [
+        -10,
+        30
+      ],
+      "max_relief": 80,
+      "rise_from": "sea_level"
+    }
+  },
+  "placement": []
+}

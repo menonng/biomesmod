@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "cone",
+      "biomes": [
+        "biomesmod:alaid_volcano"
+      ],
+      "spacing": 260,
+      "chance": 1.0,
+      "salt": 85028,
+      "rise_from": "sea_level",
+      "radius": [
+        45,
+        65
+      ],
+      "height": [
+        80,
+        115
+      ],
+      "snowline": 150,
+      "crater": "dry"
+    }
+  },
+  "placement": []
+}

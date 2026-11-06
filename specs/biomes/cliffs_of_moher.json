@@ -1,0 +1,45 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "cliffs_of_moher",
+  "names": {
+    "en_us": "Cliffs of Moher",
+    "ko_kr": "모허 절벽"
+  },
+  "places": [
+    40
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:stony_shore"
+    ]
+  },
+  "base": "minecraft:stony_shore",
+  "climate": {
+    "temperature": 0.5,
+    "downfall": 0.9
+  },
+  "colors": {
+    "water": "#2f5f78",
+    "water_fog": "#0c2230",
+    "grass": "#5faa46",
+    "sky": "#9ab4cc"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:cliffs_of_moher_cliffs"
+      ],
+      "local_modifications": [
+        "biomesmod:cliffs_of_moher_stacks"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:grass_block",
+    "under": "minecraft:dirt",
+    "under_depth": 2
+  },
+  "carvers": "underground"
+}

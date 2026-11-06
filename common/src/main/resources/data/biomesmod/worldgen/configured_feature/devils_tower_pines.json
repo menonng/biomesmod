@@ -1,0 +1,7 @@
+{
+  "config": {
+    "default": "minecraft:pine_checked",
+    "features": []
+  },
+  "type": "minecraft:random_selector"
+}

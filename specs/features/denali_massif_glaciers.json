@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "glacier",
+      "biomes": [
+        "biomesmod:denali_massif"
+      ],
+      "drop": 6,
+      "blur": 6,
+      "snowline": 175,
+      "moraine_spacing": 44
+    }
+  },
+  "placement": []
+}

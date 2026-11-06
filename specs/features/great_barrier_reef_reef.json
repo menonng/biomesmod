@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "islands",
+      "biomes": [
+        "biomesmod:great_barrier_reef"
+      ],
+      "coverage": 0.08,
+      "scale": 80,
+      "height": 2,
+      "beach": 3,
+      "depth": 9,
+      "rocky": 0.0,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:sand"
+            },
+            "depth": 3
+          }
+        ],
+        "underwater": [
+          {
+            "block": {
+              "Name": "minecraft:sand"
+            },
+            "depth": 2
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

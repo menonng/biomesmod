@@ -1,0 +1,17 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:coast_eroded_cliffs"
+    ],
+    "chance": 0.8,
+    "count": 7,
+    "height": [
+      6,
+      24
+    ],
+    "salt": 73518,
+    "shape": "sea_stack",
+    "spacing": 72
+  },
+  "type": "biomesmod:landform"
+}

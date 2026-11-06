@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "antarctic_peninsula",
+  "names": {
+    "en_us": "Antarctic Peninsula",
+    "ko_kr": "남극 반도"
+  },
+  "places": [
+    47
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:snowy_slopes"
+    ]
+  },
+  "base": "minecraft:snowy_slopes",
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:antarctic_peninsula_glaciers"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

@@ -1,0 +1,13 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:cliffs_of_moher"
+    ],
+    "edge_blend": 6,
+    "hills": 2,
+    "lift": 22,
+    "mode": "rolling",
+    "smooth": 0.3
+  },
+  "type": "biomesmod:terrain_shaper"
+}

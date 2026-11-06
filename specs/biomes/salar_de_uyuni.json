@@ -1,0 +1,46 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "salar_de_uyuni",
+  "names": {
+    "en_us": "Salar de Uyuni",
+    "ko_kr": "우유니 소금사막"
+  },
+  "places": [
+    4
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:desert"
+    ]
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 0.6,
+    "downfall": 0.0,
+    "has_precipitation": false
+  },
+  "colors": {
+    "sky": "#5d8fe0",
+    "water": "#9cc7e8",
+    "water_fog": "#7aa4c4",
+    "fog": "#dfe8f2"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:salar_de_uyuni_pan"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:white_concrete_powder",
+    "under": "minecraft:calcite",
+    "under_depth": 3
+  },
+  "carvers": "underground"
+}

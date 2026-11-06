@@ -1,0 +1,38 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:lencois_maranhenses"
+    ],
+    "direction": 70,
+    "edge_blend": 40,
+    "height": 9,
+    "lagoon_depth": 3,
+    "mode": "dunes",
+    "palette": {
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:white_concrete_powder"
+          },
+          "depth": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:sand"
+          },
+          "depth": 3
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:sand"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "wavelength": 36
+  },
+  "type": "biomesmod:terrain_shaper"
+}

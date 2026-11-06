@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "aletsch_glacier",
+  "names": {
+    "en_us": "Aletsch Glacier",
+    "ko_kr": "알레치 빙하"
+  },
+  "places": [
+    25
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:frozen_peaks"
+    ]
+  },
+  "base": "minecraft:frozen_peaks",
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:aletsch_glacier_ice"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

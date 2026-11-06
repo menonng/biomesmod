@@ -1,0 +1,16 @@
+{
+  "config": {
+    "beach": 2,
+    "biomes": [
+      "biomesmod:coast_archipelago"
+    ],
+    "coverage": 0.24,
+    "depth": 7,
+    "edge_blend": 40,
+    "height": 12,
+    "mode": "islands",
+    "rocky": 0.2,
+    "scale": 60
+  },
+  "type": "biomesmod:terrain_shaper"
+}

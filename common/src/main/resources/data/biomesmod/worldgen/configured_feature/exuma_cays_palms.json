@@ -1,0 +1,12 @@
+{
+  "config": {
+    "default": "minecraft:mangrove_checked",
+    "features": [
+      {
+        "chance": 0.4,
+        "feature": "minecraft:jungle_bush"
+      }
+    ]
+  },
+  "type": "minecraft:random_selector"
+}

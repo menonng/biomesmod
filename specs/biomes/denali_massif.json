@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "denali_massif",
+  "names": {
+    "en_us": "Denali Massif",
+    "ko_kr": "디날리 산괴"
+  },
+  "places": [
+    21
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:jagged_peaks",
+      "minecraft:frozen_peaks"
+    ]
+  },
+  "base": "minecraft:jagged_peaks",
+  "colors": {
+    "sky": "#7fa4d8",
+    "fog": "#dce6ee"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:denali_massif_glaciers"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

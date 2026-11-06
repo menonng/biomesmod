@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "daintree",
+  "names": {
+    "en_us": "Daintree Rainforest",
+    "ko_kr": "데인트리 열대우림"
+  },
+  "places": [
+    16
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:sparse_jungle"
+    ]
+  },
+  "base": "minecraft:jungle",
+  "climate": {
+    "temperature": 0.95,
+    "downfall": 1.0
+  },
+  "colors": {
+    "grass": "#2f8a2a",
+    "foliage": "#1f7a1f",
+    "water": "#2fb5a8",
+    "fog": "#cfe0d6"
+  },
+  "features": {
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:daintree_canopy"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

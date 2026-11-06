@@ -1,0 +1,49 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "grand_prismatic",
+  "names": {
+    "en_us": "Grand Prismatic",
+    "ko_kr": "그랜드 프리즈매틱"
+  },
+  "places": [
+    8
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:taiga"
+    ]
+  },
+  "base": "minecraft:taiga",
+  "climate": {
+    "temperature": 0.3,
+    "downfall": 0.5
+  },
+  "colors": {
+    "water": "#2b8fd6",
+    "water_fog": "#0e3f66",
+    "grass": "#8aa55a",
+    "foliage": "#5f7f3a"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.01
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:trees_taiga"
+    ],
+    "mod": {
+      "local_modifications": [
+        "biomesmod:grand_prismatic_springs"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:grand_prismatic_pines"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

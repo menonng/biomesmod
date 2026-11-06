@@ -1,0 +1,68 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "monolith",
+      "biomes": [
+        "biomesmod:tre_cime"
+      ],
+      "spacing": 240,
+      "chance": 0.9,
+      "salt": 53627,
+      "count": 3,
+      "taper": 0.8,
+      "radius": [
+        10,
+        14
+      ],
+      "height": [
+        60,
+        90
+      ],
+      "columns": 0,
+      "flute": 0.0,
+      "max_relief": 60,
+      "palette": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:diorite"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:calcite"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_stone"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:andesite"
+            },
+            "thickness": 1
+          }
+        ]
+      },
+      "talus_blocks": [
+        {
+          "Name": "minecraft:gravel"
+        },
+        {
+          "Name": "minecraft:diorite"
+        },
+        {
+          "Name": "minecraft:calcite"
+        }
+      ]
+    }
+  },
+  "placement": []
+}

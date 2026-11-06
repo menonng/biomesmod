@@ -1,0 +1,36 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "pamukkale",
+  "names": {
+    "en_us": "Pamukkale",
+    "ko_kr": "파묵칼레"
+  },
+  "places": [
+    12
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "replace": [
+      "minecraft:savanna"
+    ]
+  },
+  "base": "minecraft:savanna",
+  "climate": {
+    "temperature": 1.0,
+    "downfall": 0.3
+  },
+  "colors": {
+    "water": "#7fd8e6",
+    "water_fog": "#3aa0b0",
+    "grass": "#a9b46a"
+  },
+  "features": {
+    "mod": {
+      "raw_generation": [
+        "biomesmod:pamukkale_terraces"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

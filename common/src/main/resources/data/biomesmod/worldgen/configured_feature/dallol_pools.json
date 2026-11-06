@@ -1,0 +1,38 @@
+{
+  "config": {
+    "band_width": 1.2,
+    "bands": [
+      {
+        "Name": "minecraft:lime_terracotta"
+      },
+      {
+        "Name": "minecraft:yellow_concrete_powder"
+      },
+      {
+        "Name": "minecraft:yellow_terracotta"
+      },
+      {
+        "Name": "minecraft:white_terracotta"
+      }
+    ],
+    "biomes": [
+      "biomesmod:dallol"
+    ],
+    "chance": 0.85,
+    "chimneys": 0.8,
+    "depth": 2,
+    "pool_radius": [
+      3,
+      7
+    ],
+    "pools": 14,
+    "salt": 25499,
+    "shape": "hot_spring",
+    "spacing": 90,
+    "spread": [
+      18,
+      32
+    ]
+  },
+  "type": "biomesmod:landform"
+}

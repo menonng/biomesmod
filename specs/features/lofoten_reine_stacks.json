@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "sea_stack",
+      "biomes": [
+        "biomesmod:lofoten_reine"
+      ],
+      "spacing": 80,
+      "chance": 0.7,
+      "salt": 34152,
+      "count": 6
+    }
+  },
+  "placement": []
+}
