@@ -1,0 +1,93 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:alkefjellet"
+    ],
+    "chance": 0.7,
+    "count": 3,
+    "height": [
+      18,
+      32
+    ],
+    "palette": {
+      "strata": [
+        {
+          "block": {
+            "Name": "biomesmod:dolerite"
+          },
+          "thickness": 5
+        },
+        {
+          "block": {
+            "Name": "minecraft:basalt"
+          },
+          "thickness": 3
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "thickness": 1
+        },
+        {
+          "block": {
+            "Name": "biomesmod:dolerite"
+          },
+          "thickness": 4
+        },
+        {
+          "block": {
+            "Name": "minecraft:brown_terracotta"
+          },
+          "thickness": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:deepslate"
+          },
+          "thickness": 3
+        },
+        {
+          "block": {
+            "Name": "minecraft:moss_block"
+          },
+          "thickness": 1
+        },
+        {
+          "block": {
+            "Name": "biomesmod:dolerite"
+          },
+          "thickness": 4
+        },
+        {
+          "block": {
+            "Name": "minecraft:calcite"
+          },
+          "thickness": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:basalt"
+          },
+          "thickness": 3
+        },
+        {
+          "block": {
+            "Name": "minecraft:smooth_basalt"
+          },
+          "thickness": 2
+        },
+        {
+          "block": {
+            "Name": "minecraft:brown_terracotta"
+          },
+          "thickness": 1
+        }
+      ]
+    },
+    "salt": 60810,
+    "shape": "sea_stack",
+    "spacing": 48
+  },
+  "type": "biomesmod:landform"
+}

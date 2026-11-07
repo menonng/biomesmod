@@ -10,10 +10,24 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:cold_ocean",
-      "minecraft:deep_cold_ocean"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold"
+      ],
+      "size": [
+        340,
+        460
+      ],
+      "ramp": 160,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "deep_ocean",
+        "ocean"
+      ]
+    }
   },
   "base": "minecraft:cold_ocean",
   "climate": {
@@ -30,7 +44,10 @@
       "local_modifications": [
         "biomesmod:alaid_volcano_cone"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

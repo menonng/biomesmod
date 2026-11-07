@@ -10,11 +10,24 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:warm_ocean",
-      "minecraft:lukewarm_ocean",
-      "minecraft:deep_lukewarm_ocean"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        500,
+        700
+      ],
+      "ramp": 220,
+      "terrain": "basin",
+      "relief": 0.05,
+      "weight": 1.0,
+      "zone": [
+        "ocean"
+      ],
+      "target_y": 59
+    }
   },
   "base": "minecraft:warm_ocean",
   "colors": {
@@ -29,7 +42,10 @@
       "vegetal_decoration": [
         "biomesmod:exuma_cays_palms"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

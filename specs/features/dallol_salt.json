@@ -27,7 +27,7 @@
         ]
       },
       "crust_block": {
-        "Name": "minecraft:yellow_terracotta"
+        "Name": "biomesmod:sulfur_crust"
       }
     }
   },

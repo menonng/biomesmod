@@ -10,7 +10,7 @@
       "spacing": 40,
       "chance": 1.0,
       "salt": 53627,
-      "min_distance": 700,
+      "min_distance": -1,
       "count": 3,
       "spread": [
         10,

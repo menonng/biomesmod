@@ -48,7 +48,7 @@ Ranges such as `[8, 20]` are drawn separately for each instance, so no two look 
 | `butte` | Monument Valley, Wadi Rum | `radius`, `elongation`, `height`, `thumbs` (mitten spires), `dome`, `clefts`, `roughness`, `cliff`, pedestal palette |
 | `monolith` | Devils Tower; Tre Cime, Lofoten, Monjes with `count` 2-5 and `taper` ~0.8 | `count`, `spread`, `radius`, `height`, `taper`, `flute`, `columns`, `talus` |
 | `cone` | Alaid (from the sea), Puna volcanoes | `radius`, `height`, `concavity`, `crater_radius`, `crater_depth`, `crater` `dry`/`lava`/`lake`, `gullies`, `snowline` |
-| `caldera` | Ushishir (`floor: sea`, breached), Krenitsyn (`lake` + `cone`), Tengger (`sand` + `cone`) | `radius`, `rim_height`, `flank`, `floor`, `floor_depth`, `cone`, `cone_radius`, `cone_height`, `breach_width`, `floor_block` |
+| `caldera` | Ushishir (`floor: sea`, breached), Krenitsyn (`lake` + `cone`, an island with `rise_from: sea_level`), Tengger (`sand` + `cone`) | `radius`, `rim_height`, `flank`, `floor`, `floor_depth`, `cone`, `cone_radius`, `cone_height`, `breach_width`, `floor_block`. The outer flank always runs down to the real floor, so a caldera island slopes on to the sea bed. |
 | `sea_stack` | Moher, Lofoten, eroded cliffs | `cluster_radius`, `count`, `stack_radius`, `height`, `arch_chance`, `notch`. Only placed in the shallows. |
 | `column_field` | Giant's Causeway | `cell`, `length`, `width`, `rise`, `jitter`. Runs downhill into the sea. |
 | `hot_spring` | Grand Prismatic; Dallol with `pools` > 1 | `pools`, `pool_radius`, `band_width`, `spread`, `depth`, `bands` (inner to outer), `chimneys` |

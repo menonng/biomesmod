@@ -10,15 +10,29 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:windswept_hills",
-      "minecraft:windswept_gravelly_hills",
-      "minecraft:windswept_forest"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        340,
+        460
+      ],
+      "ramp": 160,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "deep_ocean",
+        "ocean"
+      ]
+    }
   },
-  "base": "minecraft:windswept_hills",
+  "base": "minecraft:cold_ocean",
   "climate": {
-    "temperature": 0.1,
+    "temperature": 0.3,
     "downfall": 0.8
   },
   "colors": {
@@ -32,7 +46,10 @@
       "local_modifications": [
         "biomesmod:krenitsyn_caldera_caldera"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

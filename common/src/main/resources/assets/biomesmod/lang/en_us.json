@@ -1,6 +1,7 @@
 {
 	"biome.biomesmod.alaid_volcano": "Alaid Volcano",
 	"biome.biomesmod.aletsch_glacier": "Aletsch Glacier",
+	"biome.biomesmod.alkefjellet": "Alkefjellet",
 	"biome.biomesmod.amazon_varzea": "Amazon Várzea",
 	"biome.biomesmod.antarctic_peninsula": "Antarctic Peninsula",
 	"biome.biomesmod.bromo_tengger": "Bromo Tengger",
@@ -51,9 +52,13 @@
 	"biome.biomesmod.sarek": "Sarek",
 	"biome.biomesmod.socotra": "Socotra Dragon's Blood",
 	"biome.biomesmod.sossusvlei": "Sossusvlei",
-	"biome.biomesmod.svalbard_coast": "Svalbard Coast",
 	"biome.biomesmod.tre_cime": "Tre Cime",
 	"biome.biomesmod.ushishir_caldera": "Ushishir Caldera",
 	"biome.biomesmod.wadi_rum": "Wadi Rum",
-	"biome.biomesmod.zhangjiajie": "Zhangjiajie Pillars"
+	"biome.biomesmod.zhangjiajie": "Zhangjiajie Pillars",
+	"block.biomesmod.dolerite": "Dolerite",
+	"block.biomesmod.salt_crust": "Salt Crust",
+	"block.biomesmod.sulfur_crust": "Sulfur Crust",
+	"block.biomesmod.travertine": "Travertine",
+	"commands.biomesmod.sites": "Nearest biomesmod sites"
 }

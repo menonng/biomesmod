@@ -10,10 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:plains",
-      "minecraft:sunflower_plains"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        580,
+        750
+      ],
+      "ramp": 280,
+      "terrain": "lift",
+      "relief": 0.4,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "arid",
+        "dry",
+        "neutral"
+      ],
+      "target_y": 124
+    }
   },
   "base": "minecraft:plains",
   "climate": {
@@ -27,7 +47,8 @@
   },
   "features": {
     "remove": [
-      "minecraft:trees_plains"
+      "minecraft:trees_plains",
+      "minecraft:lake_lava_surface"
     ],
     "add": {
       "vegetal_decoration": [

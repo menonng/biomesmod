@@ -11,15 +11,15 @@
       "feature": "minecraft:jungle_bush"
     },
     "chance": 1.0,
-    "max_relief": 40,
-    "min_distance": 600,
+    "max_relief": 24,
+    "min_distance": -1,
     "radius": [
-      18,
-      26
+      28,
+      38
     ],
     "river_width": [
-      24,
-      40
+      40,
+      60
     ],
     "salt": 80184,
     "shape": "cascade",

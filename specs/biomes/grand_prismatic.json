@@ -10,11 +10,25 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:taiga",
-      "minecraft:old_growth_pine_taiga",
-      "minecraft:old_growth_spruce_taiga"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        420,
+        560
+      ],
+      "ramp": 260,
+      "terrain": "plateau",
+      "relief": 0.25,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "target_y": 149
+    }
   },
   "base": "minecraft:taiga",
   "climate": {
@@ -35,7 +49,8 @@
   ],
   "features": {
     "remove": [
-      "minecraft:trees_taiga"
+      "minecraft:trees_taiga",
+      "minecraft:lake_lava_surface"
     ],
     "mod": {
       "local_modifications": [

@@ -14,15 +14,19 @@ import io.github.menonng.biomesmod.terrain.field.ShaperMode;
  * {@code rolling}: smooths broken terrain into wide, gently rolling ground (Mongolian steppe, Patagonian meseta).
  * {@code smooth} pulls the surface towards the regional height, {@code hills} adds long low swells, and
  * {@code mesa_step} &gt; 0 cuts the land into broad flat tablelands with short escarpments (Patagonian mesetas).
+ * {@code lift} raises the land; with {@code lift_ramp} 0 it rises straight from the shore as a cliff (Moher), with
+ * {@code lift_ramp} N the lift grows over the first N blocks of original height above the sea (a plateau that slopes
+ * up from the coast, Puna).
  */
-public record RollingMode(Common common, double smooth, double hills, double hillScale, int lift, int mesaStep) implements ShaperMode {
+public record RollingMode(Common common, double smooth, double hills, double hillScale, int lift, int mesaStep, int liftRamp) implements ShaperMode {
 	public static final MapCodec<RollingMode> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			Common.MAP_CODEC.forGetter(RollingMode::common),
 			Codec.doubleRange(0, 1).optionalFieldOf("smooth", 0.8).forGetter(RollingMode::smooth),
 			Codec.doubleRange(0, 40).optionalFieldOf("hills", 5.0).forGetter(RollingMode::hills),
 			Codec.doubleRange(16, 4096).optionalFieldOf("hill_scale", 180.0).forGetter(RollingMode::hillScale),
 			Codec.intRange(-32, 64).optionalFieldOf("lift", 0).forGetter(RollingMode::lift),
-			Codec.intRange(0, 40).optionalFieldOf("mesa_step", 0).forGetter(RollingMode::mesaStep)
+			Codec.intRange(0, 40).optionalFieldOf("mesa_step", 0).forGetter(RollingMode::mesaStep),
+			Codec.intRange(0, 64).optionalFieldOf("lift_ramp", 0).forGetter(RollingMode::liftRamp)
 	).apply(i, RollingMode::new));
 
 	@Override
@@ -58,7 +62,8 @@ public record RollingMode(Common common, double smooth, double hills, double hil
 		@Override
 		public void column(ChunkFrame frame, int x, int z, int i, Column out) {
 			double regional = frame.blurBase(x, z);
-			double g = Noise.lerp(frame.orig(i), regional, smooth) + lift + hills * noise.fbm(x, z, hillScale, 3);
+			double lifted = liftRamp > 0 ? lift * Noise.smoothstep(frame.seaLevel, frame.seaLevel + liftRamp, frame.orig(i)) : lift;
+			double g = Noise.lerp(frame.orig(i), regional, smooth) + lifted + hills * noise.fbm(x, z, hillScale, 3);
 			if (mesaStep > 0) {
 				double warped = g + 3 * noise.fbm(x, z, 40, 2);
 				double k = Math.floor(warped / mesaStep);
@@ -66,9 +71,11 @@ public record RollingMode(Common common, double smooth, double hills, double hil
 				g = (k + Noise.smoothstep(0.82, 1.0, fr)) * mesaStep;   // flat tread, short riser
 			}
 			out.ground = Math.max(g, frame.seaLevel + 1.0);
-			if (frame.orig(i) < frame.seaLevel) {
-				out.blend = 0; // never fill lakes, rivers or the sea
+			if (frame.orig(i) < frame.seaLevel && regional < frame.seaLevel) {
+				out.blend = 0; // never fill the sea or large lakes
 			}
+			// A narrow river or pond in land (regional surface above the sea) is lifted with the land around it;
+			// keeping it would leave a one-block slot canyon as deep as the lift.
 		}
 	}
 }

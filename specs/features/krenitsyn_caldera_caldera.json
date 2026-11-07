@@ -10,29 +10,36 @@
       "spacing": 48,
       "chance": 1.0,
       "salt": 52421,
-      "min_distance": 700,
+      "min_distance": -1,
       "floor": "lake",
       "cone": 1,
+      "rise_from": "sea_level",
       "radius": [
-        26,
-        36
+        48,
+        62
       ],
       "rim_height": [
-        18,
-        28
+        22,
+        34
       ],
       "flank": [
-        12,
-        18
+        22,
+        30
       ],
       "cone_height": [
-        16,
-        26
+        24,
+        36
       ],
       "cone_radius": [
-        8,
-        12
-      ]
+        14,
+        20
+      ],
+      "cap": {
+        "block": {
+          "Name": "minecraft:grass_block"
+        },
+        "chance": 0.0
+      }
     }
   },
   "placement": []

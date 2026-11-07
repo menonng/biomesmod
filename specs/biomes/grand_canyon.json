@@ -10,12 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:desert",
-      "minecraft:badlands",
-      "minecraft:eroded_badlands",
-      "minecraft:wooded_badlands"
-    ]
+    "site": {
+      "temperature": [
+        "temperate",
+        "warm",
+        "hot"
+      ],
+      "size": [
+        560,
+        700
+      ],
+      "ramp": 280,
+      "terrain": "plateau",
+      "relief": 0.08,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "arid",
+        "dry"
+      ],
+      "target_y": 145
+    }
   },
   "base": "minecraft:badlands",
   "climate": {
@@ -36,7 +54,10 @@
       "vegetal_decoration": [
         "biomesmod:grand_canyon_junipers"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "surface": {

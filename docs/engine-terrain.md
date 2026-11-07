@@ -48,7 +48,7 @@ A column-based feature that reshapes the ground of a biome. It runs once per chu
 | `glacier` | Aletsch, Denali, Patagonia, Darwin | `drop` 6 (ice below the smoothed terrain), `blur` 6, `moraine_spacing` 48, `snowline` 150, `crevasses` |
 | `wetland` | Everglades, Amazon várzea | `water_offset` 0, `dry_coverage` 0.45, `hummock` 2, `shallow` 1, `channels` 0.25, `scale` 70 |
 | `yardangs` | Dasht-e Lut kaluts | `height` 22, `spacing` 34, `length` 160, `width` 0.42, `direction` -20, `base_offset` 0 |
-| `rolling` | steppe, mesetas, plateau smoothing | `smooth` 0.8, `hills` 5, `hill_scale` 180, `lift` 0, `mesa_step` 0. Never fills existing water. |
+| `rolling` | steppe, mesetas, plateau smoothing | `smooth` 0.8, `hills` 5, `hill_scale` 180, `lift` 0, `mesa_step` 0, `lift_ramp` 0 (0: the lift rises straight from the shore as a cliff; N: it grows over the first N blocks above the sea). Never fills the sea or large lakes; narrow rivers and ponds inside land are lifted with it. |
 | `islands` | archipelagos, sandbars, cays, reefs | `coverage` 0.22, `scale` 70, `height` 9, `beach` 2, `depth` 6, `rocky` 0.15 |
 
 ## Naturalness built in

@@ -10,10 +10,25 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:ocean",
-      "minecraft:deep_ocean"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        320,
+        420
+      ],
+      "ramp": 160,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "deep_ocean",
+        "ocean"
+      ]
+    }
   },
   "base": "minecraft:ocean",
   "climate": {
@@ -36,7 +51,10 @@
       "local_modifications": [
         "biomesmod:ushishir_caldera_caldera"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

@@ -191,7 +191,10 @@ public final class CalderaShape extends LandformShape {
 				double g = Math.pow(Math.abs(LNoise.angular(seed ^ 0x75, a + 0.2 * LNoise.noise1(seed ^ 0x79, d / 12), 26)), 2);
 				double fw = 0.7 + 0.6 * (0.5 + 0.5 * LNoise.angular(seed ^ 0x7A, a, 3));
 				k = Math.min(1, (d - rr) / (flankW * fw));
-				top = foot + (crestH - foot) * Math.pow(1 - k, 1.4) * (1 - 0.18 * g);
+				// The outer flank runs down to the real floor, so a caldera rising out of the sea (rise_from sea_level)
+				// slopes on to the sea bed instead of ending in a drowned step at sea level.
+				double low = Math.min(foot, base);
+				top = low + (crestH - low) * Math.pow(1 - k, 1.4) * (1 - 0.18 * g);
 				kind = K_FLANK;
 			} else {
 				return;

@@ -27,6 +27,8 @@ A Fabric mod with real-place-inspired biomes for Minecraft **1.21.1** and **26.2
 common/src/main/java/.../            shared code (compiled into every version)
   BiomesMod, ModBiomes, SelfCheck
   worldgen/        TerraBlender regions, surface rules (biome-data-engineer)
+  site/            site engine: layout, terrain density function, biome override, /biomesmod sites
+  mixin/           biome source wrapper for site biomes
   terrain/ModFeatures.java           calls TerrainFeatures / LandformFeatures / CoastFeatures .register()
   terrain/util/    WorldSampler (sample biome/height anywhere), StrataPalette (shared palette codec)
   terrain/field/   column terrain shaping features
@@ -87,7 +89,7 @@ The user rejected the crescent-shaped, water-filled gorges seen in early renders
   "names": { "en_us": "Salar de Uyuni", "ko_kr": "우유니 소금사막" },
   "places": [4],                                  // indices into specs/places.json
   "dimension": "overworld",                       // overworld | nether | end
-  "placement": { "replace": ["minecraft:desert"] },  // overworld: vanilla climate slot(s) taken inside mod regions
+  "placement": { "site": { ... } },                 // overworld: a large site at real elevation (docs/engine-sites.md), or { "replace": [slots] }
   //            { "nether_point": {"temperature": 0.75, "humidity": -0.35, "offset": 0.0} }
   //            { "end": "highlands|midlands|edge|islands", "weight": 5 }
   "base": "minecraft:desert",                     // vanilla biome to inherit carvers/features/spawns/sounds from (per version)

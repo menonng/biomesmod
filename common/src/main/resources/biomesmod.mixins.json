@@ -1,0 +1,7 @@
+{
+	"required": true,
+	"package": "io.github.menonng.biomesmod.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": ["MultiNoiseBiomeSourceMixin"],
+	"injectors": { "defaultRequire": 1 }
+}

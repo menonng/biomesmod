@@ -3,30 +3,37 @@
     "biomes": [
       "biomesmod:krenitsyn_caldera"
     ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.0
+    },
     "chance": 1.0,
     "cone": 1,
     "cone_height": [
-      16,
-      26
-    ],
-    "cone_radius": [
-      8,
-      12
-    ],
-    "flank": [
-      12,
-      18
-    ],
-    "floor": "lake",
-    "min_distance": 700,
-    "radius": [
-      26,
+      24,
       36
     ],
-    "rim_height": [
-      18,
-      28
+    "cone_radius": [
+      14,
+      20
     ],
+    "flank": [
+      22,
+      30
+    ],
+    "floor": "lake",
+    "min_distance": -1,
+    "radius": [
+      48,
+      62
+    ],
+    "rim_height": [
+      22,
+      34
+    ],
+    "rise_from": "sea_level",
     "salt": 52421,
     "shape": "caldera",
     "spacing": 48

@@ -11,11 +11,24 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:beach",
-      "minecraft:stony_shore",
-      "minecraft:snowy_beach"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold"
+      ],
+      "size": [
+        400,
+        540
+      ],
+      "ramp": 180,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "continentalness": [
+        -0.3,
+        -0.06
+      ]
+    }
   },
   "base": "minecraft:stony_shore",
   "climate": {
@@ -32,7 +45,10 @@
         "biomesmod:lofoten_reine_horns",
         "biomesmod:lofoten_reine_stacks"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

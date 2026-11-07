@@ -1,6 +1,7 @@
 {
 	"biome.biomesmod.alaid_volcano": "알라이드 화산",
 	"biome.biomesmod.aletsch_glacier": "알레치 빙하",
+	"biome.biomesmod.alkefjellet": "알케피엘레",
 	"biome.biomesmod.amazon_varzea": "아마존 바르제아",
 	"biome.biomesmod.antarctic_peninsula": "남극 반도",
 	"biome.biomesmod.bromo_tengger": "브로모 텡게르",
@@ -51,9 +52,13 @@
 	"biome.biomesmod.sarek": "사렉",
 	"biome.biomesmod.socotra": "소코트라 용혈수",
 	"biome.biomesmod.sossusvlei": "소수스블레이",
-	"biome.biomesmod.svalbard_coast": "스발바르 해안",
 	"biome.biomesmod.tre_cime": "트레 치메",
 	"biome.biomesmod.ushishir_caldera": "우시시르 칼데라",
 	"biome.biomesmod.wadi_rum": "와디 럼",
-	"biome.biomesmod.zhangjiajie": "장자제 석주림"
+	"biome.biomesmod.zhangjiajie": "장자제 석주림",
+	"block.biomesmod.dolerite": "조립현무암",
+	"block.biomesmod.salt_crust": "소금 지각",
+	"block.biomesmod.sulfur_crust": "황 지각",
+	"block.biomesmod.travertine": "석회화",
+	"commands.biomesmod.sites": "가까운 biomesmod 부지"
 }

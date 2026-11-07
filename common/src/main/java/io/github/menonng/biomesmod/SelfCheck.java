@@ -4,6 +4,9 @@ import com.mojang.datafixers.util.Pair;
 import io.github.menonng.biomesmod.compat.Ids;
 import io.github.menonng.biomesmod.compat.LevelCompat;
 import io.github.menonng.biomesmod.debug.DebugRender;
+import io.github.menonng.biomesmod.site.SiteConfig;
+import io.github.menonng.biomesmod.site.SiteField;
+import io.github.menonng.biomesmod.worldgen.Placements;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +28,8 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 final class SelfCheck {
 	private static final int RADIUS = 12000;
+	/** Site biomes are located from the site layout itself, which is cheap, so the search can go much further. */
+	private static final int SITE_RADIUS = 60000;
 	/** Distance from the last interior point to the patch edge (blocks), for logs. */
 	private static int LAST_INTERIOR_RADIUS;
 
@@ -38,8 +43,12 @@ final class SelfCheck {
 		List<String> failures = new ArrayList<>();
 		var biomes = server.registryAccess().lookupOrThrow(Registries.BIOME);
 
+		String onlyBiomes = System.getProperty("biomesmod.selfcheck.only", "");
 		for (ModBiomes.Entry entry : ModBiomes.ALL) {
 			String name = Ids.name(entry.key()) + " [" + Ids.name(entry.dimension()) + "]";
+			if (!onlyBiomes.isEmpty() && !List.of(onlyBiomes.split(",")).contains(Ids.name(entry.key()).replace("biomesmod:", ""))) {
+				continue;
+			}
 			ServerLevel level = server.getLevel(entry.dimension());
 			if (level == null) {
 				failures.add(name + ": dimension is not loaded");
@@ -52,6 +61,13 @@ final class SelfCheck {
 			}
 			if (!level.getChunkSource().getGenerator().getBiomeSource().possibleBiomes().contains(holder.get())) {
 				failures.add(name + ": not a possible biome of the dimension's biome source");
+				continue;
+			}
+			String id = entry.key().toString().replaceAll(".*:([a-z0-9_]+)]$", "$1");
+			SiteConfig.Spec siteSpec = Placements.get().sites().specs().stream()
+					.filter(s -> s.biome().equals(Ids.name(entry.key()))).findFirst().orElse(null);
+			if (siteSpec != null) {
+				checkSite(level, holder.get(), entry, siteSpec, name, id, failures);
 				continue;
 			}
 			// End highlands start ~1000 blocks out; elsewhere search from the origin.
@@ -79,11 +95,20 @@ final class SelfCheck {
 				LAST_INTERIOR_RADIUS = bestR;
 				BiomesMod.LOGGER.info("[selfcheck] {} OK - nearest at {}, interior {} r={} ({} ms); surface: {}", name, found.getFirst().toShortString(),
 						inner.toShortString(), LAST_INTERIOR_RADIUS, System.currentTimeMillis() - start, surfaceSummary(level, inner, entry));
-				String id = entry.key().toString().replaceAll(".*:([a-z0-9_]+)]$", "$1");
-				landformDiagnostics(level, holder.get(), inner, name);
+				// Landforms: probe the largest patch, and the nearest one too when it is a different patch.
+				List<int[]> placed = new ArrayList<>();
+				landformDiagnostics(level, holder.get(), inner, name, placed);
+				BlockPos near = found.getFirst();
+				if (near.distSqr(inner) > 768.0 * 768.0) {
+					landformDiagnostics(level, holder.get(), near, name + " (nearest patch)", placed);
+				}
 				String only = System.getProperty("biomesmod.render.only", "");
 				if (DebugRender.enabled() && (only.isEmpty() || List.of(only.split(",")).contains(id))) {
-					DebugRender.render(level, inner, 256, id);
+					DebugRender.render(level, inner, DebugRender.size(), id);
+					if (!placed.isEmpty()) {
+						// A second view centred on one placed landform, which the patch-centre view often misses.
+						DebugRender.render(level, new BlockPos(placed.get(0)[0], 64, placed.get(0)[1]), DebugRender.size(), id + "_landform");
+					}
 				}
 			}
 		}
@@ -98,8 +123,93 @@ final class SelfCheck {
 		new Thread(() -> System.exit(code), "biomesmod-selfcheck-exit").start();
 	}
 
+	/**
+	 * A site-placed biome: the nearest site from the origin, its biome at the centre, and the noise terrain over
+	 * the core (elevation against the target, flat area). Flat plateaus (relief <= 0.05) that target y >= 200 must
+	 * hold at least 600,000 m^2 of flat land at y >= 200 (the Salar de Uyuni requirement).
+	 */
+	private static void checkSite(ServerLevel level, Holder<Biome> biome, ModBiomes.Entry entry, SiteConfig.Spec spec, String name, String id,
+			List<String> failures) {
+		long start = System.currentTimeMillis();
+		var sampler = level.getChunkSource().randomState().sampler();
+		SiteField field = SiteField.forSampler(sampler);
+		if (field == null) {
+			failures.add(name + ": the overworld has no site field (density functions not wrapped?)");
+			return;
+		}
+		List<SiteField.Site> sites = field.sitesNear(0, 0, SITE_RADIUS, spec.biome());
+		if (sites.isEmpty()) {
+			failures.add(name + ": no site within " + SITE_RADIUS + " blocks");
+			return;
+		}
+		SiteField.Site s = sites.getFirst();
+		var world = io.github.menonng.biomesmod.terrain.util.WorldSampler.of(level, level.getChunkSource().getGenerator());
+		var source = level.getChunkSource().getGenerator().getBiomeSource();
+		int sea = level.getSeaLevel();
+		int centreFloor = world.baseFloorHeight(s.x(), s.z()) - 1;
+		Holder<Biome> atCentre = source.getNoiseBiome(s.x() >> 2, (Math.max(centreFloor, sea) + 1) >> 2, s.z() >> 2, sampler);
+		if (!atCentre.is(entry.key())) {
+			failures.add(name + ": site centre " + s.x() + "," + s.z() + " has biome " + atCentre.unwrapKey().map(Ids::name).orElse("?"));
+		}
+		// Noise terrain over the site, every 16 blocks: elevation inside the core, flat area, water share.
+		List<Integer> core = new ArrayList<>();
+		int coreCells = 0;
+		int flat = 0;
+		int flatHigh = 0;
+		int wet = 0;
+		int r = (int) Math.ceil(s.core() * 1.35);
+		for (int dz = -r; dz <= r; dz += 16) {
+			for (int dx = -r; dx <= r; dx += 16) {
+				int x = s.x() + dx;
+				int z = s.z() + dz;
+				SiteField.Blend b = field.blend(x, z);
+				if (b.a() != s || b.wa() < 0.999) {
+					continue;
+				}
+				coreCells++;
+				int h = world.baseFloorHeight(x, z) - 1;
+				core.add(h);
+				if (h < sea - 1) {
+					wet++;
+				}
+				if (Math.abs(h - spec.targetY()) <= 3) {
+					flat++;
+					if (h >= 200) {
+						flatHigh++;
+					}
+				}
+			}
+		}
+		java.util.Collections.sort(core);
+		String terrain = core.isEmpty() ? "no core samples" : String.format(
+				"core %d m^2, noise ground median %d (min %d, max %d), target %s y=%d, within 3 of target %d m^2 (%d m^2 at y>=200), under sea %d%%",
+				coreCells * 256, core.get(core.size() / 2), core.getFirst(), core.getLast(), spec.terrain().name().toLowerCase(), spec.targetY(),
+				flat * 256, flatHigh * 256, Math.round(100.0 * wet / Math.max(1, coreCells)));
+		if (spec.terrain() == SiteConfig.Terrain.PLATEAU && spec.relief() <= 0.05 && spec.targetY() >= 200 && flatHigh * 256 < 600_000) {
+			failures.add(name + ": plateau has only " + flatHigh * 256 + " m^2 of flat land at y>=200 (needs 600000)");
+		}
+		BlockPos inner = new BlockPos(s.x(), 64, s.z());
+		LAST_INTERIOR_RADIUS = (int) s.core();
+		BiomesMod.LOGGER.info("[selfcheck] {} OK - site {} of {} within {} blocks at {}, {} (core {} + ramp {}) ({} ms); {}; surface: {}", name, 1,
+				sites.size(), SITE_RADIUS, s.x(), s.z(), Math.round(s.core()), Math.round(s.ramp()), System.currentTimeMillis() - start, terrain,
+				surfaceSummary(level, inner, entry));
+		List<int[]> placed = new ArrayList<>();
+		landformDiagnostics(level, biome, inner, name, placed);
+		String only = System.getProperty("biomesmod.render.only", "");
+		boolean selected = DebugRender.enabled() && (only.isEmpty() || List.of(only.split(",")).contains(id));
+		if (Boolean.getBoolean("biomesmod.overview")) {
+			DebugRender.overview(level, inner, 160, 14, id, spec.biome());
+		}
+		if (selected) {
+			DebugRender.render(level, inner, DebugRender.size(), id);
+			if (!placed.isEmpty()) {
+				DebugRender.render(level, new BlockPos(placed.get(0)[0], 64, placed.get(0)[1]), DebugRender.size(), id + "_landform");
+			}
+		}
+	}
+
 	/** Logs, for every landform feature of the biome, how many nearby grid cells place an instance and why the rest do not. */
-	private static void landformDiagnostics(ServerLevel level, Holder<Biome> biome, BlockPos at, String name) {
+	private static void landformDiagnostics(ServerLevel level, Holder<Biome> biome, BlockPos at, String name, List<int[]> placedOut) {
 		var sampler = io.github.menonng.biomesmod.terrain.util.WorldSampler.of(level, level.getChunkSource().getGenerator());
 		int floor = sampler.baseFloorHeight(at.getX(), at.getZ()) - 1;
 		BiomesMod.LOGGER.info("[selfcheck] {} probe at {}: noise floor {}, sampler biome@floor {}, @64 {}, level biome@floor {}", name, at.toShortString(), floor,
@@ -111,8 +221,13 @@ final class SelfCheck {
 		for (var step : biome.value().getGenerationSettings().features()) {
 			for (var placed : step) {
 				if (placed.value().feature().value().config() instanceof io.github.menonng.biomesmod.terrain.landform.LandformConfig cfg) {
-					BiomesMod.LOGGER.info("[selfcheck] {} landform {}", name,
-							io.github.menonng.biomesmod.terrain.landform.LandformFeature.diagnose(sampler, cfg, at.getX(), at.getZ(), 768));
+					int before = placedOut.size();
+					String d = io.github.menonng.biomesmod.terrain.landform.LandformFeature.diagnose(sampler, cfg, at.getX(), at.getZ(), 768, placedOut);
+					StringBuilder where = new StringBuilder();
+					for (int i = before; i < Math.min(placedOut.size(), before + 4); i++) {
+						where.append(i == before ? " at " : "; ").append(placedOut.get(i)[0]).append(',').append(placedOut.get(i)[1]);
+					}
+					BiomesMod.LOGGER.info("[selfcheck] {} landform {}{}", name, d, where);
 				}
 			}
 		}
@@ -200,11 +315,8 @@ final class SelfCheck {
 		if (entry.dimension() != Level.OVERWORLD) {
 			return "";
 		}
-		for (int cz = (center.getZ() - 32) >> 4; cz <= (center.getZ() + 31) >> 4; cz++) {
-			for (int cx = (center.getX() - 32) >> 4; cx <= (center.getX() + 31) >> 4; cx++) {
-				level.getChunk(cx, cz); // heightmaps of ungenerated chunks read as empty
-			}
-		}
+		// heightmaps of ungenerated chunks read as empty
+		DebugRender.generate(level, (center.getX() - 32) >> 4, (center.getZ() - 32) >> 4, (center.getX() + 31) >> 4, (center.getZ() + 31) >> 4);
 		List<Integer> floors = new ArrayList<>();
 		int wet = 0;
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();

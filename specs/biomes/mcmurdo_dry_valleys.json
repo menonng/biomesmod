@@ -10,11 +10,25 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:snowy_plains",
-      "minecraft:ice_spikes",
-      "minecraft:snowy_taiga"
-    ]
+    "site": {
+      "temperature": [
+        "frozen"
+      ],
+      "size": [
+        480,
+        620
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "target_y": 100
+    }
   },
   "base": "minecraft:snowy_plains",
   "climate": {
@@ -33,7 +47,10 @@
       "raw_generation": [
         "biomesmod:mcmurdo_dry_valleys_valley"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "surface": {

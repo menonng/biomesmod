@@ -10,10 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:swamp",
-      "minecraft:mangrove_swamp"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        620,
+        800
+      ],
+      "ramp": 280,
+      "terrain": "basin",
+      "relief": 0.06,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "wet",
+        "humid"
+      ],
+      "target_y": 64
+    }
   },
   "base": "minecraft:jungle",
   "climate": {
@@ -34,7 +54,10 @@
       "vegetal_decoration": [
         "biomesmod:amazon_varzea_flooded_forest"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

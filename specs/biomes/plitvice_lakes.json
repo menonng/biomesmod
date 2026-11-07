@@ -11,13 +11,29 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:forest",
-      "minecraft:flower_forest",
-      "minecraft:birch_forest",
-      "minecraft:old_growth_birch_forest",
-      "minecraft:dark_forest"
-    ]
+    "site": {
+      "temperature": [
+        "temperate"
+      ],
+      "size": [
+        400,
+        520
+      ],
+      "ramp": 200,
+      "terrain": "lift",
+      "relief": 0.35,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland"
+      ],
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
+      ],
+      "target_y": 95
+    }
   },
   "base": "minecraft:forest",
   "climate": {
@@ -34,7 +50,8 @@
     "remove": [
       "minecraft:trees_birch_and_oak",
       "minecraft:trees_birch_and_oak_leaf_litter",
-      "minecraft:forest_flowers"
+      "minecraft:forest_flowers",
+      "minecraft:lake_lava_surface"
     ],
     "mod": {
       "raw_generation": [

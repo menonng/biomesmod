@@ -33,8 +33,7 @@
       "biomesmod:everglades_marsh"
     ],
     [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_underground"
     ],
     [
       "minecraft:amethyst_geode"
@@ -84,12 +83,14 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:trees_mangrove",
+      "minecraft:patch_tall_grass",
+      "minecraft:patch_grass_savanna",
       "minecraft:patch_grass_normal",
       "minecraft:patch_dead_bush",
       "minecraft:patch_waterlily",
       "minecraft:seagrass_swamp",
-      "minecraft:patch_firefly_bush_near_water"
+      "minecraft:patch_firefly_bush_near_water",
+      "biomesmod:everglades_hammocks"
     ],
     [
       "minecraft:freeze_top_layer"

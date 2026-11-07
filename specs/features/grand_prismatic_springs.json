@@ -10,12 +10,16 @@
       "spacing": 40,
       "chance": 1.0,
       "salt": 51622,
-      "min_distance": 180,
+      "min_distance": -1,
       "pool_radius": [
-        10,
-        18
+        8,
+        14
       ],
-      "band_width": 2.6
+      "band_width": 2.2,
+      "base_y_range": [
+        -4,
+        200
+      ]
     }
   },
   "placement": []

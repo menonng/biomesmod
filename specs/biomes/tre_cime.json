@@ -10,11 +10,25 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:jagged_peaks",
-      "minecraft:frozen_peaks",
-      "minecraft:stony_peaks"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        400,
+        520
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.45,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "target_y": 160
+    }
   },
   "base": "minecraft:stony_peaks",
   "colors": {
@@ -25,7 +39,10 @@
       "local_modifications": [
         "biomesmod:tre_cime_spires"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

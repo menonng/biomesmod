@@ -1,0 +1,110 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "rolling",
+      "biomes": [
+        "biomesmod:alkefjellet"
+      ],
+      "smooth": 0.55,
+      "hills": 3,
+      "lift": 36,
+      "edge_blend": 8,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:snow_block"
+            },
+            "depth": 1
+          },
+          {
+            "block": {
+              "Name": "biomesmod:dolerite"
+            },
+            "depth": 2
+          }
+        ],
+        "strata": {
+          "strata": [
+            {
+              "block": {
+                "Name": "biomesmod:dolerite"
+              },
+              "thickness": 5
+            },
+            {
+              "block": {
+                "Name": "minecraft:basalt"
+              },
+              "thickness": 3
+            },
+            {
+              "block": {
+                "Name": "minecraft:calcite"
+              },
+              "thickness": 1
+            },
+            {
+              "block": {
+                "Name": "biomesmod:dolerite"
+              },
+              "thickness": 4
+            },
+            {
+              "block": {
+                "Name": "minecraft:brown_terracotta"
+              },
+              "thickness": 1
+            },
+            {
+              "block": {
+                "Name": "minecraft:deepslate"
+              },
+              "thickness": 3
+            },
+            {
+              "block": {
+                "Name": "minecraft:moss_block"
+              },
+              "thickness": 1
+            },
+            {
+              "block": {
+                "Name": "biomesmod:dolerite"
+              },
+              "thickness": 4
+            },
+            {
+              "block": {
+                "Name": "minecraft:calcite"
+              },
+              "thickness": 1
+            },
+            {
+              "block": {
+                "Name": "minecraft:basalt"
+              },
+              "thickness": 3
+            },
+            {
+              "block": {
+                "Name": "minecraft:smooth_basalt"
+              },
+              "thickness": 2
+            },
+            {
+              "block": {
+                "Name": "minecraft:brown_terracotta"
+              },
+              "thickness": 1
+            }
+          ]
+        },
+        "cliff_slope": 3
+      }
+    }
+  },
+  "placement": []
+}

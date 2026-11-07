@@ -10,10 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:swamp",
-      "minecraft:mangrove_swamp"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        560,
+        760
+      ],
+      "ramp": 220,
+      "terrain": "basin",
+      "relief": 0.08,
+      "weight": 1.0,
+      "continentalness": [
+        -0.25,
+        0.03
+      ],
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
+      ],
+      "target_y": 63
+    }
   },
   "base": "minecraft:mangrove_swamp",
   "colors": {
@@ -23,9 +43,23 @@
     "foliage": "#5a7a2e"
   },
   "features": {
+    "remove": [
+      "minecraft:trees_mangrove",
+      "minecraft:lake_lava_surface"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_tall_grass",
+        "minecraft:patch_grass_savanna",
+        "minecraft:patch_waterlily"
+      ]
+    },
     "mod": {
       "raw_generation": [
         "biomesmod:everglades_marsh"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:everglades_hammocks"
       ]
     }
   },

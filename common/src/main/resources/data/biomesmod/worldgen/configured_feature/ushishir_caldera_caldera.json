@@ -12,18 +12,18 @@
     },
     "chance": 1.0,
     "flank": [
-      12,
-      18
+      18,
+      26
     ],
     "floor": "sea",
-    "min_distance": 700,
+    "min_distance": -1,
     "radius": [
-      26,
-      36
+      40,
+      52
     ],
     "rim_height": [
-      16,
-      26
+      18,
+      28
     ],
     "rise_from": "sea_level",
     "salt": 15879,

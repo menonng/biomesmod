@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import io.github.menonng.biomesmod.site.SiteConfig;
 
 /**
  * Biome placement data written by tools/biomegen/generate.py from specs/ (never edit the JSON by hand):
@@ -62,6 +63,7 @@ public final class Placements {
 	private final List<EndEntry> end;
 	private final List<Surface> overworldSurface;
 	private final List<Surface> netherSurface;
+	private final SiteConfig sites;
 
 	private Placements(JsonObject root) {
 		int format = root.get("format").getAsInt();
@@ -103,6 +105,7 @@ public final class Placements {
 		this.end = List.copyOf(endList);
 		this.overworldSurface = surfaces(surface.getAsJsonArray("overworld"));
 		this.netherSurface = surfaces(surface.getAsJsonArray("nether"));
+		this.sites = SiteConfig.parse(root.getAsJsonObject("sites"));
 	}
 
 	/** The placement data shipped in the mod jar. */
@@ -144,6 +147,11 @@ public final class Placements {
 
 	public List<Surface> netherSurface() {
 		return netherSurface;
+	}
+
+	/** Site-placed overworld biomes (see {@link SiteConfig}). */
+	public SiteConfig sites() {
+		return sites;
 	}
 
 	private static List<Surface> surfaces(JsonArray array) {

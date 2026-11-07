@@ -1,0 +1,67 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "alkefjellet",
+  "names": {
+    "en_us": "Alkefjellet",
+    "ko_kr": "알케피엘레"
+  },
+  "places": [
+    43
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold"
+      ],
+      "size": [
+        380,
+        520
+      ],
+      "ramp": 160,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "continentalness": [
+        -0.3,
+        -0.06
+      ]
+    }
+  },
+  "base": "minecraft:snowy_beach",
+  "climate": {
+    "temperature": 0.2,
+    "downfall": 0.6
+  },
+  "colors": {
+    "sky": "#a8bed8",
+    "fog": "#d8e0e8",
+    "water": "#2e5468",
+    "water_fog": "#0c2230",
+    "grass": "#7d8f6a"
+  },
+  "features": {
+    "clear": [
+      "vegetal_decoration"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:alkefjellet_cliffs"
+      ],
+      "local_modifications": [
+        "biomesmod:alkefjellet_stacks"
+      ]
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:snow_block",
+    "under": "biomesmod:dolerite",
+    "under_depth": 2
+  },
+  "carvers": "underground"
+}

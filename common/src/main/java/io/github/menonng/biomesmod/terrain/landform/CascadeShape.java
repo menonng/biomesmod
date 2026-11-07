@@ -6,10 +6,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.menonng.biomesmod.terrain.util.StrataPalette;
 
 /**
- * {@code cascade}: a horseshoe of waterfalls (Iguazu, the Devil's Throat). A broad shallow river on an upper basalt
- * shelf pours over an irregular U-shaped lip into a plunge basin and leaves down a gorge. Wooded islets on the lip
- * split the curtain into many separate falls. The water is real: the upper river's source blocks spill over the edge
- * (ticks are scheduled), so the falls run as soon as the chunk loads.
+ * {@code cascade}: a horseshoe of waterfalls (Iguazu, the Devil's Throat). A broad shallow river at ground level
+ * pours over an irregular U-shaped lip into a plunge basin cut {@code drop} blocks into the ground and leaves down a
+ * gorge. Wooded islets on the lip split the curtain into many separate falls. Everything is cut into the existing
+ * terrain: only low banks right beside the water are raised, so the landform never stands up as a block. The water is
+ * real: the upper river's source blocks spill over the edge (ticks are scheduled), so the falls run as soon as the
+ * chunk loads.
  */
 public final class CascadeShape extends LandformShape {
 	static final String NAME = "cascade";
@@ -23,6 +25,8 @@ public final class CascadeShape extends LandformShape {
 	).apply(i, CascadeShape::new));
 
 	static final int K_SHELF = 25;
+	/** Width of the raised bank kept beside the river and the basin; farther out the terrain is left alone. */
+	static final double BANK = 6;
 
 	final Span radius;
 	final Span drop;
@@ -66,9 +70,10 @@ public final class CascadeShape extends LandformShape {
 		if (!site.reliefOk(ring)) {
 			return null;
 		}
-		int base = Math.max(site.sea, Site.mean(ring, site.floor0));
-		int upper = (int) Math.min(base + r.range(drop), site.ceiling() - 4);
-		return new Instance(site, base, upper, rad, r.range(riverWidth), r.angle());
+		// The upper river runs at the local ground level; the basin is cut below it.
+		int upper = Math.min(Math.max(site.sea + 1, Site.mean(ring, site.floor0)), site.ceiling() - 4);
+		int lower = upper - (int) Math.round(r.range(drop));
+		return new Instance(site, lower, upper, rad, r.range(riverWidth), r.angle());
 	}
 
 	final class Instance extends Landform {
@@ -95,7 +100,7 @@ public final class CascadeShape extends LandformShape {
 			return NAME + " at " + cx + "," + cz + ": r=" + Math.round(rad) + " drop=" + (upper - lower);
 		}
 
-		/** -1 outside, 0 upper shelf/banks, 1 lower basin/gorge. */
+		/** -1 outside, 0 upper shelf/banks, 1 lower basin/gorge. out = {u, v, d, distance to the basin/gorge edge}. */
 		private int zone(double px, double pz, double[] out) {
 			double dx = px - cx;
 			double dz = pz - cz;
@@ -112,6 +117,9 @@ public final class CascadeShape extends LandformShape {
 			double lip = rad * (1 + 0.16 * LNoise.angular(seed ^ 0xF1, a, 7) + 0.06 * LNoise.angular(seed ^ 0xF2, a, 19));
 			boolean inArc = Math.abs(a) < Math.toRadians(arc);
 			double gorgeHalf = rad * 0.55 * (1 + 0.25 * LNoise.noise1(seed ^ 0xF3, u / 25));
+			double toBasin = Math.min(inArc ? d - lip : Double.MAX_VALUE,
+					u > 0 && u < reachIn - 6 ? Math.abs(v) - gorgeHalf : Double.MAX_VALUE);
+			out[3] = toBasin;
 			if ((inArc && d < lip) || (u > 0 && Math.abs(v) < gorgeHalf && u < reachIn - 6)) {
 				return 1;
 			}
@@ -122,7 +130,7 @@ public final class CascadeShape extends LandformShape {
 		void column(int x, int z, Col c) {
 			double px = x + 0.5;
 			double pz = z + 0.5;
-			double[] p = new double[3];
+			double[] p = new double[4];
 			int zone = zone(px, pz, p);
 			if (zone < 0) {
 				return;
@@ -143,13 +151,17 @@ public final class CascadeShape extends LandformShape {
 			}
 			// Upper level: a wide shallow river fanning out to the lip, banks beyond it.
 			double riverHalf = riverW * 0.5 * (1 + 0.2 * LNoise.noise1(seed ^ 0xF4, u / 30));
-			boolean river = (u < 0 ? Math.abs(v) < riverHalf : d < rad * 1.9 + 0.3 * riverHalf) && d < reachIn - 8;
+			double fanR = rad * 1.9 + 0.3 * riverHalf;
+			double toRiver = Math.max(u < 0 ? Math.abs(v) - riverHalf : d - fanR, d - (reachIn - 8));
+			boolean river = toRiver < 0;
 			double islet = LNoise.noise2(seed ^ 0xF5, px / 9, pz / 9) + 0.4 * LNoise.noise2(seed ^ 0xF6, px / 4, pz / 4);
 			if (river && islet < 1 - islets * 1.4) {
 				c.top = upper - 2;
 				c.water = upper;
 				c.kind = K_SHELF;
-			} else {
+				c.carve = true;   // the river cuts into higher ground
+			} else if (river || Math.min(toRiver, p[3]) < BANK) {
+				// Islets and a low bank beside the water: raised only where the ground is lower, never cut.
 				c.top = upper + 1 + (int) Math.round(1.5 * Math.max(0, LNoise.noise2(seed ^ 0xF7, px / 13, pz / 13)));
 				c.cap = true;
 			}

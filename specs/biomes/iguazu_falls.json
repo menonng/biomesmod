@@ -10,11 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:jungle",
-      "minecraft:sparse_jungle",
-      "minecraft:bamboo_jungle"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        420,
+        560
+      ],
+      "ramp": 220,
+      "terrain": "lift",
+      "relief": 0.25,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "wet",
+        "humid"
+      ],
+      "target_y": 72
+    }
   },
   "base": "minecraft:jungle",
   "climate": {
@@ -39,7 +58,10 @@
       "local_modifications": [
         "biomesmod:iguazu_falls_falls"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

@@ -10,7 +10,7 @@
       42,
       60
     ],
-    "min_distance": 1000,
+    "min_distance": -1,
     "radius": [
       8,
       11

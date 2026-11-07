@@ -1,0 +1,97 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "sea_stack",
+      "biomes": [
+        "biomesmod:alkefjellet"
+      ],
+      "spacing": 48,
+      "chance": 0.7,
+      "salt": 60810,
+      "count": 3,
+      "height": [
+        18,
+        32
+      ],
+      "palette": {
+        "strata": [
+          {
+            "block": {
+              "Name": "biomesmod:dolerite"
+            },
+            "thickness": 5
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:calcite"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "biomesmod:dolerite"
+            },
+            "thickness": 4
+          },
+          {
+            "block": {
+              "Name": "minecraft:brown_terracotta"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:deepslate"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:moss_block"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "biomesmod:dolerite"
+            },
+            "thickness": 4
+          },
+          {
+            "block": {
+              "Name": "minecraft:calcite"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_basalt"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:brown_terracotta"
+            },
+            "thickness": 1
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

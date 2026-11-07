@@ -10,16 +10,16 @@
       "spacing": 48,
       "chance": 1.0,
       "salt": 80184,
-      "min_distance": 600,
+      "min_distance": -1,
       "radius": [
-        18,
-        26
+        28,
+        38
       ],
       "river_width": [
-        24,
-        40
+        40,
+        60
       ],
-      "max_relief": 40,
+      "max_relief": 24,
       "cap": {
         "block": {
           "Name": "minecraft:grass_block"

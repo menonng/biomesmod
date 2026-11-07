@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "biomesmod:block/dolerite_top",
+    "side": "biomesmod:block/dolerite"
+  }
+}

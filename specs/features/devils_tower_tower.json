@@ -10,7 +10,7 @@
       "spacing": 32,
       "chance": 1.0,
       "salt": 54194,
-      "min_distance": 1000,
+      "min_distance": -1,
       "radius": [
         8,
         11

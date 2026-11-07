@@ -65,6 +65,9 @@ loom {
 			vmArg "-Dbiomesmod.showcase.only=${project.findProperty('only') ?: ''}"
 			vmArg "-Dbiomesmod.render=${project.findProperty('render') ?: 'false'}"
 			vmArg "-Dbiomesmod.render.only=${project.findProperty('renderOnly') ?: ''}"
+			vmArg "-Dbiomesmod.overview=${project.findProperty('overview') ?: 'false'}"
+			vmArg "-Dbiomesmod.render.size=${project.findProperty('renderSize') ?: '256'}"
+			vmArg "-Dbiomesmod.selfcheck.only=${project.findProperty('biomes') ?: ''}"
 		}
 	}
 }
@@ -78,8 +81,14 @@ tasks.matching { it.name == 'runSelfCheck' }.configureEach {
 // landform, umbrella_tree...) cannot load without the mod, so they are dropped and unlinked from the biomes.
 def datapackDir = layout.buildDirectory.dir('datapack-src')
 tasks.register('prepareDatapack', Sync) {
-	from(new File(commonDir, 'resources')) { include 'data/**' }
-	from('src/main/resources') { include 'data/**' }
+	// Only what vanilla can parse: the site-wrapped terrain functions use a mod density function type, and the
+	// mod blocks' loot tables and tool tags name blocks that only exist with the mod.
+	def codeOnly = ['data/minecraft/worldgen/density_function/overworld/offset.json',
+			'data/minecraft/worldgen/density_function/overworld/factor.json',
+			'data/minecraft/worldgen/density_function/overworld/jaggedness.json',
+			'data/biomesmod/worldgen/noise/site.json', 'data/biomesmod/loot_table/**', 'data/minecraft/tags/block/mineable/**']
+	from(new File(commonDir, 'resources')) { include 'data/**'; exclude codeOnly }
+	from('src/main/resources') { include 'data/**'; exclude codeOnly }
 	from(rootProject.file("common/datapack/pack.mcmeta.${project.minecraft_version}")) { rename { 'pack.mcmeta' } }
 	into datapackDir
 	doLast {

@@ -11,6 +11,10 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:alkefjellet",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:amazon_varzea",
       "dimension": "minecraft:overworld"
     },
@@ -203,10 +207,6 @@
       "dimension": "minecraft:overworld"
     },
     {
-      "id": "biomesmod:svalbard_coast",
-      "dimension": "minecraft:overworld"
-    },
-    {
       "id": "biomesmod:tre_cime",
       "dimension": "minecraft:overworld"
     },
@@ -234,228 +234,28 @@
   "overworld_regions": [
     {
       "name": "biomesmod:overworld_1",
-      "weight": 1,
+      "weight": 2,
       "replace": {
-        "minecraft:badlands": "biomesmod:dallol",
-        "minecraft:bamboo_jungle": "biomesmod:daintree",
-        "minecraft:beach": "biomesmod:cliffs_of_moher",
-        "minecraft:birch_forest": "biomesmod:plitvice_lakes",
-        "minecraft:cold_ocean": "biomesmod:alaid_volcano",
-        "minecraft:dark_forest": "biomesmod:plitvice_lakes",
-        "minecraft:deep_cold_ocean": "biomesmod:alaid_volcano",
-        "minecraft:deep_frozen_ocean": "biomesmod:ross_ice_shelf",
+        "minecraft:beach": "biomesmod:coast_eroded_cliffs",
         "minecraft:deep_lukewarm_ocean": "biomesmod:coast_archipelago",
-        "minecraft:deep_ocean": "biomesmod:ushishir_caldera",
-        "minecraft:desert": "biomesmod:dallol",
-        "minecraft:eroded_badlands": "biomesmod:dallol",
-        "minecraft:flower_forest": "biomesmod:plitvice_lakes",
-        "minecraft:forest": "biomesmod:plitvice_lakes",
-        "minecraft:frozen_ocean": "biomesmod:ross_ice_shelf",
-        "minecraft:frozen_peaks": "biomesmod:aletsch_glacier",
-        "minecraft:grove": "biomesmod:antarctic_peninsula",
-        "minecraft:ice_spikes": "biomesmod:franz_josef_land",
-        "minecraft:jagged_peaks": "biomesmod:aletsch_glacier",
-        "minecraft:jungle": "biomesmod:daintree",
         "minecraft:lukewarm_ocean": "biomesmod:coast_archipelago",
-        "minecraft:mangrove_swamp": "biomesmod:amazon_varzea",
-        "minecraft:meadow": "biomesmod:antarctic_peninsula",
-        "minecraft:ocean": "biomesmod:ushishir_caldera",
-        "minecraft:old_growth_birch_forest": "biomesmod:plitvice_lakes",
         "minecraft:old_growth_pine_taiga": "biomesmod:coast_sunken_pines",
         "minecraft:old_growth_spruce_taiga": "biomesmod:coast_sunken_pines",
         "minecraft:plains": "biomesmod:coast_polder_tulips",
-        "minecraft:savanna": "biomesmod:bromo_tengger",
-        "minecraft:savanna_plateau": "biomesmod:bromo_tengger",
-        "minecraft:snowy_beach": "biomesmod:cliffs_of_moher",
-        "minecraft:snowy_plains": "biomesmod:franz_josef_land",
-        "minecraft:snowy_slopes": "biomesmod:antarctic_peninsula",
-        "minecraft:snowy_taiga": "biomesmod:franz_josef_land",
-        "minecraft:sparse_jungle": "biomesmod:daintree",
-        "minecraft:stony_peaks": "biomesmod:aletsch_glacier",
-        "minecraft:stony_shore": "biomesmod:cliffs_of_moher",
+        "minecraft:snowy_beach": "biomesmod:coast_eroded_cliffs",
+        "minecraft:stony_shore": "biomesmod:coast_eroded_cliffs",
         "minecraft:sunflower_plains": "biomesmod:coast_polder_tulips",
-        "minecraft:swamp": "biomesmod:amazon_varzea",
         "minecraft:taiga": "biomesmod:coast_sunken_pines",
-        "minecraft:warm_ocean": "biomesmod:coast_archipelago",
-        "minecraft:windswept_forest": "biomesmod:geirangerfjord",
-        "minecraft:windswept_gravelly_hills": "biomesmod:geirangerfjord",
-        "minecraft:windswept_hills": "biomesmod:geirangerfjord",
-        "minecraft:windswept_savanna": "biomesmod:bromo_tengger",
-        "minecraft:wooded_badlands": "biomesmod:dallol"
+        "minecraft:warm_ocean": "biomesmod:coast_archipelago"
       }
     },
     {
       "name": "biomesmod:overworld_2",
-      "weight": 1,
+      "weight": 2,
       "replace": {
-        "minecraft:badlands": "biomesmod:dasht_e_lut",
-        "minecraft:bamboo_jungle": "biomesmod:iguazu_falls",
-        "minecraft:beach": "biomesmod:coast_eroded_cliffs",
-        "minecraft:deep_lukewarm_ocean": "biomesmod:exuma_cays",
-        "minecraft:desert": "biomesmod:dasht_e_lut",
-        "minecraft:eroded_badlands": "biomesmod:dasht_e_lut",
-        "minecraft:forest": "biomesmod:gotjawal",
-        "minecraft:frozen_peaks": "biomesmod:cordillera_darwin",
-        "minecraft:grove": "biomesmod:lauterbrunnen",
-        "minecraft:ice_spikes": "biomesmod:lake_vostok_plateau",
-        "minecraft:jagged_peaks": "biomesmod:cordillera_darwin",
-        "minecraft:jungle": "biomesmod:iguazu_falls",
-        "minecraft:lukewarm_ocean": "biomesmod:exuma_cays",
-        "minecraft:mangrove_swamp": "biomesmod:everglades",
-        "minecraft:meadow": "biomesmod:lauterbrunnen",
-        "minecraft:old_growth_pine_taiga": "biomesmod:grand_prismatic",
-        "minecraft:old_growth_spruce_taiga": "biomesmod:grand_prismatic",
-        "minecraft:plains": "biomesmod:devils_tower",
-        "minecraft:savanna": "biomesmod:pamukkale",
-        "minecraft:savanna_plateau": "biomesmod:pamukkale",
-        "minecraft:snowy_beach": "biomesmod:coast_eroded_cliffs",
-        "minecraft:snowy_plains": "biomesmod:lake_vostok_plateau",
-        "minecraft:snowy_slopes": "biomesmod:lauterbrunnen",
-        "minecraft:snowy_taiga": "biomesmod:lake_vostok_plateau",
-        "minecraft:sparse_jungle": "biomesmod:iguazu_falls",
-        "minecraft:stony_peaks": "biomesmod:cordillera_darwin",
-        "minecraft:stony_shore": "biomesmod:coast_eroded_cliffs",
-        "minecraft:sunflower_plains": "biomesmod:devils_tower",
-        "minecraft:swamp": "biomesmod:everglades",
-        "minecraft:taiga": "biomesmod:grand_prismatic",
-        "minecraft:warm_ocean": "biomesmod:exuma_cays",
-        "minecraft:windswept_forest": "biomesmod:krenitsyn_caldera",
-        "minecraft:windswept_gravelly_hills": "biomesmod:krenitsyn_caldera",
-        "minecraft:windswept_hills": "biomesmod:krenitsyn_caldera",
-        "minecraft:windswept_savanna": "biomesmod:pamukkale",
-        "minecraft:wooded_badlands": "biomesmod:dasht_e_lut"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_3",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:grand_canyon",
-        "minecraft:bamboo_jungle": "biomesmod:zhangjiajie",
         "minecraft:beach": "biomesmod:coast_eroded_shore",
-        "minecraft:deep_lukewarm_ocean": "biomesmod:great_barrier_reef",
-        "minecraft:desert": "biomesmod:grand_canyon",
-        "minecraft:eroded_badlands": "biomesmod:grand_canyon",
-        "minecraft:frozen_peaks": "biomesmod:denali_massif",
-        "minecraft:grove": "biomesmod:moraine_lake",
-        "minecraft:ice_spikes": "biomesmod:mcmurdo_dry_valleys",
-        "minecraft:jagged_peaks": "biomesmod:denali_massif",
-        "minecraft:jungle": "biomesmod:zhangjiajie",
-        "minecraft:lukewarm_ocean": "biomesmod:great_barrier_reef",
-        "minecraft:meadow": "biomesmod:moraine_lake",
-        "minecraft:old_growth_pine_taiga": "biomesmod:magellanic_fjords",
-        "minecraft:old_growth_spruce_taiga": "biomesmod:magellanic_fjords",
-        "minecraft:plains": "biomesmod:orkhon_steppe",
-        "minecraft:savanna": "biomesmod:socotra",
-        "minecraft:savanna_plateau": "biomesmod:socotra",
         "minecraft:snowy_beach": "biomesmod:coast_eroded_shore",
-        "minecraft:snowy_plains": "biomesmod:mcmurdo_dry_valleys",
-        "minecraft:snowy_slopes": "biomesmod:moraine_lake",
-        "minecraft:snowy_taiga": "biomesmod:mcmurdo_dry_valleys",
-        "minecraft:sparse_jungle": "biomesmod:zhangjiajie",
-        "minecraft:stony_peaks": "biomesmod:denali_massif",
-        "minecraft:stony_shore": "biomesmod:coast_eroded_shore",
-        "minecraft:sunflower_plains": "biomesmod:orkhon_steppe",
-        "minecraft:taiga": "biomesmod:magellanic_fjords",
-        "minecraft:warm_ocean": "biomesmod:great_barrier_reef",
-        "minecraft:windswept_savanna": "biomesmod:socotra",
-        "minecraft:wooded_badlands": "biomesmod:grand_canyon"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_4",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:lake_gairdner",
-        "minecraft:beach": "biomesmod:giants_causeway",
-        "minecraft:deep_lukewarm_ocean": "biomesmod:ha_long_bay",
-        "minecraft:desert": "biomesmod:lake_gairdner",
-        "minecraft:eroded_badlands": "biomesmod:lake_gairdner",
-        "minecraft:frozen_peaks": "biomesmod:patagonian_icefield",
-        "minecraft:grove": "biomesmod:sarek",
-        "minecraft:jagged_peaks": "biomesmod:patagonian_icefield",
-        "minecraft:lukewarm_ocean": "biomesmod:ha_long_bay",
-        "minecraft:meadow": "biomesmod:sarek",
-        "minecraft:plains": "biomesmod:patagonian_steppe",
-        "minecraft:snowy_beach": "biomesmod:giants_causeway",
-        "minecraft:snowy_slopes": "biomesmod:sarek",
-        "minecraft:stony_peaks": "biomesmod:patagonian_icefield",
-        "minecraft:stony_shore": "biomesmod:giants_causeway",
-        "minecraft:sunflower_plains": "biomesmod:patagonian_steppe",
-        "minecraft:warm_ocean": "biomesmod:ha_long_bay",
-        "minecraft:wooded_badlands": "biomesmod:lake_gairdner"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_5",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:lencois_maranhenses",
-        "minecraft:beach": "biomesmod:lofoten_reine",
-        "minecraft:desert": "biomesmod:lencois_maranhenses",
-        "minecraft:eroded_badlands": "biomesmod:lencois_maranhenses",
-        "minecraft:frozen_peaks": "biomesmod:puna_de_atacama",
-        "minecraft:jagged_peaks": "biomesmod:puna_de_atacama",
-        "minecraft:snowy_beach": "biomesmod:lofoten_reine",
-        "minecraft:stony_peaks": "biomesmod:puna_de_atacama",
-        "minecraft:stony_shore": "biomesmod:lofoten_reine",
-        "minecraft:wooded_badlands": "biomesmod:lencois_maranhenses"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_6",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:monument_valley",
-        "minecraft:beach": "biomesmod:svalbard_coast",
-        "minecraft:desert": "biomesmod:monument_valley",
-        "minecraft:eroded_badlands": "biomesmod:monument_valley",
-        "minecraft:frozen_peaks": "biomesmod:tre_cime",
-        "minecraft:jagged_peaks": "biomesmod:tre_cime",
-        "minecraft:snowy_beach": "biomesmod:svalbard_coast",
-        "minecraft:stony_peaks": "biomesmod:tre_cime",
-        "minecraft:stony_shore": "biomesmod:svalbard_coast",
-        "minecraft:wooded_badlands": "biomesmod:monument_valley"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_7",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:salar_de_tara",
-        "minecraft:desert": "biomesmod:salar_de_tara",
-        "minecraft:eroded_badlands": "biomesmod:salar_de_tara",
-        "minecraft:wooded_badlands": "biomesmod:salar_de_tara"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_8",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:salar_de_uyuni",
-        "minecraft:desert": "biomesmod:salar_de_uyuni",
-        "minecraft:eroded_badlands": "biomesmod:salar_de_uyuni",
-        "minecraft:wooded_badlands": "biomesmod:salar_de_uyuni"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_9",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:sossusvlei",
-        "minecraft:desert": "biomesmod:sossusvlei",
-        "minecraft:eroded_badlands": "biomesmod:sossusvlei",
-        "minecraft:wooded_badlands": "biomesmod:sossusvlei"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_10",
-      "weight": 1,
-      "replace": {
-        "minecraft:badlands": "biomesmod:wadi_rum",
-        "minecraft:desert": "biomesmod:wadi_rum",
-        "minecraft:eroded_badlands": "biomesmod:wadi_rum",
-        "minecraft:wooded_badlands": "biomesmod:wadi_rum"
+        "minecraft:stony_shore": "biomesmod:coast_eroded_shore"
       }
     }
   ],
@@ -487,6 +287,12 @@
   ],
   "surface": {
     "overworld": [
+      {
+        "biome": "biomesmod:alkefjellet",
+        "top": "minecraft:snow_block",
+        "under": "biomesmod:dolerite",
+        "under_depth": 2
+      },
       {
         "biome": "biomesmod:cliffs_of_moher",
         "top": "minecraft:grass_block",
@@ -572,7 +378,7 @@
       },
       {
         "biome": "biomesmod:salar_de_uyuni",
-        "top": "minecraft:white_concrete_powder",
+        "top": "biomesmod:salt_crust",
         "under": "minecraft:calcite",
         "under_depth": 3
       },
@@ -605,6 +411,1266 @@
         "biome": "biomesmod:danakil_flats",
         "top": "minecraft:calcite",
         "under": "minecraft:basalt"
+      }
+    ]
+  },
+  "sites": {
+    "grid": {
+      "cell": 2048,
+      "jitter": 0.8,
+      "chance": 0.85,
+      "warp": 90
+    },
+    "list": [
+      {
+        "biome": "biomesmod:alaid_volcano",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -2.0,
+          -0.19
+        ],
+        "core": [
+          340.0,
+          460.0
+        ],
+        "ramp": 160.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:aletsch_glacier",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          480.0,
+          620.0
+        ],
+        "ramp": 260.0,
+        "terrain": "mountain",
+        "target_y": 160,
+        "relief": 0.7,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:alkefjellet",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          380.0,
+          520.0
+        ],
+        "ramp": 160.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:amazon_varzea",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          620.0,
+          800.0
+        ],
+        "ramp": 280.0,
+        "terrain": "basin",
+        "target_y": 64,
+        "relief": 0.06,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:antarctic_peninsula",
+        "temperature": [
+          -2.0,
+          -0.45
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          0.1
+        ],
+        "core": [
+          480.0,
+          620.0
+        ],
+        "ramp": 220.0,
+        "terrain": "mountain",
+        "target_y": 100,
+        "relief": 0.9,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:bromo_tengger",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 260.0,
+        "terrain": "lift",
+        "target_y": 145,
+        "relief": 0.4,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:cliffs_of_moher",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          380.0,
+          520.0
+        ],
+        "ramp": 160.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:cordillera_darwin",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          0.1
+        ],
+        "core": [
+          450.0,
+          600.0
+        ],
+        "ramp": 220.0,
+        "terrain": "mountain",
+        "target_y": 125,
+        "relief": 0.9,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:daintree",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          450.0,
+          650.0
+        ],
+        "ramp": 200.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:dallol",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          400.0,
+          520.0
+        ],
+        "ramp": 220.0,
+        "terrain": "basin",
+        "target_y": 64,
+        "relief": 0.05,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:dasht_e_lut",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          620.0,
+          750.0
+        ],
+        "ramp": 260.0,
+        "terrain": "plateau",
+        "target_y": 79,
+        "relief": 0.04,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:denali_massif",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          520.0,
+          660.0
+        ],
+        "ramp": 260.0,
+        "terrain": "mountain",
+        "target_y": 150,
+        "relief": 1.0,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:devils_tower",
+        "temperature": [
+          -0.45,
+          0.55
+        ],
+        "humidity": [
+          -2.0,
+          0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          400.0,
+          520.0
+        ],
+        "ramp": 220.0,
+        "terrain": "lift",
+        "target_y": 110,
+        "relief": 0.3,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:everglades",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.25,
+          0.03
+        ],
+        "core": [
+          560.0,
+          760.0
+        ],
+        "ramp": 220.0,
+        "terrain": "basin",
+        "target_y": 63,
+        "relief": 0.08,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:exuma_cays",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.455,
+          -0.19
+        ],
+        "core": [
+          500.0,
+          700.0
+        ],
+        "ramp": 220.0,
+        "terrain": "basin",
+        "target_y": 59,
+        "relief": 0.05,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:franz_josef_land",
+        "temperature": [
+          -2.0,
+          -0.45
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.4,
+          -0.06
+        ],
+        "core": [
+          450.0,
+          600.0
+        ],
+        "ramp": 200.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:geirangerfjord",
+        "temperature": [
+          -2.0,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.25,
+          0.1
+        ],
+        "core": [
+          480.0,
+          620.0
+        ],
+        "ramp": 220.0,
+        "terrain": "mountain",
+        "target_y": 125,
+        "relief": 0.8,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:giants_causeway",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          320.0,
+          440.0
+        ],
+        "ramp": 150.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:gotjawal",
+        "temperature": [
+          -0.15,
+          0.55
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          0.3
+        ],
+        "core": [
+          380.0,
+          500.0
+        ],
+        "ramp": 200.0,
+        "terrain": "lift",
+        "target_y": 75,
+        "relief": 0.4,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:grand_canyon",
+        "temperature": [
+          -0.15,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          560.0,
+          700.0
+        ],
+        "ramp": 280.0,
+        "terrain": "plateau",
+        "target_y": 145,
+        "relief": 0.08,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:grand_prismatic",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          420.0,
+          560.0
+        ],
+        "ramp": 260.0,
+        "terrain": "plateau",
+        "target_y": 149,
+        "relief": 0.25,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:great_barrier_reef",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.455,
+          -0.19
+        ],
+        "core": [
+          560.0,
+          760.0
+        ],
+        "ramp": 220.0,
+        "terrain": "basin",
+        "target_y": 55,
+        "relief": 0.2,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:ha_long_bay",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.455,
+          -0.19
+        ],
+        "core": [
+          460.0,
+          640.0
+        ],
+        "ramp": 200.0,
+        "terrain": "basin",
+        "target_y": 55,
+        "relief": 0.1,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:iguazu_falls",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          420.0,
+          560.0
+        ],
+        "ramp": 220.0,
+        "terrain": "lift",
+        "target_y": 72,
+        "relief": 0.25,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:krenitsyn_caldera",
+        "temperature": [
+          -2.0,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -2.0,
+          -0.19
+        ],
+        "core": [
+          340.0,
+          460.0
+        ],
+        "ramp": 160.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:lake_gairdner",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          560.0,
+          700.0
+        ],
+        "ramp": 260.0,
+        "terrain": "plateau",
+        "target_y": 68,
+        "relief": 0.04,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:lake_vostok_plateau",
+        "temperature": [
+          -2.0,
+          -0.45
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          650.0,
+          800.0
+        ],
+        "ramp": 320.0,
+        "terrain": "plateau",
+        "target_y": 200,
+        "relief": 0.04,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:lauterbrunnen",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 135,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:lencois_maranhenses",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          500.0,
+          700.0
+        ],
+        "ramp": 220.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:lofoten_reine",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.3,
+          -0.06
+        ],
+        "core": [
+          400.0,
+          540.0
+        ],
+        "ramp": 180.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:magellanic_fjords",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.3,
+          0.03
+        ],
+        "core": [
+          450.0,
+          600.0
+        ],
+        "ramp": 200.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:mcmurdo_dry_valleys",
+        "temperature": [
+          -2.0,
+          -0.45
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          480.0,
+          620.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 100,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:monument_valley",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 240.0,
+        "terrain": "plateau",
+        "target_y": 127,
+        "relief": 0.1,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:moraine_lake",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          420.0,
+          560.0
+        ],
+        "ramp": 240.0,
+        "terrain": "mountain",
+        "target_y": 135,
+        "relief": 0.8,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:orkhon_steppe",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -2.0,
+          0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          580.0,
+          750.0
+        ],
+        "ramp": 280.0,
+        "terrain": "lift",
+        "target_y": 124,
+        "relief": 0.4,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:pamukkale",
+        "temperature": [
+          -0.15,
+          0.55
+        ],
+        "humidity": [
+          -0.35,
+          0.1
+        ],
+        "continentalness": [
+          -0.11,
+          0.3
+        ],
+        "core": [
+          400.0,
+          520.0
+        ],
+        "ramp": 220.0,
+        "terrain": "lift",
+        "target_y": 80,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:patagonian_icefield",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          560.0,
+          700.0
+        ],
+        "ramp": 260.0,
+        "terrain": "lift",
+        "target_y": 120,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:patagonian_steppe",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -2.0,
+          0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          580.0,
+          750.0
+        ],
+        "ramp": 260.0,
+        "terrain": "lift",
+        "target_y": 72,
+        "relief": 0.3,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:plitvice_lakes",
+        "temperature": [
+          -0.15,
+          0.2
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          0.3
+        ],
+        "core": [
+          400.0,
+          520.0
+        ],
+        "ramp": 200.0,
+        "terrain": "lift",
+        "target_y": 95,
+        "relief": 0.35,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:puna_de_atacama",
+        "temperature": [
+          -0.45,
+          0.55
+        ],
+        "humidity": [
+          -2.0,
+          0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          560.0,
+          700.0
+        ],
+        "ramp": 320.0,
+        "terrain": "lift",
+        "target_y": 236,
+        "relief": 0.35,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:ross_ice_shelf",
+        "temperature": [
+          -2.0,
+          -0.45
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -0.9,
+          -0.19
+        ],
+        "core": [
+          600.0,
+          800.0
+        ],
+        "ramp": 240.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:salar_de_tara",
+        "temperature": [
+          -0.45,
+          0.55
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          440.0,
+          560.0
+        ],
+        "ramp": 280.0,
+        "terrain": "plateau",
+        "target_y": 231,
+        "relief": 0.15,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:salar_de_uyuni",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          0.1
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          620.0,
+          700.0
+        ],
+        "ramp": 320.0,
+        "terrain": "plateau",
+        "target_y": 205,
+        "relief": 0.02,
+        "weight": 1.3,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:sarek",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          500.0,
+          650.0
+        ],
+        "ramp": 240.0,
+        "terrain": "mountain",
+        "target_y": 110,
+        "relief": 0.8,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:socotra",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.25,
+          0.3
+        ],
+        "core": [
+          450.0,
+          600.0
+        ],
+        "ramp": 200.0,
+        "terrain": "lift",
+        "target_y": 72,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:sossusvlei",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          520.0,
+          660.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 85,
+        "relief": 0.2,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:tre_cime",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          400.0,
+          520.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 160,
+        "relief": 0.45,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:ushishir_caldera",
+        "temperature": [
+          -2.0,
+          0.2
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          -2.0,
+          -0.19
+        ],
+        "core": [
+          320.0,
+          420.0
+        ],
+        "ramp": 160.0,
+        "terrain": "keep",
+        "target_y": 63,
+        "relief": 0.5,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:wadi_rum",
+        "temperature": [
+          0.2,
+          2.0
+        ],
+        "humidity": [
+          -2.0,
+          -0.1
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 240.0,
+        "terrain": "plateau",
+        "target_y": 100,
+        "relief": 0.12,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:zhangjiajie",
+        "temperature": [
+          -0.15,
+          2.0
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          0.3
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 90,
+        "relief": 0.4,
+        "weight": 1.0,
+        "biome_threshold": 0.5
       }
     ]
   }

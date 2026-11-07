@@ -10,12 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:desert",
-      "minecraft:badlands",
-      "minecraft:eroded_badlands",
-      "minecraft:wooded_badlands"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate",
+        "warm"
+      ],
+      "size": [
+        440,
+        560
+      ],
+      "ramp": 280,
+      "terrain": "plateau",
+      "relief": 0.15,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "arid",
+        "dry"
+      ],
+      "target_y": 231
+    }
   },
   "base": "minecraft:badlands",
   "climate": {
@@ -39,7 +57,10 @@
       "local_modifications": [
         "biomesmod:salar_de_tara_monjes"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

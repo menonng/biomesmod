@@ -462,6 +462,7 @@ class BiomeSpec:
         self.where = where
         self.dimension = data.get('dimension')
         self.slots = []
+        self.site = None
         self.nether_point = None
         self.end = None
 
@@ -532,6 +533,98 @@ def validate_biome(spec, versions, vanilla, features, places, problems):
     validate_carvers(spec, versions, vanilla, problems)
 
 
+# Vanilla climate parameter bins (Climate / OverworldBiomeBuilder), used for site climate filters.
+SITE_TEMPERATURE = {'frozen': (-2.0, -0.45), 'cold': (-0.45, -0.15), 'temperate': (-0.15, 0.2), 'warm': (0.2, 0.55), 'hot': (0.55, 2.0)}
+SITE_HUMIDITY = {'arid': (-2.0, -0.35), 'dry': (-0.35, -0.1), 'neutral': (-0.1, 0.1), 'wet': (0.1, 0.3), 'humid': (0.3, 2.0)}
+SITE_ZONE = {'deep_ocean': (-2.0, -0.455), 'ocean': (-0.455, -0.19), 'coast': (-0.19, -0.11), 'near_inland': (-0.11, 0.03),
+             'mid_inland': (0.03, 0.3), 'far_inland': (0.3, 2.0)}
+SITE_TERRAIN = ('keep', 'plateau', 'lift', 'mountain', 'basin')
+SITE_KEYS = {'temperature', 'humidity', 'zone', 'continentalness', 'erosion', 'size', 'ramp', 'terrain', 'elevation_m',
+             'target_y', 'relief', 'weight', 'biome_threshold'}
+
+
+def site_target_y(elevation_m):
+    """Real elevation to block height: sea level is y=63 and 1 block is 25.6 m (so 3,656 m gives y=205)."""
+    return int(round(min(250, max(40, 63 + elevation_m * 0.039))))
+
+
+def validate_site(site, where, problems):
+    if not isinstance(site, dict):
+        problems.error(where, 'must be an object')
+        return None
+    unknown_keys(site, SITE_KEYS, where, problems)
+    out = {}
+
+    def bands(key, table):
+        v = site.get(key)
+        if v is None:
+            return [-10.0, 10.0]
+        if isinstance(v, str):
+            v = [v]
+        if not isinstance(v, list) or not v or any(b not in table for b in v):
+            problems.error(where, '%s must be a list of %s' % (key, ', '.join(table)))
+            return [-10.0, 10.0]
+        names = list(table)
+        idx = sorted(names.index(b) for b in v)
+        if idx != list(range(idx[0], idx[-1] + 1)):
+            problems.error(where, '%s bands must be adjacent (%s)' % (key, ', '.join(v)))
+        return [table[names[idx[0]]][0], table[names[idx[-1]]][1]]
+
+    out['temperature'] = bands('temperature', SITE_TEMPERATURE)
+    out['humidity'] = bands('humidity', SITE_HUMIDITY)
+    if 'continentalness' in site:
+        c = site['continentalness']
+        if not (isinstance(c, list) and len(c) == 2 and all(is_number(x) for x in c) and c[0] < c[1]):
+            problems.error(where, 'continentalness must be [min, max]')
+        out['continentalness'] = [float(c[0]), float(c[1])]
+    else:
+        out['continentalness'] = bands('zone', SITE_ZONE)
+    if 'erosion' in site:
+        e = site['erosion']
+        if not (isinstance(e, list) and len(e) == 2 and all(is_number(x) for x in e) and e[0] < e[1]):
+            problems.error(where, 'erosion must be [min, max]')
+        out['erosion'] = [float(e[0]), float(e[1])]
+    size = site.get('size')
+    if not (isinstance(size, list) and len(size) == 2 and all(is_number(x) for x in size) and 64 <= size[0] <= size[1] <= 1600):
+        problems.error(where, 'size must be [min, max] core radius in blocks (64..1600)')
+        size = [256, 256]
+    out['core'] = [float(size[0]), float(size[1])]
+    ramp = site.get('ramp', 200)
+    if not is_number(ramp) or not 32 <= ramp <= 800:
+        problems.error(where, 'ramp must be 32..800 blocks')
+    out['ramp'] = float(ramp)
+    terrain = site.get('terrain', 'keep')
+    if terrain not in SITE_TERRAIN:
+        problems.error(where, 'terrain must be one of ' + ', '.join(SITE_TERRAIN))
+    out['terrain'] = terrain
+    if 'target_y' in site:
+        ty = site['target_y']
+        if not is_int(ty) or not 0 <= ty <= 260:
+            problems.error(where, 'target_y must be an integer 0..260')
+        out['target_y'] = int(ty)
+    elif 'elevation_m' in site:
+        if not is_number(site['elevation_m']):
+            problems.error(where, 'elevation_m must be a number')
+        out['target_y'] = site_target_y(site['elevation_m'])
+    else:
+        if terrain != 'keep':
+            problems.error(where, 'terrain %s needs elevation_m or target_y' % terrain)
+        out['target_y'] = 63
+    relief = site.get('relief', 0.5)
+    if not is_number(relief) or not 0 <= relief <= 1.5:
+        problems.error(where, 'relief must be 0..1.5')
+    out['relief'] = float(relief)
+    weight = site.get('weight', 1.0)
+    if not is_number(weight) or weight <= 0:
+        problems.error(where, 'weight must be > 0')
+    out['weight'] = float(weight)
+    thr = site.get('biome_threshold', 0.5)
+    if not is_number(thr) or not 0 < thr <= 1:
+        problems.error(where, 'biome_threshold must be in (0, 1]')
+    out['biome_threshold'] = float(thr)
+    return out
+
+
 def validate_placement(spec, versions, vanilla, problems):
     d, where = spec.data, spec.where
     p = d.get('placement')
@@ -539,7 +632,13 @@ def validate_placement(spec, versions, vanilla, problems):
         problems.error(where, '"placement" is required')
         return
     if spec.dimension == 'overworld':
-        unknown_keys(p, {'replace'}, where + ' placement', problems)
+        unknown_keys(p, {'replace', 'site'}, where + ' placement', problems)
+        if ('replace' in p) == ('site' in p):
+            problems.error(where, 'overworld placement needs exactly one of "replace" (climate slots) or "site" (large site)')
+            return
+        if 'site' in p:
+            spec.site = validate_site(p['site'], where + ' placement.site', problems)
+            return
         slots = p.get('replace')
         if isinstance(slots, str):
             slots = [slots]
@@ -1095,16 +1194,66 @@ def pack_regions(specs, regions_cfg, problems):
     return out
 
 
+def build_sites(specs, regions_cfg, problems):
+    cfg = regions_cfg.get('sites', {})
+    grid = {'cell': cfg.get('cell', 2048), 'jitter': cfg.get('jitter', 0.8), 'chance': cfg.get('chance', 0.85), 'warp': cfg.get('warp', 90)}
+    if not is_int(grid['cell']) or grid['cell'] < 256:
+        problems.error('specs/regions.json', 'sites.cell must be an integer >= 256')
+    out = []
+    for s in specs:
+        if s.site:
+            e = {'biome': MOD + ':' + s.id}
+            e.update(s.site)
+            out.append(e)
+    return {'grid': grid, 'list': out}
+
+
+SITE_CLIMATE = {
+    'noise': MOD + ':site',
+    'temperature': {'type': 'minecraft:shifted_noise', 'noise': 'minecraft:temperature', 'xz_scale': 0.25, 'y_scale': 0.0,
+                    'shift_x': 'minecraft:shift_x', 'shift_y': 0.0, 'shift_z': 'minecraft:shift_z'},
+    'vegetation': {'type': 'minecraft:shifted_noise', 'noise': 'minecraft:vegetation', 'xz_scale': 0.25, 'y_scale': 0.0,
+                   'shift_x': 'minecraft:shift_x', 'shift_y': 0.0, 'shift_z': 'minecraft:shift_z'},
+    'continents': 'minecraft:overworld/continents',
+    'erosion': 'minecraft:overworld/erosion',
+}
+
+
+def build_site_density(vanilla_root, versions, outputs, problems):
+    """Wraps vanilla overworld offset/factor/jaggedness in biomesmod:site (one file when all versions agree)."""
+    for name in ('offset', 'factor', 'jaggedness'):
+        texts = {}
+        for mc in versions:
+            path = os.path.join(vanilla_root, mc, 'mojmap', 'data', 'minecraft', 'worldgen', 'density_function', 'overworld', name + '.json')
+            try:
+                with open(path, encoding='utf-8') as f:
+                    original = json.load(f)
+            except OSError:
+                problems.error(path, 'vanilla density function missing (needed to wrap it for sites)')
+                continue
+            inner = [('type', MOD + ':site'), ('mode', name), ('argument', original)] + list(SITE_CLIMATE.items())
+            texts[mc] = dump_json({'type': 'minecraft:flat_cache', 'argument': dict(inner)})
+        if not texts:
+            continue
+        target = os.path.join('data', 'minecraft', 'worldgen', 'density_function', 'overworld', name + '.json')
+        if len(set(texts.values())) == 1 and len(texts) == len(versions):
+            outputs[os.path.join(COMMON_RES, target)] = next(iter(texts.values()))
+        else:
+            for mc, text in texts.items():
+                outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', target)] = text
+
+
 def build_placements(specs, regions_cfg, problems):
     by_dim = {dim: sorted([s for s in specs if s.dimension == dim], key=lambda s: s.id) for dim in DIMENSION_ORDER}
     placements = {
         '_generated': 'by tools/biomegen/generate.py from specs/ - do not edit',
         'format': 1,
         'biomes': [{'id': MOD + ':' + s.id, 'dimension': DIMENSIONS[dim]['level']} for dim in DIMENSION_ORDER for s in by_dim[dim]],
-        'overworld_regions': pack_regions(by_dim['overworld'], regions_cfg, problems),
+        'overworld_regions': pack_regions([s for s in by_dim['overworld'] if s.slots], regions_cfg, problems),
         'nether_regions': [],
         'end': [{'biome': MOD + ':' + s.id, 'type': s.end['type'], 'weight': s.end['weight']} for s in by_dim['end'] if s.end],
         'surface': {'overworld': [], 'nether': []},
+        'sites': build_sites(by_dim['overworld'], regions_cfg, problems),
     }
     seen = {}
     points = []
@@ -1266,6 +1415,7 @@ def main(argv=None):
                     outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', 'data', MOD, 'worldgen', kind, fid + '.json')] = text
 
     placements = build_placements(specs, regions_cfg if isinstance(regions_cfg, dict) else {}, problems)
+    build_site_density(args.vanilla, versions, outputs, problems)
     outputs[os.path.join(COMMON_RES, MOD, 'placements.json')] = dump_json(placements, sort_keys=False)
     build_lang(specs, outputs, problems)
 

@@ -1,14 +1,18 @@
 {
   "config": {
-    "band_width": 2.6,
+    "band_width": 2.2,
+    "base_y_range": [
+      -4,
+      200
+    ],
     "biomes": [
       "biomesmod:grand_prismatic"
     ],
     "chance": 1.0,
-    "min_distance": 180,
+    "min_distance": -1,
     "pool_radius": [
-      10,
-      18
+      8,
+      14
     ],
     "salt": 51622,
     "shape": "hot_spring",

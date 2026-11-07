@@ -1,10 +1,16 @@
 {
-  "_comment": "TerraBlender region weights. Vanilla's own region has weight 10 (TerraBlender config). Overworld biomes are packed into regions overworld_1..N by the generator; 'weights' overrides single regions by their 1-based number.",
+  "_comment": "TerraBlender region weights for the slot-placed biomes (vanilla's own region has weight 10). Real-place biomes are site-placed instead: 'sites' sets the site grid (cell size in blocks, centre jitter, chance that a cell holds a site, outline warp in blocks).",
   "overworld": {
-    "default_weight": 1,
+    "default_weight": 2,
     "weights": {}
   },
   "nether": {
     "default_weight": 2
+  },
+  "sites": {
+    "cell": 2048,
+    "jitter": 0.8,
+    "chance": 0.85,
+    "warp": 90
   }
 }

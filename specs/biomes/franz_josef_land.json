@@ -10,11 +10,23 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:snowy_plains",
-      "minecraft:ice_spikes",
-      "minecraft:snowy_taiga"
-    ]
+    "site": {
+      "temperature": [
+        "frozen"
+      ],
+      "size": [
+        450,
+        600
+      ],
+      "ramp": 200,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "continentalness": [
+        -0.4,
+        -0.06
+      ]
+    }
   },
   "base": "minecraft:snowy_plains",
   "features": {
@@ -25,7 +37,10 @@
       "raw_generation": [
         "biomesmod:franz_josef_land_cap"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

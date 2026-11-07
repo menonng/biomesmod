@@ -18,7 +18,7 @@
         "top": [
           {
             "block": {
-              "Name": "minecraft:calcite"
+              "Name": "biomesmod:travertine"
             },
             "depth": 3
           }
@@ -26,7 +26,7 @@
         "underwater": [
           {
             "block": {
-              "Name": "minecraft:calcite"
+              "Name": "biomesmod:travertine"
             },
             "depth": 2
           }

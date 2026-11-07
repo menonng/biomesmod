@@ -10,11 +10,24 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:beach",
-      "minecraft:stony_shore",
-      "minecraft:snowy_beach"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        320,
+        440
+      ],
+      "ramp": 150,
+      "terrain": "keep",
+      "relief": 0.5,
+      "weight": 1.0,
+      "continentalness": [
+        -0.3,
+        -0.06
+      ]
+    }
   },
   "base": "minecraft:stony_shore",
   "climate": {
@@ -31,7 +44,10 @@
       "local_modifications": [
         "biomesmod:giants_causeway_columns"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "surface": {

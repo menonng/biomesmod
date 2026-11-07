@@ -10,11 +10,25 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:jagged_peaks",
-      "minecraft:frozen_peaks",
-      "minecraft:stony_peaks"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold"
+      ],
+      "size": [
+        450,
+        600
+      ],
+      "ramp": 220,
+      "terrain": "mountain",
+      "relief": 0.9,
+      "weight": 1.0,
+      "continentalness": [
+        -0.3,
+        0.1
+      ],
+      "target_y": 125
+    }
   },
   "base": "minecraft:frozen_peaks",
   "colors": {
@@ -25,7 +39,10 @@
       "raw_generation": [
         "biomesmod:cordillera_darwin_ice"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

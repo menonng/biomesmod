@@ -20,6 +20,9 @@
 			"io.github.menonng.biomesmod.worldgen.TerraBlenderEntry"
 		]
 	},
+	"mixins": [
+		"biomesmod.mixins.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.16.0",
 		"minecraft": "${minecraft_dependency}",

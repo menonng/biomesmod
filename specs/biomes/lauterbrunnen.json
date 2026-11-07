@@ -10,11 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:snowy_slopes",
-      "minecraft:grove",
-      "minecraft:meadow"
-    ]
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        460,
+        600
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
+      ],
+      "target_y": 135
+    }
   },
   "base": "minecraft:meadow",
   "colors": {
@@ -29,7 +48,10 @@
       "vegetal_decoration": [
         "biomesmod:lauterbrunnen_firs"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

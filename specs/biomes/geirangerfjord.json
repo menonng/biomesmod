@@ -10,11 +10,26 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:windswept_hills",
-      "minecraft:windswept_gravelly_hills",
-      "minecraft:windswept_forest"
-    ]
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold",
+        "temperate"
+      ],
+      "size": [
+        480,
+        620
+      ],
+      "ramp": 220,
+      "terrain": "mountain",
+      "relief": 0.8,
+      "weight": 1.0,
+      "continentalness": [
+        -0.25,
+        0.1
+      ],
+      "target_y": 125
+    }
   },
   "base": "minecraft:windswept_forest",
   "colors": {
@@ -26,7 +41,10 @@
       "raw_generation": [
         "biomesmod:geirangerfjord_fjord"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "carvers": "underground"

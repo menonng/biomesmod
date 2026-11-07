@@ -10,15 +10,15 @@
       "spacing": 48,
       "chance": 1.0,
       "salt": 85028,
-      "min_distance": 900,
+      "min_distance": -1,
       "rise_from": "sea_level",
       "radius": [
-        32,
-        42
+        55,
+        72
       ],
       "height": [
-        60,
-        90
+        95,
+        125
       ],
       "snowline": 150,
       "crater": "dry"

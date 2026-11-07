@@ -5,7 +5,7 @@
     ],
     "crust": 0.4,
     "crust_block": {
-      "Name": "minecraft:yellow_terracotta"
+      "Name": "biomesmod:sulfur_crust"
     },
     "crust_cell": 6,
     "mode": "flatten",

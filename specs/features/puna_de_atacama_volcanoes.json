@@ -12,14 +12,14 @@
       "salt": 39964,
       "min_distance": 300,
       "radius": [
-        26,
-        36
+        34,
+        48
       ],
       "height": [
-        34,
-        56
+        45,
+        70
       ],
-      "snowline": 165,
+      "snowline": 275,
       "crater": "dry",
       "max_relief": 200
     }

@@ -6,13 +6,13 @@
     "chance": 1.0,
     "crater": "dry",
     "height": [
-      60,
-      90
+      95,
+      125
     ],
-    "min_distance": 900,
+    "min_distance": -1,
     "radius": [
-      32,
-      42
+      55,
+      72
     ],
     "rise_from": "sea_level",
     "salt": 85028,

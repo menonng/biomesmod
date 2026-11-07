@@ -1,33 +1,28 @@
 {
-  "carvers": {
-    "air": [
-      "minecraft:cave_extra_underground",
-      "minecraft:canyon"
-    ]
+  "attributes": {
+    "minecraft:visual/fog_color": "#d8e0e8",
+    "minecraft:visual/sky_color": "#a8bed8",
+    "minecraft:visual/water_fog_color": "#0c2230"
   },
-  "downfall": 0.3,
+  "carvers": [
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
+  ],
+  "downfall": 0.6,
   "effects": {
-    "fog_color": 14213352,
-    "mood_sound": {
-      "block_search_extent": 8,
-      "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000
-    },
-    "sky_color": 11058904,
-    "water_color": 4020182,
-    "water_fog_color": 329011
+    "grass_color": "#7d8f6a",
+    "water_color": "#2e5468"
   },
   "features": [
     [
-      "biomesmod:svalbard_coast_ice"
+      "biomesmod:alkefjellet_cliffs"
     ],
     [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:amethyst_geode",
+      "biomesmod:alkefjellet_stacks"
     ],
     [
       "minecraft:monster_room",
@@ -71,15 +66,7 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [
-      "minecraft:glow_lichen",
-      "minecraft:flower_default",
-      "minecraft:patch_grass_badlands",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
-    ],
+    [],
     [
       "minecraft:freeze_top_layer"
     ]
@@ -159,5 +146,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.05
+  "temperature": 0.2
 }

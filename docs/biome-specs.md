@@ -80,13 +80,14 @@ Everything else, including fog in 26.2 when no `fog` is given, comes from the ba
 
 ### Placement
 
-* **Overworld:** `{ "replace": ["minecraft:desert", ...] }` lists the vanilla climate slots this biome takes inside a mod region. Every slot must exist in the overworld biome builder of **every** version, so `minecraft:pale_garden` and `minecraft:sulfur_caves` (26.2 only) are rejected. A slot carries its terrain shape with it: a `stony_peaks` slot gives peaks, `beach` gives the coast strip. Choose slots for the terrain you want.
+* **Overworld, site:** `{ "site": { ... } }` places the biome as a large site at its real elevation; see [engine-sites.md](engine-sites.md) for every field. All real-place biomes use this.
+* **Overworld, slots:** `{ "replace": ["minecraft:desert", ...] }` lists the vanilla climate slots this biome takes inside a mod region. Every slot must exist in the overworld biome builder of **every** version, so `minecraft:pale_garden` and `minecraft:sulfur_caves` (26.2 only) are rejected. A slot carries its terrain shape with it: a `stony_peaks` slot gives peaks, `beach` gives the coast strip. Choose slots for the terrain you want.
 * **Nether:** `{ "nether_point": { "temperature": 0.75, "humidity": -0.35, "offset": 0.0 } }`. **ext**: `continentalness`, `erosion`, `depth`, `weirdness` (default 0). All in `[-2, 2]`. A point may not equal a vanilla nether point or another mod point.
 * **End:** `{ "end": "highlands" | "midlands" | "edge" | "islands", "weight": 5 }`. Vanilla End biomes have weight 10 each in TerraBlender's config.
 
 ### Region packing (overworld)
 
-The generator puts every overworld biome into exactly one TerraBlender region, named `biomesmod:overworld_<n>`:
+The generator puts every slot-placed overworld biome into exactly one TerraBlender region, named `biomesmod:overworld_<n>`:
 
 1. It sorts the biomes by number of slots (most first), then by id.
 2. First fit: each biome goes into the first region where none of its slots is taken yet. If there is none, a new region opens. Within one region a vanilla biome is replaced by at most one mod biome.

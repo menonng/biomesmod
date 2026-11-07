@@ -16,15 +16,14 @@
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000
     },
-    "sky_color": 8233727,
+    "sky_color": 8103167,
     "water_color": 3104634,
     "water_fog_color": 861491
   },
   "features": [
     [],
     [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_underground"
     ],
     [
       "minecraft:amethyst_geode",
@@ -65,25 +64,25 @@
       "minecraft:underwater_magma",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel",
-      "minecraft:ore_emerald"
+      "minecraft:disk_gravel"
     ],
-    [
-      "minecraft:ore_infested"
-    ],
+    [],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:trees_windswept_hills",
+      "minecraft:trees_water",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:patch_pumpkin",
+      "minecraft:seagrass_cold",
+      "minecraft:seagrass_simple",
+      "minecraft:kelp_cold"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -101,38 +100,7 @@
       }
     ],
     "axolotls": [],
-    "creature": [
-      {
-        "maxCount": 4,
-        "minCount": 4,
-        "type": "minecraft:sheep",
-        "weight": 12
-      },
-      {
-        "maxCount": 4,
-        "minCount": 4,
-        "type": "minecraft:pig",
-        "weight": 10
-      },
-      {
-        "maxCount": 4,
-        "minCount": 4,
-        "type": "minecraft:chicken",
-        "weight": 10
-      },
-      {
-        "maxCount": 4,
-        "minCount": 4,
-        "type": "minecraft:cow",
-        "weight": 8
-      },
-      {
-        "maxCount": 6,
-        "minCount": 4,
-        "type": "minecraft:llama",
-        "weight": 5
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [
       {
@@ -182,6 +150,12 @@
         "minCount": 1,
         "type": "minecraft:witch",
         "weight": 5
+      },
+      {
+        "maxCount": 1,
+        "minCount": 1,
+        "type": "minecraft:drowned",
+        "weight": 5
       }
     ],
     "underground_water_creature": [
@@ -192,8 +166,28 @@
         "weight": 10
       }
     ],
-    "water_ambient": [],
-    "water_creature": []
+    "water_ambient": [
+      {
+        "maxCount": 6,
+        "minCount": 3,
+        "type": "minecraft:cod",
+        "weight": 15
+      },
+      {
+        "maxCount": 5,
+        "minCount": 1,
+        "type": "minecraft:salmon",
+        "weight": 15
+      }
+    ],
+    "water_creature": [
+      {
+        "maxCount": 4,
+        "minCount": 1,
+        "type": "minecraft:squid",
+        "weight": 3
+      }
+    ]
   },
-  "temperature": 0.1
+  "temperature": 0.3
 }

@@ -47,6 +47,9 @@ public final class LandformFeature extends Feature<LandformConfig> {
 
 	/** Instances of {@code cfg} whose footprint overlaps the block box [x0..x1] x [z0..z1]. */
 	public static List<Landform> instancesOverlapping(WorldSampler sampler, LandformConfig cfg, int x0, int z0, int x1, int z1) {
+		if (cfg.minDistance < 0) {
+			return siteInstances(sampler, cfg, x0, z0, x1, z1);
+		}
 		int reach = cfg.shape().maxReach();
 		int sp = cfg.spacing;
 		List<Landform> out = new ArrayList<>(2);
@@ -206,13 +209,92 @@ public final class LandformFeature extends Feature<LandformConfig> {
 
 	private static final int TRIES = 6;
 
+	// ---- one per site (min_distance -1): unique landmarks stand near the centre of their biome's site
+
+	private static io.github.menonng.biomesmod.site.SiteField siteField(WorldSampler sampler) {
+		return io.github.menonng.biomesmod.site.SiteField.forSampler(sampler.level().getLevel().getChunkSource().randomState().sampler());
+	}
+
+	private static List<Landform> siteInstances(WorldSampler sampler, LandformConfig cfg, int x0, int z0, int x1, int z1) {
+		io.github.menonng.biomesmod.site.SiteField field = siteField(sampler);
+		if (field == null) {
+			return List.of();
+		}
+		int reach = cfg.shape().maxReach();
+		int cx = (x0 + x1) / 2;
+		int cz = (z0 + z1) / 2;
+		double half = Math.max(x1 - x0, z1 - z0) * 0.75;
+		List<Landform> out = new ArrayList<>(1);
+		for (io.github.menonng.biomesmod.site.SiteField.Site s : field.sitesNear(cx, cz, (int) (half + reach + 0.4 * 1600), null)) {
+			if (Math.hypot(s.x() - cx, s.z() - cz) > half + reach + 0.36 * s.core()) {
+				continue;
+			}
+			Landform lf = siteInstance(sampler, cfg, s);
+			if (lf != null && lf.overlaps(x0, z0, x1, z1)) {
+				out.add(lf);
+			}
+		}
+		return out;
+	}
+
+	/** The landform of one site (cached), or null when the site is another biome's or nothing fits. */
+	static Landform siteInstance(WorldSampler sampler, LandformConfig cfg, io.github.menonng.biomesmod.site.SiteField.Site s) {
+		LandformConfig.CellKey key = new LandformConfig.CellKey(sampler.level().getLevel(), sampler.seed() ^ 0x5173_5173_5173L, s.x(), s.z());
+		Object v = cfg.cache.get(key);
+		if (v == null) {
+			v = resolveSite(sampler, cfg, s);
+			if (v == null) {
+				v = NONE;
+			}
+			if (cfg.cache.size() > CACHE_LIMIT) {
+				cfg.cache.clear();
+			}
+			Object prev = cfg.cache.putIfAbsent(key, v);
+			if (prev != null) {
+				v = prev;
+			}
+		}
+		return v == NONE ? null : (Landform) v;
+	}
+
+	private static Landform resolveSite(WorldSampler sampler, LandformConfig cfg, io.github.menonng.biomesmod.site.SiteField.Site s) {
+		int sea = sampler.seaLevel();
+		int centreFloor = sampler.baseFloorHeight(s.x(), s.z()) - 1;
+		if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(s.x(), Math.max(centreFloor, sea), s.z()))) {
+			return null;
+		}
+		long seed = LNoise.mix(s.seed() ^ (cfg.salt * 0x9E3779B97F4A7C15L + cfg.shape().name().hashCode()));
+		LNoise.Rng r = new LNoise.Rng(seed);
+		for (int attempt = 0; attempt < 10; attempt++) {
+			double a = r.angle();
+			double d = attempt == 0 ? 0 : s.core() * 0.35 * Math.sqrt(r.next());
+			int x = LNoise.floor(s.x() + Math.cos(a) * d);
+			int z = LNoise.floor(s.z() + Math.sin(a) * d);
+			int floor0 = sampler.baseFloorHeight(x, z) - 1;
+			Span range = cfg.baseYRange();
+			if (floor0 - sea < range.min() || floor0 - sea > range.max()) {
+				continue;
+			}
+			if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, Math.max(floor0, sea), z))) {
+				continue;
+			}
+			Landform lf = cfg.shape().create(new Site(sampler, cfg, seed + attempt * 0x9E3779B97F4A7C15L, x, z, floor0));
+			if (lf != null) {
+				return lf;
+			}
+		}
+		return null;
+	}
+
 	private static Landform tryAt(WorldSampler sampler, LandformConfig cfg, long siteSeed, LNoise.Rng r, int gx, int gz) {
 		int sp = cfg.spacing;
 		int x = LNoise.floor((gx + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
 		int z = LNoise.floor((gz + 0.5 + (r.next() - 0.5) * cfg.jitter) * sp);
 		int sea = sampler.seaLevel();
 		// Cheap pre-check (biome near the surface) before sampling the noise terrain height, which costs far more.
-		if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, sea, z)) && !cfg.biomes.test(sampler.biomeAt(x, sea + 48, z))) {
+		// The third probe is above almost any surface, so it also finds biomes on high site plateaus.
+		if (!cfg.biomes.everywhere() && !cfg.biomes.test(sampler.biomeAt(x, sea, z)) && !cfg.biomes.test(sampler.biomeAt(x, sea + 48, z))
+				&& !cfg.biomes.test(sampler.biomeAt(x, sea + 180, z))) {
 			return null;
 		}
 		int floor0 = sampler.baseFloorHeight(x, z) - 1;
@@ -252,6 +334,29 @@ public final class LandformFeature extends Feature<LandformConfig> {
 	 * (cx, cz) and counts where candidates drop out. Mirrors {@link #resolve} step by step.
 	 */
 	public static String diagnose(WorldSampler sampler, LandformConfig cfg, int cx, int cz, int radius) {
+		return diagnose(sampler, cfg, cx, cz, radius, null);
+	}
+
+	/** As {@link #diagnose(WorldSampler, LandformConfig, int, int, int)}, also adding each placed instance centre to {@code placed}. */
+	public static String diagnose(WorldSampler sampler, LandformConfig cfg, int cx, int cz, int radius, List<int[]> placed) {
+		if (cfg.minDistance < 0) {
+			io.github.menonng.biomesmod.site.SiteField field = siteField(sampler);
+			int sites = 0;
+			int ok = 0;
+			if (field != null) {
+				for (io.github.menonng.biomesmod.site.SiteField.Site s : field.sitesNear(cx, cz, radius, null)) {
+					sites++;
+					Landform lf = siteInstance(sampler, cfg, s);
+					if (lf != null) {
+						ok++;
+						if (placed != null) {
+							placed.add(new int[] {lf.cx, lf.cz});
+						}
+					}
+				}
+			}
+			return String.format("%s: one per site, %d site(s) within %d -> %d placed", cfg.shape().name(), sites, radius, ok);
+		}
 		int sp = cfg.spacing;
 		int cells = 0, chance = 0, range = 0, biome = 0, shape = 0, inside = 0, sep = 0, ok = 0;
 		for (int gz = Math.floorDiv(cz - radius, sp); gz <= Math.floorDiv(cz + radius, sp); gz++) {
@@ -287,6 +392,10 @@ public final class LandformFeature extends Feature<LandformConfig> {
 					sep++;
 				} else {
 					ok++;
+					if (placed != null) {
+						Landform lf = instance(sampler, cfg, gx, gz);
+						placed.add(new int[] {lf.cx, lf.cz});
+					}
 				}
 			}
 		}

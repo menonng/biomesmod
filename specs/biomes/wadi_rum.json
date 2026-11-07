@@ -10,12 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:desert",
-      "minecraft:badlands",
-      "minecraft:eroded_badlands",
-      "minecraft:wooded_badlands"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        460,
+        600
+      ],
+      "ramp": 240,
+      "terrain": "plateau",
+      "relief": 0.12,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "arid",
+        "dry"
+      ],
+      "target_y": 100
+    }
   },
   "base": "minecraft:desert",
   "climate": {
@@ -35,7 +53,10 @@
       "local_modifications": [
         "biomesmod:wadi_rum_massifs"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "surface": {

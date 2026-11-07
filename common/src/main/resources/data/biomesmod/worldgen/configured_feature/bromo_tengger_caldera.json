@@ -6,29 +6,29 @@
     "chance": 1.0,
     "cone": 1,
     "cone_height": [
-      16,
-      24
+      20,
+      30
     ],
     "cone_radius": [
-      8,
-      12
-    ],
-    "flank": [
       12,
       18
+    ],
+    "flank": [
+      20,
+      28
     ],
     "floor": "sand",
     "floor_block": {
       "Name": "minecraft:gravel"
     },
-    "min_distance": 700,
+    "min_distance": -1,
     "radius": [
-      28,
-      38
+      62,
+      80
     ],
     "rim_height": [
-      18,
-      30
+      22,
+      34
     ],
     "salt": 55506,
     "shape": "caldera",

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:travertine",
+    "biomesmod:sulfur_crust",
+    "biomesmod:dolerite"
+  ]
+}

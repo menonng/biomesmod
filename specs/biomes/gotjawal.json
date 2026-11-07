@@ -1,13 +1,49 @@
 {
   "$schema": "../schema/biome.schema.json",
   "id": "gotjawal",
-  "names": { "en_us": "Gotjawal", "ko_kr": "곶자왈" },
+  "names": {
+    "en_us": "Gotjawal",
+    "ko_kr": "곶자왈"
+  },
   "places": [],
   "dimension": "overworld",
-  "placement": { "replace": ["minecraft:forest"] },
+  "placement": {
+    "site": {
+      "zone": [
+        "near_inland",
+        "mid_inland"
+      ],
+      "temperature": [
+        "temperate",
+        "warm"
+      ],
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
+      ],
+      "size": [
+        380,
+        500
+      ],
+      "ramp": 200,
+      "terrain": "lift",
+      "target_y": 75,
+      "relief": 0.4
+    }
+  },
   "base": "minecraft:forest",
-  "climate": { "temperature": 0.8, "downfall": 0.9, "has_precipitation": true },
-  "colors": { "water": "#3d7a8a", "water_fog": "#0a2a33", "grass": "#5a8a32", "foliage": "#3f6e26" },
+  "climate": {
+    "temperature": 0.8,
+    "downfall": 0.9,
+    "has_precipitation": true
+  },
+  "colors": {
+    "water": "#3d7a8a",
+    "water_fog": "#0a2a33",
+    "grass": "#5a8a32",
+    "foliage": "#3f6e26"
+  },
   "features": {
     "remove": [
       "minecraft:forest_flowers",
@@ -17,7 +53,9 @@
       "minecraft:patch_grass_forest"
     ],
     "add": {
-      "local_modifications": ["minecraft:forest_rock"],
+      "local_modifications": [
+        "minecraft:forest_rock"
+      ],
       "vegetal_decoration": [
         "minecraft:patch_large_fern",
         "minecraft:patch_grass_taiga",
@@ -25,7 +63,11 @@
         "minecraft:red_mushroom_old_growth"
       ]
     },
-    "mod": { "vegetal_decoration": ["biomesmod:gotjawal_trees"] }
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:gotjawal_trees"
+      ]
+    }
   },
   "spawners": "base"
 }

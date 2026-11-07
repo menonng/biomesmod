@@ -16,7 +16,7 @@
         "top": [
           {
             "block": {
-              "Name": "minecraft:calcite"
+              "Name": "biomesmod:salt_crust"
             },
             "depth": 2
           },

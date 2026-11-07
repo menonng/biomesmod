@@ -10,11 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:jungle",
-      "minecraft:sparse_jungle",
-      "minecraft:bamboo_jungle"
-    ]
+    "site": {
+      "temperature": [
+        "temperate",
+        "warm",
+        "hot"
+      ],
+      "size": [
+        460,
+        600
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.4,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland"
+      ],
+      "humidity": [
+        "wet",
+        "humid"
+      ],
+      "target_y": 90
+    }
   },
   "base": "minecraft:jungle",
   "climate": {
@@ -38,7 +57,8 @@
     "remove": [
       "minecraft:trees_jungle",
       "minecraft:bamboo_light",
-      "minecraft:patch_melon"
+      "minecraft:patch_melon",
+      "minecraft:lake_lava_surface"
     ],
     "mod": {
       "local_modifications": [

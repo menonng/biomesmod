@@ -10,12 +10,30 @@
   ],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:desert",
-      "minecraft:badlands",
-      "minecraft:eroded_badlands",
-      "minecraft:wooded_badlands"
-    ]
+    "site": {
+      "temperature": [
+        "warm",
+        "hot"
+      ],
+      "size": [
+        560,
+        700
+      ],
+      "ramp": 260,
+      "terrain": "plateau",
+      "relief": 0.04,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "humidity": [
+        "arid",
+        "dry"
+      ],
+      "target_y": 68
+    }
   },
   "base": "minecraft:desert",
   "climate": {
@@ -34,7 +52,10 @@
       "raw_generation": [
         "biomesmod:lake_gairdner_salt"
       ]
-    }
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
   },
   "spawners": "base",
   "surface": {

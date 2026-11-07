@@ -33,7 +33,7 @@ public final class LandformConfig implements FeatureConfiguration {
 			Span.CODEC.optionalFieldOf("base_y_range").forGetter(c -> c.baseYRange),
 			Codec.intRange(0, 512).optionalFieldOf("max_relief").forGetter(c -> c.maxRelief),
 			RISE.optionalFieldOf("rise_from", "ground").forGetter(c -> c.riseFrom),
-			Codec.intRange(0, 4096).optionalFieldOf("min_distance", 0).forGetter(c -> c.minDistance)
+			Codec.intRange(-1, 4096).optionalFieldOf("min_distance", 0).forGetter(c -> c.minDistance)
 	).apply(i, LandformConfig::new));
 
 	private final LandformShape shape;
