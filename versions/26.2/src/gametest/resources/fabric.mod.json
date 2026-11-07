@@ -2,11 +2,8 @@
 	"schemaVersion": 1,
 	"id": "biomesmod-gametest",
 	"version": "1.0.0",
-	"name": "Biomes Mod (dev gametests)",
+	"name": "Biomes Mod (dev showcases)",
 	"environment": "*",
-	"mixins": [
-		"biomesmod-gametest.mixins.json"
-	],
 	"depends": {
 		"biomesmod": "*"
 	},

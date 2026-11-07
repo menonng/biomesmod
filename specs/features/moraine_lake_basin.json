@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "glacial_lake",
+      "biomes": [
+        "biomesmod:moraine_lake"
+      ],
+      "spacing": 64,
+      "chance": 1.0,
+      "salt": 35035,
+      "min_distance": -1,
+      "radius": [
+        70,
+        90
+      ],
+      "elongation": [
+        1.9,
+        2.4
+      ],
+      "depth": [
+        9,
+        14
+      ],
+      "pile": 12
+    }
+  },
+  "placement": []
+}

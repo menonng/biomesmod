@@ -4,40 +4,40 @@ This is the shared contract for everyone working on this repo, people and subage
 
 ## Goal
 
-A Fabric mod with real-place-inspired biomes for Minecraft **1.21.1** and **26.2** (Mojmap). The biomes reproduce the *feel* of each place, not an exact copy: palette, vegetation, landforms, colours and climate slot. Any technique is allowed, including custom features, new blocks and density-function overrides. Every technique must work in **both** versions and pass verification.
+A Fabric mod with real-place-inspired biomes for Minecraft **1.21.1** and **26.2** (Mojmap), written in **Kotlin** (runtime: Fabric Language Kotlin). The biomes reproduce the *feel* of each place, not an exact copy: palette, vegetation, landforms, colours and climate slot. Any technique is allowed, including custom features, new blocks and density-function overrides. Every technique must work in **both** versions and pass verification.
 
 ## Phases and roles (`.claude/agents/*.md`)
 
 | Phase | Role (agent) | Owns (may create/edit) |
 |---|---|---|
 | A | `place-researcher` | `docs/places.md`, `specs/places.json` |
-| A | `biome-data-engineer` | `tools/biomegen/**`, `specs/schema/**`, `specs/regions.json`, `docs/biome-specs.md`, `common/.../ModBiomes.java`, `common/.../worldgen/**`, `versions/*/.../compat/SurfaceRulesCompat.java`, `versions/*/.../compat/Biomegen*.java`, all generated resources (see below), `common/.../SelfCheck.java` (biome list source only) |
-| A | `terrain-field-engineer` | `common/.../terrain/field/**`, `versions/*/.../compat/Field*.java`, `common/src/gametest/.../showcase/FieldShowcase.java`, `docs/engine-terrain.md`, `specs/features/field_*.json` (examples) |
-| A | `landform-engineer` | `common/.../terrain/landform/**`, `versions/*/.../compat/Landform*.java`, `common/src/gametest/.../showcase/LandformShowcase.java`, `docs/engine-landform.md`, `specs/features/landform_*.json` (examples) |
-| A→B | `coastal-terrain-engineer` | `common/.../terrain/coast/**`, `versions/*/.../compat/Coast*.java`, `common/src/gametest/.../showcase/CoastShowcase.java`, `common/src/main/resources/data/minecraft/worldgen/**` (density-function overrides), `docs/engine-coast.md`, `specs/biomes/coast_*.json`, `specs/features/coast_*.json` |
+| A | `biome-data-engineer` | `tools/biomegen/**`, `specs/schema/**`, `specs/regions.json`, `docs/biome-specs.md`, `common/.../ModBiomes.kt`, `common/.../worldgen/**`, `versions/*/.../compat/SurfaceRulesCompat.kt`, `versions/*/.../compat/Biomegen*.kt`, all generated resources (see below), `common/.../SelfCheck.kt` (biome list source only) |
+| A | `terrain-field-engineer` | `common/.../terrain/field/**`, `versions/*/.../compat/Field*.kt`, `common/src/gametest/.../showcase/FieldShowcase.kt`, `docs/engine-terrain.md`, `specs/features/field_*.json` (examples) |
+| A | `landform-engineer` | `common/.../terrain/landform/**`, `versions/*/.../compat/Landform*.kt`, `common/src/gametest/.../showcase/LandformShowcase.kt`, `docs/engine-landform.md`, `specs/features/landform_*.json` (examples) |
+| A→B | `coastal-terrain-engineer` | `common/src/gametest/.../showcase/CoastShowcase.kt`, `common/src/main/resources/data/minecraft/worldgen/**` (density-function overrides), `docs/engine-coast.md`, `specs/biomes/coast_*.json`, `specs/features/coast_*.json` |
 | B | `biome-author` (one per place group) | `specs/biomes/<assigned ids>.json`, `specs/features/<assigned id>_*.json` |
 | C | `worldgen-verifier` | `docs/verification/**` (reports only) |
-| all | coordinator (main session) | everything else: build files, `BiomesMod.java`, `terrain/ModFeatures.java`, `terrain/util/**`, `debug/**`, `docs/architecture.md`, merges |
+| all | coordinator (main session) | everything else: build files, `BiomesMod.kt`, `terrain/ModFeatures.kt`, `terrain/util/**`, `debug/**`, `docs/architecture.md`, merges |
 
-**Never edit a file outside your column.** If you need a change there, describe it in your final report. `common/...` means `common/src/main/java/io/github/menonng/biomesmod/...`.
+**Never edit a file outside your column.** If you need a change there, describe it in your final report. `common/...` means `common/src/main/kotlin/io/github/menonng/biomesmod/...`.
 
 ## Repo layout
 
 ```
-common/src/main/java/.../            shared code (compiled into every version)
+common/src/main/kotlin/.../            shared code (compiled into every version)
   BiomesMod, ModBiomes, SelfCheck
   worldgen/        TerraBlender regions, surface rules (biome-data-engineer)
   site/            site engine: layout, terrain density function, biome override, /biomesmod sites
-  mixin/           biome source wrapper for site biomes
-  terrain/ModFeatures.java           calls TerrainFeatures / LandformFeatures / CoastFeatures .register()
+  mixin/           RandomState router hook (site terrain), biome source wrapper (site biomes)
+  terrain/ModFeatures.kt             calls TerrainFeatures / LandformFeatures .register()
   terrain/util/    WorldSampler (sample biome/height anywhere), StrataPalette (shared palette codec)
   terrain/field/   column terrain shaping features
   terrain/landform/ grid-placed landforms + custom trees
-  terrain/coast/   coast, island, polder features
   debug/DebugRender   PNG renderer for verification
 common/src/main/resources/            shared data (features that are identical across versions, lang)
-common/src/gametest/                  dev-only: preset mixin, Showcases runner + per-engine showcase classes
-versions/<mc>/src/main/java/.../compat/   version shims (ONLY place allowed to touch version-specific APIs)
+common/src/gametest/                  dev-only: Showcases runner + per-engine showcase classes
+versions/26.2/src/shots/              dev-only: screenshot director for the docs gallery
+versions/<mc>/src/main/kotlin/.../compat/   version shims (ONLY place allowed to touch version-specific APIs)
 versions/<mc>/src/main/resources/data/biomesmod/worldgen/biome/   generated per-version biome JSON
 specs/                                version-agnostic source of truth for biomes (generator input)
 tools/biomegen/                       Python generator: specs -> per-version JSON
@@ -121,7 +121,7 @@ Generated output, committed but **never hand-edited**:
 
 * `versions/<mc>/src/main/resources/data/biomesmod/worldgen/biome/*.json`
 * configured/placed features (`common/` when identical, else per version)
-* `common/src/main/resources/biomesmod/placements.json`, read by Java at startup
+* `common/src/main/resources/biomesmod/placements.json`, read by the mod at startup
 * lang files
 
 ## Verification (everyone)
@@ -141,5 +141,5 @@ export JAVA_HOME="/c/Program Files/Java/jdk-26.0.2.1"
 
 ## Git
 
-* Phase A/B agents run in their own git worktree. Commit your work on your worktree branch with a clear message ending in `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Never push. Never touch `servers/` (local Paper servers).
+* Phase A/B agents run in their own git worktree. Commit your work on your worktree branch with a clear message ending in `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Never push. Never touch `servers/` (local test servers).
 * The coordinator merges branches, regenerates outputs and pushes.

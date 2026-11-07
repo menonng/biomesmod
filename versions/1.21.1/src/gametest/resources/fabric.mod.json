@@ -2,19 +2,13 @@
 	"schemaVersion": 1,
 	"id": "biomesmod-gametest",
 	"version": "1.0.0",
-	"name": "Biomes Mod (dev gametests)",
+	"name": "Biomes Mod (dev showcases)",
 	"environment": "*",
 	"entrypoints": {
-		"fabric-gametest": [
-			"io.github.menonng.biomesmod.test.BootGameTest"
-		],
 		"main": [
 			"io.github.menonng.biomesmod.test.Showcases"
 		]
 	},
-	"mixins": [
-		"biomesmod-gametest.mixins.json"
-	],
 	"depends": {
 		"biomesmod": "*"
 	}

@@ -1,0 +1,9 @@
+{
+  "_comment": "Feature pairs no vanilla biome orders, ordered like other worldgen mods so that installing both never creates a feature order cycle. Check with the order check described in docs/biome-specs.md.",
+  "vegetal_decoration": [
+    [
+      "minecraft:patch_dead_bush",
+      "minecraft:patch_grass_savanna"
+    ]
+  ]
+}

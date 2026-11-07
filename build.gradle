@@ -1,7 +1,8 @@
-// Root project: only declares the Loom plugins so both subprojects share one classloader.
+// Root project: only declares the Loom and Kotlin plugins so both subprojects share one classloader.
 // 1.21.1 is obfuscated -> 'fabric-loom-remap' + official Mojang mappings.
 // 26.x ships unobfuscated (Mojang names) -> plain 'fabric-loom', no mappings needed.
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
 	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}" apply false
+	id 'org.jetbrains.kotlin.jvm' version "${kotlin_version}" apply false
 }

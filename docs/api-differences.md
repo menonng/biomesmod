@@ -12,7 +12,7 @@ Sources: decompiled 1.21.1 and 26.2 with minecraft-dev-cli (Mojmap) plus the Fab
 | Java | 21 | 25 |
 | Data pack format | `pack_format: 48` | `min_format`/`max_format: [107, 1]` |
 
-## Java API
+## Minecraft API
 
 | Concept | 1.21.1 | 26.2 |
 |---|---|---|
@@ -46,7 +46,7 @@ Unchanged in both: `Registries.BIOME`, `ResourceKey.create`, `Level.END`, `Serve
 
 ## Consequences for this repo
 
-- Java code is shared (`common/`). Each version adds one shim, `compat/Ids.java`.
+- Kotlin code is shared (`common/`). Each version adds shims under `compat/` (e.g. `Ids.kt`, `RouterCompat.kt`, `DensityBase.kt`).
 - Biome JSON is per version (`versions/<mc>/src/main/resources/data/biomesmod/worldgen/biome/`).
 - Placed and configured features, lang files and `fabric.mod.json` are shared.
 
@@ -62,4 +62,8 @@ Unchanged in both: `Registries.BIOME`, `ResourceKey.create`, `Level.END`, `Serve
 
 **TerraBlender replaces Fabric's End hook.** TerraBlender's `TheEndBiomeSource` mixin cancels `getNoiseBiome` at HEAD. Once TerraBlender is installed, biomes added through Fabric `TheEndBiomes` are listed as possible but never generate. The self-check caught this. End biomes must go through `EndBiomeRegistry`.
 
-**The test server needs a mixin.** The vanilla gametest server always builds a superflat world, whose Overworld can only produce plains. The dev-only mixin in `common/src/gametest` switches it to the normal preset so Overworld and Nether placement can be tested.
+**The self-check runs on a dedicated server.** The vanilla gametest server always builds a superflat world, whose Overworld can only produce plains, and switching its preset needs a static mixin handler, which Kotlin cannot declare. `runSelfCheck` therefore boots a throwaway dedicated server (seed 0, EULA accepted in the dev run folder, watchdog off).
+
+**Noise routers differ in one field.** 1.21.1 routers carry `initialDensityWithoutJaggedness` (a 3D density the chunk scans for the preliminary surface), 26.2 routers `preliminarySurfaceLevel` (a 2D height). `compat/RouterCompat` rebuilds either with the site wrappers.
+
+**Density function visitors differ.** 1.21.1 has an abstract `mapAll`, 26.2 an abstract `mapChildren`. Kotlin requires `override` exactly where a member overrides, so the mod's density functions extend `compat/DensityBase`, which implements the right one and asks subclasses only to rebuild themselves from mapped children.

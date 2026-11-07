@@ -9,7 +9,7 @@ repositories {
 
 def commonDir = rootProject.file('common/src/main')
 sourceSets.main {
-	java.srcDir(new File(commonDir, 'java'))
+	kotlin.srcDir(new File(commonDir, 'kotlin'))
 	resources.srcDir(new File(commonDir, 'resources'))
 }
 
@@ -21,33 +21,38 @@ tasks.withType(JavaCompile).configureEach {
 	options.encoding = 'UTF-8'
 	options.release = project.java_version as int
 }
+// The mod is written in Kotlin; the JVM target follows the Java toolchain above (21 for 1.21.1, 25 for 26.2).
+kotlin {
+	jvmToolchain(project.java_version as int)
+}
 
 processResources {
 	def props = [
 		version: project.version,
 		minecraft_dependency: project.minecraft_dependency,
 		java_version: project.java_version,
+		fabric_kotlin_version: rootProject.fabric_kotlin_version,
 	]
 	inputs.properties props
 	filesMatching('fabric.mod.json') { expand props }
 }
 
 
-// Dev-only 'gametest' source set (never packaged into the release jar):
-//   common/src/gametest      - mixin that makes the test server use the normal world preset
-//   versions/<mc>/src/gametest - per-version fabric.mod.json / test classes
+// Dev-only 'gametest' source set (never packaged into the release jar): the engine showcases
+// (common/src/gametest) and their per-version fabric.mod.json (versions/<mc>/src/gametest).
 def gametestDir = rootProject.file('common/src/gametest')
 sourceSets {
 	gametest {
-		java.srcDir(new File(gametestDir, 'java'))
+		kotlin.srcDir(new File(gametestDir, 'kotlin'))
 		resources.srcDir(new File(gametestDir, 'resources'))
 		compileClasspath += main.compileClasspath + main.output
 		runtimeClasspath += main.runtimeClasspath + main.output
 	}
 }
 
-// Headless self-check: boots Fabric's gametest server (no EULA, no client) on a normal
-// (non-flat) world, checks every mod biome in its dimension, then exits 0/1.
+// Headless self-check: boots a dedicated server on a fresh seed-0 world (-Ppreset picks the world preset, default
+// minecraft:normal), checks every mod biome in its dimension, then exits 0/1. -PextraMods=<dir> adds every jar in that
+// folder to the run (compatibility tests with other worldgen mods).
 loom {
 	mods {
 		biomesmod { sourceSet sourceSets.main }
@@ -59,7 +64,6 @@ loom {
 			name = "Self Check (${project.minecraft_version})"
 			runDir = "run/selfcheck"
 			source sourceSets.gametest
-			vmArg '-Dfabric-api.gametest'
 			vmArg '-Dbiomesmod.selfcheck=true'
 			vmArg "-Dbiomesmod.showcase=${project.findProperty('showcase') ?: ''}"
 			vmArg "-Dbiomesmod.showcase.only=${project.findProperty('only') ?: ''}"
@@ -68,62 +72,42 @@ loom {
 			vmArg "-Dbiomesmod.overview=${project.findProperty('overview') ?: 'false'}"
 			vmArg "-Dbiomesmod.render.size=${project.findProperty('renderSize') ?: '256'}"
 			vmArg "-Dbiomesmod.selfcheck.only=${project.findProperty('biomes') ?: ''}"
+			if (project.hasProperty('extraMods')) {
+				vmArg "-Dfabric.addMods=${file(project.property('extraMods')).absolutePath}"
+			}
 		}
 	}
 }
-// Fresh world every run, so worldgen changes are always exercised.
+// Fresh world every run, so worldgen changes are always exercised. The run directory is a throwaway dev server.
 tasks.matching { it.name == 'runSelfCheck' }.configureEach {
-	doFirst { delete file('run/selfcheck/world') }
-}
-
-// Vanilla-compatible data pack for Paper/vanilla servers: biomes, vanilla-typed features and the vanilla
-// worldgen overrides (wider coasts, underground ravines). Features of this mod's own types (terrain_shaper,
-// landform, umbrella_tree...) cannot load without the mod, so they are dropped and unlinked from the biomes.
-def datapackDir = layout.buildDirectory.dir('datapack-src')
-tasks.register('prepareDatapack', Sync) {
-	// Only what vanilla can parse: the site-wrapped terrain functions use a mod density function type, and the
-	// mod blocks' loot tables and tool tags name blocks that only exist with the mod.
-	def codeOnly = ['data/minecraft/worldgen/density_function/overworld/offset.json',
-			'data/minecraft/worldgen/density_function/overworld/factor.json',
-			'data/minecraft/worldgen/density_function/overworld/jaggedness.json',
-			'data/biomesmod/worldgen/noise/site.json', 'data/biomesmod/loot_table/**', 'data/minecraft/tags/block/mineable/**']
-	from(new File(commonDir, 'resources')) { include 'data/**'; exclude codeOnly }
-	from('src/main/resources') { include 'data/**'; exclude codeOnly }
-	from(rootProject.file("common/datapack/pack.mcmeta.${project.minecraft_version}")) { rename { 'pack.mcmeta' } }
-	into datapackDir
-	doLast {
-		def root = datapackDir.get().asFile
-		def wg = new File(root, 'data/biomesmod/worldgen')
-		def slurper = new groovy.json.JsonSlurper()
-		def modTyped = { cfg -> cfg instanceof Map && cfg.type instanceof String && cfg.type.startsWith('biomesmod:') }
-		Set<String> dropConfigured = [] as Set
-		new File(wg, 'configured_feature').eachFileMatch(~/.*\.json/) { f ->
-			if (modTyped(slurper.parse(f))) {
-				dropConfigured << 'biomesmod:' + f.name - '.json'
-				f.delete()
+	doFirst {
+		def dir = file('run/selfcheck')
+		delete new File(dir, 'world')
+		dir.mkdirs()
+		// -Pdatapacks=<dir>: every zip in it goes into the new world (worldgen data packs must be there at creation).
+		def packs = ['vanilla']
+		if (project.hasProperty('datapacks')) {
+			def target = new File(dir, 'world/datapacks')
+			target.mkdirs()
+			file(project.property('datapacks')).listFiles().findAll { it.name.endsWith('.zip') }.each { zip ->
+				java.nio.file.Files.copy(zip.toPath(), new File(target, zip.name).toPath())
+				packs << "file/${zip.name}"
 			}
 		}
-		Set<String> dropPlaced = [] as Set
-		new File(wg, 'placed_feature').eachFileMatch(~/.*\.json/) { f ->
-			def p = slurper.parse(f)
-			if ((p.feature instanceof String && dropConfigured.contains(p.feature)) || modTyped(p.feature)) {
-				dropPlaced << 'biomesmod:' + f.name - '.json'
-				f.delete()
-			}
-		}
-		new File(wg, 'biome').eachFileMatch(~/.*\.json/) { f ->
-			def b = slurper.parse(f)
-			b.features = b.features.collect { step -> step.findAll { !dropPlaced.contains(it) } }
-			f.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(b))
-		}
-		logger.lifecycle("datapack: dropped ${dropPlaced.size()} mod-typed feature(s) for vanilla compatibility")
+		new File(dir, 'eula.txt').text = 'eula=true' + System.lineSeparator()
+		new File(dir, 'server.properties').text = [
+			'level-seed=0',
+			"initial-enabled-packs=${packs.join(',')}",
+			"level-type=${project.findProperty('preset') ?: 'minecraft:normal'}",
+			'online-mode=false',
+			'server-port=25599',
+			'enable-rcon=false',
+			'spawn-protection=0',
+			'view-distance=4',
+			'simulation-distance=4',
+			'sync-chunk-writes=false',
+			// The checks run on the server thread for minutes; the watchdog would kill the server.
+			'max-tick-time=-1',
+		].join(System.lineSeparator()) + System.lineSeparator()
 	}
-}
-tasks.register('datapack', Zip) {
-	group = 'build'
-	description = 'Packages the worldgen data as a standalone (vanilla/Paper) data pack'
-	dependsOn 'prepareDatapack'
-	archiveFileName = "biomesmod-datapack-${project.version}.zip"
-	destinationDirectory = layout.buildDirectory.dir('datapack')
-	from datapackDir
 }

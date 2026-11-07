@@ -1,7 +1,0 @@
-{
-	"required": true,
-	"package": "io.github.menonng.biomesmod.test.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": ["GameTestServerPresetMixin"],
-	"injectors": { "defaultRequire": 1 }
-}

@@ -28,6 +28,7 @@
 		"minecraft": "${minecraft_dependency}",
 		"java": ">=${java_version}",
 		"fabric-api": "*",
+		"fabric-language-kotlin": ">=${fabric_kotlin_version}",
 		"terrablender": "*"
 	}
 }

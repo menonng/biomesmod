@@ -6,7 +6,7 @@ Owner: `biome-data-engineer`. This file is the reference for `specs/` and `tools
 specs/biomes/<id>.json ─┐
 specs/features/<id>.json ├─ python -I tools/biomegen/generate.py ─┬─ versions/<mc>/.../data/biomesmod/worldgen/biome/<id>.json
 specs/regions.json ─────┘   (reads real vanilla data per version)  ├─ .../data/biomesmod/worldgen/{configured,placed}_feature/<id>.json
-                                                                   ├─ common/src/main/resources/biomesmod/placements.json  -> Java (TerraBlender)
+                                                                   ├─ common/src/main/resources/biomesmod/placements.json  -> Kotlin (TerraBlender)
                                                                    └─ common/src/main/resources/assets/biomesmod/lang/<locale>.json
 ```
 
@@ -127,7 +127,7 @@ So the number of regions equals the largest number of biomes that share a slot, 
              "underwater": "minecraft:sand", "top_patches": [ { "block": "minecraft:sand", "noise": "minecraft:surface", "min": 0.8 } ] }
 ```
 
-The surface becomes TerraBlender surface rules, built in Java from `placements.json` (`worldgen/ModSurfaceRules`; the version split lives in `compat/SurfaceRulesCompat`). Inside this mod's regions they run before the vanilla rules. Anything they do not set falls through to vanilla. For one biome, the first match wins:
+The surface becomes TerraBlender surface rules, built in Kotlin from `placements.json` (`worldgen/ModSurfaceRules`; the version split lives in `compat/SurfaceRulesCompat`). Inside this mod's regions they run before the vanilla rules. Anything they do not set falls through to vanilla. For one biome, the first match wins:
 
 | Key | Overworld | Nether |
 |---|---|---|
@@ -180,7 +180,17 @@ The file name is the id. It becomes placed feature `biomesmod:<id>` and, when it
 * Feature order conflicts or cycles (the self-test above) and identical placed features.
 * Warnings: `remove` entries absent from the base, vanilla features added to an unusual step, more than one particle (1.21.1), surface-breaching carvers added by an explicit list, a `base` from another dimension, unused feature specs, unknown `places`.
 
-## Runtime (Java)
+## Feature order and other biome mods
+
+Minecraft requires one consistent feature order per step across *every* biome of a dimension, including other mods' biomes. When two biomes list the same two features in opposite orders, the game stops with "Feature order cycle found" on the first chunk. The generator sorts every step topologically after the vanilla biomes; pairs that no vanilla biome orders follow `tools/biomegen/order_hints.json`, which records the order other worldgen mods use. To check a mod, run
+
+```bash
+python -I tools/biomegen/ordercheck.py versions/<mc>/src/main/resources/data/biomesmod/worldgen/biome <mod.jar or data pack.zip>...
+```
+
+It lists every inverted pair; add each as a hint (in the order the other mod uses) and regenerate. Checked against Oh The Biomes We've Gone, Regions Unexplored, Terralith, WWOO, Cascades, JJThunder To The Max, Montane, Streams Reflowing and Tectonic.
+
+## Runtime (Kotlin)
 
 * `worldgen/Placements` reads `/biomesmod/placements.json` from the mod jar on first use (Gson).
 * `ModBiomes.ALL` is built from its `biomes` list. `SelfCheck` iterates `ModBiomes.ALL`, so every spec is checked automatically.
@@ -190,7 +200,3 @@ The file name is the id. It becomes placed feature `biomesmod:<id>` and, when it
 ## Lang
 
 `assets/biomesmod/lang/<locale>.json` gets `biome.biomesmod.<id>` from each spec's `names`. **ext**: extra keys in `specs/lang/<locale>.json` (for example block names from engine work) are merged in. A key that collides with a generated one is an error.
-
-## Paper data pack
-
-`./gradlew datapack` still zips `data/**` from `common/` and the version, so all generated biome and feature JSON is included and `placements.json` and lang are not. Biomes that use `biomesmod:` feature types (`terrain_shaper`, `landform`, coast) only load where the mod is installed. On a plain Paper or vanilla server those feature files fail to parse.

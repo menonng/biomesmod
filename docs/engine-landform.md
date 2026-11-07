@@ -22,7 +22,7 @@
     "base_y_range": [1, 400],                  // allowed centre floor, relative to sea level
     "max_relief": 24,                          // max floor difference over the footprint
     "rise_from": "ground",                     // or "sea_level": heights count from the sea surface
-    "min_distance": 0                          // > 0: at most one instance per min_distance super-cell (unique landmarks)
+    "min_distance": 0                          // > 0: at most one instance per min_distance super-cell (unique landmarks); -1: one per site, near its centre
   }
 }
 ```
@@ -35,6 +35,7 @@ Mod biome patches are often only 50-250 blocks across. Instances are therefore p
 * **Footprint check.** 16 points at 0.65x the reach and 8 at 0.4x must lie in the biome. The outer part is low talus or skirt, which may run slightly past the edge.
 * **Separation** (`min_distance` 0). A candidate is dropped if a neighbouring candidate with a higher hash priority stands closer than 0.75x their combined reach.
 * **Unique landmarks** (`min_distance` > 0). The world is cut into super-cells of `min_distance`. Each keeps only its highest-priority candidate whose centre lies in the cell's central 70%, so winners are at least 0.3x `min_distance` apart, and chained rejections cannot empty a region. Examples: Devils Tower 1000, Alaid 900, calderas 700.
+* **One per site** (`min_distance` -1). For site-placed biomes: each site of the biome gets exactly one instance, at its centre or (if the terrain does not suit the shape there) at up to 9 nearby positions within 0.35x the site's core radius. Devils Tower, Alaid, the calderas, Tre Cime, Iguazu, Grand Prismatic and Moraine Lake's lake use it.
 
 All of this is a pure function of the seed and the cells, with caches. `SelfCheck` logs a per-biome breakdown of why candidates were rejected (`LandformFeature.diagnose`).
 
@@ -53,6 +54,7 @@ Ranges such as `[8, 20]` are drawn separately for each instance, so no two look 
 | `column_field` | Giant's Causeway | `cell`, `length`, `width`, `rise`, `jitter`. Runs downhill into the sea. |
 | `hot_spring` | Grand Prismatic; Dallol with `pools` > 1 | `pools`, `pool_radius`, `band_width`, `spread`, `depth`, `bands` (inner to outer), `chimneys` |
 | `cascade` | Iguazu, Devil's Throat | `radius`, `drop`, `islets`, `river_width`, `arc`. Real falls: the upper-river source blocks spill over the lip (ticks are scheduled). |
+| `glacial_lake` | Moraine Lake | `radius`, `elongation`, `depth`, `pile`. A long lobed cirque lake whose water sits at the lowest point of its rim: on a slope the uphill shore is a cut face rising from the water, the downhill shore gets a moraine dam, and a rockpile (`pile` blocks high) stands at the outlet. Coloured by the biome's water colour. |
 
 `biomesmod:umbrella_tree` is a normal feature, so it takes vanilla placement modifiers (count, in_square, heightmap, biome). Its parameters are `trunk`, `leaves`, `trunk_height`, `crown_radius`, `crown_thickness`, `branches`, and `twist` (leaning flat-topped savanna trees).
 

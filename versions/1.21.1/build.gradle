@@ -1,4 +1,7 @@
-plugins { id 'net.fabricmc.fabric-loom-remap' }
+plugins {
+	id 'net.fabricmc.fabric-loom-remap'
+	id 'org.jetbrains.kotlin.jvm'
+}
 apply from: rootProject.file('common.gradle')
 
 dependencies {
@@ -7,4 +10,5 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
+	modImplementation "net.fabricmc:fabric-language-kotlin:${rootProject.fabric_kotlin_version}"
 }

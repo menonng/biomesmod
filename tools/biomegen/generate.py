@@ -280,11 +280,24 @@ def topo_merge(lists, what):
     return out, None
 
 
+def order_hints():
+    """Extra "a before b" pairs per step (tools/biomegen/order_hints.json) for features that no vanilla biome orders.
+    They follow other worldgen mods' orders: a biome mod listing two features the other way round than ours makes
+    the game fail with "Feature order cycle found" as soon as both mods are installed."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'order_hints.json')
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding='utf-8') as f:
+        data = json.load(f)
+    return {STEPS.index(step): pairs for step, pairs in data.items() if not step.startswith('_')}
+
+
 def canonical_order(biomes, mc):
-    """Per step: one global order that is a topological sort of every vanilla biome's list."""
+    """Per step: one global order that is a topological sort of every vanilla biome's list (plus the order hints)."""
     orders = []
+    hints = order_hints()
     for step in range(len(STEPS)):
-        lists = [feature_steps(biomes[name])[step] for name in sorted(biomes)]
+        lists = [feature_steps(biomes[name])[step] for name in sorted(biomes)] + [list(p) for p in hints.get(step, [])]
         order, cycle = topo_merge(lists, 'vanilla')
         if order is None:
             raise SystemExit('biomegen: %s: vanilla feature order has a cycle in %s: %s' % (mc, STEPS[step], cycle))
@@ -1208,41 +1221,6 @@ def build_sites(specs, regions_cfg, problems):
     return {'grid': grid, 'list': out}
 
 
-SITE_CLIMATE = {
-    'noise': MOD + ':site',
-    'temperature': {'type': 'minecraft:shifted_noise', 'noise': 'minecraft:temperature', 'xz_scale': 0.25, 'y_scale': 0.0,
-                    'shift_x': 'minecraft:shift_x', 'shift_y': 0.0, 'shift_z': 'minecraft:shift_z'},
-    'vegetation': {'type': 'minecraft:shifted_noise', 'noise': 'minecraft:vegetation', 'xz_scale': 0.25, 'y_scale': 0.0,
-                   'shift_x': 'minecraft:shift_x', 'shift_y': 0.0, 'shift_z': 'minecraft:shift_z'},
-    'continents': 'minecraft:overworld/continents',
-    'erosion': 'minecraft:overworld/erosion',
-}
-
-
-def build_site_density(vanilla_root, versions, outputs, problems):
-    """Wraps vanilla overworld offset/factor/jaggedness in biomesmod:site (one file when all versions agree)."""
-    for name in ('offset', 'factor', 'jaggedness'):
-        texts = {}
-        for mc in versions:
-            path = os.path.join(vanilla_root, mc, 'mojmap', 'data', 'minecraft', 'worldgen', 'density_function', 'overworld', name + '.json')
-            try:
-                with open(path, encoding='utf-8') as f:
-                    original = json.load(f)
-            except OSError:
-                problems.error(path, 'vanilla density function missing (needed to wrap it for sites)')
-                continue
-            inner = [('type', MOD + ':site'), ('mode', name), ('argument', original)] + list(SITE_CLIMATE.items())
-            texts[mc] = dump_json({'type': 'minecraft:flat_cache', 'argument': dict(inner)})
-        if not texts:
-            continue
-        target = os.path.join('data', 'minecraft', 'worldgen', 'density_function', 'overworld', name + '.json')
-        if len(set(texts.values())) == 1 and len(texts) == len(versions):
-            outputs[os.path.join(COMMON_RES, target)] = next(iter(texts.values()))
-        else:
-            for mc, text in texts.items():
-                outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', target)] = text
-
-
 def build_placements(specs, regions_cfg, problems):
     by_dim = {dim: sorted([s for s in specs if s.dimension == dim], key=lambda s: s.id) for dim in DIMENSION_ORDER}
     placements = {
@@ -1415,7 +1393,6 @@ def main(argv=None):
                     outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', 'data', MOD, 'worldgen', kind, fid + '.json')] = text
 
     placements = build_placements(specs, regions_cfg if isinstance(regions_cfg, dict) else {}, problems)
-    build_site_density(args.vanilla, versions, outputs, problems)
     outputs[os.path.join(COMMON_RES, MOD, 'placements.json')] = dump_json(placements, sort_keys=False)
     build_lang(specs, outputs, problems)
 

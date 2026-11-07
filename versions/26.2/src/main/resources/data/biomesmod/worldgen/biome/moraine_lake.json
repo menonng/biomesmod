@@ -21,14 +21,13 @@
     "water_color": "#2ad0d8"
   },
   "features": [
-    [
-      "biomesmod:moraine_lake_valley"
-    ],
+    [],
     [
       "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:amethyst_geode",
+      "biomesmod:moraine_lake_basin"
     ],
     [
       "minecraft:monster_room",
@@ -180,5 +179,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.1
+  "temperature": 0.35
 }

@@ -32,7 +32,7 @@
   },
   "base": "minecraft:grove",
   "climate": {
-    "temperature": 0.1,
+    "temperature": 0.35,
     "downfall": 0.6
   },
   "colors": {
@@ -48,8 +48,8 @@
       ]
     },
     "mod": {
-      "raw_generation": [
-        "biomesmod:moraine_lake_valley"
+      "local_modifications": [
+        "biomesmod:moraine_lake_basin"
       ],
       "vegetal_decoration": [
         "biomesmod:moraine_lake_conifers"

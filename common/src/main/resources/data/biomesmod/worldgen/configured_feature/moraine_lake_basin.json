@@ -1,0 +1,26 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:moraine_lake"
+    ],
+    "chance": 1.0,
+    "depth": [
+      9,
+      14
+    ],
+    "elongation": [
+      1.9,
+      2.4
+    ],
+    "min_distance": -1,
+    "pile": 12,
+    "radius": [
+      70,
+      90
+    ],
+    "salt": 35035,
+    "shape": "glacial_lake",
+    "spacing": 64
+  },
+  "type": "biomesmod:landform"
+}

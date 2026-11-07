@@ -1,4 +1,7 @@
-plugins { id 'net.fabricmc.fabric-loom' }
+plugins {
+	id 'net.fabricmc.fabric-loom'
+	id 'org.jetbrains.kotlin.jvm'
+}
 apply from: rootProject.file('common.gradle')
 
 dependencies {
@@ -6,4 +9,38 @@ dependencies {
 	implementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	implementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
+	implementation "net.fabricmc:fabric-language-kotlin:${rootProject.fabric_kotlin_version}"
+}
+
+// Dev-only docs screenshot director (never packaged): a client that quick-plays the pre-generated world
+// run/shots/saves/shots and photographs every biome from a plan (see ShotDirector). Shader/LOD mods are added from
+// -PclientMods=<dir> (every jar in it), e.g. Sodium, Iris and Voxy.
+//   ./gradlew :26.2:runShots -Pplan=<plan.json> -PclientMods=<dir> [-Ponly=a,b]
+sourceSets {
+	shots {
+		kotlin.srcDir('src/shots/kotlin')
+		resources.srcDir('src/shots/resources')
+		compileClasspath += main.compileClasspath + main.output
+		runtimeClasspath += main.runtimeClasspath + main.output
+	}
+}
+loom {
+	mods {
+		'biomesmod-shots' { sourceSet sourceSets.shots }
+	}
+	runs {
+		shots {
+			client()
+			name = 'Docs Screenshots (26.2)'
+			runDir = 'run/shots'
+			source sourceSets.shots
+			vmArg '-Xmx10G'
+			vmArg "-Dbiomesmod.shots=${file(project.findProperty('plan') ?: 'run/shots/plan.json').absolutePath}"
+			vmArg "-Dbiomesmod.shots.only=${project.findProperty('only') ?: ''}"
+			if (project.hasProperty('clientMods')) {
+				vmArg "-Dfabric.addMods=${file(project.property('clientMods')).absolutePath}"
+			}
+			programArgs '--quickPlaySingleplayer', 'shots', '--width', '1920', '--height', '1080'
+		}
+	}
 }

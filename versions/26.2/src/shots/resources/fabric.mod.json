@@ -1,0 +1,16 @@
+{
+	"schemaVersion": 1,
+	"id": "biomesmod-shots",
+	"version": "1.0.0",
+	"name": "Biomes Mod (dev screenshot director)",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"io.github.menonng.biomesmod.shots.ShotDirector"
+		]
+	},
+	"depends": {
+		"biomesmod": "*",
+		"fabric-language-kotlin": "*"
+	}
+}
