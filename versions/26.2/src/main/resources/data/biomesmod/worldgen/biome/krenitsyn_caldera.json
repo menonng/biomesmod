@@ -18,7 +18,7 @@
       }
     },
     "minecraft:visual/sky_color": "#7ba4ff",
-    "minecraft:visual/water_fog_color": "#0d2533"
+    "minecraft:visual/water_fog_color": "#0f3446"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
@@ -28,7 +28,7 @@
   "effects": {
     "foliage_color": "#6c8a58",
     "grass_color": "#7e9a6a",
-    "water_color": "#2f5f7a"
+    "water_color": "#2f7fa0"
   },
   "features": [
     [],
@@ -92,7 +92,8 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:seagrass_cold",
-      "minecraft:kelp_cold"
+      "minecraft:kelp_cold",
+      "biomesmod:krenitsyn_caldera_shrubs"
     ],
     [
       "minecraft:freeze_top_layer"

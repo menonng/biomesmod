@@ -841,6 +841,22 @@ def star_spring_top(abyss):
     return img
 
 
+def ghost_sapling():
+    """A pale little tree: white forked stem, silver-white leaf tufts."""
+    rnd = random.Random(471)
+    img = canvas()
+    line(img, 8, 15, 8, 8, (220, 220, 214), wrap=False)
+    line(img, 8, 11, 5, 7, (200, 200, 194), wrap=False)
+    line(img, 8, 10, 11, 6, (200, 200, 194), wrap=False)
+    for (cx, cy, r) in ((5, 5, 2.3), (11, 4, 2.3), (8, 6, 2.6)):
+        for y in range(N):
+            for x in range(N):
+                d = math.hypot(x + 0.5 - cx, y + 0.5 - cy)
+                if d < r and rnd.random() < 0.85:
+                    img[y][x] = rgba(jitter(rnd, ramp([(178, 196, 190), (220, 230, 226), (246, 250, 248)], 1 - d / r), 4))
+    return img
+
+
 # ---------------------------------------------------------------- assets
 
 BLOCKS = {}
@@ -906,6 +922,14 @@ def models(name, b):
         write(f"assets/biomesmod/models/item/{name}.json", gen)
         write(f"assets/biomesmod/items/{name}.json", {"model": {"type": "minecraft:model", "model": f"biomesmod:item/{name}"}})
     write(f"data/biomesmod/loot_table/blocks/{name}.json", loot(name, k))
+    if name == "ghostwood_leaves":
+        tool = loot(name, k)["pools"][0]["entries"][0]["conditions"][0]
+        write(f"data/biomesmod/loot_table/blocks/{name}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "bonus_rolls": 0, "entries": [
+            {"type": "minecraft:alternatives", "children": [
+                {"type": "minecraft:item", "name": "biomesmod:ghostwood_leaves", "conditions": [tool]},
+                {"type": "minecraft:item", "name": "biomesmod:ghostwood_sapling",
+                 "conditions": [{"condition": "minecraft:survives_explosion"}, {"condition": "minecraft:random_chance", "chance": 0.05}]}]}]}],
+            "random_sequence": f"biomesmod:blocks/{name}"})
 
 
 def loot(name, kind):
@@ -951,6 +975,7 @@ def main():
     block("ghostwood_wood", "wood", ("Ghostwood", "백목"), ("logs", "logs_that_burn", "mineable/axe"), dict(side=t("ghostwood_log")))
     block("ghostwood_leaves", "leaves", ("Ghostwood Leaves", "백목 잎"), ("leaves", "mineable/hoe"))
     block("pale_moss", "all", ("Pale Moss", "은빛 이끼"), ("mineable/hoe", "dirt"))
+    block("ghostwood_sapling", "cross", ("Ghostwood Sapling", "백목 묘목"), ("saplings",))
     block("pale_fern", "cross", ("Pale Fern", "은빛 고사리"), ("small_flowers",))
     block("redwood_log", "log", ("Redwood Log", "레드우드 원목"), ("logs", "logs_that_burn", "mineable/axe", "overworld_natural_logs"),
           dict(side=t("redwood_log"), end=t("redwood_log_top")))
@@ -1026,6 +1051,7 @@ def main():
     png(P("ghostwood_leaves_s"), spec_map(lambda x, y: (0.4, 0.04, 200, None)))
     png(P("pale_moss"), pale_moss())
     png(P("pale_fern"), pale_fern())
+    png(P("ghostwood_sapling"), ghost_sapling())
 
     png(P("redwood_log"), redwood_bark())
     png(P("redwood_log_top"), rings_top(511, (106, 50, 33), (74, 34, 24), [(170, 84, 54), (150, 70, 46), (190, 120, 82), (200, 140, 96)], 1.6))
@@ -1070,7 +1096,7 @@ def main():
     tag_dir = os.path.join(RES, "data", "minecraft", "tags", "block")
     for tg, vals in sorted(tags.items()):
         write(f"data/minecraft/tags/block/{tg}.json", {"replace": False, "values": vals})
-        if tg in ("logs", "logs_that_burn", "leaves", "sand", "small_flowers", "flowers"):
+        if tg in ("logs", "logs_that_burn", "leaves", "sand", "small_flowers", "flowers", "saplings"):
             write(f"data/minecraft/tags/item/{tg}.json", {"replace": False, "values": vals})
 
     # ---- names, merged into specs/lang (the biome generator turns them into the lang files)

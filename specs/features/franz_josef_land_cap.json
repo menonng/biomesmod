@@ -3,15 +3,95 @@
   "configured": {
     "type": "biomesmod:terrain_shaper",
     "config": {
-      "mode": "ice_sheet",
+      "mode": "islands",
       "biomes": [
         "biomesmod:franz_josef_land"
       ],
-      "thickness": 14,
-      "dome": 24,
-      "dome_scale": 260,
-      "shelf": true,
-      "freeboard": 10
+      "coverage": 0.44,
+      "scale": 170,
+      "height": 36,
+      "beach": 1,
+      "depth": 7,
+      "rocky": 0.55,
+      "edge_blend": 40,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:snow_block"
+            },
+            "depth": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:packed_ice"
+            },
+            "depth": 2
+          }
+        ],
+        "underwater": [
+          {
+            "block": {
+              "Name": "minecraft:gravel"
+            },
+            "depth": 2
+          }
+        ],
+        "strata": {
+          "strata": [
+            {
+              "blocks": [
+                {
+                  "block": {
+                    "Name": "biomesmod:dolerite"
+                  },
+                  "weight": 50
+                },
+                {
+                  "block": {
+                    "Name": "minecraft:basalt"
+                  },
+                  "weight": 30
+                },
+                {
+                  "block": {
+                    "Name": "minecraft:blackstone"
+                  },
+                  "weight": 20
+                }
+              ],
+              "thickness": 4
+            },
+            {
+              "blocks": [
+                {
+                  "block": {
+                    "Name": "minecraft:tuff"
+                  },
+                  "weight": 50
+                },
+                {
+                  "block": {
+                    "Name": "biomesmod:dolerite"
+                  },
+                  "weight": 30
+                },
+                {
+                  "block": {
+                    "Name": "minecraft:andesite"
+                  },
+                  "weight": 20
+                }
+              ],
+              "thickness": 2
+            }
+          ],
+          "warp": 1.0,
+          "warp_scale": 60,
+          "mix": 0.35
+        },
+        "cliff_slope": 3
+      }
     }
   },
   "placement": []

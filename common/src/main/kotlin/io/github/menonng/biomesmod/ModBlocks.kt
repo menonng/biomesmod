@@ -1,5 +1,6 @@
 package io.github.menonng.biomesmod
 
+import io.github.menonng.biomesmod.block.GhostwoodSaplingBlock
 import io.github.menonng.biomesmod.block.GlowClusterBlock
 import io.github.menonng.biomesmod.block.HangingPlantBlock
 import io.github.menonng.biomesmod.block.VentBlock
@@ -162,6 +163,11 @@ object ModBlocks {
 		WispLogBlock(it) { ParticleTypes.END_ROD }
 	}
 
+	/** Nine in a 3x3 square grow into an ancient ghostwood. */
+	@JvmField
+	val GHOSTWOOD_SAPLING: Block = BlockCompat.register("ghostwood_sapling",
+		BlockCompat.plantProperties().randomTicks().mapColor(MapColor.QUARTZ).sound(SoundType.CHERRY_SAPLING).pushReaction(PushReaction.DESTROY), ::GhostwoodSaplingBlock)
+
 	@JvmField
 	val PALE_FERN: Block = BlockCompat.register("pale_fern", plant(MapColor.COLOR_LIGHT_GRAY)) { FlowerBlock(MobEffects.NIGHT_VISION, 5f, it) }
 
@@ -238,12 +244,12 @@ object ModBlocks {
 		GHOSTWOOD_LOG, GHOSTWOOD_WOOD, GHOSTWOOD_LEAVES, PALE_MOSS, PALE_FERN,
 		REDWOOD_LOG, REDWOOD_WOOD, REDWOOD_LEAVES,
 		GLACIER_ICE, ABYSS_STONE, STAR_CRYSTAL, STAR_CRYSTAL_CLUSTER,
-		PALE_MOSS_CARPET, SILVER_BEARD, MOON_BRACKET, MOONPETAL, GHOSTWOOD_HOLLOW,
+		GHOSTWOOD_SAPLING, PALE_MOSS_CARPET, SILVER_BEARD, MOON_BRACKET, MOONPETAL, GHOSTWOOD_HOLLOW,
 		STARDUST, STARLIT_ABYSS_STONE, STAR_BLOOM, ASTRAL_ROOTS, STAR_SPRING,
 	)
 
 	/** Blocks drawn with cut-out textures (1.21.1 needs them registered on the client). */
-	internal val CUTOUT: List<Block> get() = listOf(DESERT_ROSE, PALE_FERN, STAR_CRYSTAL_CLUSTER, SILVER_BEARD, MOON_BRACKET, MOONPETAL, STAR_BLOOM,
+	internal val CUTOUT: List<Block> get() = listOf(DESERT_ROSE, PALE_FERN, GHOSTWOOD_SAPLING, STAR_CRYSTAL_CLUSTER, SILVER_BEARD, MOON_BRACKET, MOONPETAL, STAR_BLOOM,
 		ASTRAL_ROOTS)
 	internal val CUTOUT_MIPPED: List<Block> get() = listOf(DRAGON_BLOOD_LEAVES, GHOSTWOOD_LEAVES, REDWOOD_LEAVES)
 
@@ -259,7 +265,7 @@ object ModBlocks {
 			PALE_MOSS to "pale_moss", PALE_FERN to "pale_fern",
 			REDWOOD_LOG to "redwood_log", REDWOOD_WOOD to "redwood_wood", REDWOOD_LEAVES to "redwood_leaves",
 			GLACIER_ICE to "glacier_ice", ABYSS_STONE to "abyss_stone", STAR_CRYSTAL to "star_crystal", STAR_CRYSTAL_CLUSTER to "star_crystal_cluster",
-			PALE_MOSS_CARPET to "pale_moss_carpet", SILVER_BEARD to "silver_beard", MOON_BRACKET to "moon_bracket", MOONPETAL to "moonpetal",
+			GHOSTWOOD_SAPLING to "ghostwood_sapling", PALE_MOSS_CARPET to "pale_moss_carpet", SILVER_BEARD to "silver_beard", MOON_BRACKET to "moon_bracket", MOONPETAL to "moonpetal",
 			GHOSTWOOD_HOLLOW to "ghostwood_hollow", STARDUST to "stardust", STARLIT_ABYSS_STONE to "starlit_abyss_stone", STAR_BLOOM to "star_bloom",
 			ASTRAL_ROOTS to "astral_roots", STAR_SPRING to "star_spring",
 		)

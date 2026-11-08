@@ -48,6 +48,9 @@
       ],
       "vegetal_decoration": [
         "biomesmod:lauterbrunnen_firs"
+      ],
+      "fluid_springs": [
+        "biomesmod:lauterbrunnen_falls"
       ]
     },
     "remove": [

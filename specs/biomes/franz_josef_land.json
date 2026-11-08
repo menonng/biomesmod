@@ -43,5 +43,11 @@
     ]
   },
   "spawners": "base",
-  "carvers": "underground"
+  "carvers": "underground",
+  "surface": {
+    "top": "minecraft:snow_block",
+    "under": "minecraft:packed_ice",
+    "under_depth": 2,
+    "underwater": "minecraft:gravel"
+  }
 }

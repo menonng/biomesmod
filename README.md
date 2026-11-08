@@ -17,12 +17,12 @@ Global terrain changes (data overrides):
 
 **Config:** `config/biomesmod.json` (written on first start) sets the elevation mapping (sea level, metres per block, the 2,000 m / y=190 highland rule, the 40 m per block above it, the height cap), site cell size, site chance, size scale, Large Biomes scale, per-biome site weights (0 turns a biome off) and the height of the ridged ranges.
 
-**New blocks** (39, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
+**New blocks** (40, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
 
 * Socotra: dragon's blood log, wood and leaves, desert rose.
 * Geothermal: geyserite, geyser vent (erupts every 1-3 minutes and throws you up; in 26.2 geyser cones use vanilla's potent sulfur geysers instead), steam vent, orange / yellow / green thermal mats, sulfur crust, travertine.
 * Rock and sand: salt crust, white sand (Lençóis, replaces concrete powder), volcanic ash, scoria, dolerite, glacier ice.
-* White Old Growth: ghostwood log, wood, leaves and hollow (breathes wisps), pale moss and moss carpet, pale fern, silver beard lichen, moon bracket fungus, moonpetal.
+* White Old Growth: ghostwood log, wood, leaves, hollow (breathes wisps) and sapling (nine in a 3x3 square grow into an ancient ghostwood, the giant of the biome's heart), pale moss and moss carpet, pale fern, silver beard lichen, moon bracket fungus, moonpetal.
 * Giant Redwood Forest: redwood log, wood and leaves.
 * Star Abyss: abyss stone, starlit abyss stone, stardust, star crystal and crystal cluster, star bloom (grows on any face), astral roots, star spring (a fountain of starlight that lifts you up to the floating isles).
 
@@ -91,7 +91,8 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `tre_cime` | Tre Cime / 트레 치메 | overworld | site, lift y=198 (2300 m) | 24 |
 | `ushishir_caldera` | Ushishir Caldera / 우시시르 칼데라 | overworld | site, keep | 1 |
 | `wadi_rum` | Wadi Rum / 와디 럼 | overworld | site, plateau y=102 (1000 m) | 31 |
-| `white_old_growth` | White Old Growth / 백색 고목림 | overworld | site, lift y=92 | — |
+| `white_old_growth` | White Old Growth / 백색 고목림 | overworld | site, lift y=92, 1 zones | — |
+| `white_plains` | White Plains / 백색 평원 | overworld | zone of `white_old_growth` | — |
 | `zhangjiajie` | Zhangjiajie Pillars / 장자제 석주림 | overworld | site, lift y=90 | 5 |
 
 ## Compatibility

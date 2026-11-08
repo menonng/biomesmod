@@ -37,7 +37,11 @@ object LandformFeatures {
 	@JvmField
 	val FALLEN_LOG = FallenLogFeature()
 
+	@JvmField
+	val CLIFF_FALLS = CliffFallsFeature()
+
 	fun register() {
+		ModFeatures.register("cliff_falls", CLIFF_FALLS)
 		ModFeatures.register("floating_isle", FLOATING_ISLE)
 		ModFeatures.register("abyss_well", ABYSS_WELL)
 		ModFeatures.register("fallen_log", FALLEN_LOG)

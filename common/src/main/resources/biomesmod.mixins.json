@@ -2,6 +2,6 @@
 	"required": true,
 	"package": "io.github.menonng.biomesmod.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": ["MultiNoiseBiomeSourceMixin", "RandomStateMixin"],
+	"mixins": ["BiomeFreezeMixin", "MultiNoiseBiomeSourceMixin", "RandomStateMixin"],
 	"injectors": { "defaultRequire": 1 }
 }

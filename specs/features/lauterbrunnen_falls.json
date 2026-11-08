@@ -1,0 +1,29 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:cliff_falls",
+    "config": {
+      "tries": 28,
+      "min_drop": 22,
+      "stream": [
+        4,
+        11
+      ],
+      "cluster": 2,
+      "chance": 0.6
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

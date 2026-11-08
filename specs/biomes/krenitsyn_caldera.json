@@ -17,8 +17,8 @@
         "temperate"
       ],
       "size": [
-        340,
-        460
+        380,
+        480
       ],
       "ramp": 160,
       "terrain": "keep",
@@ -36,8 +36,8 @@
     "downfall": 0.8
   },
   "colors": {
-    "water": "#2f5f7a",
-    "water_fog": "#0d2533",
+    "water": "#2f7fa0",
+    "water_fog": "#0f3446",
     "grass": "#7e9a6a",
     "foliage": "#6c8a58"
   },
@@ -45,6 +45,9 @@
     "mod": {
       "local_modifications": [
         "biomesmod:krenitsyn_caldera_caldera"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:krenitsyn_caldera_shrubs"
       ]
     },
     "remove": [

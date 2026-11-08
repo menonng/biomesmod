@@ -18,6 +18,7 @@ class BiomesMod : ModInitializer {
 		ModFeatures.register()
 		Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, Ids.id("site"), SiteDensity.DATA_CODEC)
 		SiteCommand.register()
+		ServerLifecycleEvents.SERVER_STARTING.register { NoFreeze.load(it) }
 		LOGGER.info("Loaded {} biome(s)", ModBiomes.ALL.size)
 
 		val maps = System.getProperty("biomesmod.maps", "")

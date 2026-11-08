@@ -36,7 +36,9 @@
     ],
     [
       "minecraft:amethyst_geode",
-      "biomesmod:ha_long_bay_towers"
+      "biomesmod:ha_long_bay_towers",
+      "biomesmod:ha_long_bay_massifs",
+      "biomesmod:ha_long_bay_islets"
     ],
     [
       "minecraft:monster_room",

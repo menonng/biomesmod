@@ -105,11 +105,29 @@ class ConeShape internal constructor(
 		override fun describe(): String = "$NAME at $cx,$cz: r=${Math.round(rad)} summit=$summit floor=$floorY"
 
 		/** Main cone height above the floor at a point (no crater); the profile starts at the crater rim. */
+		// Every volcano has its own profile: where the steep summit cone breaks into the gentler apron, how high that
+		// break sits, how concave the apron is, and two old collapse benches.
+		private val breakT = 0.22 + 0.25 * LNoise.unit(seed xor 0x81)
+		private val breakH = 0.42 + 0.25 * LNoise.unit(seed xor 0x82)
+		private val apronC = concavity * (0.9 + 0.7 * LNoise.unit(seed xor 0x83))
+		private val bench1 = 0.35 + 0.25 * LNoise.unit(seed xor 0x84)
+		private val bench2 = 0.62 + 0.25 * LNoise.unit(seed xor 0x85)
+
 		private fun coneH(d: Double, a: Double, t: Double): Double {
 			val tr = LNoise.clamp((d - cr) / max(1.0, rad - cr), 0.0, 1.0)
-			val prof = (1 - tr).pow(concavity.toDouble())
+			// One side steeper than the other (the summit sits off centre on its base).
+			val tb = LNoise.clamp(breakT * (1 + 0.35 * LNoise.angular(seed xor 0x86, a, 2.0)), 0.12, 0.6)
+			val prof = if (tr < tb) {
+				1 - (1 - breakH) * (tr / tb).pow(1.15)
+			} else {
+				breakH * (1 - (tr - tb) / (1 - tb)).pow(apronC * (1 + 0.25 * LNoise.angular(seed xor 0x87, a, 3.0)))
+			}
+			// Collapse benches: short flatter steps across the flank.
+			fun bench(at: Double) = 0.035 * LNoise.smoothstep(at - 0.03, at + 0.03, tr) * (0.5 + 0.5 * LNoise.angular(seed xor 0x88, a, 5.0))
+			val benches = bench(bench1) + bench(bench2)
 			val g = gullies * abs(LNoise.angular(seed xor 0x63, a + 0.25 * LNoise.noise1(seed xor 0x64, d / 14), 34.0)).pow(2)
-			return (summit - floorY) * prof * (1 - 0.18 * g * sqrt(t) * (1 - t))
+			val hummocks = 0.025 * LNoise.fbm2(seed xor 0x89, d * Math.cos(a) / 28, d * Math.sin(a) / 28, 3) * sqrt(t)
+			return (summit - floorY) * max(0.0, prof - benches + hummocks) * (1 - 0.3 * g * sqrt(t) * (1 - t))
 		}
 
 		override fun column(x: Int, z: Int, c: Col) {
@@ -119,7 +137,7 @@ class ConeShape internal constructor(
 			val dz = fz - cz
 			val a = atan2(dz, dx)
 			// Irregular footprint and lumpy flanks.
-			val warp = 1 + 0.14 * LNoise.angular(seed xor 0x61, a, 4.0) + 0.05 * LNoise.angular(seed xor 0x62, a, 11.0)
+			val warp = 1 + 0.2 * LNoise.angular(seed xor 0x61, a, 3.0) + 0.06 * LNoise.angular(seed xor 0x62, a, 11.0)
 			val d = sqrt(dx * dx + dz * dz) / warp
 			if (d >= rad * 1.2) {
 				return

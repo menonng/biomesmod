@@ -1,0 +1,171 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:landform",
+    "config": {
+      "shape": "pillar_forest",
+      "biomes": [
+        "biomesmod:ha_long_bay"
+      ],
+      "rise_from": "sea_level",
+      "notch": 2,
+      "base_y_range": [
+        -30,
+        2
+      ],
+      "max_relief": 60,
+      "palette": {
+        "strata": [
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:stone"
+                },
+                "weight": 50
+              },
+              {
+                "block": {
+                  "Name": "minecraft:andesite"
+                },
+                "weight": 25
+              },
+              {
+                "block": {
+                  "Name": "minecraft:calcite"
+                },
+                "weight": 10
+              },
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 15
+              }
+            ],
+            "thickness": 3
+          },
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:andesite"
+                },
+                "weight": 45
+              },
+              {
+                "block": {
+                  "Name": "minecraft:stone"
+                },
+                "weight": 35
+              },
+              {
+                "block": {
+                  "Name": "minecraft:diorite"
+                },
+                "weight": 10
+              },
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 10
+              }
+            ],
+            "thickness": 2
+          },
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:stone"
+                },
+                "weight": 55
+              },
+              {
+                "block": {
+                  "Name": "minecraft:calcite"
+                },
+                "weight": 20
+              },
+              {
+                "block": {
+                  "Name": "minecraft:andesite"
+                },
+                "weight": 25
+              }
+            ],
+            "thickness": 2
+          }
+        ],
+        "warp": 1.5,
+        "warp_scale": 22,
+        "mix": 0.4
+      },
+      "ledge_block": {
+        "Name": "minecraft:grass_block"
+      },
+      "vines": 0.55,
+      "streaks": [
+        {
+          "Name": "minecraft:tuff"
+        },
+        {
+          "Name": "minecraft:moss_block"
+        },
+        {
+          "Name": "minecraft:mossy_cobblestone"
+        }
+      ],
+      "streak_density": 0.12,
+      "talus": 0.4,
+      "talus_blocks": [
+        {
+          "Name": "minecraft:gravel"
+        },
+        {
+          "Name": "minecraft:stone"
+        },
+        {
+          "Name": "minecraft:mossy_cobblestone"
+        }
+      ],
+      "cap": {
+        "block": {
+          "Name": "minecraft:grass_block"
+        },
+        "under": {
+          "Name": "minecraft:dirt"
+        },
+        "depth": 2,
+        "feature": "minecraft:jungle_bush",
+        "chance": 0.16
+      },
+      "spacing": 80,
+      "chance": 0.8,
+      "salt": 14177,
+      "cluster_radius": [
+        6,
+        11
+      ],
+      "pillar_spacing": 28,
+      "density": 1.0,
+      "pillar_radius": [
+        12,
+        20
+      ],
+      "height": [
+        32,
+        62
+      ],
+      "dome": 0.7,
+      "lobes": 4,
+      "joints": 0.7,
+      "ledges": 0.45,
+      "lean": 0.02,
+      "taper": 0.15,
+      "min_distance": 170
+    }
+  },
+  "placement": []
+}

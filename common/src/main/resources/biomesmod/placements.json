@@ -239,6 +239,10 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:white_plains",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:zhangjiajie",
       "dimension": "minecraft:overworld"
     },
@@ -345,6 +349,13 @@
         "under": "minecraft:sandstone",
         "under_depth": 3,
         "underwater": "minecraft:sand"
+      },
+      {
+        "biome": "biomesmod:franz_josef_land",
+        "top": "minecraft:snow_block",
+        "under": "minecraft:packed_ice",
+        "under_depth": 2,
+        "underwater": "minecraft:gravel"
       },
       {
         "biome": "biomesmod:giant_redwood_forest",
@@ -550,6 +561,19 @@
             "block": "minecraft:podzol",
             "noise": "minecraft:surface",
             "min": 0.6
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:white_plains",
+        "top": "biomesmod:pale_moss",
+        "under": "minecraft:dirt",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "minecraft:grass_block",
+            "noise": "minecraft:surface",
+            "min": 0.35
           }
         ]
       }
@@ -1255,8 +1279,8 @@
           -0.19
         ],
         "core": [
-          340.0,
-          460.0
+          380.0,
+          480.0
         ],
         "ramp": 160.0,
         "terrain": "keep",
@@ -1910,15 +1934,22 @@
           2.0
         ],
         "core": [
-          460.0,
-          600.0
+          520.0,
+          660.0
         ],
         "ramp": 240.0,
         "terrain": "lift",
         "target_y": 92,
         "relief": 0.45,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "zones": [
+          {
+            "biome": "biomesmod:white_plains",
+            "from": 0.0,
+            "to": 0.42
+          }
+        ]
       },
       {
         "biome": "biomesmod:zhangjiajie",

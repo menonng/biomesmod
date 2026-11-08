@@ -15,31 +15,27 @@
       "cone": 1,
       "rise_from": "sea_level",
       "radius": [
-        48,
-        62
+        130,
+        165
       ],
       "rim_height": [
-        22,
-        34
+        40,
+        55
       ],
       "flank": [
-        22,
-        30
+        60,
+        85
       ],
       "cone_height": [
-        24,
-        36
+        30,
+        45
       ],
       "cone_radius": [
-        14,
-        20
+        34,
+        48
       ],
-      "cap": {
-        "block": {
-          "Name": "minecraft:grass_block"
-        },
-        "chance": 0.0
-      }
+      "floor_depth": 18,
+      "green": 0.7
     }
   },
   "placement": []

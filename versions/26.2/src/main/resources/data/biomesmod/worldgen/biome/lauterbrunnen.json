@@ -72,7 +72,8 @@
     ],
     [
       "minecraft:spring_water",
-      "minecraft:spring_lava"
+      "minecraft:spring_lava",
+      "biomesmod:lauterbrunnen_falls"
     ],
     [
       "minecraft:glow_lichen",

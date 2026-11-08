@@ -1,0 +1,60 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "white_plains",
+  "names": {
+    "en_us": "White Plains",
+    "ko_kr": "백색 평원"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "zone_of": "white_old_growth"
+  },
+  "base": "minecraft:meadow",
+  "climate": {
+    "temperature": 0.45,
+    "downfall": 0.8
+  },
+  "colors": {
+    "sky": "#c4ced8",
+    "fog": "#e9edf0",
+    "grass": "#a7b8a6",
+    "foliage": "#b9c8c0",
+    "water": "#7fa3b8",
+    "water_fog": "#3a5566"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.018
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ],
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:white_plains_fallen",
+        "biomesmod:white_plains_trees",
+        "biomesmod:white_plains_ferns",
+        "biomesmod:white_plains_moonpetals",
+        "biomesmod:white_old_growth_moss"
+      ]
+    }
+  },
+  "surface": {
+    "top": "biomesmod:pale_moss",
+    "under": "minecraft:dirt",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "minecraft:grass_block",
+        "noise": "minecraft:surface",
+        "min": 0.35
+      }
+    ]
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

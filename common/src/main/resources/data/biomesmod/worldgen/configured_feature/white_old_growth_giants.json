@@ -1,8 +1,8 @@
 {
   "config": {
     "crown": [
-      9,
-      14
+      12,
+      15
     ],
     "dead_limbs": 0.15,
     "dress": {
@@ -24,8 +24,8 @@
       "hollow_chance": 0.5
     },
     "height": [
-      22,
-      34
+      38,
+      52
     ],
     "leaves": {
       "Name": "biomesmod:ghostwood_leaves"
@@ -34,8 +34,8 @@
       "Name": "biomesmod:ghostwood_log"
     },
     "radius": [
-      1.3,
-      2.2
+      2.6,
+      3.4
     ],
     "style": "broad",
     "wood": {

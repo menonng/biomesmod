@@ -57,6 +57,9 @@
     "mod": {
       "vegetal_decoration": [
         "biomesmod:magellanic_fjords_beech"
+      ],
+      "fluid_springs": [
+        "biomesmod:magellanic_fjords_falls"
       ]
     }
   },

@@ -1,14 +1,94 @@
 {
   "config": {
+    "beach": 1,
     "biomes": [
       "biomesmod:franz_josef_land"
     ],
-    "dome": 24,
-    "dome_scale": 260,
-    "freeboard": 10,
-    "mode": "ice_sheet",
-    "shelf": true,
-    "thickness": 14
+    "coverage": 0.44,
+    "depth": 7,
+    "edge_blend": 40,
+    "height": 36,
+    "mode": "islands",
+    "palette": {
+      "cliff_slope": 3,
+      "strata": {
+        "mix": 0.35,
+        "strata": [
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "biomesmod:dolerite"
+                },
+                "weight": 50
+              },
+              {
+                "block": {
+                  "Name": "minecraft:basalt"
+                },
+                "weight": 30
+              },
+              {
+                "block": {
+                  "Name": "minecraft:blackstone"
+                },
+                "weight": 20
+              }
+            ],
+            "thickness": 4
+          },
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 50
+              },
+              {
+                "block": {
+                  "Name": "biomesmod:dolerite"
+                },
+                "weight": 30
+              },
+              {
+                "block": {
+                  "Name": "minecraft:andesite"
+                },
+                "weight": 20
+              }
+            ],
+            "thickness": 2
+          }
+        ],
+        "warp": 1.0,
+        "warp_scale": 60
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:snow_block"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:packed_ice"
+          },
+          "depth": 2
+        }
+      ],
+      "underwater": [
+        {
+          "block": {
+            "Name": "minecraft:gravel"
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "rocky": 0.55,
+    "scale": 170
   },
   "type": "biomesmod:terrain_shaper"
 }

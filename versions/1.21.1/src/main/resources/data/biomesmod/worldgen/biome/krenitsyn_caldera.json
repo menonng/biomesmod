@@ -17,8 +17,8 @@
       "tick_delay": 6000
     },
     "sky_color": 8103167,
-    "water_color": 3104634,
-    "water_fog_color": 861491
+    "water_color": 3112864,
+    "water_fog_color": 996422
   },
   "features": [
     [],
@@ -82,7 +82,8 @@
       "minecraft:patch_pumpkin",
       "minecraft:seagrass_cold",
       "minecraft:seagrass_simple",
-      "minecraft:kelp_cold"
+      "minecraft:kelp_cold",
+      "biomesmod:krenitsyn_caldera_shrubs"
     ],
     [
       "minecraft:freeze_top_layer"

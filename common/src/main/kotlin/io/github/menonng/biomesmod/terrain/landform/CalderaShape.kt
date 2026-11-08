@@ -36,6 +36,7 @@ class CalderaShape internal constructor(
 	internal val coneHeight: Span,
 	internal val breachWidth: Float,
 	internal val floorBlock: Optional<BlockState>,
+	internal val green: Float,
 ) : LandformShape() {
 	override fun name(): String = NAME
 
@@ -184,11 +185,19 @@ class CalderaShape internal constructor(
 			if (c.kind == K_SAND && depth < 3) {
 				return floorBlock.orElse(Blocks.GRAVEL.defaultBlockState())
 			}
+			val lakeY = if (water != Col.NONE) water else foot
+			// Vegetation climbs to a ragged line below the crest; above it bare tephra and rock.
+			val greenLine = lakeY + (crest - lakeY) * green + 6 * LNoise.noise2(seed xor 0x7D, x / 19.0, z / 19.0)
 			if (c.kind == K_FLANK && depth < 3 && !wet) {
-				return pick(FLANK, x + (3 * LNoise.noise2(seed xor 0x7B, x / 5.0, z / 5.0)).toInt(), y / 4, z, 0x7C)
+				return if (green > 0 && y < greenLine) pick(GREEN, x, y, z, 0x7E) else pick(FLANK, x, y, z, 0x7C)
+			}
+			if (c.kind == K_BODY && depth < 2 && !wet && green > 0 && y < greenLine && y > lakeY + 1) {
+				// Inner walls: forest and meadow ledges between bare rock faces.
+				if (LNoise.noise2(seed xor 0x7F, x / 7.0, (z + y) / 7.0) > -0.2) return pick(GREEN, x, y, z, 0x80)
 			}
 			if (c.kind == K_CONE && depth == 0 && !wet) {
-				return pick(CONE, x, y, z, 0x77)
+				val coneGreen = lakeY + cch * green * 0.8 + 4 * LNoise.noise2(seed xor 0x81, x / 13.0, z / 13.0)
+				return if (green > 0 && y < coneGreen) pick(GREEN, x, y, z, 0x82) else pick(CONE, x, y, z, 0x77)
 			}
 			return super.block(x, y, z, depth, c, wet)
 		}
@@ -200,7 +209,8 @@ class CalderaShape internal constructor(
 		internal const val K_SAND = 22
 		internal const val K_FLANK = 26
 		private val FLANK: List<BlockState> by lazy { B.list("tuff", "gravel", "andesite", "basalt", "coarse_dirt") }
-		private val CONE: List<BlockState> by lazy { B.list("tuff", "gravel", "basalt") }
+		private val CONE: List<BlockState> by lazy { B.list("biomesmod:volcanic_ash", "biomesmod:scoria", "tuff", "biomesmod:volcanic_ash", "basalt") }
+		private val GREEN: List<BlockState> by lazy { B.list("grass_block", "moss_block", "grass_block", "podzol", "coarse_dirt", "grass_block") }
 
 		internal val CODEC: MapCodec<CalderaShape> = RecordCodecBuilder.mapCodec { i ->
 			i.group(
@@ -214,8 +224,9 @@ class CalderaShape internal constructor(
 				Span.CODEC.optionalFieldOf("cone_height", Span.of(18.0, 32.0)).forGetter { it.coneHeight },
 				Codec.floatRange(0.1f, 2f).optionalFieldOf("breach_width", 0.5f).forGetter { it.breachWidth },
 				BlockState.CODEC.optionalFieldOf("floor_block").forGetter { it.floorBlock },
-			).apply(i) { radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock ->
-				CalderaShape(radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock)
+				Codec.floatRange(0f, 1f).optionalFieldOf("green", 0f).forGetter { it.green },
+			).apply(i) { radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green ->
+				CalderaShape(radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green)
 			}
 		}
 	}

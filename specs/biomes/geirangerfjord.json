@@ -43,7 +43,11 @@
     "water_fog": "#082a28"
   },
   "features": {
-    "mod": {},
+    "mod": {
+      "fluid_springs": [
+        "biomesmod:geirangerfjord_falls"
+      ]
+    },
     "remove": [
       "minecraft:lake_lava_surface"
     ]

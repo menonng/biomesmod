@@ -1,0 +1,13 @@
+{
+  "config": {
+    "chance": 0.3,
+    "cluster": 2,
+    "min_drop": 18,
+    "stream": [
+      4,
+      11
+    ],
+    "tries": 28
+  },
+  "type": "biomesmod:cliff_falls"
+}
