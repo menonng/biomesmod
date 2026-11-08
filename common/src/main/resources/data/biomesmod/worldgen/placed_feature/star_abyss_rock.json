@@ -1,0 +1,13 @@
+{
+  "feature": "biomesmod:star_abyss_rock",
+  "placement": [
+    {
+      "count": 1,
+      "type": "minecraft:count"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    }
+  ]
+}

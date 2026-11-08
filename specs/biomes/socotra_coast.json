@@ -1,0 +1,61 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "socotra_coast",
+  "names": {
+    "en_us": "Socotra Coast",
+    "ko_kr": "소코트라 해안"
+  },
+  "places": [
+    13
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "zone_of": "socotra"
+  },
+  "base": "minecraft:desert",
+  "climate": {
+    "temperature": 1.6,
+    "downfall": 0.05
+  },
+  "colors": {
+    "grass": "#a9a35f",
+    "foliage": "#58803c",
+    "sky": "#8ab8f2",
+    "water": "#3fb6c8",
+    "water_fog": "#1f6f80"
+  },
+  "features": {
+    "remove": [
+      "minecraft:lake_lava_surface",
+      "minecraft:patch_cactus_desert",
+      "minecraft:patch_cactus",
+      "minecraft:desert_well"
+    ],
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:socotra_coast_bottle_trees",
+        "biomesmod:socotra_desert_roses"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "biomesmod:white_sand",
+    "under": "minecraft:sandstone",
+    "under_depth": 3,
+    "underwater": "biomesmod:white_sand",
+    "top_patches": [
+      {
+        "block": "minecraft:sand",
+        "noise": "minecraft:surface",
+        "min": 0.2
+      },
+      {
+        "block": "minecraft:coarse_dirt",
+        "noise": "minecraft:surface",
+        "min": 0.55
+      }
+    ]
+  },
+  "carvers": "underground"
+}

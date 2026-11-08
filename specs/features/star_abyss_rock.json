@@ -1,0 +1,72 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:rock_swap",
+    "config": {
+      "from": [
+        {
+          "Name": "minecraft:end_stone"
+        }
+      ],
+      "to": [
+        {
+          "block": {
+            "Name": "biomesmod:abyss_stone"
+          },
+          "weight": 84
+        },
+        {
+          "block": {
+            "Name": "biomesmod:starlit_abyss_stone"
+          },
+          "weight": 6
+        },
+        {
+          "block": {
+            "Name": "minecraft:obsidian"
+          },
+          "weight": 6
+        },
+        {
+          "block": {
+            "Name": "minecraft:crying_obsidian"
+          },
+          "weight": 2
+        },
+        {
+          "block": {
+            "Name": "biomesmod:star_crystal"
+          },
+          "weight": 2
+        }
+      ],
+      "depth": 80,
+      "top": [
+        {
+          "block": {
+            "Name": "biomesmod:stardust"
+          },
+          "weight": 75
+        },
+        {
+          "block": {
+            "Name": "biomesmod:starlit_abyss_stone"
+          },
+          "weight": 25
+        }
+      ],
+      "top_coverage": 0.38,
+      "biome": "biomesmod:star_abyss"
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    }
+  ]
+}

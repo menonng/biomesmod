@@ -14,6 +14,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Holder
 import net.minecraft.core.registries.Registries
 import net.minecraft.server.MinecraftServer
+import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.level.Level
@@ -75,6 +76,11 @@ internal object SelfCheck {
 				checkSite(level, holder.get(), entry, siteSpec, name, id, failures)
 				continue
 			}
+			val parent = Placements.get().sites.specs.firstOrNull { sp -> sp.zones.any { it.biome == Ids.name(entry.key) } }
+			if (parent != null) {
+				checkZone(level, holder.get(), entry, parent, name, id, failures)
+				continue
+			}
 			// End highlands start ~1000 blocks out; elsewhere search from the origin.
 			val origin = if (entry.dimension == Level.END) BlockPos(1500, 64, 0) else BlockPos(0, 64, 0)
 			val start = System.currentTimeMillis()
@@ -123,11 +129,53 @@ internal object SelfCheck {
 		val only = System.getProperty("biomesmod.render.only", "")
 		if (DebugRender.enabled() && (only.isEmpty() || id in only.split(","))) {
 			DebugRender.render(level, inner, DebugRender.size(), id)
+			DebugRender.iso(level, inner, min(DebugRender.size(), 192), id)
 			if (placed.isNotEmpty()) {
 				// A second view centred on one placed landform, which the patch-centre view often misses.
-				DebugRender.render(level, BlockPos(placed[0][0], 64, placed[0][1]), DebugRender.size(), "${id}_landform")
+				val at = BlockPos(placed[0][0], 64, placed[0][1])
+				DebugRender.render(level, at, DebugRender.size(), "${id}_landform")
+				DebugRender.iso(level, at, min(DebugRender.size(), 112), "${id}_landform", 3)
+				DebugRender.iso(level, at, min(DebugRender.size(), 112), "${id}_landform", 3, true)
 			}
 		}
+	}
+
+	/** A zone biome (a sub-biome of a multi-zone site): the parent's nearest site must contain it. */
+	private fun checkZone(level: ServerLevel, biome: Holder<Biome>, entry: ModBiomes.Entry, parent: SiteConfig.Spec, name: String, id: String,
+		failures: MutableList<String>) {
+		val sampler = level.chunkSource.randomState().sampler()
+		val field = SiteField.forSampler(sampler)
+		val s = field?.sitesNear(0, 0, SITE_RADIUS, parent.biome)?.firstOrNull()
+		if (s == null) {
+			failures.add("$name: no ${parent.biome} site within $SITE_RADIUS blocks")
+			return
+		}
+		val world = WorldSampler.of(level, level.chunkSource.generator)
+		val source = level.chunkSource.generator.biomeSource
+		val r = s.outer().toInt()
+		var hits = 0
+		var first: BlockPos? = null
+		for (dz in -r..r step 16) {
+			for (dx in -r..r step 16) {
+				val x = s.x + dx
+				val z = s.z + dz
+				val y = max(world.baseFloorHeight(x, z), level.seaLevel) + 1
+				if (source.getNoiseBiome(x shr 2, y shr 2, z shr 2, sampler).`is`(entry.key)) {
+					hits++
+					if (first == null) first = BlockPos(x, y, z)
+				}
+			}
+		}
+		val at = first
+		if (at == null) {
+			failures.add("$name: zone of ${parent.biome} but absent from its site at ${s.x},${s.z}")
+			return
+		}
+		BiomesMod.LOGGER.info("[selfcheck] {} OK - zone of {} site at {}, {}: {} of the 16-block samples, first at {}; surface: {}", name, parent.biome,
+			s.x, s.z, hits, at.toShortString(), surfaceSummary(level, at, entry))
+		val placed = ArrayList<IntArray>()
+		landformDiagnostics(level, biome, at, name, placed)
+		renderIfSelected(level, at, id, placed)
 	}
 
 	/**
@@ -155,7 +203,8 @@ internal object SelfCheck {
 		val sea = level.seaLevel
 		val centreFloor = world.baseFloorHeight(s.x, s.z) - 1
 		val atCentre = source.getNoiseBiome(s.x shr 2, (max(centreFloor, sea) + 1) shr 2, s.z shr 2, sampler)
-		if (!atCentre.`is`(entry.key)) {
+		val allowed = listOf(spec.biome) + spec.zones.map { it.biome }
+		if (allowed.none { b -> atCentre.`is`(ResourceKey.create(Registries.BIOME, Ids.id(b.substringAfter(':')))) }) {
 			failures.add("$name: site centre ${s.x},${s.z} has biome ${atCentre.unwrapKey().map { Ids.name(it) }.orElse("?")}")
 		}
 		// Noise terrain over the site, every 16 blocks: elevation inside the core, flat area, water share.

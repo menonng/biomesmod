@@ -1,0 +1,22 @@
+{
+  "config": {
+    "bud": {
+      "Name": "biomesmod:star_crystal_cluster"
+    },
+    "flower": {
+      "Name": "biomesmod:star_bloom"
+    },
+    "radius": [
+      3,
+      6
+    ],
+    "roots": {
+      "Name": "biomesmod:astral_roots"
+    },
+    "wall": {
+      "Name": "biomesmod:starlit_abyss_stone"
+    },
+    "wall_chance": 0.35
+  },
+  "type": "biomesmod:abyss_well"
+}

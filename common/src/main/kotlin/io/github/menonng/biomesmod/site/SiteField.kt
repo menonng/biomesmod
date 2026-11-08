@@ -257,7 +257,11 @@ class SiteField private constructor(
 			// Mountains keep the hills above a fixed reference (low land rises towards the target); the other terrains
 			// measure the hills from the site's own mean surface, so the site's typical height is the target.
 			val reference = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) REFERENCE_Y else referenceSurface(site, depth)
-			val target = spec.targetY + spec.relief * (s0 - reference)
+			// Ridged peaks (mountain ranges in the manner of Tectonic): sharp crests and arêtes over the target height.
+			// The ranges rise only inside the site (smoothstep of the weight), so the edges stay gentle and blend out.
+			val peaks = if (spec.ridges > 0) spec.ridges * ridges(x.toDouble(), z.toDouble()) * smooth01((w - 0.25) / 0.6) else 0.0
+			// Soft ceiling: heights approach the configured maximum smoothly instead of being cut flat at the build limit.
+			val target = softCap(spec.targetY + spec.relief * (s0 - reference) + peaks)
 			val d = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) max(0.0, target - s0) else target - s0
 			delta += w * d
 			val s = when (spec.terrain) {
@@ -270,10 +274,143 @@ class SiteField private constructor(
 				flat += w
 			}
 		}
+		// Fjords: channels cut from the site centre towards the sea, below sea level (the aquifer floods them).
+		for ((site, w) in arrayOf(a to b.wa, b.b to b.wb)) {
+			val ch = site?.spec?.channels ?: continue
+			if (w <= 0) {
+				continue
+			}
+			val surface = s0 + delta
+			val cut = channelSurface(site, ch, x.toDouble(), z.toDouble(), surface, depth)
+			if (cut < surface) {
+				delta = cut - s0
+				val inside = ((surface - cut) / 6.0).coerceIn(0.0, 1.0)
+				detail += (1.0 - detail) * inside
+				flat *= 1 - inside
+			}
+		}
 		if (delta == 0.0 && detail == 1.0) {
 			return Column.NONE
 		}
+		// Near the build limit the rock above the surface (crags, overhangs) is compressed into the headroom that is
+		// left, so peaks taper below the limit instead of being cut flat.
+		val headroom = io.github.menonng.biomesmod.BiomesConfig.elevation.maxTargetY + 18.0 - (s0 + delta)
+		if (headroom < 60.0) {
+			detail = kotlin.math.min(detail, kotlin.math.max(0.05, headroom / 60.0))
+		}
 		return Column(true, s0, delta, max(FLAT_DETAIL, detail), flat)
+	}
+
+	/** Seeded multi-octave noise in [-1, 1] at a coordinate already divided by its scale (used for zone edges). */
+	fun detailNoise(x: Double, z: Double, octaves: Int): Double {
+		var sum = 0.0
+		var amp = 1.0
+		var norm = 0.0
+		var f = 1.0
+		for (o in 0 until octaves) {
+			sum += amp * noise.getValue(x * f * 256 + o * 911.3, 300.0 + o * 37, z * f * 256 - o * 517.9)
+			norm += amp
+			amp *= 0.5
+			f *= 2.07
+		}
+		return (sum / norm).coerceIn(-1.0, 1.0)
+	}
+
+	private fun softCap(y: Double): Double {
+		val cap = io.github.menonng.biomesmod.BiomesConfig.elevation.maxTargetY + 12.0
+		val knee = cap - 60.0
+		return if (y <= knee) y else knee + (cap - knee) * kotlin.math.tanh((y - knee) / (cap - knee))
+	}
+
+	private fun smooth01(t: Double): Double {
+		val c = t.coerceIn(0.0, 1.0)
+		return c * c * (3 - 2 * c)
+	}
+
+	/** Ridged multifractal in [0, 1]: thin sharp crests joined into ranges, broad lows between them. */
+	internal fun ridges(x: Double, z: Double): Double {
+		// Domain warp so the ranges bend and branch instead of running straight.
+		val wx = x + 140 * noise.getValue(x * 0.7 + 1733.0, 50.0, z * 0.7)
+		val wz = z + 140 * noise.getValue(x * 0.7, 50.0, z * 0.7 - 2213.0)
+		var sum = 0.0
+		var amp = 1.0
+		var weight = 1.0
+		var f = 1.2
+		var norm = 0.0
+		for (o in 0 until 4) {
+			val n = noise.getValue(wx * f + o * 1013.7, 120.0 + o * 53, wz * f - o * 419.3)
+			var r = 1.0 - kotlin.math.abs(n) * 1.7
+			r = (r.coerceIn(0.0, 1.0)).let { it * it }
+			r *= weight
+			weight = (r * 1.6).coerceIn(0.0, 1.0)
+			sum += r * amp
+			norm += amp
+			amp *= 0.5
+			f *= 2.0
+		}
+		return (sum / norm * 1.35).coerceIn(0.0, 1.0)
+	}
+
+	private class ChannelInfo(val angle: Double, val phase: Double, val phase2: Double)
+
+	private val channelInfos = ConcurrentHashMap<Long, ChannelInfo>()
+
+	/** Direction from the site centre to its lowest original ground (the sea), computed once per site. */
+	private fun channelInfo(site: Site, depth: DensityFunction): ChannelInfo = channelInfos.computeIfAbsent(cellKey(site.x, site.z)) {
+		var best = Double.MAX_VALUE
+		var angle = 0.0
+		val r = site.outer() * 0.92
+		for (k in 0 until 24) {
+			val a = k * PI / 12
+			val h = originalSurface((site.x + kotlin.math.cos(a) * r).toInt(), (site.z + sin(a) * r).toInt(), depth)
+			if (h < best) {
+				best = h
+				angle = a
+			}
+		}
+		ChannelInfo(angle, unit(mix(site.seed + 71)) * PI * 2, unit(mix(site.seed + 73)) * PI * 2)
+	}
+
+	/**
+	 * Surface height inside the fjord channels of a site at (x, z), or [surface] outside them. Each channel runs from
+	 * near the centre to beyond the site edge on the seaward side, meandering, widening towards the sea, with a steep
+	 * U profile whose floor lies [SiteConfig.Channels.depth] below sea level and rises at the fjord head.
+	 */
+	private fun channelSurface(site: Site, ch: SiteConfig.Channels, x: Double, z: Double, surface: Double, depth: DensityFunction): Double {
+		val info = channelInfo(site, depth)
+		val outer = site.outer()
+		var best = surface
+		for (k in 0 until ch.count) {
+			// The main fjord heads inland from the sea; side fjords branch off it at a third of the way.
+			val turn = if (k == 0) 0.0 else (if (k % 2 == 1) 0.75 else -0.85) * (1 + 0.2 * unit(mix(site.seed + 80 + k)))
+			val ox = if (k == 0) site.x.toDouble() else site.x + kotlin.math.cos(info.angle) * outer * 0.3
+			val oz = if (k == 0) site.z.toDouble() else site.z + sin(info.angle) * outer * 0.3
+			val dir = info.angle + turn
+			val cx = kotlin.math.cos(dir)
+			val cz = sin(dir)
+			val px = x - ox
+			val pz = z - oz
+			val along = px * cx + pz * cz
+			val head = if (k == 0) -0.25 * site.core else 0.0
+			val end = if (k == 0) outer * 1.05 else outer * 0.55
+			if (along < head - ch.width * 2 || along > end) {
+				continue
+			}
+			val meander = ch.width * 1.3 * sin(along / 170.0 + info.phase + k) + ch.width * 0.5 * sin(along / 61.0 + info.phase2 + 2 * k)
+			val across = -px * cz + pz * cx - meander
+			val t = ((along - head) / (end - head)).coerceIn(0.0, 1.0)
+			val half = ch.width * (if (k == 0) 0.6 + 0.6 * t else 0.5 + 0.3 * t)
+			val q = kotlin.math.abs(across) / half
+			if (q >= 1.0) {
+				continue
+			}
+			// Fjord head: the floor climbs to the surrounding ground over the first stretch.
+			val headRise = ((along - head) / (ch.width * 3)).coerceIn(0.0, 1.0)
+			val floor = SEA_LEVEL - ch.depth * headRise + (surface - SEA_LEVEL) * (1 - headRise) * 0.85
+			val profile = q * q * q * (0.35 + 0.65 * q)
+			best = kotlin.math.min(best, floor + (surface - floor) * profile)
+		}
+		return best
 	}
 
 	private val references = ConcurrentHashMap<Long, Double>()
@@ -319,6 +456,9 @@ class SiteField private constructor(
 
 		/** Height that `relief` measures the original hills from. */
 		private const val REFERENCE_Y = 72.0
+
+		/** Sea level of the overworld (fjord floors are cut below it). */
+		private const val SEA_LEVEL = 63.0
 
 		/** Detail kept above the surface of plateau and basin sites (almost flat). */
 		private const val FLAT_DETAIL = 0.06

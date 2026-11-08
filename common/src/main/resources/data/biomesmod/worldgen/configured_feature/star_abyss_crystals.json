@@ -1,0 +1,26 @@
+{
+  "config": {
+    "base": {
+      "Name": "biomesmod:abyss_stone"
+    },
+    "bud": {
+      "Name": "biomesmod:star_crystal_cluster"
+    },
+    "count": [
+      4,
+      9
+    ],
+    "crystal": {
+      "Name": "biomesmod:star_crystal"
+    },
+    "length": [
+      7,
+      22
+    ],
+    "radius": [
+      1.0,
+      2.4
+    ]
+  },
+  "type": "biomesmod:crystal_cluster"
+}

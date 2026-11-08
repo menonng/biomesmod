@@ -27,7 +27,8 @@
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 110
+      "elevation_m": 1200,
+      "ridges": 60
     }
   },
   "base": "minecraft:grove",

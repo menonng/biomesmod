@@ -1,0 +1,29 @@
+{
+  "config": {
+    "biome": "biomesmod:coast_polder_tulips",
+    "fallow": 0.18,
+    "field_size": 60,
+    "flowers": [
+      {
+        "Name": "minecraft:red_tulip"
+      },
+      {
+        "Name": "minecraft:orange_tulip"
+      },
+      {
+        "Name": "minecraft:pink_tulip"
+      },
+      {
+        "Name": "minecraft:white_tulip"
+      },
+      {
+        "Name": "minecraft:allium"
+      },
+      {
+        "Name": "minecraft:dandelion"
+      }
+    ],
+    "strip_width": 3
+  },
+  "type": "biomesmod:flower_strips"
+}

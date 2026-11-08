@@ -32,14 +32,17 @@ class HotSpringShape internal constructor(
 	internal val chimneys: Float,
 ) : LandformShape() {
 	private val bandList: List<BlockState> by lazy {
-		bands.orElseGet { B.list("light_blue_terracotta", "lime_terracotta", "yellow_terracotta", "orange_terracotta", "red_terracotta", "brown_terracotta") }
+		bands.orElseGet {
+			B.list("biomesmod:geyserite", "biomesmod:thermal_mat_yellow", "biomesmod:thermal_mat_orange", "biomesmod:thermal_mat_orange",
+				"brown_terracotta", "biomesmod:thermal_mat_green")
+		}
 	}
 
 	override fun name(): String = NAME
 
 	override fun maxReach(): Int = ceil((if (pools > 1) spread.max else 0f) + poolRadius.max * 1.3 + bandWidth * 7 + 6).toInt()
 
-	override fun defaultPalette(): StrataPalette = B.strata("white_terracotta", 1, "calcite", 2, "diorite", 1, "calcite", 2)
+	override fun defaultPalette(): StrataPalette = B.strata(null, 0, "biomesmod:geyserite", 2, "calcite", 1, "biomesmod:geyserite", 2, "white_terracotta", 1)
 
 	override fun defaultMaxRelief(): Int = 10
 
@@ -129,9 +132,9 @@ class HotSpringShape internal constructor(
 				return bandList[c.aux]
 			}
 			if (c.kind == K_CHIMNEY) {
-				return B.of("white_terracotta")
+				return CHIMNEY
 			}
-			return palette.blockAt(y, depth)
+			return palette.blockAt(x, y, z, depth)
 		}
 	}
 
@@ -139,6 +142,7 @@ class HotSpringShape internal constructor(
 		internal const val NAME = "hot_spring"
 		internal const val K_BAND = 23
 		internal const val K_CHIMNEY = 24
+		private val CHIMNEY: BlockState by lazy { B.of("white_terracotta") }
 
 		internal val CODEC: MapCodec<HotSpringShape> = RecordCodecBuilder.mapCodec { i ->
 			i.group(

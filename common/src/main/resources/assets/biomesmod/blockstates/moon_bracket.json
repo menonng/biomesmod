@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "biomesmod:block/moon_bracket"
+    },
+    "facing=down": {
+      "model": "biomesmod:block/moon_bracket",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "biomesmod:block/moon_bracket",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "biomesmod:block/moon_bracket",
+      "x": 90,
+      "y": 180
+    },
+    "facing=east": {
+      "model": "biomesmod:block/moon_bracket",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west": {
+      "model": "biomesmod:block/moon_bracket",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -138,7 +138,7 @@ class GlacialLakeShape internal constructor(
 		override fun block(x: Int, y: Int, z: Int, depth: Int, c: Col, wet: Boolean): BlockState {
 			if (c.kind == K_FLOOR) {
 				// Glacial silt and gravel on the lake bed, rock below.
-				return if (depth < 2) pick(BED, x, y, z, 0xE57) else palette.strataAt(y)
+				return if (depth < 2) pick(BED, x, y, z, 0xE57) else palette.strataAt(x, y, z)
 			}
 			return super.block(x, y, z, depth, c, wet)
 		}

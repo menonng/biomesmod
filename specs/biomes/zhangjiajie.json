@@ -56,7 +56,6 @@
   "features": {
     "remove": [
       "minecraft:trees_jungle",
-      "minecraft:bamboo_light",
       "minecraft:patch_melon",
       "minecraft:lake_lava_surface"
     ],

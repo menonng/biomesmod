@@ -72,6 +72,8 @@ loom {
 			vmArg "-Dbiomesmod.overview=${project.findProperty('overview') ?: 'false'}"
 			vmArg "-Dbiomesmod.render.size=${project.findProperty('renderSize') ?: '256'}"
 			vmArg "-Dbiomesmod.selfcheck.only=${project.findProperty('biomes') ?: ''}"
+			// -Pmaps=<plan.json>: docs map mode instead of the checks (maps land in run/selfcheck/maps/).
+			vmArg "-Dbiomesmod.maps=${project.hasProperty('maps') ? file(project.property('maps')).absolutePath : ''}"
 			if (project.hasProperty('extraMods')) {
 				vmArg "-Dfabric.addMods=${file(project.property('extraMods')).absolutePath}"
 			}

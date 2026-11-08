@@ -195,7 +195,7 @@ class ButteShape internal constructor(
 				if (depth == 0 && !wet && LNoise.noise2(seed xor 0x21, x / 4.0, z / 4.0) > -0.1) {
 					return talusBlock(x, y, z)
 				}
-				return pedPalette.strataAt(y)
+				return pedPalette.strataAt(x, y, z)
 			}
 			return super.block(x, y, z, depth, c, wet)
 		}

@@ -28,7 +28,13 @@
         -0.25,
         0.1
       ],
-      "target_y": 125
+      "elevation_m": 1500,
+      "ridges": 60,
+      "channels": {
+        "count": 1,
+        "width": 70,
+        "depth": 28
+      }
     }
   },
   "base": "minecraft:windswept_forest",
@@ -37,11 +43,7 @@
     "water_fog": "#082a28"
   },
   "features": {
-    "mod": {
-      "raw_generation": [
-        "biomesmod:geirangerfjord_fjord"
-      ]
-    },
+    "mod": {},
     "remove": [
       "minecraft:lake_lava_surface"
     ]

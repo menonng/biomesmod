@@ -32,7 +32,7 @@
         "arid",
         "dry"
       ],
-      "target_y": 231
+      "elevation_m": 4300
     }
   },
   "base": "minecraft:badlands",

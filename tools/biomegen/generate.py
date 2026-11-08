@@ -289,13 +289,23 @@ def order_hints():
         return {}
     with open(path, encoding='utf-8') as f:
         data = json.load(f)
-    return {STEPS.index(step): pairs for step, pairs in data.items() if not step.startswith('_')}
+    return data
+
+
+def hints_for(mc):
+    """Hint pairs per step index for one version: the "all" section plus the version's own (both optional)."""
+    data = order_hints()
+    out = defaultdict(list)
+    for section in ('all', mc):
+        for step, pairs in data.get(section, {}).items():
+            out[STEPS.index(step)].extend(pairs)
+    return out
 
 
 def canonical_order(biomes, mc):
     """Per step: one global order that is a topological sort of every vanilla biome's list (plus the order hints)."""
     orders = []
-    hints = order_hints()
+    hints = hints_for(mc)
     for step in range(len(STEPS)):
         lists = [feature_steps(biomes[name])[step] for name in sorted(biomes)] + [list(p) for p in hints.get(step, [])]
         order, cycle = topo_merge(lists, 'vanilla')
@@ -476,6 +486,7 @@ class BiomeSpec:
         self.dimension = data.get('dimension')
         self.slots = []
         self.site = None
+        self.zone_of = None
         self.nether_point = None
         self.end = None
 
@@ -553,12 +564,18 @@ SITE_ZONE = {'deep_ocean': (-2.0, -0.455), 'ocean': (-0.455, -0.19), 'coast': (-
              'mid_inland': (0.03, 0.3), 'far_inland': (0.3, 2.0)}
 SITE_TERRAIN = ('keep', 'plateau', 'lift', 'mountain', 'basin')
 SITE_KEYS = {'temperature', 'humidity', 'zone', 'continentalness', 'erosion', 'size', 'ramp', 'terrain', 'elevation_m',
-             'target_y', 'relief', 'weight', 'biome_threshold'}
+             'target_y', 'relief', 'weight', 'biome_threshold', 'ridges', 'zones', 'channels'}
 
 
 def site_target_y(elevation_m):
-    """Real elevation to block height: sea level is y=63 and 1 block is 25.6 m (so 3,656 m gives y=205)."""
-    return int(round(min(250, max(40, 63 + elevation_m * 0.039))))
+    """Real elevation to block height with the default config (BiomesConfig.targetY): below 2,000 m sea level y=63 and
+    1 block = 25.6 m; from 2,000 m up high ground starts at y=190 and rises 1 block per 40 m, capped at 300. The mod
+    recomputes it from config/biomesmod.json at runtime; this value is the fallback and what the docs show."""
+    if elevation_m < 2000:
+        y = 63 + elevation_m / 25.6
+    else:
+        y = max(190, 63 + 2000 / 25.6) + (elevation_m - 2000) / 40
+    return int(round(min(300, max(0, y))))
 
 
 def validate_site(site, where, problems):
@@ -612,13 +629,14 @@ def validate_site(site, where, problems):
     out['terrain'] = terrain
     if 'target_y' in site:
         ty = site['target_y']
-        if not is_int(ty) or not 0 <= ty <= 260:
-            problems.error(where, 'target_y must be an integer 0..260')
+        if not is_int(ty) or not 0 <= ty <= 300:
+            problems.error(where, 'target_y must be an integer 0..300')
         out['target_y'] = int(ty)
     elif 'elevation_m' in site:
         if not is_number(site['elevation_m']):
             problems.error(where, 'elevation_m must be a number')
         out['target_y'] = site_target_y(site['elevation_m'])
+        out['elevation_m'] = float(site['elevation_m'])
     else:
         if terrain != 'keep':
             problems.error(where, 'terrain %s needs elevation_m or target_y' % terrain)
@@ -635,6 +653,29 @@ def validate_site(site, where, problems):
     if not is_number(thr) or not 0 < thr <= 1:
         problems.error(where, 'biome_threshold must be in (0, 1]')
     out['biome_threshold'] = float(thr)
+    if 'ridges' in site:
+        if not is_number(site['ridges']) or not 0 <= site['ridges'] <= 160:
+            problems.error(where, 'ridges must be 0..160 blocks')
+        out['ridges'] = float(site['ridges'])
+    if 'channels' in site:
+        c = site['channels']
+        if not (isinstance(c, dict) and is_int(c.get('count')) and 1 <= c['count'] <= 3 and is_number(c.get('width')) and 12 <= c['width'] <= 200
+                and is_number(c.get('depth')) and 2 <= c['depth'] <= 60):
+            problems.error(where, 'channels must be {"count": 1..3, "width": 12..200, "depth": 2..60}')
+        else:
+            out['channels'] = {'count': c['count'], 'width': float(c['width']), 'depth': float(c['depth'])}
+    if 'zones' in site:
+        zs = site['zones']
+        if not isinstance(zs, list) or not zs:
+            problems.error(where, 'zones must be a non-empty list of {"biome", "from", "to"}')
+        else:
+            out['zones'] = []
+            for z in zs:
+                if not (isinstance(z, dict) and isinstance(z.get('biome'), str) and is_number(z.get('from')) and is_number(z.get('to'))
+                        and 0 <= z['from'] < z['to'] <= 1.01):
+                    problems.error(where, 'each zone needs "biome", "from" and "to" with 0 <= from < to <= 1')
+                    continue
+                out['zones'].append({'biome': (z['biome'] if ':' in z['biome'] else MOD + ':' + z['biome']), 'from': float(z['from']), 'to': float(z['to'])})
     return out
 
 
@@ -645,9 +686,13 @@ def validate_placement(spec, versions, vanilla, problems):
         problems.error(where, '"placement" is required')
         return
     if spec.dimension == 'overworld':
-        unknown_keys(p, {'replace', 'site'}, where + ' placement', problems)
-        if ('replace' in p) == ('site' in p):
-            problems.error(where, 'overworld placement needs exactly one of "replace" (climate slots) or "site" (large site)')
+        unknown_keys(p, {'replace', 'site', 'zone_of'}, where + ' placement', problems)
+        if sum(k in p for k in ('replace', 'site', 'zone_of')) != 1:
+            problems.error(where, 'overworld placement needs exactly one of "replace" (climate slots), "site" (large site) or '
+                                  '"zone_of" (a sub-biome of another site biome)')
+            return
+        if 'zone_of' in p:
+            spec.zone_of = p['zone_of'] if ':' in p['zone_of'] else MOD + ':' + p['zone_of']
             return
         if 'site' in p:
             spec.site = validate_site(p['site'], where + ' placement.site', problems)
@@ -1213,11 +1258,21 @@ def build_sites(specs, regions_cfg, problems):
     if not is_int(grid['cell']) or grid['cell'] < 256:
         problems.error('specs/regions.json', 'sites.cell must be an integer >= 256')
     out = []
+    zone_of = {MOD + ':' + s.id: s for s in specs if s.zone_of}
+    used = set()
     for s in specs:
         if s.site:
             e = {'biome': MOD + ':' + s.id}
             e.update(s.site)
+            for z in s.site.get('zones', []):
+                child = zone_of.get(z['biome'])
+                if child is None or child.zone_of != MOD + ':' + s.id:
+                    problems.error(s.where, 'zone %s must be a biome spec with placement {"zone_of": "%s"}' % (z['biome'], s.id))
+                used.add(z['biome'])
             out.append(e)
+    for bid, child in zone_of.items():
+        if bid not in used:
+            problems.error(child.where, 'zone_of %s, but that site does not list this biome in its zones' % child.zone_of)
     return {'grid': grid, 'list': out}
 
 

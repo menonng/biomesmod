@@ -20,4 +20,10 @@ object LandformCompat {
 		require(block !== Blocks.AIR || id.endsWith(":air")) { "Unknown block $id" }
 		return block.defaultBlockState()
 	}
+
+	/** Vanilla geyser blocks {under the vent, the vent}: 1.21.1 has none (the mod's geyser vent erupts instead). */
+	fun geyserVent(): Array<BlockState>? = null
+
+	/** Ground trees and plants grow on (1.21.1: the dirt tag holds grass, podzol, moss and mud too). */
+	fun isSoil(state: BlockState): Boolean = state.`is`(net.minecraft.tags.BlockTags.DIRT)
 }

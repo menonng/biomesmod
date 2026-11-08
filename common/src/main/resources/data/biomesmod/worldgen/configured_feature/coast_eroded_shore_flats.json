@@ -1,13 +1,13 @@
 {
   "config": {
-    "beach": 4,
+    "beach": 10,
     "biomes": [
       "biomesmod:coast_eroded_shore"
     ],
-    "coverage": 0.32,
-    "depth": 3,
-    "edge_blend": 20,
-    "height": 3,
+    "coverage": 0.58,
+    "depth": 2,
+    "edge_blend": 36,
+    "height": 2,
     "mode": "islands",
     "palette": {
       "top": [
@@ -39,8 +39,8 @@
         }
       ]
     },
-    "rocky": 0.05,
-    "scale": 34
+    "rocky": 0.03,
+    "scale": 56
   },
   "type": "biomesmod:terrain_shaper"
 }

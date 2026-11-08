@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:fallen_log",
+    "config": {
+      "log": {
+        "Name": "biomesmod:ghostwood_log"
+      },
+      "carpet": {
+        "Name": "biomesmod:pale_moss_carpet"
+      },
+      "bracket": {
+        "Name": "biomesmod:moon_bracket"
+      },
+      "length": [
+        7,
+        15
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 3
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

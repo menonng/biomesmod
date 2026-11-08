@@ -32,7 +32,8 @@
         "wet",
         "humid"
       ],
-      "target_y": 135
+      "elevation_m": 1850,
+      "ridges": 40
     }
   },
   "base": "minecraft:meadow",

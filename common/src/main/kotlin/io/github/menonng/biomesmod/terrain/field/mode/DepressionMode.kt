@@ -56,6 +56,15 @@ data class DepressionMode(
 				// Full reshaping right behind the dike so the edge fade never leaves sea water inside.
 				out.blend = if (d >= crestAt) 1.0 else 0.0
 				val crest = sea + dikeHeight + 0.6 * noise.fbm(xd, zd, 40.0, 1)
+				// Where the land outside is higher than the dike there is nothing to hold back: slope down from it to the
+				// floor over the edge blend width instead of cutting a wall at the crest.
+				val o = frame.orig(i).toDouble()
+				if (d >= crestAt && o > crest + 1) {
+					val k = ((d - crestAt) / max(6, common.edgeBlend).toDouble()).coerceIn(0.0, 1.0)
+					val s = k * k * (3 - 2 * k)
+					out.ground = max(bed, o + (bed - o) * s)
+					return
+				}
 				val t = abs(d - crestAt) / dikeWidth
 				if (t < 1) {
 					val h = crest - (crest - bed) * t * t // rounded embankment profile

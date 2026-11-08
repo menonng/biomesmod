@@ -1,0 +1,25 @@
+{
+  "config": {
+    "branches": 4,
+    "crown_radius": [
+      1.8,
+      3.0
+    ],
+    "crown_thickness": [
+      1,
+      2
+    ],
+    "leaves": {
+      "Name": "minecraft:acacia_leaves"
+    },
+    "trunk": {
+      "Name": "minecraft:stripped_birch_log"
+    },
+    "trunk_height": [
+      2,
+      4
+    ],
+    "twist": 0.6
+  },
+  "type": "biomesmod:umbrella_tree"
+}

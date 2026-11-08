@@ -27,7 +27,7 @@
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 149
+      "elevation_m": 2240
     }
   },
   "base": "minecraft:taiga",
@@ -44,7 +44,7 @@
   "particles": [
     {
       "type": "minecraft:white_ash",
-      "probability": 0.01
+      "probability": 0.012
     }
   ],
   "features": {
@@ -54,7 +54,8 @@
     ],
     "mod": {
       "local_modifications": [
-        "biomesmod:grand_prismatic_springs"
+        "biomesmod:grand_prismatic_springs",
+        "biomesmod:grand_prismatic_geysers"
       ],
       "vegetal_decoration": [
         "biomesmod:grand_prismatic_pines"
@@ -62,5 +63,23 @@
     }
   },
   "spawners": "base",
-  "carvers": "underground"
+  "carvers": "underground",
+  "surface": {
+    "top": "minecraft:grass_block",
+    "under": "minecraft:dirt",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "minecraft:coarse_dirt",
+        "noise": "minecraft:surface",
+        "min": 0.35
+      },
+      {
+        "block": "biomesmod:geyserite",
+        "noise": "minecraft:surface",
+        "max": -0.6,
+        "min": -9.0
+      }
+    ]
+  }
 }

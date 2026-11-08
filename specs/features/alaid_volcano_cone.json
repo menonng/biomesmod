@@ -13,15 +13,28 @@
       "min_distance": -1,
       "rise_from": "sea_level",
       "radius": [
-        55,
-        72
+        150,
+        185
       ],
       "height": [
-        95,
-        125
+        115,
+        140
       ],
       "snowline": 150,
-      "crater": "dry"
+      "crater": "dry",
+      "concavity": 1.3,
+      "crater_radius": [
+        12,
+        18
+      ],
+      "crater_depth": [
+        10,
+        16
+      ],
+      "parasites": 2,
+      "vents": 6,
+      "green": 0.35,
+      "gullies": 0.6
     }
   },
   "placement": []

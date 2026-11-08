@@ -54,7 +54,52 @@ internal class Col {
 	@JvmField
 	var aux = 0
 
+	/**
+	 * Optional air gaps inside a raised column, ascending [lo0, hi0, lo1, hi1, ...] (first [gapCount] pairs): overhangs,
+	 * undercuts and the space under a leaning spire. Only blocks above the existing terrain are affected.
+	 */
+	@JvmField
+	var gaps: IntArray? = null
+
+	@JvmField
+	var gapCount = 0
+
+	/** While [ChunkWriter.apply] writes, the top of the solid span being written (== [top] for the main span). */
+	@JvmField
+	var span = NONE
+
 	fun isWater(): Boolean = water != NONE && top != NONE && water > top
+
+	fun addGap(lo: Int, hi: Int) {
+		if (hi < lo) {
+			return
+		}
+		var g = gaps
+		if (g == null) {
+			g = IntArray(8)
+			gaps = g
+		} else if (gapCount * 2 + 2 > g.size) {
+			g = g.copyOf(g.size * 2)
+			gaps = g
+		}
+		g[gapCount * 2] = lo
+		g[gapCount * 2 + 1] = hi
+		gapCount++
+	}
+
+	/** True if y is inside the raised body (at or below [top] and not in a gap). */
+	fun solidAt(y: Int): Boolean {
+		if (top == NONE || y > top) {
+			return false
+		}
+		val g = gaps ?: return true
+		for (k in 0 until gapCount) {
+			if (y >= g[k * 2] && y <= g[k * 2 + 1]) {
+				return false
+			}
+		}
+		return true
+	}
 
 	companion object {
 		const val NONE = Int.MIN_VALUE

@@ -1,4 +1,4 @@
-# Landform engine: `biomesmod:landform` and `biomesmod:umbrella_tree`
+# Landform engine: `biomesmod:landform` and the custom trees and decorations
 
 `biomesmod:landform` places standing landforms on a seed-deterministic jittered grid. Each chunk works out which instances overlap it and writes only its own part, so landforms of any size come out seamless. Run it once per chunk (`"placement": []`). Use step `local_modifications`, which runs after `terrain_shaper` (`raw_generation`) and before trees.
 
@@ -45,18 +45,34 @@ Ranges such as `[8, 20]` are drawn separately for each instance, so no two look 
 
 | Shape | For | Key parameters |
 |---|---|---|
-| `pillar_forest` | Zhangjiajie; Ha Long with `rise_from: sea_level`, `dome`, `notch` | `cluster_radius`, `pillar_spacing`, `density`, `pillar_radius`, `height`, `taper`, `flute`, `dome`, `notch`, `talus` |
+| `pillar_forest` | Zhangjiajie; Ha Long with `rise_from: sea_level`, `dome`, `notch`; Salar de Tara crags, Socotra granite crags | `cluster_radius`, `pillar_spacing`, `density`, `pillar_radius`, `height`, `taper`, `flute`, `dome`, `notch`, `talus`. True 3D bodies: `lobes` (1-4 overlapping lobes that merge low and part high), `joints` (polygonal jointed outline), `ledges` (bedding layers of different width with undercut notches and lips), `lean`; dressing: `ledge_block`, `streaks` + `streak_density` (dark weathering streaks), `vines`, `ledge_feature` + `ledge_chance` (shrubs on ledges). |
 | `butte` | Monument Valley, Wadi Rum | `radius`, `elongation`, `height`, `thumbs` (mitten spires), `dome`, `clefts`, `roughness`, `cliff`, pedestal palette |
 | `monolith` | Devils Tower; Tre Cime, Lofoten, Monjes with `count` 2-5 and `taper` ~0.8 | `count`, `spread`, `radius`, `height`, `taper`, `flute`, `columns`, `talus` |
-| `cone` | Alaid (from the sea), Puna volcanoes | `radius`, `height`, `concavity`, `crater_radius`, `crater_depth`, `crater` `dry`/`lava`/`lake`, `gullies`, `snowline` |
+| `cone` | Alaid (from the sea), Puna volcanoes | `radius`, `height`, `concavity` (profile measured from the crater rim, so there is no chimney), `crater_radius`, `crater_depth`, `crater` `dry`/`lava`/`lake`, `gullies`, `snowline` (snow in the gullies first, bare lava ridges), `parasites` (scoria cones on the flanks), `vents` (fumaroles at the crater), `green` (vegetated lower flanks). The surface is dressed by zone and radial lava tongues, never banded. |
 | `caldera` | Ushishir (`floor: sea`, breached), Krenitsyn (`lake` + `cone`, an island with `rise_from: sea_level`), Tengger (`sand` + `cone`) | `radius`, `rim_height`, `flank`, `floor`, `floor_depth`, `cone`, `cone_radius`, `cone_height`, `breach_width`, `floor_block`. The outer flank always runs down to the real floor, so a caldera island slopes on to the sea bed. |
 | `sea_stack` | Moher, Lofoten, eroded cliffs | `cluster_radius`, `count`, `stack_radius`, `height`, `arch_chance`, `notch`. Only placed in the shallows. |
 | `column_field` | Giant's Causeway | `cell`, `length`, `width`, `rise`, `jitter`. Runs downhill into the sea. |
-| `hot_spring` | Grand Prismatic; Dallol with `pools` > 1 | `pools`, `pool_radius`, `band_width`, `spread`, `depth`, `bands` (inner to outer), `chimneys` |
+| `hot_spring` | Grand Prismatic; Dallol with `pools` > 1 | `pools`, `pool_radius`, `band_width`, `spread`, `depth`, `bands` (inner to outer; default geyserite and the thermal mat blocks), `chimneys` |
+| `geyser` | Grand Prismatic geyser basin | `cone_radius`, `cone_height`, `apron_radius`, `mats`, `pools`, `fumaroles`, `snags`. A terraced geyserite cone with a live vent: in 26.2 vanilla's geyser (a 4-deep water pipe over potent sulfur on magma, about one eruption a minute up to 24 blocks), in 1.21.1 the mod's `geyser_vent` block (an eruption every 1-3 minutes that throws entities up). Runoff channels coloured by temperature, rimstone pools, steam vents and bleached dead pines. |
 | `cascade` | Iguazu, Devil's Throat | `radius`, `drop`, `islets`, `river_width`, `arc`. Real falls: the upper-river source blocks spill over the lip (ticks are scheduled). |
 | `glacial_lake` | Moraine Lake | `radius`, `elongation`, `depth`, `pile`. A long lobed cirque lake whose water sits at the lowest point of its rim: on a slope the uphill shore is a cut face rising from the water, the downhill shore gets a moraine dam, and a rockpile (`pile` blocks high) stands at the outlet. Coloured by the biome's water colour. |
 
 `biomesmod:umbrella_tree` is a normal feature, so it takes vanilla placement modifiers (count, in_square, heightmap, biome). Its parameters are `trunk`, `leaves`, `trunk_height`, `crown_radius`, `crown_thickness`, `branches`, and `twist` (leaning flat-topped savanna trees).
+
+## Trees and decorations
+
+| Feature | Used by | Notes |
+|---|---|---|
+| `biomesmod:umbrella_tree` | Socotra | `forks` > 0 grows the dragon's blood form: a stout (sometimes 2x2, `thick`) trunk forking repeatedly into upturned pairs under one dense umbrella crown; `twist` gives flat-crowned savanna trees. |
+| `biomesmod:bottle_tree` | Socotra | Adenium: swollen base, stubby branches, leaf tufts with flowers. `trunk`, `tips`, `flowers`, `height`, `girth`. |
+| `biomesmod:giant_tree` | Giant Redwood Forest, White Old Growth | `style` `spire` (redwood: up to 5 blocks thick, 50-75 high, buttress roots, drooping branch sprays, conical top) or `broad` (veteran broadleaf: massive trunk, surface roots, limbs forking into a wide leaf dome, some dead limbs). Logs oriented along each limb. `dress`: `hanging` (silver beard lichen under the leaves), `bracket` (moon bracket fungi on the trunk), `hollow` (a wisp-breathing hollow), `carpet` (moss on the roots). |
+| `biomesmod:flower_strips` | Polder Tulip Fields | Dutch bulb fields: rectangular fields of single-colour strips with headlands and fallow fields. Place once per chunk. |
+| `biomesmod:windmill` | Polder Tulip Fields | A Dutch smock mill: brick plinth with door, eight-sided tapering timber tower, reefing stage, cap and four lattice sails. |
+| `biomesmod:fallen_log` | White Old Growth | An old trunk lying along the ground with a stump, moss carpet on its back and moon brackets on its flanks. |
+| `biomesmod:rock_swap` | Star Abyss | Re-dresses one biome's ground where surface rules cannot (the End): `from` blocks become a clustered `to` mix, with `top` patches (stardust) over `top_coverage` of the surface. |
+| `biomesmod:floating_isle` | Star Abyss | A small island hanging 12-24 blocks up: lobed inverted cone of rock, stardust top with star blooms and crystal buds, astral roots and ceiling blooms underneath; a star spring on the ground below lifts players up to it. |
+| `biomesmod:abyss_well` | Star Abyss | A shaft punched through the island into the void, walls of starlit abyss stone with blooms and hanging roots, crystal buds on the rim. |
+| `biomesmod:crystal_cluster` | Star Abyss | Giant six-sided crystal prisms at angles, with a rock collar and buds. |
 
 ## Naturalness built in
 

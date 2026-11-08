@@ -91,7 +91,15 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:giant_redwood_forest",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:giants_causeway",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:glacier",
       "dimension": "minecraft:overworld"
     },
     {
@@ -203,6 +211,14 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:socotra_coast",
+      "dimension": "minecraft:overworld"
+    },
+    {
+      "id": "biomesmod:socotra_highlands",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:sossusvlei",
       "dimension": "minecraft:overworld"
     },
@@ -219,6 +235,10 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:white_old_growth",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:zhangjiajie",
       "dimension": "minecraft:overworld"
     },
@@ -228,6 +248,10 @@
     },
     {
       "id": "biomesmod:chorus_thicket",
+      "dimension": "minecraft:the_end"
+    },
+    {
+      "id": "biomesmod:star_abyss",
       "dimension": "minecraft:the_end"
     }
   ],
@@ -283,6 +307,11 @@
       "biome": "biomesmod:chorus_thicket",
       "type": "highlands",
       "weight": 5
+    },
+    {
+      "biome": "biomesmod:star_abyss",
+      "type": "highlands",
+      "weight": 3
     }
   ],
   "surface": {
@@ -318,10 +347,48 @@
         "underwater": "minecraft:sand"
       },
       {
+        "biome": "biomesmod:giant_redwood_forest",
+        "top": "minecraft:podzol",
+        "under": "minecraft:dirt",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "minecraft:moss_block",
+            "noise": "minecraft:surface",
+            "min": 0.2
+          },
+          {
+            "block": "minecraft:grass_block",
+            "noise": "minecraft:surface",
+            "min": -9.0,
+            "max": -0.4
+          }
+        ]
+      },
+      {
         "biome": "biomesmod:giants_causeway",
         "top": "minecraft:smooth_basalt",
         "under": "minecraft:basalt",
         "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:glacier",
+        "top": "minecraft:snow_block",
+        "under": "minecraft:packed_ice",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "minecraft:stone",
+            "noise": "minecraft:surface",
+            "min": 0.45
+          },
+          {
+            "block": "minecraft:gravel",
+            "noise": "minecraft:surface",
+            "min": -9.0,
+            "max": -0.55
+          }
+        ]
       },
       {
         "biome": "biomesmod:grand_canyon",
@@ -337,6 +404,25 @@
         ]
       },
       {
+        "biome": "biomesmod:grand_prismatic",
+        "top": "minecraft:grass_block",
+        "under": "minecraft:dirt",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "minecraft:coarse_dirt",
+            "noise": "minecraft:surface",
+            "min": 0.35
+          },
+          {
+            "block": "biomesmod:geyserite",
+            "noise": "minecraft:surface",
+            "min": -9.0,
+            "max": -0.6
+          }
+        ]
+      },
+      {
         "biome": "biomesmod:lake_gairdner",
         "top": "minecraft:red_sand",
         "under": "minecraft:red_sandstone",
@@ -344,7 +430,7 @@
       },
       {
         "biome": "biomesmod:lencois_maranhenses",
-        "top": "minecraft:white_concrete_powder",
+        "top": "biomesmod:white_sand",
         "under": "minecraft:sand",
         "under_depth": 3
       },
@@ -389,7 +475,51 @@
           {
             "block": "minecraft:calcite",
             "noise": "minecraft:surface",
-            "min": 0.3
+            "min": 0.25
+          },
+          {
+            "block": "minecraft:smooth_basalt",
+            "noise": "minecraft:surface",
+            "min": -9.0,
+            "max": -0.55
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:socotra_coast",
+        "top": "biomesmod:white_sand",
+        "under": "minecraft:sandstone",
+        "under_depth": 3,
+        "underwater": "biomesmod:white_sand",
+        "top_patches": [
+          {
+            "block": "minecraft:sand",
+            "noise": "minecraft:surface",
+            "min": 0.2
+          },
+          {
+            "block": "minecraft:coarse_dirt",
+            "noise": "minecraft:surface",
+            "min": 0.55
+          }
+        ]
+      },
+      {
+        "biome": "biomesmod:socotra_highlands",
+        "top": "minecraft:grass_block",
+        "under": "minecraft:coarse_dirt",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "minecraft:granite",
+            "noise": "minecraft:surface",
+            "min": 0.35
+          },
+          {
+            "block": "minecraft:coarse_dirt",
+            "noise": "minecraft:surface",
+            "min": -9.0,
+            "max": -0.3
           }
         ]
       },
@@ -404,6 +534,24 @@
         "top": "minecraft:red_sand",
         "under": "minecraft:red_sandstone",
         "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:white_old_growth",
+        "top": "minecraft:grass_block",
+        "under": "minecraft:dirt",
+        "under_depth": 2,
+        "top_patches": [
+          {
+            "block": "biomesmod:pale_moss",
+            "noise": "minecraft:surface",
+            "min": -0.15
+          },
+          {
+            "block": "minecraft:podzol",
+            "noise": "minecraft:surface",
+            "min": 0.6
+          }
+        ]
       }
     ],
     "nether": [
@@ -467,10 +615,12 @@
         ],
         "ramp": 260.0,
         "terrain": "mountain",
-        "target_y": 160,
+        "target_y": 208,
+        "elevation_m": 2700.0,
         "relief": 0.7,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 90.0
       },
       {
         "biome": "biomesmod:alkefjellet",
@@ -545,7 +695,8 @@
         "target_y": 100,
         "relief": 0.9,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 60.0
       },
       {
         "biome": "biomesmod:bromo_tengger",
@@ -567,7 +718,8 @@
         ],
         "ramp": 260.0,
         "terrain": "lift",
-        "target_y": 145,
+        "target_y": 192,
+        "elevation_m": 2100.0,
         "relief": 0.4,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -617,10 +769,12 @@
         ],
         "ramp": 220.0,
         "terrain": "mountain",
-        "target_y": 125,
+        "target_y": 126,
+        "elevation_m": 1600.0,
         "relief": 0.9,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 70.0
       },
       {
         "biome": "biomesmod:daintree",
@@ -717,10 +871,12 @@
         ],
         "ramp": 260.0,
         "terrain": "mountain",
-        "target_y": 150,
+        "target_y": 200,
+        "elevation_m": 2400.0,
         "relief": 1.0,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 100.0
       },
       {
         "biome": "biomesmod:devils_tower",
@@ -743,6 +899,7 @@
         "ramp": 220.0,
         "terrain": "lift",
         "target_y": 110,
+        "elevation_m": 1200.0,
         "relief": 0.3,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -842,8 +999,40 @@
         ],
         "ramp": 220.0,
         "terrain": "mountain",
-        "target_y": 125,
+        "target_y": 122,
+        "elevation_m": 1500.0,
         "relief": 0.8,
+        "weight": 1.0,
+        "biome_threshold": 0.5,
+        "ridges": 60.0,
+        "channels": {
+          "count": 1,
+          "width": 70.0,
+          "depth": 28.0
+        }
+      },
+      {
+        "biome": "biomesmod:giant_redwood_forest",
+        "temperature": [
+          -0.15,
+          0.2
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.19,
+          0.3
+        ],
+        "core": [
+          480.0,
+          620.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 84,
+        "relief": 0.5,
         "weight": 1.0,
         "biome_threshold": 0.5
       },
@@ -871,6 +1060,33 @@
         "relief": 0.5,
         "weight": 1.0,
         "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:glacier",
+        "temperature": [
+          -2.0,
+          -0.15
+        ],
+        "humidity": [
+          -10.0,
+          10.0
+        ],
+        "continentalness": [
+          0.03,
+          2.0
+        ],
+        "core": [
+          520.0,
+          660.0
+        ],
+        "ramp": 260.0,
+        "terrain": "mountain",
+        "target_y": 212,
+        "elevation_m": 2900.0,
+        "relief": 0.85,
+        "weight": 1.0,
+        "biome_threshold": 0.5,
+        "ridges": 80.0
       },
       {
         "biome": "biomesmod:gotjawal",
@@ -917,7 +1133,8 @@
         ],
         "ramp": 280.0,
         "terrain": "plateau",
-        "target_y": 145,
+        "target_y": 192,
+        "elevation_m": 2100.0,
         "relief": 0.08,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -942,7 +1159,8 @@
         ],
         "ramp": 260.0,
         "terrain": "plateau",
-        "target_y": 149,
+        "target_y": 196,
+        "elevation_m": 2240.0,
         "relief": 0.25,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1092,7 +1310,8 @@
         ],
         "ramp": 320.0,
         "terrain": "plateau",
-        "target_y": 200,
+        "target_y": 227,
+        "elevation_m": 3488.0,
         "relief": 0.04,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1118,9 +1337,11 @@
         "ramp": 240.0,
         "terrain": "lift",
         "target_y": 135,
+        "elevation_m": 1850.0,
         "relief": 0.5,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 40.0
       },
       {
         "biome": "biomesmod:lencois_maranhenses",
@@ -1242,7 +1463,8 @@
         ],
         "ramp": 240.0,
         "terrain": "plateau",
-        "target_y": 127,
+        "target_y": 129,
+        "elevation_m": 1700.0,
         "relief": 0.1,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1267,10 +1489,12 @@
         ],
         "ramp": 240.0,
         "terrain": "mountain",
-        "target_y": 135,
+        "target_y": 137,
+        "elevation_m": 1885.0,
         "relief": 0.8,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 80.0
       },
       {
         "biome": "biomesmod:orkhon_steppe",
@@ -1293,6 +1517,7 @@
         "ramp": 280.0,
         "terrain": "lift",
         "target_y": 124,
+        "elevation_m": 1550.0,
         "relief": 0.4,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1342,10 +1567,12 @@
         ],
         "ramp": 260.0,
         "terrain": "lift",
-        "target_y": 120,
+        "target_y": 122,
+        "elevation_m": 1500.0,
         "relief": 0.5,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 40.0
       },
       {
         "biome": "biomesmod:patagonian_steppe",
@@ -1417,7 +1644,8 @@
         ],
         "ramp": 320.0,
         "terrain": "lift",
-        "target_y": 236,
+        "target_y": 240,
+        "elevation_m": 4000.0,
         "relief": 0.35,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1467,7 +1695,8 @@
         ],
         "ramp": 280.0,
         "terrain": "plateau",
-        "target_y": 231,
+        "target_y": 248,
+        "elevation_m": 4300.0,
         "relief": 0.15,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1492,7 +1721,8 @@
         ],
         "ramp": 320.0,
         "terrain": "plateau",
-        "target_y": 205,
+        "target_y": 231,
+        "elevation_m": 3656.0,
         "relief": 0.02,
         "weight": 1.3,
         "biome_threshold": 0.5
@@ -1518,9 +1748,11 @@
         "ramp": 240.0,
         "terrain": "mountain",
         "target_y": 110,
+        "elevation_m": 1200.0,
         "relief": 0.8,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 60.0
       },
       {
         "biome": "biomesmod:socotra",
@@ -1533,19 +1765,33 @@
           -0.1
         ],
         "continentalness": [
-          -0.25,
-          0.3
+          -0.455,
+          -0.19
         ],
         "core": [
-          450.0,
-          600.0
+          480.0,
+          620.0
         ],
-        "ramp": 200.0,
+        "ramp": 220.0,
         "terrain": "lift",
-        "target_y": 72,
-        "relief": 0.5,
-        "weight": 1.0,
-        "biome_threshold": 0.5
+        "target_y": 92,
+        "elevation_m": 750.0,
+        "relief": 0.35,
+        "weight": 1.8,
+        "biome_threshold": 0.5,
+        "ridges": 45.0,
+        "zones": [
+          {
+            "biome": "biomesmod:socotra_highlands",
+            "from": 0.62,
+            "to": 1.0
+          },
+          {
+            "biome": "biomesmod:socotra_coast",
+            "from": 0.0,
+            "to": 0.3
+          }
+        ]
       },
       {
         "biome": "biomesmod:sossusvlei",
@@ -1592,7 +1838,8 @@
         ],
         "ramp": 240.0,
         "terrain": "lift",
-        "target_y": 160,
+        "target_y": 198,
+        "elevation_m": 2300.0,
         "relief": 0.45,
         "weight": 1.0,
         "biome_threshold": 0.5
@@ -1642,8 +1889,34 @@
         ],
         "ramp": 240.0,
         "terrain": "plateau",
-        "target_y": 100,
+        "target_y": 102,
+        "elevation_m": 1000.0,
         "relief": 0.12,
+        "weight": 1.0,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:white_old_growth",
+        "temperature": [
+          -0.45,
+          0.2
+        ],
+        "humidity": [
+          0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          2.0
+        ],
+        "core": [
+          460.0,
+          600.0
+        ],
+        "ramp": 240.0,
+        "terrain": "lift",
+        "target_y": 92,
+        "relief": 0.45,
         "weight": 1.0,
         "biome_threshold": 0.5
       },

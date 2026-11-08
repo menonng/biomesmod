@@ -3,41 +3,175 @@
   "configured": {
     "type": "biomesmod:landform",
     "config": {
-      "shape": "monolith",
       "biomes": [
         "biomesmod:salar_de_tara"
       ],
-      "spacing": 48,
-      "chance": 1.0,
       "salt": 21519,
-      "count": 3,
-      "taper": 0.5,
-      "radius": [
-        4,
-        7
+      "shape": "pillar_forest",
+      "spacing": 48,
+      "chance": 0.9,
+      "min_distance": 70,
+      "cluster_radius": [
+        8,
+        18
+      ],
+      "pillar_spacing": 8,
+      "density": 0.7,
+      "pillar_radius": [
+        2.5,
+        5.5
       ],
       "height": [
-        14,
-        28
+        10,
+        30
       ],
-      "columns": 0,
-      "flute": 0.0,
-      "talus": 0.6,
+      "taper": 0.5,
+      "flute": 0.1,
+      "lobes": 4,
+      "joints": 0.85,
+      "ledges": 0.55,
+      "lean": 0.12,
+      "talus": 0.8,
       "palette": {
         "strata": [
           {
-            "block": {
-              "Name": "minecraft:light_gray_terracotta"
-            },
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:light_gray_terracotta"
+                },
+                "weight": 45
+              },
+              {
+                "block": {
+                  "Name": "minecraft:white_terracotta"
+                },
+                "weight": 20
+              },
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 20
+              },
+              {
+                "block": {
+                  "Name": "minecraft:calcite"
+                },
+                "weight": 15
+              }
+            ],
+            "thickness": 3
+          },
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:terracotta"
+                },
+                "weight": 35
+              },
+              {
+                "block": {
+                  "Name": "minecraft:light_gray_terracotta"
+                },
+                "weight": 40
+              },
+              {
+                "block": {
+                  "Name": "minecraft:pink_terracotta"
+                },
+                "weight": 10
+              },
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 15
+              }
+            ],
             "thickness": 2
           },
           {
-            "block": {
-              "Name": "minecraft:terracotta"
-            },
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:tuff"
+                },
+                "weight": 60
+              },
+              {
+                "block": {
+                  "Name": "minecraft:white_terracotta"
+                },
+                "weight": 40
+              }
+            ],
+            "thickness": 1
+          },
+          {
+            "blocks": [
+              {
+                "block": {
+                  "Name": "minecraft:light_gray_terracotta"
+                },
+                "weight": 50
+              },
+              {
+                "block": {
+                  "Name": "minecraft:calcite"
+                },
+                "weight": 20
+              },
+              {
+                "block": {
+                  "Name": "minecraft:white_terracotta"
+                },
+                "weight": 30
+              }
+            ],
             "thickness": 2
           }
-        ]
+        ],
+        "warp": 1.5,
+        "warp_scale": 20,
+        "mix": 0.4
+      },
+      "streaks": [
+        {
+          "Name": "minecraft:tuff"
+        },
+        {
+          "Name": "minecraft:terracotta"
+        },
+        {
+          "Name": "minecraft:brown_terracotta"
+        }
+      ],
+      "streak_density": 0.1,
+      "talus_blocks": [
+        {
+          "Name": "minecraft:gravel"
+        },
+        {
+          "Name": "minecraft:coarse_dirt"
+        },
+        {
+          "Name": "minecraft:tuff"
+        },
+        {
+          "Name": "minecraft:light_gray_terracotta"
+        }
+      ],
+      "cap": {
+        "block": {
+          "Name": "minecraft:light_gray_terracotta"
+        },
+        "under": {
+          "Name": "minecraft:tuff"
+        },
+        "depth": 1,
+        "chance": 0.0
       }
     }
   },

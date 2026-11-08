@@ -4,21 +4,28 @@
       "biomesmod:puna_de_atacama"
     ],
     "chance": 1.0,
+    "concavity": 1.25,
     "crater": "dry",
+    "crater_radius": [
+      6,
+      10
+    ],
+    "gullies": 0.45,
     "height": [
-      45,
-      70
+      50,
+      75
     ],
     "max_relief": 200,
     "min_distance": 300,
     "radius": [
-      34,
-      48
+      85,
+      115
     ],
     "salt": 39964,
     "shape": "cone",
     "snowline": 275,
-    "spacing": 48
+    "spacing": 48,
+    "vents": 2
   },
   "type": "biomesmod:landform"
 }

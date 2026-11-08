@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_log",
+    "biomesmod:dragon_blood_wood",
+    "biomesmod:ghostwood_log",
+    "biomesmod:ghostwood_wood",
+    "biomesmod:redwood_log",
+    "biomesmod:redwood_wood",
+    "biomesmod:moon_bracket",
+    "biomesmod:ghostwood_hollow"
+  ]
+}

@@ -3,6 +3,16 @@
   "values": [
     "biomesmod:travertine",
     "biomesmod:sulfur_crust",
-    "biomesmod:dolerite"
+    "biomesmod:dolerite",
+    "biomesmod:geyserite",
+    "biomesmod:geyser_vent",
+    "biomesmod:steam_vent",
+    "biomesmod:scoria",
+    "biomesmod:glacier_ice",
+    "biomesmod:abyss_stone",
+    "biomesmod:star_crystal",
+    "biomesmod:star_crystal_cluster",
+    "biomesmod:starlit_abyss_stone",
+    "biomesmod:star_spring"
   ]
 }

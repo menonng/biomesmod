@@ -26,7 +26,8 @@
         -0.3,
         0.1
       ],
-      "target_y": 100
+      "target_y": 100,
+      "ridges": 60
     }
   },
   "base": "minecraft:snowy_slopes",

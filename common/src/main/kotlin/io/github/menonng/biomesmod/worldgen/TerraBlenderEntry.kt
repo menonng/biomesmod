@@ -16,7 +16,7 @@ import terrablender.api.TerraBlenderApi
 class TerraBlenderEntry : TerraBlenderApi {
 	override fun onTerraBlenderInitialized() {
 		val placements = Placements.get()
-		val carriers = placements.sites.specs.map { it.biome }
+		val carriers = placements.sites.allBiomes()
 		placements.overworldRegions.forEachIndexed { i, region ->
 			Regions.register(ModOverworldRegion(region, if (i == 0) carriers else listOf()))
 		}

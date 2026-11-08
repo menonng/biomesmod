@@ -15,6 +15,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import javax.imageio.ImageIO
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
@@ -108,6 +109,134 @@ object DebugRender {
 	}
 
 	/**
+	 * Isometric voxel view of a square of [size] blocks centred on [center], seen from the south-east and above
+	 * (overhangs, arches and pillar shapes show, which a top-down map cannot). Faces are shaded by orientation, the top
+	 * slightly by height; water is drawn as a translucent top. Written as renders/`name`_iso.png. The chunks must be
+	 * generated already (call after [render]).
+	 */
+	fun iso(level: ServerLevel, center: BlockPos, size: Int, name: String, s: Int = 2, bare: Boolean = false): Path {
+		val half = size / 2
+		val x0 = center.x - half
+		val z0 = center.z - half
+		val pos = BlockPos.MutableBlockPos()
+		var yLo = Int.MAX_VALUE
+		var yHi = Int.MIN_VALUE
+		for (dz in 0 until size step 2) {
+			for (dx in 0 until size step 2) {
+				val t = level.getHeight(Heightmap.Types.WORLD_SURFACE, x0 + dx, z0 + dz) - 1
+				val f = level.getHeight(Heightmap.Types.OCEAN_FLOOR, x0 + dx, z0 + dz) - 1
+				yLo = min(yLo, f)
+				yHi = max(yHi, t)
+			}
+		}
+		yLo = max(LevelCompat.minY(level), yLo - 3)
+		yHi += 2
+		val w = size * 4 * s + 8
+		val h = size * 2 * s + (yHi - yLo) * 2 * s + 8
+		val img = BufferedImage(w, h, BufferedImage.TYPE_INT_RGB)
+		val g = img.graphics
+		g.color = Color(0xC8D8EA)
+		g.fillRect(0, 0, w, h)
+		val ox = size * 2 * s + 4
+		val oy = (yHi - yLo) * 2 * s + 4
+		fun state(x: Int, y: Int, z: Int) = level.getBlockState(pos.set(x, y, z))
+		fun skip(st: net.minecraft.world.level.block.state.BlockState): Boolean =
+			st.isAir || (bare && (st.`is`(net.minecraft.tags.BlockTags.LEAVES) || st.`is`(net.minecraft.tags.BlockTags.LOGS) || (!st.canOcclude() && st.fluidState.isEmpty)))
+		fun open(x: Int, y: Int, z: Int): Boolean {
+			val st = state(x, y, z)
+			return skip(st) || !st.canOcclude()
+		}
+		fun fill(cx: Int, cy: Int, face: Int, rgb: Int) {
+			// face 0 top rhombus, 1 south (left) parallelogram, 2 east (right) parallelogram; one block = 4s x 2s top.
+			when (face) {
+				0 -> for (dy in -s until s) {
+					val half2 = 2 * s * (s - abs(dy + 0.5)) / s
+					for (dx in (-half2).toInt() until half2.toInt()) setPx(img, cx + dx, cy + dy, rgb)
+				}
+				1 -> for (dx in -2 * s until 0) {
+					val y0 = cy + ((dx + 2 * s) / 2.0).toInt()
+					for (dy in 0 until 2 * s) setPx(img, cx + dx, y0 + dy, rgb)
+				}
+				else -> for (dx in 0 until 2 * s) {
+					val y0 = cy + s - ((dx + 1) / 2.0).toInt()
+					for (dy in 0 until 2 * s) setPx(img, cx + dx, y0 + dy, rgb)
+				}
+			}
+		}
+		for (d in 0..2 * (size - 1)) {
+			for (i in max(0, d - size + 1)..min(size - 1, d)) {
+				val k = d - i
+				val x = x0 + i
+				val z = z0 + k
+				val top = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1
+				for (y in yLo..top) {
+					val st = state(x, y, z)
+					if (skip(st)) {
+						continue
+					}
+					val water = !st.fluidState.isEmpty && !st.canOcclude()
+					val up = open(x, y + 1, z)
+					if (water) {
+						if (!up || !state(x, y + 1, z).fluidState.isEmpty) {
+							continue
+						}
+					}
+					val south = open(x, y, z + 1)
+					val east = open(x + 1, y, z)
+					if (!up && !south && !east) {
+						continue
+					}
+					var rgb = flowerColour(st) ?: st.getMapColor(level, pos.set(x, y, z)).col
+					if (rgb == 0) {
+						rgb = 0x7F7F7F
+					}
+					val cx = ox + (i - k) * 2 * s
+					val cy = oy + (i + k) * s - (y - yLo) * 2 * s
+					if (water) {
+						fill(cx, cy, 0, mix(rgb, 0x3060C0, 0.35))
+						continue
+					}
+					val lift = 0.9 + 0.2 * (y - yLo) / max(1.0, (yHi - yLo).toDouble())
+					if (south) fill(cx, cy, 1, scale(rgb, 0.78 * lift))
+					if (east) fill(cx, cy, 2, scale(rgb, 0.6 * lift))
+					if (up) fill(cx, cy, 0, scale(rgb, 1.0 * lift))
+				}
+			}
+		}
+		g.dispose()
+		val out = Path.of("renders").resolve("${name}${if (bare) "_bare" else ""}_iso.png")
+		try {
+			Files.createDirectories(out.parent)
+			ImageIO.write(img, "png", out.toFile())
+		} catch (e: IOException) {
+			BiomesMod.LOGGER.error("[render] failed to write {}", out, e)
+		}
+		return out
+	}
+
+	/** Small flowers all share the plant map colour; give the common ones their petal colour so fields show. */
+	private fun flowerColour(st: net.minecraft.world.level.block.state.BlockState): Int? {
+		if (!st.`is`(net.minecraft.tags.BlockTags.SMALL_FLOWERS)) return null
+		val n = st.block.descriptionId
+		return when {
+			"red_tulip" in n || "poppy" in n -> 0xD8332A
+			"orange_tulip" in n -> 0xEE8A22
+			"pink_tulip" in n -> 0xF0A0C8
+			"white_tulip" in n || "oxeye" in n || "lily" in n -> 0xF2F2EC
+			"allium" in n -> 0xB66BDB
+			"dandelion" in n -> 0xF5D63A
+			"cornflower" in n || "orchid" in n -> 0x4F7FE0
+			else -> 0xE0D0E8
+		}
+	}
+
+	private fun setPx(img: BufferedImage, x: Int, y: Int, rgb: Int) {
+		if (x >= 0 && y >= 0 && x < img.width && y < img.height) {
+			img.setRGB(x, y, rgb)
+		}
+	}
+
+	/**
 	 * Large top-down map ("satellite view") of a square of [size] blocks centred on [center], one pixel per [step]
 	 * blocks: block map colours, water tinted by depth, hill-shaded by height. Chunks are loaded (or generated) one row
 	 * at a time, so whole sites can be mapped from a pre-generated world. Written as maps/`name`.png.
@@ -165,14 +294,92 @@ object DebugRender {
 	 * Renders every map of a plan file (`[{"name": "...", "x": 0, "z": 0, "size": 1024, "step": 2}]`) once the server
 	 * has started; enabled with `-Dbiomesmod.maps=<plan.json>` (dev tooling for the docs gallery).
 	 */
-	fun mapPlan(server: net.minecraft.server.MinecraftServer, plan: String) {
-		val level = server.overworld()
+	/**
+	 * Renders every map of a plan (`[{"name", "x", "z", "size", "step"}]`) on a background thread while the server keeps
+	 * ticking: each map is generated in bands of chunk rows that are force-loaded (so the chunk system generates them in
+	 * parallel and keeps them until drawn), drawn, then released and saved. Calls [done] on the server thread at the end.
+	 */
+	fun mapPlan(server: net.minecraft.server.MinecraftServer, plan: String, done: () -> Unit = {}) {
 		val entries = com.google.gson.JsonParser.parseString(Files.readString(Path.of(plan))).asJsonArray
-		for (e in entries) {
-			val o = e.asJsonObject
-			map(level, BlockPos(o.get("x").asInt, 64, o.get("z").asInt), o.get("size").asInt, o.get("step")?.asInt ?: 2, o.get("name").asString)
+		Thread({
+			val t0 = System.currentTimeMillis()
+			for ((k, e) in entries.withIndex()) {
+				val o = e.asJsonObject
+				try {
+					mapAsync(server, BlockPos(o.get("x").asInt, 64, o.get("z").asInt), o.get("size").asInt, o.get("step")?.asInt ?: 2, o.get("name").asString)
+				} catch (ex: Exception) {
+					BiomesMod.LOGGER.error("[render] map {} failed", o.get("name").asString, ex)
+				}
+				BiomesMod.LOGGER.info("[render] map plan {}/{} after {} s", k + 1, entries.size(), (System.currentTimeMillis() - t0) / 1000)
+			}
+			BiomesMod.LOGGER.info("[render] map plan done ({} map(s))", entries.size())
+			server.execute(done)
+		}, "biomesmod-maps").start()
+	}
+
+	private fun mapAsync(server: net.minecraft.server.MinecraftServer, center: BlockPos, size: Int, step: Int, name: String) {
+		val level = server.overworld()
+		val px = size / step
+		val half = size / 2
+		val height = Array(px) { IntArray(px) }
+		val img = BufferedImage(px, px, BufferedImage.TYPE_INT_RGB)
+		val x0 = center.x - half
+		val z0 = center.z - half
+		val cx0 = x0 shr 4
+		val cx1 = (x0 + size - 1) shr 4
+		val band = 6
+		var cz = z0 shr 4
+		val czEnd = (z0 + size - 1) shr 4
+		while (cz <= czEnd) {
+			val bz0 = cz
+			val bz1 = min(czEnd, cz + band - 1)
+			server.submit<Unit> { for (z in bz0..bz1) for (x in cx0..cx1) level.setChunkForced(x, z, true) }.join()
+			val deadline = System.currentTimeMillis() + 600_000
+			while (System.currentTimeMillis() < deadline) {
+				val ready = server.submit<Boolean> { (bz0..bz1).all { z -> (cx0..cx1).all { x -> level.chunkSource.hasChunk(x, z) } } }.join()
+				if (ready) break
+				Thread.sleep(200)
+			}
+			server.submit<Unit> {
+				val pos = BlockPos.MutableBlockPos()
+				for (j in 0 until px) {
+					val z = z0 + j * step
+					if (z shr 4 < bz0 || z shr 4 > bz1) continue
+					for (i in 0 until px) {
+						val x = x0 + i * step
+						val top = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1
+						val floor = level.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z) - 1
+						height[i][j] = top
+						pos.set(x, top, z)
+						val state = level.getBlockState(pos)
+						var rgb = state.getMapColor(level, pos).col
+						if (!state.fluidState.isEmpty && top > floor) {
+							pos.set(x, floor, z)
+							val floorRgb = level.getBlockState(pos).getMapColor(level, pos).col
+							rgb = mix(floorRgb, rgb, 0.35 + 0.65 * min(1.0, (top - floor) / 12.0))
+						}
+						img.setRGB(i, j, rgb)
+					}
+				}
+				for (z in bz0..bz1) for (x in cx0..cx1) level.setChunkForced(x, z, false)
+			}.join()
+			cz = bz1 + 1
 		}
-		BiomesMod.LOGGER.info("[render] map plan done ({} map(s))", entries.size())
+		for (j in 0 until px) {
+			for (i in 0 until px) {
+				val hn = height[max(0, i - 1)][max(0, j - 1)]
+				val shade = 1.0 + max(-0.45, min(0.45, (height[i][j] - hn) * 0.12 / step))
+				img.setRGB(i, j, scale(img.getRGB(i, j), shade))
+			}
+		}
+		val out = Path.of("maps").resolve("$name.png")
+		try {
+			Files.createDirectories(out.parent)
+			ImageIO.write(img, "png", out.toFile())
+		} catch (e: IOException) {
+			BiomesMod.LOGGER.error("[render] failed to write {}", out, e)
+		}
+		BiomesMod.LOGGER.info("[render] map {} ({} blocks, {} per pixel) -> {}", name, size, step, out.toAbsolutePath())
 	}
 
 	/**

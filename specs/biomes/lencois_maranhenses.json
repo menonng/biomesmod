@@ -52,11 +52,16 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:seagrass_normal"
+      ]
+    }
   },
   "spawners": "base",
   "surface": {
-    "top": "minecraft:white_concrete_powder",
+    "top": "biomesmod:white_sand",
     "under": "minecraft:sand",
     "under_depth": 3
   },

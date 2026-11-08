@@ -17,6 +17,7 @@ object LandformShapes {
 		HotSpringShape.NAME to HotSpringShape.CODEC,
 		CascadeShape.NAME to CascadeShape.CODEC,
 		GlacialLakeShape.NAME to GlacialLakeShape.CODEC,
+		GeyserShape.NAME to GeyserShape.CODEC,
 	)
 
 	private val NAME: Codec<String> = Codec.STRING.validate { s ->

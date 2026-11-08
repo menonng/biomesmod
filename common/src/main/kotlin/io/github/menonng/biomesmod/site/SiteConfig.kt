@@ -1,6 +1,7 @@
 package io.github.menonng.biomesmod.site
 
 import com.google.gson.JsonObject
+import io.github.menonng.biomesmod.BiomesConfig
 
 /**
  * Site placement data from placements.json ("sites"), written by tools/biomegen from each biome spec's
@@ -28,10 +29,18 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 		BASIN,
 	}
 
+	/** A sub-biome of a site: used where the site weight (lightly noise-jittered) lies in [from, to). */
+	data class Zone(val biome: String, val from: Double, val to: Double)
+
+	/** Fjord channels cut from the site centre towards the sea: [count] channels, half [width] blocks, [depth] below sea. */
+	data class Channels(val count: Int, val width: Double, val depth: Double)
+
 	/**
 	 * One site-placed biome. Climate ranges are in vanilla parameter space (temperature, humidity, continentalness
 	 * and erosion at the site centre); [weight] is its share among the biomes that accept a centre. [coreMin] to
-	 * [coreMax] is the radius of the full-strength area, [ramp] the width of the fade.
+	 * [coreMax] is the radius of the full-strength area, [ramp] the width of the fade. [targetY] comes from the real
+	 * elevation through the config (`BiomesConfig.targetY`) unless the spec fixes it. [ridges] adds ridged peaks of up
+	 * to that many blocks (mountain sites), [zones] are sub-biomes towards the edge, [channels] fjords.
 	 */
 	class Spec(
 		val biome: String,
@@ -47,23 +56,28 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 		val targetY: Int,
 		val relief: Double,
 		val biomeThreshold: Double,
+		val ridges: Double = 0.0,
+		val zones: List<Zone> = listOf(),
+		val channels: Channels? = null,
 	) {
 		fun accepts(t: Double, h: Double, c: Double, e: Double): Boolean =
 			inRange(temperature, t) && inRange(humidity, h) && inRange(continentalness, c) && inRange(erosion, e)
 
 		private fun inRange(r: DoubleArray, v: Double): Boolean = v >= r[0] && v <= r[1]
+
+		fun scaled(f: Double): Spec = Spec(biome, weight, temperature, humidity, continentalness, erosion, coreMin * f, coreMax * f, ramp * f,
+			terrain, targetY, relief, biomeThreshold, ridges, zones, channels?.let { Channels(it.count, it.width * f, it.depth) })
 	}
 
 	/** The largest distance from a centre at which any site still has weight, warp included. */
 	fun maxOuter(): Double = (specs.maxOfOrNull { it.coreMax * 1.3 + it.ramp } ?: 0.0) + warp
 
 	/** The same layout scaled by [factor] (cell, sizes, ramps and warp), for presets with stretched climate. */
-	fun scaled(factor: Double): SiteConfig = if (factor == 1.0) this else SiteConfig(
-		(cell * factor).toInt(), jitter, chance, warp * factor,
-		specs.map {
-			Spec(it.biome, it.weight, it.temperature, it.humidity, it.continentalness, it.erosion, it.coreMin * factor,
-				it.coreMax * factor, it.ramp * factor, it.terrain, it.targetY, it.relief, it.biomeThreshold)
-		})
+	fun scaled(factor: Double): SiteConfig =
+		if (factor == 1.0) this else SiteConfig((cell * factor).toInt(), jitter, chance, warp * factor, specs.map { it.scaled(factor) })
+
+	/** Every biome a site can produce (the site biomes and their zones). */
+	fun allBiomes(): List<String> = specs.flatMap { listOf(it.biome) + it.zones.map { z -> z.biome } }.distinct()
 
 	companion object {
 		@JvmField
@@ -74,16 +88,26 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 				return EMPTY
 			}
 			val grid = o.getAsJsonObject("grid")
+			val cfg = BiomesConfig.sites
 			val specs = o.getAsJsonArray("list").map { e ->
 				val s = e.asJsonObject
 				val core = range(s, "core")
-				Spec(s.get("biome").asString, s.get("weight").asDouble, range(s, "temperature"), range(s, "humidity"),
+				// A real elevation goes through the config mapping; a fixed target_y (no elevation) stays as written.
+				val target = if (s.has("elevation_m") && !s.has("fixed_y")) BiomesConfig.targetY(s.get("elevation_m").asDouble) else s.get("target_y").asInt
+				val zones = if (!s.has("zones")) listOf() else s.getAsJsonArray("zones").map { z ->
+					val zo = z.asJsonObject
+					Zone(zo.get("biome").asString, zo.get("from").asDouble, zo.get("to").asDouble)
+				}
+				val channels = if (!s.has("channels")) null else s.getAsJsonObject("channels").let {
+					Channels(it.get("count").asInt, it.get("width").asDouble, it.get("depth").asDouble)
+				}
+				val biome = s.get("biome").asString
+				Spec(biome, s.get("weight").asDouble * BiomesConfig.weight(biome), range(s, "temperature"), range(s, "humidity"),
 					range(s, "continentalness"), range(s, "erosion"), core[0], core[1], s.get("ramp").asDouble,
-					Terrain.valueOf(s.get("terrain").asString.uppercase()), s.get("target_y").asInt, s.get("relief").asDouble,
-					s.get("biome_threshold").asDouble)
-			}
-			return SiteConfig(grid.get("cell").asInt, grid.get("jitter").asDouble, grid.get("chance").asDouble,
-				grid.get("warp").asDouble, specs)
+					Terrain.valueOf(s.get("terrain").asString.uppercase()), target, s.get("relief").asDouble, s.get("biome_threshold").asDouble,
+					if (s.has("ridges")) s.get("ridges").asDouble * BiomesConfig.ridgeScale else 0.0, zones, channels).scaled(cfg.sizeScale)
+			}.filter { it.weight > 0 }
+			return SiteConfig(cfg.cell, grid.get("jitter").asDouble, cfg.chance, grid.get("warp").asDouble * cfg.sizeScale, specs)
 		}
 
 		private fun range(s: JsonObject, key: String): DoubleArray {

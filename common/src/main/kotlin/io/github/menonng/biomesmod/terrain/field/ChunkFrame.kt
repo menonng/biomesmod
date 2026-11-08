@@ -579,11 +579,11 @@ class ChunkFrame private constructor() {
 					want = patch(x, z, wet, want)
 				}
 			} else if (cliff && strata != null && y > minNb) {
-				want = strata.strataAt(y)
+				want = strata.strataAt(x, y, z)
 			} else if (y > oi || (gi > oi && y >= oi - 1)) {
-				want = fill(i, y, strata)
+				want = fill(i, x, y, z, strata)
 			} else if (y >= sealBottom && (cur.isAir || !cur.fluidState.isEmpty)) {
-				want = fill(i, y, strata)
+				want = fill(i, x, y, z, strata)
 			}
 			if (want != null && want !== cur) {
 				setRaw(want)
@@ -634,7 +634,7 @@ class ChunkFrame private constructor() {
 		return base
 	}
 
-	private fun fill(i: Int, y: Int, strata: StrataPalette?): BlockState = strata?.strataAt(y) ?: origDeep[i]!!
+	private fun fill(i: Int, x: Int, y: Int, z: Int, strata: StrataPalette?): BlockState = strata?.strataAt(x, y, z) ?: origDeep[i]!!
 
 	private fun set(x: Int, y: Int, z: Int, want: BlockState) {
 		pos.set(x, y, z)

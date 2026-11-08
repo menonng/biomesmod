@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "biomesmod:block/ghostwood_hollow"
+    },
+    "axis=z": {
+      "model": "biomesmod:block/ghostwood_hollow_horizontal",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "biomesmod:block/ghostwood_hollow_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

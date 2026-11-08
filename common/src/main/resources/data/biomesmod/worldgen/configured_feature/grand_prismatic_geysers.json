@@ -1,0 +1,28 @@
+{
+  "config": {
+    "apron_radius": [
+      12,
+      22
+    ],
+    "biomes": [
+      "biomesmod:grand_prismatic"
+    ],
+    "chance": 0.75,
+    "cone_height": [
+      2,
+      6
+    ],
+    "cone_radius": [
+      4,
+      8
+    ],
+    "fumaroles": 3,
+    "min_distance": 46,
+    "pools": 0.35,
+    "salt": 72215,
+    "shape": "geyser",
+    "snags": 5,
+    "spacing": 36
+  },
+  "type": "biomesmod:landform"
+}

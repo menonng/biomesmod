@@ -1,0 +1,22 @@
+{
+  "config": {
+    "flowers": {
+      "Name": "minecraft:pink_petals"
+    },
+    "girth": [
+      0.9,
+      1.7
+    ],
+    "height": [
+      2,
+      4
+    ],
+    "tips": {
+      "Name": "minecraft:flowering_azalea_leaves"
+    },
+    "trunk": {
+      "Name": "minecraft:mushroom_stem"
+    }
+  },
+  "type": "biomesmod:bottle_tree"
+}

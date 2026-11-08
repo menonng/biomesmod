@@ -1,0 +1,188 @@
+{
+  "salar_de_uyuni": {
+    "above": 4,
+    "dist": 0.45,
+    "time": 1200
+  },
+  "lake_gairdner": {
+    "above": 5,
+    "dist": 0.5
+  },
+  "salar_de_tara": {
+    "above": 8,
+    "dist": 0.6
+  },
+  "lake_vostok_plateau": {
+    "above": 12,
+    "dist": 0.6
+  },
+  "dasht_e_lut": {
+    "above": 28
+  },
+  "grand_canyon": {
+    "above": 22,
+    "dist": 0.5
+  },
+  "monument_valley": {
+    "above": 14,
+    "dist": 0.55
+  },
+  "wadi_rum": {
+    "above": 18,
+    "dist": 0.55
+  },
+  "everglades": {
+    "above": 22
+  },
+  "amazon_varzea": {
+    "above": 26
+  },
+  "dallol": {
+    "above": 18,
+    "dist": 0.4
+  },
+  "pamukkale": {
+    "above": 24,
+    "dist": 0.5
+  },
+  "plitvice_lakes": {
+    "above": 28,
+    "dist": 0.5
+  },
+  "exuma_cays": {
+    "above": 30
+  },
+  "great_barrier_reef": {
+    "above": 34
+  },
+  "ha_long_bay": {
+    "above": 30,
+    "dist": 0.55
+  },
+  "alkefjellet": {
+    "above": 28
+  },
+  "cliffs_of_moher": {
+    "above": 26
+  },
+  "giants_causeway": {
+    "above": 18
+  },
+  "lofoten_reine": {
+    "above": 40
+  },
+  "aletsch_glacier": {
+    "above": 80
+  },
+  "denali_massif": {
+    "above": 90
+  },
+  "cordillera_darwin": {
+    "above": 70
+  },
+  "sarek": {
+    "above": 70
+  },
+  "patagonian_icefield": {
+    "above": 60
+  },
+  "antarctic_peninsula": {
+    "above": 70
+  },
+  "geirangerfjord": {
+    "above": 55,
+    "dist": 0.5
+  },
+  "lauterbrunnen": {
+    "above": 45,
+    "dist": 0.5
+  },
+  "magellanic_fjords": {
+    "above": 45
+  },
+  "mcmurdo_dry_valleys": {
+    "above": 50
+  },
+  "puna_de_atacama": {
+    "above": 40
+  },
+  "orkhon_steppe": {
+    "above": 22
+  },
+  "patagonian_steppe": {
+    "above": 22
+  },
+  "zhangjiajie": {
+    "above": 45,
+    "dist": 0.45
+  },
+  "socotra": {
+    "above": 22,
+    "dist": 0.35
+  },
+  "sossusvlei": {
+    "above": 30
+  },
+  "lencois_maranhenses": {
+    "above": 24
+  },
+  "daintree": {
+    "above": 30
+  },
+  "gotjawal": {
+    "above": 22
+  },
+  "franz_josef_land": {
+    "above": 40
+  },
+  "ross_ice_shelf": {
+    "above": 40
+  },
+  "devils_tower": {
+    "above": 20,
+    "t_above": -25
+  },
+  "tre_cime": {
+    "above": 30,
+    "t_above": -20
+  },
+  "grand_prismatic": {
+    "lm_dist": 80,
+    "above": 14
+  },
+  "moraine_lake": {
+    "above": 32,
+    "t_above": 0
+  },
+  "iguazu_falls": {
+    "above": 22,
+    "t_above": -6
+  },
+  "alaid_volcano": {
+    "lm_dist": 420,
+    "above": 40,
+    "t_above": 60
+  },
+  "krenitsyn_caldera": {
+    "above": 60
+  },
+  "ushishir_caldera": {
+    "above": 55
+  },
+  "bromo_tengger": {
+    "above": 60
+  },
+  "glacier": {
+    "above": 80,
+    "dist": 0.5
+  },
+  "white_old_growth": {
+    "above": 62,
+    "dist": 0.5,
+    "t_above": -10
+  },
+  "giant_redwood_forest": {
+    "above": 22,
+    "dist": 0.45
+  }
+}

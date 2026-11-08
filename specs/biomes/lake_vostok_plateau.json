@@ -27,7 +27,7 @@
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 200
+      "elevation_m": 3488
     }
   },
   "base": "minecraft:snowy_plains",

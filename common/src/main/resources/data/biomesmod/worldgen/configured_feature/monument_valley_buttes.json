@@ -3,12 +3,12 @@
     "biomes": [
       "biomesmod:monument_valley"
     ],
-    "chance": 1.0,
+    "chance": 0.75,
     "height": [
       30,
       55
     ],
-    "min_distance": 110,
+    "min_distance": 240,
     "radius": [
       14,
       24

@@ -1,0 +1,69 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "socotra_highlands",
+  "names": {
+    "en_us": "Socotra Haggeher Highlands",
+    "ko_kr": "소코트라 하지르 고지대"
+  },
+  "places": [
+    13
+  ],
+  "dimension": "overworld",
+  "placement": {
+    "zone_of": "socotra"
+  },
+  "base": "minecraft:savanna_plateau",
+  "climate": {
+    "temperature": 1.1,
+    "downfall": 0.45
+  },
+  "colors": {
+    "grass": "#8fa45a",
+    "foliage": "#4f7a38",
+    "sky": "#9ec0e8",
+    "fog": "#d8e2e6",
+    "water": "#3fb6c8",
+    "water_fog": "#1f6f80"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_savanna",
+      "minecraft:lake_lava_surface"
+    ],
+    "mod": {
+      "local_modifications": [
+        "biomesmod:socotra_highlands_crags"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:socotra_highlands_dragon_blood",
+        "biomesmod:socotra_desert_roses"
+      ]
+    }
+  },
+  "spawners": "base",
+  "surface": {
+    "top": "minecraft:grass_block",
+    "under": "minecraft:coarse_dirt",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "minecraft:granite",
+        "noise": "minecraft:surface",
+        "min": 0.35
+      },
+      {
+        "block": "minecraft:coarse_dirt",
+        "noise": "minecraft:surface",
+        "max": -0.3,
+        "min": -9.0
+      }
+    ]
+  },
+  "carvers": "underground",
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.004
+    }
+  ]
+}

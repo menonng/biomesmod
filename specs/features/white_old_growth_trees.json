@@ -1,0 +1,61 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:giant_tree",
+    "config": {
+      "style": "broad",
+      "log": {
+        "Name": "biomesmod:ghostwood_log"
+      },
+      "wood": {
+        "Name": "biomesmod:ghostwood_wood"
+      },
+      "leaves": {
+        "Name": "biomesmod:ghostwood_leaves"
+      },
+      "height": [
+        10,
+        15
+      ],
+      "radius": [
+        0.5,
+        0.8
+      ],
+      "crown": [
+        4,
+        6
+      ],
+      "dead_limbs": 0.05,
+      "dress": {
+        "hanging": {
+          "Name": "biomesmod:silver_beard"
+        },
+        "hanging_chance": 0.07,
+        "bracket": {
+          "Name": "biomesmod:moon_bracket"
+        },
+        "bracket_chance": 0.03
+      }
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:surface_water_depth_filter",
+      "max_water_depth": 0
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

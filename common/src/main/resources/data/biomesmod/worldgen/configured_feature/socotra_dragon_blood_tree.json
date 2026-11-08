@@ -1,0 +1,26 @@
+{
+  "config": {
+    "branches": 3,
+    "crown_radius": [
+      4.0,
+      6.5
+    ],
+    "crown_thickness": [
+      2,
+      3
+    ],
+    "forks": 2,
+    "leaves": {
+      "Name": "biomesmod:dragon_blood_leaves"
+    },
+    "thick": 0.35,
+    "trunk": {
+      "Name": "biomesmod:dragon_blood_log"
+    },
+    "trunk_height": [
+      3,
+      6
+    ]
+  },
+  "type": "biomesmod:umbrella_tree"
+}

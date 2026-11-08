@@ -12,16 +12,23 @@
       "salt": 39964,
       "min_distance": 300,
       "radius": [
-        34,
-        48
+        85,
+        115
       ],
       "height": [
-        45,
-        70
+        50,
+        75
       ],
       "snowline": 275,
       "crater": "dry",
-      "max_relief": 200
+      "max_relief": 200,
+      "concavity": 1.25,
+      "crater_radius": [
+        6,
+        10
+      ],
+      "gullies": 0.45,
+      "vents": 2
     }
   },
   "placement": []

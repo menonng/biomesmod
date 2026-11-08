@@ -41,7 +41,7 @@ data class FlattenMode(
 	private inner class S(seed: Long) : Shaper(seed) {
 		private val waterT = Coverage.threshold(waterCoverage, 3)
 		private val crustT = Coverage.threshold(crust, 2)
-		private val ridge: BlockState = crustBlock.orElseGet { P.id("white_concrete_powder") }
+		private val ridge: BlockState = crustBlock.orElseGet { P.id("biomesmod:white_sand") }
 
 		override fun defaultPalette(): FieldPalette = P.palette(P.layers(Blocks.CALCITE, 2, "white_terracotta", 2), P.layers(Blocks.CALCITE, 2),
 			P.strata(Blocks.SMOOTH_SANDSTONE, 3, "white_terracotta", 1), 6)

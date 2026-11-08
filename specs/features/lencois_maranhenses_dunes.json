@@ -16,7 +16,7 @@
         "top": [
           {
             "block": {
-              "Name": "minecraft:white_concrete_powder"
+              "Name": "biomesmod:white_sand"
             },
             "depth": 2
           },
@@ -33,6 +33,32 @@
               "Name": "minecraft:sand"
             },
             "depth": 2
+          }
+        ],
+        "patches": [
+          {
+            "block": {
+              "Name": "minecraft:moss_block"
+            },
+            "coverage": 0.3,
+            "scale": 9,
+            "underwater": true
+          },
+          {
+            "block": {
+              "Name": "minecraft:clay"
+            },
+            "coverage": 0.15,
+            "scale": 6,
+            "underwater": true
+          },
+          {
+            "block": {
+              "Name": "minecraft:sand"
+            },
+            "coverage": 0.25,
+            "scale": 14,
+            "underwater": false
           }
         ]
       }

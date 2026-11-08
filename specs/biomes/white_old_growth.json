@@ -1,0 +1,90 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "white_old_growth",
+  "names": {
+    "en_us": "White Old Growth",
+    "ko_kr": "백색 고목림"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "humidity": [
+        "humid",
+        "wet"
+      ],
+      "size": [
+        460,
+        600
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.45,
+      "weight": 1.0,
+      "zone": [
+        "near_inland",
+        "mid_inland",
+        "far_inland"
+      ],
+      "target_y": 92
+    }
+  },
+  "base": "minecraft:old_growth_birch_forest",
+  "climate": {
+    "temperature": 0.45,
+    "downfall": 0.8
+  },
+  "colors": {
+    "sky": "#c4ced8",
+    "fog": "#e9edf0",
+    "grass": "#a7b8a6",
+    "foliage": "#b9c8c0",
+    "water": "#7fa3b8",
+    "water_fog": "#3a5566"
+  },
+  "particles": [
+    {
+      "type": "minecraft:white_ash",
+      "probability": 0.018
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:birch_tall",
+      "minecraft:lake_lava_surface"
+    ],
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:white_old_growth_fallen",
+        "biomesmod:white_old_growth_giants",
+        "biomesmod:white_old_growth_trees",
+        "biomesmod:white_old_growth_ferns",
+        "biomesmod:white_old_growth_moonpetals",
+        "biomesmod:white_old_growth_moss"
+      ]
+    }
+  },
+  "surface": {
+    "top": "minecraft:grass_block",
+    "under": "minecraft:dirt",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "biomesmod:pale_moss",
+        "noise": "minecraft:surface",
+        "min": -0.15
+      },
+      {
+        "block": "minecraft:podzol",
+        "noise": "minecraft:surface",
+        "min": 0.6
+      }
+    ]
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

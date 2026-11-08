@@ -33,7 +33,7 @@
         "wet",
         "humid"
       ],
-      "target_y": 145
+      "elevation_m": 2100
     }
   },
   "base": "minecraft:savanna",

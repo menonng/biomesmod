@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
-    "biomesmod:salt_crust"
+    "biomesmod:salt_crust",
+    "biomesmod:thermal_mat_orange",
+    "biomesmod:thermal_mat_yellow",
+    "biomesmod:thermal_mat_green",
+    "biomesmod:white_sand",
+    "biomesmod:volcanic_ash",
+    "biomesmod:stardust"
   ]
 }

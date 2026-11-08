@@ -27,7 +27,22 @@ object SiteBiomes {
 		if (depth > MAX_DEPTH) {
 			return null
 		}
-		return holders[a.spec.biome]
+		return holders[zoneBiome(field, a, b.wa, qx shl 2, qz shl 2)]
+	}
+
+	/** The site biome, or the zone biome its (noise-jittered) radial position falls into: zones are concentric sub-biomes. */
+	private fun zoneBiome(field: SiteField, site: SiteField.Site, w: Double, x: Int, z: Int): String {
+		val zones = site.spec.zones
+		if (zones.isEmpty()) {
+			return site.spec.biome
+		}
+		// Zones are rings by distance from the centre (1 at the centre, 0 at the outer edge), with ragged borders.
+		val dx = (x - site.x).toDouble()
+		val dz = (z - site.z).toDouble()
+		val r = kotlin.math.sqrt(dx * dx + dz * dz) / (site.outer() * site.shape(kotlin.math.atan2(dz, dx)))
+		val jw = 1 - r + 0.06 * field.detailNoise(x / 64.0, z / 64.0, 3)
+		// A zone starting at 0 or ending at 1 is open on that side (the jitter can push the weight past either end).
+		return zones.firstOrNull { (jw >= it.from || it.from <= 0.0) && (jw < it.to || it.to >= 1.0) }?.biome ?: site.spec.biome
 	}
 
 	/** Id to holder for every biome the source can produce. */

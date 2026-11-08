@@ -34,7 +34,7 @@
         "dry",
         "neutral"
       ],
-      "target_y": 110
+      "elevation_m": 1200
     }
   },
   "base": "minecraft:plains",

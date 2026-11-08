@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "biomesmod:block/star_spring_top",
+    "side": "biomesmod:block/starlit_abyss_stone",
+    "bottom": "biomesmod:block/abyss_stone"
+  }
+}

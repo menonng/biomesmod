@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "biomesmod:block/geyser_vent_top",
+    "side": "biomesmod:block/geyserite",
+    "bottom": "biomesmod:block/geyserite"
+  }
+}

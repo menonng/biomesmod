@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_leaves",
+    "biomesmod:ghostwood_leaves",
+    "biomesmod:pale_moss",
+    "biomesmod:redwood_leaves",
+    "biomesmod:pale_moss_carpet"
+  ]
+}

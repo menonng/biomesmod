@@ -1,0 +1,22 @@
+{
+  "gotjawal": [
+    {
+      "n": 0,
+      "lat": 33.33,
+      "lon": 126.26,
+      "name": "Hangyeong-Joncheon Gotjawal (Jeju Island)",
+      "country": "South Korea",
+      "summary": "Gotjawal is Jeju's forest on rough 'a'a lava fields: a dense evergreen and deciduous woodland growing straight out of jumbled basalt blocks, with mossy rocks, vines and ferns, never cleared for farming because the ground is too rough."
+    }
+  ],
+  "giant_redwood_forest": [
+    {
+      "n": 0,
+      "lat": 41.2075,
+      "lon": -123.9971,
+      "name": "Tall Trees Grove, Redwood National Park",
+      "country": "United States (California)",
+      "summary": "Coast redwoods, the tallest trees on Earth (over 110 m), stand in fog-fed groves along Redwood Creek: thick red fibrous trunks rising from a fern and moss floor into a closed canopy far overhead."
+    }
+  ]
+}

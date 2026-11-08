@@ -7,7 +7,7 @@
   },
   "downfall": 0.8,
   "effects": {
-    "fog_color": 12638463,
+    "fog_color": 14148074,
     "foliage_color": 5874492,
     "grass_color": 7979098,
     "mood_sound": {
@@ -22,8 +22,8 @@
       "replace_current_music": false,
       "sound": "minecraft:music.overworld.flower_forest"
     },
-    "sky_color": 7972607,
-    "water_color": 4159204,
+    "sky_color": 9417689,
+    "water_color": 4157327,
     "water_fog_color": 329011
   },
   "features": [
@@ -80,9 +80,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:flower_flower_forest",
       "minecraft:patch_grass_plain",
-      "minecraft:flower_plain",
+      "biomesmod:coast_polder_tulips_windmills",
+      "biomesmod:coast_polder_tulips_fields",
       "biomesmod:coast_polder_tulips_trees"
     ],
     [

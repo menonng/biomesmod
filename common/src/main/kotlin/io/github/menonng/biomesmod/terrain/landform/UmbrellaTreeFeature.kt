@@ -4,13 +4,17 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.tags.BlockTags
+import net.minecraft.util.RandomSource
 import net.minecraft.world.level.WorldGenLevel
+import net.minecraft.world.level.block.LeavesBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.Feature
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration
+import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.cos
+import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.sin
 import kotlin.math.sqrt
@@ -24,7 +28,7 @@ import kotlin.math.sqrt
 class UmbrellaTreeFeature : Feature<UmbrellaTreeFeature.Config>(Config.CODEC) {
 	data class Config(
 		val trunk: BlockState, val leaves: BlockState, val trunkHeight: Span, val crownRadius: Span, val crownThickness: Span,
-		val branches: Int, val twist: Float,
+		val branches: Int, val twist: Float, val forks: Int, val thick: Float,
 	) : FeatureConfiguration {
 		companion object {
 			@JvmField
@@ -37,8 +41,10 @@ class UmbrellaTreeFeature : Feature<UmbrellaTreeFeature.Config>(Config.CODEC) {
 					Span.CODEC.optionalFieldOf("crown_thickness", Span.of(2.0, 3.0)).forGetter(Config::crownThickness),
 					Codec.intRange(2, 12).optionalFieldOf("branches", 6).forGetter(Config::branches),
 					Codec.floatRange(0f, 1f).optionalFieldOf("twist", 0f).forGetter(Config::twist),
-				).apply(i) { trunk, leaves, trunkHeight, crownRadius, crownThickness, branches, twist ->
-					Config(trunk, leaves, trunkHeight, crownRadius, crownThickness, branches, twist)
+					Codec.intRange(0, 3).optionalFieldOf("forks", 0).forGetter(Config::forks),
+					Codec.floatRange(0f, 1f).optionalFieldOf("thick", 0f).forGetter(Config::thick),
+				).apply(i) { trunk, leaves, trunkHeight, crownRadius, crownThickness, branches, twist, forks, thick ->
+					Config(trunk, leaves, trunkHeight, crownRadius, crownThickness, branches, twist, forks, thick)
 				}
 			}
 		}
@@ -50,15 +56,18 @@ class UmbrellaTreeFeature : Feature<UmbrellaTreeFeature.Config>(Config.CODEC) {
 		val cfg = context.config()
 		val origin = context.origin()
 		val ground = level.getBlockState(origin.below())
-		if (!ground.`is`(BlockTags.DIRT) && !ground.`is`(BlockTags.SAND)) {
+		if (!io.github.menonng.biomesmod.compat.LandformCompat.isSoil(ground) && !ground.`is`(BlockTags.SAND)) {
 			return false
 		}
 		val h = Math.round(cfg.trunkHeight.min + r.nextFloat() * (cfg.trunkHeight.max - cfg.trunkHeight.min))
 		val cr = (cfg.crownRadius.min + r.nextFloat() * (cfg.crownRadius.max - cfg.crownRadius.min)).toDouble()
 		val ct = Math.round(cfg.crownThickness.min + r.nextFloat() * (cfg.crownThickness.max - cfg.crownThickness.min))
 		val log = cfg.trunk
-		val leaves = cfg.leaves
+		val leaves = if (cfg.leaves.hasProperty(LeavesBlock.PERSISTENT)) cfg.leaves.setValue(LeavesBlock.PERSISTENT, true) else cfg.leaves
 		val p = BlockPos.MutableBlockPos()
+		if (cfg.forks > 0) {
+			return dichotomous(level, r, origin, cfg, h.toInt(), cr, ct.toInt(), log, leaves)
+		}
 
 		// Trunk (optionally leaning and kinked).
 		var tx = origin.x.toDouble()
@@ -106,6 +115,104 @@ class UmbrellaTreeFeature : Feature<UmbrellaTreeFeature.Config>(Config.CODEC) {
 			}
 		}
 		return true
+	}
+
+	/**
+	 * Dragon's blood form: a stout trunk that forks again and again into pairs of upturned branches, each tip carrying
+	 * a rosette cluster, all packed into one dense umbrella crown (domed on top, slightly cupped below).
+	 */
+	private fun dichotomous(level: WorldGenLevel, r: RandomSource, origin: BlockPos, cfg: Config, h: Int, cr: Double, ct: Int,
+		log: BlockState, leaves: BlockState): Boolean {
+		val p = BlockPos.MutableBlockPos()
+		val thick = r.nextFloat() < cfg.thick
+		for (y in 0 until h) {
+			set(level, p.set(origin.x, origin.y + y, origin.z), log)
+			if (thick && y < h - 1) {
+				set(level, p.set(origin.x + 1, origin.y + y, origin.z), log)
+				set(level, p.set(origin.x, origin.y + y, origin.z + 1), log)
+				set(level, p.set(origin.x + 1, origin.y + y, origin.z + 1), log)
+			}
+		}
+		val ox = origin.x + (if (thick) 0.5 else 0.0)
+		val oz = origin.z + (if (thick) 0.5 else 0.0)
+		val tips = ArrayList<DoubleArray>()
+		val n = cfg.branches.coerceIn(2, 5)
+		val phase = r.nextFloat() * Math.PI * 2
+		// Total horizontal reach of a branch path ~ 0.8 crown radius; lengths shrink by 0.75 per fork.
+		var sum = 0.0
+		var f = 1.0
+		for (k in 0..cfg.forks) {
+			sum += f
+			f *= 0.75
+		}
+		val len0 = cr * 0.8 / (sum * 0.62)
+		for (b in 0 until n) {
+			val a = phase + Math.PI * 2 * b / n + (r.nextFloat() - 0.5) * 0.4
+			branch(level, r, p, ox, origin.y + h - 0.5, oz, a, 0.85 + r.nextFloat() * 0.2, len0, cfg.forks, log, tips)
+		}
+		var top = origin.y + h
+		for (t in tips) {
+			top = max(top, t[1].toInt())
+		}
+		val crownTop = top + ct
+		val ri = ceil(cr + 1).toInt()
+		val cx = ox
+		val cz = oz
+		// Umbrella: domed top, cupped underside, ragged rim.
+		for (dz in -ri..ri) {
+			for (dx in -ri..ri) {
+				val d = sqrt((dx + 0.5 + origin.x - cx - 0.5).let { it * it } + (dz + 0.5 + origin.z - cz - 0.5).let { it * it })
+				val rim = cr * (0.92 + 0.16 * r.nextFloat())
+				if (d > rim) {
+					continue
+				}
+				val k = d / cr
+				val yTop = crownTop - Math.round(1.6 * k * k).toInt()
+				val yBot = top - 1 + Math.round(1.4 * k * k).toInt() - (if (k > 0.85) 0 else 1)
+				for (y in yBot..yTop) {
+					set(level, p.set(origin.x + dx, y, origin.z + dz), leaves)
+				}
+			}
+		}
+		// Rosettes at the tips bulge out of the crown surface.
+		for (t in tips) {
+			for (dy in 0..1) {
+				for (dz in -1..1) {
+					for (dx in -1..1) {
+						if (abs(dx) + abs(dz) + dy <= 2 && r.nextFloat() < 0.85) {
+							set(level, p.set(floor(t[0]).toInt() + dx, t[1].toInt() + 1 + dy + ct - 1, floor(t[2]).toInt() + dz), leaves)
+						}
+					}
+				}
+			}
+		}
+		return true
+	}
+
+	private fun branch(level: WorldGenLevel, r: RandomSource, p: BlockPos.MutableBlockPos, x: Double, y: Double, z: Double, a: Double,
+		elev: Double, len: Double, depth: Int, log: BlockState, tips: MutableList<DoubleArray>) {
+		val dx = cos(a) * cos(elev)
+		val dy = sin(elev)
+		val dz = sin(a) * cos(elev)
+		val steps = max(1, Math.round(len).toInt())
+		var px = x
+		var py = y
+		var pz = z
+		for (s in 0 until steps) {
+			px += dx
+			py += dy
+			pz += dz
+			set(level, p.set(floor(px).toInt(), floor(py).toInt(), floor(pz).toInt()), log)
+		}
+		if (depth <= 0) {
+			tips.add(doubleArrayOf(px, py, pz))
+			return
+		}
+		val spread = 0.45 + r.nextFloat() * 0.25
+		for (k in 0 until 2) {
+			val na = a + (if (k == 0) spread else -spread) + (r.nextFloat() - 0.5) * 0.3
+			branch(level, r, p, px, py, pz, na, (elev * 0.85).coerceAtLeast(0.45), len * 0.75, depth - 1, log, tips)
+		}
 	}
 
 	private fun set(level: WorldGenLevel, pos: BlockPos, state: BlockState) {

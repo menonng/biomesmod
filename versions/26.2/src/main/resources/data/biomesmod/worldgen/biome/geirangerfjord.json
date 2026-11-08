@@ -12,9 +12,7 @@
     "water_color": "#1f5f5a"
   },
   "features": [
-    [
-      "biomesmod:geirangerfjord_fjord"
-    ],
+    [],
     [
       "minecraft:lake_lava_underground"
     ],

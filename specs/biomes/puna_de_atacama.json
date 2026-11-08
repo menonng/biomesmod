@@ -33,7 +33,7 @@
         "dry",
         "neutral"
       ],
-      "target_y": 236
+      "elevation_m": 4000
     }
   },
   "base": "minecraft:badlands",

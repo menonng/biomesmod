@@ -1,17 +1,18 @@
 {
   "attributes": {
     "minecraft:gameplay/snow_golem_melts": true,
-    "minecraft:visual/sky_color": "#8ab4f0"
+    "minecraft:visual/sky_color": "#8ab8f2",
+    "minecraft:visual/water_fog_color": "#1f6f80"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
     "minecraft:canyon"
   ],
-  "downfall": 0.15,
+  "downfall": 0.12,
   "effects": {
-    "foliage_color": "#4e7a3a",
-    "grass_color": "#a8a46a",
-    "water_color": "#3f76e4"
+    "foliage_color": "#58803c",
+    "grass_color": "#a9a35f",
+    "water_color": "#3fb6c8"
   },
   "features": [
     [],
@@ -73,7 +74,10 @@
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
-      "biomesmod:socotra_dragon_blood"
+      "biomesmod:socotra_dragon_blood",
+      "biomesmod:socotra_bottle_trees",
+      "biomesmod:socotra_frankincense",
+      "biomesmod:socotra_desert_roses"
     ],
     [
       "minecraft:freeze_top_layer"

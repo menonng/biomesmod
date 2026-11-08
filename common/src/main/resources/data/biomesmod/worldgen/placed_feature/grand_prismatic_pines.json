@@ -2,7 +2,7 @@
   "feature": "biomesmod:grand_prismatic_pines",
   "placement": [
     {
-      "count": 4,
+      "count": 6,
       "type": "minecraft:count"
     },
     {

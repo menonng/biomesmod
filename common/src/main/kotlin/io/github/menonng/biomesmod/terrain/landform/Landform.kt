@@ -27,6 +27,9 @@ abstract class Landform internal constructor(s: Site, reach: Int) {
 	/** Holds water: evaluate a one-column border around each chunk and seal basin walls. */
 	internal var holdsWater = false
 
+	/** Also evaluate the one-column border (for decorations that look at neighbour columns). */
+	internal var border = false
+
 	/** Pure per-column geometry. */
 	internal abstract fun column(x: Int, z: Int, c: Col)
 
@@ -45,7 +48,7 @@ abstract class Landform internal constructor(s: Site, reach: Int) {
 
 	/** Writes this instance's part of the writer's chunk. */
 	internal fun write(w: ChunkWriter) {
-		val b = if (holdsWater) 1 else 0
+		val b = if (holdsWater || border) 1 else 0
 		val xa = max(w.x0 - b, cx - reach)
 		val xb = min(w.x0 + 15 + b, cx + reach)
 		val za = max(w.z0 - b, cz - reach)
@@ -114,7 +117,7 @@ abstract class Landform internal constructor(s: Site, reach: Int) {
 		if (depth == 0 && !wet && surface.isNotEmpty()) {
 			return pick(surface, x, y, z, 0x5F1)
 		}
-		return if (wet) palette.strataAt(y) else palette.blockAt(y, depth)
+		return if (wet) palette.strataAt(x, y, z) else palette.blockAt(x, y, z, depth)
 	}
 
 	internal fun talusBlock(x: Int, y: Int, z: Int): BlockState = pick(talus, x, y, z, 0x7A1)
@@ -125,12 +128,12 @@ abstract class Landform internal constructor(s: Site, reach: Int) {
 		if (n == 1) {
 			return list.first()
 		}
-		val v = 0.5 + 0.42 * LNoise.noise2(seed xor salt, x / 6.5, z / 6.5) + 0.35 * (LNoise.unit(seed xor salt, x, y, z) - 0.5)
+		val v = 0.5 + 0.5 * LNoise.noise2(seed xor salt, x / 8.5, z / 8.5) + 0.12 * LNoise.noise2(seed xor salt xor 0x3C, (x + y * 0.7) / 3.0, (z - y * 0.7) / 3.0) + 0.2 * (LNoise.unit(seed xor salt, x, y, z) - 0.5)
 		val i = floor(v * n).toInt()
 		return list[max(0, min(n - 1, i))]
 	}
 
-	internal open fun sealBlock(x: Int, y: Int, z: Int): BlockState = palette.strataAt(y)
+	internal open fun sealBlock(x: Int, y: Int, z: Int): BlockState = palette.strataAt(x, y, z)
 
 	internal fun placeCapFeatures(w: ChunkWriter, grid: Array<Col?>) {
 		val cap = cap ?: return

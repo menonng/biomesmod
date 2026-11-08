@@ -27,7 +27,8 @@
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 160
+      "elevation_m": 2700,
+      "ridges": 90
     }
   },
   "base": "minecraft:frozen_peaks",

@@ -5,7 +5,7 @@
         "particle": {
           "type": "minecraft:white_ash"
         },
-        "probability": 0.01
+        "probability": 0.012
       }
     ],
     "minecraft:visual/sky_color": "#7da3ff",
@@ -28,7 +28,8 @@
     ],
     [
       "minecraft:amethyst_geode",
-      "biomesmod:grand_prismatic_springs"
+      "biomesmod:grand_prismatic_springs",
+      "biomesmod:grand_prismatic_geysers"
     ],
     [
       "minecraft:monster_room",

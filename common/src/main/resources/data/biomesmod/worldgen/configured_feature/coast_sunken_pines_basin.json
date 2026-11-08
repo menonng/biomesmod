@@ -3,13 +3,13 @@
     "biomes": [
       "biomesmod:coast_sunken_pines"
     ],
-    "depth": 7,
-    "dike_height": 2,
-    "dike_width": 4,
-    "edge_blend": 6,
-    "edge_noise": 0.2,
+    "depth": 2,
+    "dike_height": 1,
+    "dike_width": 8,
+    "edge_blend": 34,
+    "edge_noise": 0.35,
     "mode": "depression",
-    "relief": 1.5
+    "relief": 1.0
   },
   "type": "biomesmod:terrain_shaper"
 }

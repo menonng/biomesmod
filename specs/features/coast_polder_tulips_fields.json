@@ -1,0 +1,42 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:flower_strips",
+    "config": {
+      "flowers": [
+        {
+          "Name": "minecraft:red_tulip"
+        },
+        {
+          "Name": "minecraft:orange_tulip"
+        },
+        {
+          "Name": "minecraft:pink_tulip"
+        },
+        {
+          "Name": "minecraft:white_tulip"
+        },
+        {
+          "Name": "minecraft:allium"
+        },
+        {
+          "Name": "minecraft:dandelion"
+        }
+      ],
+      "strip_width": 3,
+      "field_size": 60,
+      "fallow": 0.18,
+      "biome": "biomesmod:coast_polder_tulips"
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "giant_redwood_forest",
+  "names": {
+    "en_us": "Giant Redwood Forest",
+    "ko_kr": "거대나무숲"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "temperature": [
+        "temperate"
+      ],
+      "humidity": [
+        "humid",
+        "wet"
+      ],
+      "size": [
+        480,
+        620
+      ],
+      "ramp": 240,
+      "terrain": "lift",
+      "relief": 0.5,
+      "weight": 1.0,
+      "zone": [
+        "coast",
+        "near_inland",
+        "mid_inland"
+      ],
+      "target_y": 84
+    }
+  },
+  "base": "minecraft:old_growth_spruce_taiga",
+  "climate": {
+    "temperature": 0.55,
+    "downfall": 0.95
+  },
+  "colors": {
+    "sky": "#9fb6c8",
+    "fog": "#c9d6d0",
+    "grass": "#5f8f4a",
+    "foliage": "#3f6e3a",
+    "water": "#3f6f80",
+    "water_fog": "#173038"
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_old_growth_spruce_taiga",
+      "minecraft:lake_lava_surface"
+    ],
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:giant_redwood_trees",
+        "biomesmod:giant_redwood_young"
+      ]
+    }
+  },
+  "surface": {
+    "top": "minecraft:podzol",
+    "under": "minecraft:dirt",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "minecraft:moss_block",
+        "noise": "minecraft:surface",
+        "min": 0.2
+      },
+      {
+        "block": "minecraft:grass_block",
+        "noise": "minecraft:surface",
+        "max": -0.4,
+        "min": -9.0
+      }
+    ]
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

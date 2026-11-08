@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "star_abyss",
+  "names": {
+    "en_us": "Star Abyss",
+    "ko_kr": "별의 심연"
+  },
+  "places": [],
+  "dimension": "end",
+  "placement": {
+    "end": "highlands",
+    "weight": 3
+  },
+  "base": "minecraft:end_highlands",
+  "colors": {
+    "sky": "#05061a",
+    "fog": "#141a48",
+    "water": "#4a5fd6",
+    "water_fog": "#0a0f30"
+  },
+  "particles": [
+    {
+      "type": "minecraft:end_rod",
+      "probability": 0.005
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:chorus_plant"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:star_abyss_rock"
+      ],
+      "local_modifications": [
+        "biomesmod:star_abyss_wells"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:star_abyss_isles",
+        "biomesmod:star_abyss_crystals",
+        "biomesmod:star_abyss_blooms",
+        "biomesmod:star_abyss_buds"
+      ]
+    }
+  },
+  "spawners": "base"
+}

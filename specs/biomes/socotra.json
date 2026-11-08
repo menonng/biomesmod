@@ -2,8 +2,8 @@
   "$schema": "../schema/biome.schema.json",
   "id": "socotra",
   "names": {
-    "en_us": "Socotra Dragon's Blood",
-    "ko_kr": "소코트라 용혈수"
+    "en_us": "Socotra Dragon's Blood Plateau",
+    "ko_kr": "소코트라 용혈수 고원"
   },
   "places": [
     13
@@ -15,56 +15,80 @@
         "warm",
         "hot"
       ],
-      "size": [
-        450,
-        600
-      ],
-      "ramp": 200,
-      "terrain": "lift",
-      "relief": 0.5,
-      "weight": 1.0,
-      "continentalness": [
-        -0.25,
-        0.3
-      ],
       "humidity": [
         "arid",
         "dry"
       ],
-      "target_y": 72
+      "zone": [
+        "ocean"
+      ],
+      "size": [
+        480,
+        620
+      ],
+      "ramp": 220,
+      "terrain": "lift",
+      "relief": 0.35,
+      "weight": 1.8,
+      "elevation_m": 750,
+      "ridges": 45,
+      "zones": [
+        {
+          "biome": "biomesmod:socotra_highlands",
+          "from": 0.62,
+          "to": 1.0
+        },
+        {
+          "biome": "biomesmod:socotra_coast",
+          "from": 0.0,
+          "to": 0.3
+        }
+      ]
     }
   },
   "base": "minecraft:savanna_plateau",
   "climate": {
     "temperature": 1.4,
-    "downfall": 0.15
+    "downfall": 0.12
   },
   "colors": {
-    "grass": "#a8a46a",
-    "foliage": "#4e7a3a",
-    "sky": "#8ab4f0"
+    "grass": "#a9a35f",
+    "foliage": "#58803c",
+    "sky": "#8ab8f2",
+    "water": "#3fb6c8",
+    "water_fog": "#1f6f80"
   },
   "features": {
     "remove": [
       "minecraft:trees_savanna",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_surface",
+      "minecraft:patch_tall_grass_2"
     ],
     "mod": {
       "vegetal_decoration": [
-        "biomesmod:socotra_dragon_blood"
+        "biomesmod:socotra_dragon_blood",
+        "biomesmod:socotra_bottle_trees",
+        "biomesmod:socotra_frankincense",
+        "biomesmod:socotra_desert_roses"
       ]
     }
   },
   "spawners": "base",
   "surface": {
+    "top": "minecraft:coarse_dirt",
     "top_patches": [
       {
         "block": "minecraft:calcite",
         "noise": "minecraft:surface",
-        "min": 0.3
+        "min": 0.25
+      },
+      {
+        "block": "minecraft:smooth_basalt",
+        "noise": "minecraft:surface",
+        "max": -0.55,
+        "min": -9.0
       }
-    ],
-    "top": "minecraft:coarse_dirt"
+    ]
   },
   "carvers": "underground"
 }

@@ -20,7 +20,10 @@
   },
   "colors": {
     "grass": "#79c05a",
-    "foliage": "#59a33c"
+    "foliage": "#59a33c",
+    "sky": "#8fb3d9",
+    "fog": "#d7e1ea",
+    "water": "#3f6f8f"
   },
   "features": {
     "clear": [
@@ -28,8 +31,6 @@
     ],
     "add": {
       "vegetal_decoration": [
-        "minecraft:flower_flower_forest",
-        "minecraft:flower_plain",
         "minecraft:patch_grass_plain"
       ]
     },
@@ -38,6 +39,8 @@
         "biomesmod:coast_polder_tulips_polder"
       ],
       "vegetal_decoration": [
+        "biomesmod:coast_polder_tulips_windmills",
+        "biomesmod:coast_polder_tulips_fields",
         "biomesmod:coast_polder_tulips_trees"
       ]
     }

@@ -20,11 +20,19 @@ class BiomesMod : ModInitializer {
 		SiteCommand.register()
 		LOGGER.info("Loaded {} biome(s)", ModBiomes.ALL.size)
 
-		if (java.lang.Boolean.getBoolean("biomesmod.selfcheck")) {
+		val maps = System.getProperty("biomesmod.maps", "")
+		if (maps.isNotBlank()) {
+			// Docs map mode: generate and render every map of the plan, then stop (the world stays for the screenshots).
+			ServerLifecycleEvents.SERVER_STARTED.register { server ->
+				DebugRender.mapPlan(server, maps) {
+					if (java.lang.Boolean.getBoolean("biomesmod.selfcheck")) {
+						server.saveEverything(false, true, true)
+						Thread({ kotlin.system.exitProcess(0) }, "biomesmod-maps-exit").start()
+					}
+				}
+			}
+		} else if (java.lang.Boolean.getBoolean("biomesmod.selfcheck")) {
 			ServerLifecycleEvents.SERVER_STARTED.register { SelfCheck.run(it) }
-		}
-		System.getProperty("biomesmod.maps")?.let { plan ->
-			ServerLifecycleEvents.SERVER_STARTED.register { DebugRender.mapPlan(it, plan) }
 		}
 	}
 

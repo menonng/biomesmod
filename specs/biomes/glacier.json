@@ -1,0 +1,79 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "glacier",
+  "names": {
+    "en_us": "Glacier",
+    "ko_kr": "빙하"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "temperature": [
+        "frozen",
+        "cold"
+      ],
+      "size": [
+        520,
+        660
+      ],
+      "ramp": 260,
+      "terrain": "mountain",
+      "relief": 0.85,
+      "weight": 1.0,
+      "zone": [
+        "mid_inland",
+        "far_inland"
+      ],
+      "elevation_m": 2900,
+      "ridges": 80
+    }
+  },
+  "base": "minecraft:frozen_peaks",
+  "climate": {
+    "temperature": -0.7,
+    "downfall": 0.6
+  },
+  "colors": {
+    "sky": "#a9c4e4",
+    "fog": "#e4eef8",
+    "water": "#3d7fc8",
+    "water_fog": "#123050"
+  },
+  "particles": [
+    {
+      "type": "minecraft:snowflake",
+      "probability": 0.004
+    }
+  ],
+  "features": {
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ],
+    "mod": {
+      "raw_generation": [
+        "biomesmod:glacier_ice_river"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground",
+  "surface": {
+    "top": "minecraft:snow_block",
+    "under": "minecraft:packed_ice",
+    "under_depth": 2,
+    "top_patches": [
+      {
+        "block": "minecraft:stone",
+        "noise": "minecraft:surface",
+        "min": 0.45
+      },
+      {
+        "block": "minecraft:gravel",
+        "noise": "minecraft:surface",
+        "max": -0.55,
+        "min": -9.0
+      }
+    ]
+  }
+}

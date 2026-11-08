@@ -44,3 +44,5 @@ loom {
 		}
 	}
 }
+// src/shots/resources is both the convention and the declared dir of the shots source set: copy each file once.
+tasks.named('processShotsResources') { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }

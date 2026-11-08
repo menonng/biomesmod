@@ -7,12 +7,12 @@
       "biomes": [
         "biomesmod:coast_sunken_pines"
       ],
-      "depth": 7,
-      "relief": 1.5,
-      "dike_height": 2,
-      "dike_width": 4,
-      "edge_blend": 6,
-      "edge_noise": 0.2
+      "depth": 2,
+      "relief": 1.0,
+      "dike_height": 1,
+      "dike_width": 8,
+      "edge_blend": 34,
+      "edge_noise": 0.35
     }
   },
   "placement": []

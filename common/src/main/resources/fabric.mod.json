@@ -16,6 +16,9 @@
 		"main": [
 			"io.github.menonng.biomesmod.BiomesMod"
 		],
+		"client": [
+			"io.github.menonng.biomesmod.BiomesModClient"
+		],
 		"terrablender": [
 			"io.github.menonng.biomesmod.worldgen.TerraBlenderEntry"
 		]

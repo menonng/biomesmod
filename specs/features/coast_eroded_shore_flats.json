@@ -7,13 +7,13 @@
       "biomes": [
         "biomesmod:coast_eroded_shore"
       ],
-      "coverage": 0.32,
-      "scale": 34,
-      "height": 3,
-      "beach": 4,
-      "depth": 3,
-      "rocky": 0.05,
-      "edge_blend": 20,
+      "coverage": 0.58,
+      "scale": 56,
+      "height": 2,
+      "beach": 10,
+      "depth": 2,
+      "rocky": 0.03,
+      "edge_blend": 36,
       "palette": {
         "top": [
           {

@@ -94,7 +94,7 @@ internal class ChunkWriter(
 
 	private fun mat(lf: Landform, c: Col, x: Int, y: Int, z: Int, depth: Int, wet: Boolean): BlockState {
 		val cap = lf.cap
-		if (c.cap && cap != null && !wet) {
+		if (c.cap && cap != null && !wet && c.span == c.top) {
 			if (depth == 0) {
 				return cap.block
 			}
@@ -110,12 +110,39 @@ internal class ChunkWriter(
 		val g = top[i]
 		val fluid = c.fluid ?: WATER
 		if (c.top != Col.NONE) {
+			c.span = c.top
 			val t = min(max(c.top, minY + 1), maxY - 2)
 			val fluidTop = max(c.water, water[i])
 			val wet = t < fluidTop
 			if (t > g) {
-				for (y in g + 1..t) {
-					set(x, y, z, mat(lf, c, x, y, z, t - y, wet))
+				val gaps = c.gaps
+				if (gaps == null || c.gapCount == 0) {
+					for (y in g + 1..t) {
+						set(x, y, z, mat(lf, c, x, y, z, t - y, wet))
+					}
+				} else {
+					// Walk down from the top; every gap ends a span, the first solid block below it starts the next one.
+					// Gaps are ascending and disjoint.
+					var gi = c.gapCount - 1
+					while (gi >= 0 && gaps[gi * 2] > t) {
+						gi--
+					}
+					var afterGap = false
+					for (y in t downTo g + 1) {
+						while (gi >= 0 && y < gaps[gi * 2]) {
+							gi--
+						}
+						if (gi >= 0 && y <= gaps[gi * 2 + 1]) {
+							afterGap = true
+							continue
+						}
+						if (afterGap) {
+							afterGap = false
+							c.span = y
+						}
+						set(x, y, z, mat(lf, c, x, y, z, (if (c.span == c.top) t else c.span) - y, wet))
+					}
+					c.span = c.top
 				}
 				top[i] = t
 			} else if (t < g && c.carve) {
@@ -171,7 +198,14 @@ internal class ChunkWriter(
 	}
 
 	fun placeFeature(feature: Holder<PlacedFeature>, x: Int, y: Int, z: Int, seed: Long) {
-		feature.value().place(level, generator, RandomSource.create(seed), BlockPos(x, y, z))
+		val pos = BlockPos(x, y, z)
+		try {
+			feature.value().place(level, generator, RandomSource.create(seed), pos)
+		} catch (e: IllegalStateException) {
+			// A placed feature with a biome filter cannot be placed from inside another feature: place its configured
+			// feature directly instead of failing the chunk.
+			feature.value().feature().value().place(level, generator, RandomSource.create(seed), pos)
+		}
 	}
 
 	companion object {

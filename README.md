@@ -1,87 +1,122 @@
 # Biomes Mod
 
-A Fabric mod that adds Overworld, Nether and End biomes, each loosely inspired by a real place. It targets Minecraft **1.21.1** and **26.2** with Mojmap names.
+A Fabric mod that adds Overworld, Nether and End biomes, each loosely inspired by a real place. It targets Minecraft **1.21.1** and **26.2** with Mojmap names and is written in **Kotlin**.
 
-**Requires:** Fabric API and [TerraBlender](https://modrinth.com/mod/terrablender). TerraBlender places the biomes in every dimension.
+**Requires:** Fabric API, [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) and [TerraBlender](https://modrinth.com/mod/terrablender). TerraBlender places the biomes in every dimension. This is a Fabric mod only; there is no data-pack version.
 
-Global terrain changes (data overrides, also active on Paper via the data pack):
+**Gallery:** every real-place biome next to its real satellite image, a top-down map of the generated site and an in-game shader view: [docs/biomes/README.md](docs/biomes/README.md).
+
+Global terrain changes (data overrides):
 
 * **Wider coastlines.** The continentalness noise is remapped so the coast band is stretched about 3 times. Measured on the dev seed, beach plus shallow-shelf width went from 33 to 62 blocks.
 * **No crescent water gorges.** Ravines are kept underground, so they no longer breach the surface near sea level and flood.
 
-**Placement.** Every real-place biome is a large *site* (about 800 to 1,600 blocks across) placed by the site engine ([docs/engine-sites.md](docs/engine-sites.md)). The terrain inside a site is raised, lowered or flattened to the place's real elevation (1 block = 25.6 m, sea level y=63), and a ramp joins it smoothly to the land around it. Salar de Uyuni, for example, is a flat salt plateau at y=205 holding over 1,000,000 m² of flat land. Sites are chosen from the vanilla climate at their centre, so deserts stay among dry land and ice plateaus among frozen land. About a quarter of the world is in sites. The five generic coast biomes still take vanilla climate slots through TerraBlender. In game, `/biomesmod sites [biome]` lists the nearest sites.
+**Placement.** Every real-place biome is a large *site* (about 800 to 1,600 blocks across) placed by the site engine ([docs/engine-sites.md](docs/engine-sites.md)). The terrain inside a site is moved to the place's real elevation, and a ramp joins it smoothly to the land around it. Below 2,000 m one block is 25.6 m above sea level (y=63); real high ground from 2,000 m up starts at **y=190** and climbs 40 m per block, so Salar de Uyuni (3,656 m) is a flat salt plateau at y=231 and Grand Prismatic (2,240 m) sits at y=196. Mountain sites add ridged ranges on top (sharp crests and arêtes in the manner of Tectonic), fading out towards the edge. A site can hold several zone biomes (Socotra: highlands, dragon's blood plateau, coast), and fjord sites cut channels down to the sea. Sites are chosen from the world's climate at their centre, so deserts stay among dry land and ice plateaus among frozen land. About a quarter of the world is in sites. The five generic coast biomes still take vanilla climate slots through TerraBlender. In game, `/biomesmod sites [biome]` lists the nearest sites.
 
-**New blocks:** Salt Crust (Uyuni, Tara, Gairdner), Travertine (Pamukkale), Sulfur Crust (Dallol) and Dolerite (Alkefjellet). They are in the Natural Blocks creative tab. Because of them, clients need the mod installed to join a server that runs it.
+**Works with other worldgen.** The site engine hooks the world's noise router at runtime instead of overriding vanilla files, so sites appear on every world preset (Default, Large Biomes with sites twice as large, Amplified) and on top of terrain mods. Tested combinations are listed under [Compatibility](#compatibility).
+
+**Config:** `config/biomesmod.json` (written on first start) sets the elevation mapping (sea level, metres per block, the 2,000 m / y=190 highland rule, the 40 m per block above it, the height cap), site cell size, site chance, size scale, Large Biomes scale, per-biome site weights (0 turns a biome off) and the height of the ridged ranges.
+
+**New blocks** (39, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
+
+* Socotra: dragon's blood log, wood and leaves, desert rose.
+* Geothermal: geyserite, geyser vent (erupts every 1-3 minutes and throws you up; in 26.2 geyser cones use vanilla's potent sulfur geysers instead), steam vent, orange / yellow / green thermal mats, sulfur crust, travertine.
+* Rock and sand: salt crust, white sand (Lençóis, replaces concrete powder), volcanic ash, scoria, dolerite, glacier ice.
+* White Old Growth: ghostwood log, wood, leaves and hollow (breathes wisps), pale moss and moss carpet, pale fern, silver beard lichen, moon bracket fungus, moonpetal.
+* Giant Redwood Forest: redwood log, wood and leaves.
+* Star Abyss: abyss stone, starlit abyss stone, stardust, star crystal and crystal cluster, star bloom (grows on any face), astral roots, star spring (a fountain of starlight that lifts you up to the floating isles).
+
+Because of them, clients need the mod installed to join a server that runs it.
 
 | Biome | Name | Dimension | Placement | Place n (docs/places.md) |
 |---|---|---|---|---|
 | `alaid_volcano` | Alaid Volcano / 알라이드 화산 | overworld | site, keep | 3 |
-| `aletsch_glacier` | Aletsch Glacier / 알레치 빙하 | overworld | site, mountain y=160 | 25 |
+| `aletsch_glacier` | Aletsch Glacier / 알레치 빙하 | overworld | site, mountain y=208 (2700 m), ridges | 25 |
 | `alkefjellet` | Alkefjellet / 알케피엘레 | overworld | site, keep | 43 |
 | `amazon_varzea` | Amazon Várzea / 아마존 바르제아 | overworld | site, basin y=64 | 37 |
-| `antarctic_peninsula` | Antarctic Peninsula / 남극 반도 | overworld | site, mountain y=100 | 47 |
-| `bromo_tengger` | Bromo Tengger / 브로모 텡게르 | overworld | site, lift y=145 | 17 |
-| `chorus_thicket` | Chorus Thicket / 코러스 덤불 | end | end | — |
+| `antarctic_peninsula` | Antarctic Peninsula / 남극 반도 | overworld | site, mountain y=100, ridges | 47 |
+| `bromo_tengger` | Bromo Tengger / 브로모 텡게르 | overworld | site, lift y=192 (2100 m) | 17 |
+| `chorus_thicket` | Chorus Thicket / 코러스 덤불 | end | end highlands | — |
 | `cliffs_of_moher` | Cliffs of Moher / 모허 절벽 | overworld | site, keep | 40 |
 | `coast_archipelago` | Archipelago / 열도 | overworld | warm_ocean (+2) | — |
 | `coast_eroded_cliffs` | Eroded Stony Cliffs / 침식 암석 절벽 | overworld | beach (+2) | — |
 | `coast_eroded_shore` | Eroded Shore / 침식 해안 | overworld | beach (+2) | — |
 | `coast_polder_tulips` | Polder Tulip Fields / 간척지 튤립 평원 | overworld | plains (+1) | — |
 | `coast_sunken_pines` | Sunken Pine Barrens / 저지대 성긴 침엽수림 | overworld | taiga (+2) | — |
-| `cordillera_darwin` | Cordillera Darwin / 다윈 산맥 | overworld | site, mountain y=125 | 49 |
+| `cordillera_darwin` | Cordillera Darwin / 다윈 산맥 | overworld | site, mountain y=126 (1600 m), ridges | 49 |
 | `daintree` | Daintree Rainforest / 데인트리 열대우림 | overworld | site, keep | 16 |
 | `dallol` | Dallol / 달롤 | overworld | site, basin y=64 | 32 |
 | `danakil_flats` | Danakil Flats / 다나킬 평원 | nether | nether | — |
 | `dasht_e_lut` | Dasht-e Lut / 다쉬테 루트 | overworld | site, plateau y=79 | 15 |
-| `denali_massif` | Denali Massif / 디날리 산괴 | overworld | site, mountain y=150 | 21 |
-| `devils_tower` | Devils Tower / 데빌스 타워 | overworld | site, lift y=110 | 11 |
+| `denali_massif` | Denali Massif / 디날리 산괴 | overworld | site, mountain y=200 (2400 m), ridges | 21 |
+| `devils_tower` | Devils Tower / 데빌스 타워 | overworld | site, lift y=110 (1200 m) | 11 |
 | `everglades` | Everglades / 에버글레이즈 | overworld | site, basin y=63 | 36 |
-| `exuma_cays` | Exuma Cays / 엑수마 케이스 | overworld | site, keep | 52 |
+| `exuma_cays` | Exuma Cays / 엑수마 케이스 | overworld | site, basin y=59, island | 52 |
 | `franz_josef_land` | Franz Josef Land / 프란츠요제프 제도 | overworld | site, keep | 44 |
-| `geirangerfjord` | Geirangerfjord / 예이랑에르피오르 | overworld | site, mountain y=125 | 27 |
+| `geirangerfjord` | Geirangerfjord / 예이랑에르피오르 | overworld | site, mountain y=122 (1500 m), ridges | 27 |
+| `giant_redwood_forest` | Giant Redwood Forest / 거대나무숲 | overworld | site, lift y=84 | — |
 | `giants_causeway` | Giant's Causeway / 자이언츠 코즈웨이 | overworld | site, keep | 39 |
+| `glacier` | Glacier / 빙하 | overworld | site, mountain y=212 (2900 m), ridges | — |
 | `gotjawal` | Gotjawal / 곶자왈 | overworld | site, lift y=75 | — |
-| `grand_canyon` | Grand Canyon / 그랜드 캐니언 | overworld | site, plateau y=145 | 34 |
-| `grand_prismatic` | Grand Prismatic / 그랜드 프리즈매틱 | overworld | site, plateau y=149 | 8 |
-| `great_barrier_reef` | Great Barrier Reef / 그레이트 배리어 리프 | overworld | site, keep | 41 |
-| `ha_long_bay` | Ha Long Bay / 하롱베이 | overworld | site, keep | 22 |
+| `grand_canyon` | Grand Canyon / 그랜드 캐니언 | overworld | site, plateau y=192 (2100 m) | 34 |
+| `grand_prismatic` | Grand Prismatic / 그랜드 프리즈매틱 | overworld | site, plateau y=196 (2240 m) | 8 |
+| `great_barrier_reef` | Great Barrier Reef / 그레이트 배리어 리프 | overworld | site, basin y=55, island | 41 |
+| `ha_long_bay` | Ha Long Bay / 하롱베이 | overworld | site, basin y=55, island | 22 |
 | `iguazu_falls` | Iguazu Falls / 이구아수 폭포 | overworld | site, lift y=72 | 9 |
 | `krenitsyn_caldera` | Krenitsyn Caldera / 크레니친 칼데라 | overworld | site, keep | 2 |
 | `lake_gairdner` | Lake Gairdner / 게어드너 호 | overworld | site, plateau y=68 | 42 |
-| `lake_vostok_plateau` | Vostok Plateau / 보스토크 고원 | overworld | site, plateau y=200 | 50 |
-| `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, lift y=135 | 23 |
+| `lake_vostok_plateau` | Vostok Plateau / 보스토크 고원 | overworld | site, plateau y=227 (3488 m) | 50 |
+| `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, lift y=135 (1850 m), ridges | 23 |
 | `lencois_maranhenses` | Lençóis Maranhenses / 렌소이스 마라냥세스 | overworld | site, keep | 7, 20 |
 | `lofoten_reine` | Lofoten Peaks / 로포텐 봉우리 | overworld | site, keep | 26, 28 |
 | `magellanic_fjords` | Magellanic Forest / 마젤란 숲 | overworld | site, keep | 48 |
 | `mcmurdo_dry_valleys` | McMurdo Dry Valleys / 맥머도 드라이 밸리 | overworld | site, lift y=100 | 46 |
-| `monument_valley` | Monument Valley / 모뉴먼트 밸리 | overworld | site, plateau y=127 | 14 |
-| `moraine_lake` | Moraine Lake / 모레인 호수 | overworld | site, mountain y=135 | 35 |
-| `orkhon_steppe` | Orkhon Steppe / 오르혼 초원 | overworld | site, lift y=124 | 51 |
+| `monument_valley` | Monument Valley / 모뉴먼트 밸리 | overworld | site, plateau y=129 (1700 m) | 14 |
+| `moraine_lake` | Moraine Lake / 모레인 호수 | overworld | site, mountain y=137 (1885 m), ridges | 35 |
+| `orkhon_steppe` | Orkhon Steppe / 오르혼 초원 | overworld | site, lift y=124 (1550 m) | 51 |
 | `pamukkale` | Pamukkale / 파묵칼레 | overworld | site, lift y=80 | 12 |
-| `patagonian_icefield` | Patagonian Ice Field / 파타고니아 빙원 | overworld | site, lift y=120 | 10 |
+| `patagonian_icefield` | Patagonian Ice Field / 파타고니아 빙원 | overworld | site, lift y=122 (1500 m), ridges | 10 |
 | `patagonian_steppe` | Patagonian Steppe / 파타고니아 스텝 | overworld | site, lift y=72 | 19 |
 | `plitvice_lakes` | Plitvice Lakes / 플리트비체 호수 | overworld | site, lift y=95 | 6, 30 |
-| `puna_de_atacama` | Puna de Atacama / 푸나 데 아타카마 | overworld | site, lift y=236 | 18 |
+| `puna_de_atacama` | Puna de Atacama / 푸나 데 아타카마 | overworld | site, lift y=240 (4000 m) | 18 |
 | `ross_ice_shelf` | Ross Ice Shelf / 로스 빙붕 | overworld | site, keep | 45 |
-| `salar_de_tara` | Salar de Tara / 타라 염호 | overworld | site, plateau y=231 | 33 |
-| `salar_de_uyuni` | Salar de Uyuni / 우유니 소금사막 | overworld | site, plateau y=205 | 4 |
-| `sarek` | Sarek / 사렉 | overworld | site, mountain y=110 | 29 |
-| `socotra` | Socotra Dragon's Blood / 소코트라 용혈수 | overworld | site, lift y=72 | 13 |
+| `salar_de_tara` | Salar de Tara / 타라 염호 | overworld | site, plateau y=248 (4300 m) | 33 |
+| `salar_de_uyuni` | Salar de Uyuni / 우유니 소금사막 | overworld | site, plateau y=231 (3656 m) | 4 |
+| `sarek` | Sarek / 사렉 | overworld | site, mountain y=110 (1200 m), ridges | 29 |
+| `socotra` | Socotra Dragon's Blood Plateau / 소코트라 용혈수 고원 | overworld | site, lift y=92 (750 m), ridges, 2 zones, island | 13 |
+| `socotra_coast` | Socotra Coast / 소코트라 해안 | overworld | zone of `socotra` | 13 |
+| `socotra_highlands` | Socotra Haggeher Highlands / 소코트라 하지르 고지대 | overworld | zone of `socotra` | 13 |
 | `sossusvlei` | Sossusvlei / 소수스블레이 | overworld | site, lift y=85 | 38 |
-| `tre_cime` | Tre Cime / 트레 치메 | overworld | site, lift y=160 | 24 |
+| `star_abyss` | Star Abyss / 별의 심연 | end | end highlands | — |
+| `tre_cime` | Tre Cime / 트레 치메 | overworld | site, lift y=198 (2300 m) | 24 |
 | `ushishir_caldera` | Ushishir Caldera / 우시시르 칼데라 | overworld | site, keep | 1 |
-| `wadi_rum` | Wadi Rum / 와디 럼 | overworld | site, plateau y=100 | 31 |
+| `wadi_rum` | Wadi Rum / 와디 럼 | overworld | site, plateau y=102 (1000 m) | 31 |
+| `white_old_growth` | White Old Growth / 백색 고목림 | overworld | site, lift y=92 | — |
 | `zhangjiajie` | Zhangjiajie Pillars / 장자제 석주림 | overworld | site, lift y=90 | 5 |
+
+## Compatibility
+
+Last measured with 0.5.0-beta.1 on Minecraft 26.2 (self-check on a biome subset, seed 0); not yet re-run for 0.6.0:
+
+| Configuration | Result |
+|---|---|
+| Default, Large Biomes, Amplified presets | passed, sites generate on every preset |
+| Tectonic, Terralith (Lithostitched), Montane, Mountain Peaks, Hybrid Beta | passed |
+| WWOO, OTBWG (1.21.1) | feature-order cycles, fixed with per-version order hints |
+| JJThunder To The Max | its biome search hangs the locate step; not verified |
 
 ## Layout
 
 ```
-common/                 shared Java + resources (compiled into every version)
-  src/gametest/         dev-only: mixin that gives the self-check a normal (non-flat) world
-  datapack/             pack.mcmeta per version for the standalone data pack
+common/                 shared Kotlin + resources (compiled into every version)
+  src/gametest/         dev-only: engine showcases for the self-check server
 versions/1.21.1/        Loom (remap) + Mojang mappings, Java 21, version-specific JSON + compat/ shims
 versions/26.2/          Loom (unobfuscated), Java 25, version-specific JSON + compat/ shims
+  src/shots/            dev-only: screenshot director for the gallery
 docs/api-differences.md worldgen API differences between the two versions
+docs/biomes/            the biome gallery
+tools/biomegen/         spec generator (Python)
+tools/gallery/          gallery page generator (Python)
 ```
 
 To add a biome, follow `docs/biome-specs.md`:
@@ -90,34 +125,25 @@ To add a biome, follow `docs/biome-specs.md`:
 2. Run `python -I tools/biomegen/generate.py`. This produces both versions' JSON, the TerraBlender placement and the lang files.
 3. Run the self-check with `-Prender=true` and look at the renders.
 
-The terrain engines are documented in `docs/engine-terrain.md` (`terrain_shaper`, 12 modes) and `docs/engine-landform.md` (`landform`, 9 shapes, plus `umbrella_tree`). The real places behind the biomes are catalogued in `docs/places.md`.
+The terrain engines are documented in `docs/engine-terrain.md` (`terrain_shaper`, 12 modes) and `docs/engine-landform.md` (`landform`, 11 shapes, plus the custom trees and decorations). Block textures and models come from `tools/blocks/make_blocks.py`. The real places behind the biomes are catalogued in `docs/places.md`.
 
 To add a Minecraft version, create `versions/<mc>/` (gradle.properties, build.gradle, `compat/` shims, biome JSON) and add it to `settings.gradle`.
 
 ## Build and verify
 
 ```bash
-./gradlew build datapack                 # jars -> versions/*/build/libs, data packs -> versions/*/build/datapack
+./gradlew build                          # jars -> versions/*/build/libs
 ./gradlew :1.21.1:runSelfCheck :26.2:runSelfCheck
 ```
 
-`runSelfCheck` boots Fabric's headless gametest server on a fresh normal world, so it needs no EULA and no client. For each biome it checks three things in that biome's dimension:
+`runSelfCheck` boots a throwaway dedicated server on a fresh seed-0 world (`-Ppreset=minecraft:large_biomes` or `minecraft:amplified` for other presets, `-PextraMods=<dir>` / `-Pdatapacks=<dir>` to add other worldgen mods). For each biome it checks three things in that biome's dimension:
 
 1. The biome is registered.
 2. The dimension's biome source can produce it.
-3. A locate search finds it in generated terrain.
+3. A locate search finds it in generated terrain (site biomes: the nearest site, its biome and its terrain against the target height).
 
 It also logs the most common surface blocks found there. It exits non-zero on any failure.
 
 For interactive testing, run `./gradlew :26.2:runClient` (or `:1.21.1:runClient`).
 
-To test on a dedicated Fabric server, put these in its `mods/` folder: the mod jar, the Fabric API and TerraBlender versions from `versions/*/gradle.properties`, and optionally Chunky for pre-generation. Set `level-seed=0` in `server.properties` to get the same world as `runSelfCheck`. The self-check log's coordinates then work directly with `/tp`, and the "nearest at" positions match `/execute positioned 0 64 0 run locate biome <id>`.
-
-## Paper / vanilla servers
-
-Paper cannot load Fabric mods or TerraBlender. The `datapack` task builds a data-only pack with the biome and feature definitions. On Paper the biomes are registered but do not generate naturally, there are no sites (the site terrain functions, the new blocks' loot tables and tool tags are left out because vanilla cannot parse them), and surface rules do not apply. To inspect one, force-load the chunk first, then fill the biome:
-
-```
-/forceload add 0 0
-/fillbiome 0 60 0 15 90 15 biomesmod:gotjawal
-```
+To test on a dedicated Fabric server, put these in its `mods/` folder: the mod jar, the Fabric API, Fabric Language Kotlin and TerraBlender versions from `versions/*/gradle.properties` and `gradle.properties`, and optionally Chunky for pre-generation. Set `level-seed=0` in `server.properties` to get the same world as `runSelfCheck`. The self-check log's coordinates then work directly with `/tp`, and the "nearest at" positions match `/execute positioned 0 64 0 run locate biome <id>`.

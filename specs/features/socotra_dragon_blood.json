@@ -4,33 +4,43 @@
     "type": "biomesmod:umbrella_tree",
     "config": {
       "trunk": {
-        "Name": "minecraft:dark_oak_log"
+        "Name": "biomesmod:dragon_blood_log"
       },
       "leaves": {
-        "Name": "minecraft:jungle_leaves"
+        "Name": "biomesmod:dragon_blood_leaves"
       },
       "trunk_height": [
         3,
-        5
+        6
       ],
       "crown_radius": [
-        3.5,
-        5.5
+        4.0,
+        6.5
       ],
       "crown_thickness": [
         2,
         3
       ],
-      "branches": 7
+      "branches": 3,
+      "forks": 2,
+      "thick": 0.35
     }
   },
   "placement": [
     {
+      "type": "minecraft:rarity_filter",
+      "chance": 4
+    },
+    {
       "type": "minecraft:count",
-      "count": 2
+      "count": 1
     },
     {
       "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:surface_water_depth_filter",
+      "max_water_depth": 0
     },
     {
       "type": "minecraft:heightmap",

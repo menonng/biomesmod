@@ -25,7 +25,10 @@ Elevation: `y = 63 + metres × 0.039` (1 block = 25.6 m), capped at 250. Salar d
   "size": [620, 700],                            // core radius range in blocks (drawn per site)
   "ramp": 320,                                   // fade width in blocks
   "terrain": "plateau",                          // keep | plateau | lift | mountain | basin
-  "elevation_m": 3656,                           // or "target_y": 205
+  "elevation_m": 3656,                           // real elevation (mapped by config/biomesmod.json), or "target_y": 231
+  "ridges": 90,                                  // optional: ridged mountain ranges up to this many blocks over the target
+  "zones": [{"biome": "biomesmod:socotra_highlands", "from": 0.62, "to": 1.0}],  // optional concentric sub-biomes
+  "channels": {"count": 1, "width": 70, "depth": 28},                            // optional fjord channels to the sea
   "relief": 0.02,                                // share of the original hills kept (0 = flat)
   "weight": 1.3,                                 // share among the biomes that accept a centre
   "biome_threshold": 0.5
@@ -39,6 +42,23 @@ Elevation: `y = 63 + metres × 0.039` (1 block = 25.6 m), capped at 250. Salar d
 | `lift` | target + relief × hills | compressed by relief (≥ 0.15) | high steppe, uplands, volcanic highlands |
 | `mountain` | max(original, target + relief × hills) | kept | massifs, alpine valleys, fjords |
 | `basin` | target + relief × hills | flattened (0.06), flat top profile | wetlands, floodplains, depressions |
+
+### Elevation
+
+`elevation_m` is turned into a target height by `config/biomesmod.json` (`elevation`): below `highland_metres` (2,000 m)
+one block is `metres_per_block` (25.6 m) above `sea_level_y` (63); from 2,000 m up the ground starts at
+`highland_min_y` (190) and climbs `highland_metres_per_block` (40 m) per block, capped at `max_target_y` (300). Final
+heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs never flatten against the build limit.
+
+### Ridges, zones, channels
+
+* **Ridges:** a domain-warped ridged multifractal (sharp crests, arêtes, broad lows, in the manner of Tectonic and
+  Mountain Peaks) adds up to `ridges` blocks (times `ridge_scale` in the config). It rises only inside the site (a
+  smoothstep of the site weight), so the ranges fade out before the edge.
+* **Zones:** concentric sub-biomes by distance from the centre (1 at the centre, 0 at the outer edge, borders jittered).
+  A zone biome's spec has `"placement": {"zone_of": "<site biome>"}`. A zone from 0 or to 1 is open on that side.
+* **Channels:** fjords cut from the centre towards the lowest original ground (the sea), meandering, widening and
+  deepening seawards, carved below sea level so the sea floods them.
 
 ## In game
 

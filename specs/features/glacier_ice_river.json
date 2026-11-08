@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "glacier",
+      "biomes": [
+        "biomesmod:glacier"
+      ],
+      "drop": 6,
+      "blur": 7,
+      "snowline": 250,
+      "moraine_spacing": 30,
+      "edge_blend": 24,
+      "palette": {
+        "top": [
+          {
+            "block": {
+              "Name": "biomesmod:glacier_ice"
+            },
+            "depth": 3
+          }
+        ],
+        "strata": {
+          "strata": [
+            {
+              "blocks": [
+                {
+                  "block": {
+                    "Name": "biomesmod:glacier_ice"
+                  },
+                  "weight": 6
+                },
+                {
+                  "block": {
+                    "Name": "minecraft:blue_ice"
+                  },
+                  "weight": 2
+                },
+                {
+                  "block": {
+                    "Name": "minecraft:packed_ice"
+                  },
+                  "weight": 2
+                }
+              ],
+              "thickness": 3
+            },
+            {
+              "blocks": [
+                {
+                  "block": {
+                    "Name": "minecraft:packed_ice"
+                  },
+                  "weight": 5
+                },
+                {
+                  "block": {
+                    "Name": "biomesmod:glacier_ice"
+                  },
+                  "weight": 5
+                }
+              ],
+              "thickness": 2
+            }
+          ],
+          "warp": 2.0,
+          "warp_scale": 30,
+          "mix": 0.4
+        }
+      }
+    }
+  },
+  "placement": []
+}

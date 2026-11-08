@@ -5,20 +5,20 @@
       "minecraft:canyon"
     ]
   },
-  "downfall": 0.15,
+  "downfall": 0.12,
   "effects": {
     "fog_color": 12638463,
-    "foliage_color": 5143098,
-    "grass_color": 11052138,
+    "foliage_color": 5799996,
+    "grass_color": 11117407,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000
     },
-    "sky_color": 9090288,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    "sky_color": 9091314,
+    "water_color": 4175560,
+    "water_fog_color": 2060160
   },
   "features": [
     [],
@@ -79,7 +79,10 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "biomesmod:socotra_dragon_blood"
+      "biomesmod:socotra_dragon_blood",
+      "biomesmod:socotra_bottle_trees",
+      "biomesmod:socotra_frankincense",
+      "biomesmod:socotra_desert_roses"
     ],
     [
       "minecraft:freeze_top_layer"

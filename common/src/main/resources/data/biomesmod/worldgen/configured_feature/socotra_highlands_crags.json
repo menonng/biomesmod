@@ -1,0 +1,130 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:socotra_highlands"
+    ],
+    "cap": {
+      "block": {
+        "Name": "minecraft:grass_block"
+      },
+      "chance": 0.02,
+      "depth": 1,
+      "feature": "biomesmod:socotra_dragon_blood_tree",
+      "under": {
+        "Name": "minecraft:coarse_dirt"
+      }
+    },
+    "chance": 0.7,
+    "cluster_radius": [
+      10,
+      20
+    ],
+    "density": 0.6,
+    "flute": 0.05,
+    "height": [
+      14,
+      34
+    ],
+    "joints": 0.9,
+    "lean": 0.06,
+    "ledge_block": {
+      "Name": "minecraft:grass_block"
+    },
+    "ledges": 0.35,
+    "lobes": 4,
+    "min_distance": 90,
+    "palette": {
+      "mix": 0.45,
+      "strata": [
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:granite"
+              },
+              "weight": 55
+            },
+            {
+              "block": {
+                "Name": "minecraft:pink_terracotta"
+              },
+              "weight": 10
+            },
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 20
+            },
+            {
+              "block": {
+                "Name": "minecraft:diorite"
+              },
+              "weight": 15
+            }
+          ],
+          "thickness": 3
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:granite"
+              },
+              "weight": 45
+            },
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 30
+            },
+            {
+              "block": {
+                "Name": "minecraft:tuff"
+              },
+              "weight": 25
+            }
+          ],
+          "thickness": 2
+        }
+      ],
+      "warp": 2.0,
+      "warp_scale": 18
+    },
+    "pillar_radius": [
+      3,
+      6
+    ],
+    "pillar_spacing": 9,
+    "salt": 61823,
+    "shape": "pillar_forest",
+    "spacing": 56,
+    "streak_density": 0.08,
+    "streaks": [
+      {
+        "Name": "minecraft:tuff"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      }
+    ],
+    "talus": 0.7,
+    "talus_blocks": [
+      {
+        "Name": "minecraft:coarse_dirt"
+      },
+      {
+        "Name": "minecraft:granite"
+      },
+      {
+        "Name": "minecraft:gravel"
+      },
+      {
+        "Name": "minecraft:grass_block"
+      }
+    ],
+    "taper": 0.4
+  },
+  "type": "biomesmod:landform"
+}

@@ -3,11 +3,19 @@
     "default": "minecraft:jungle_bush",
     "features": [
       {
+        "chance": 0.12,
+        "feature": "minecraft:mega_jungle_tree_checked"
+      },
+      {
         "chance": 0.3,
+        "feature": "minecraft:jungle_tree"
+      },
+      {
+        "chance": 0.14,
         "feature": "minecraft:pine_checked"
       },
       {
-        "chance": 0.2,
+        "chance": 0.1,
         "feature": "minecraft:fancy_oak_checked"
       }
     ]

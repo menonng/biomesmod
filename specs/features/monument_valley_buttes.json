@@ -8,9 +8,9 @@
         "biomesmod:monument_valley"
       ],
       "spacing": 40,
-      "chance": 1.0,
+      "chance": 0.75,
       "salt": 17953,
-      "min_distance": 110,
+      "min_distance": 240,
       "thumbs": 0.7,
       "radius": [
         14,

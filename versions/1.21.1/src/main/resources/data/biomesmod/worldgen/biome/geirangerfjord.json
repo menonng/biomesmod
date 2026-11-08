@@ -19,9 +19,7 @@
     "water_fog_color": 535080
   },
   "features": [
-    [
-      "biomesmod:geirangerfjord_fjord"
-    ],
+    [],
     [
       "minecraft:lake_lava_underground"
     ],

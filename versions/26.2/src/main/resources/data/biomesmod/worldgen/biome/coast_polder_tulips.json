@@ -7,7 +7,8 @@
         "sound": "minecraft:music.overworld.flower_forest"
       }
     },
-    "minecraft:visual/sky_color": "#79a6ff"
+    "minecraft:visual/fog_color": "#d7e1ea",
+    "minecraft:visual/sky_color": "#8fb3d9"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
@@ -17,7 +18,7 @@
   "effects": {
     "foliage_color": "#59a33c",
     "grass_color": "#79c05a",
-    "water_color": "#3f76e4"
+    "water_color": "#3f6f8f"
   },
   "features": [
     [
@@ -73,9 +74,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:flower_flower_forest",
       "minecraft:patch_grass_plain",
-      "minecraft:flower_plain",
+      "biomesmod:coast_polder_tulips_windmills",
+      "biomesmod:coast_polder_tulips_fields",
       "biomesmod:coast_polder_tulips_trees"
     ],
     [

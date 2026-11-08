@@ -27,7 +27,8 @@
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 150
+      "elevation_m": 2400,
+      "ridges": 100
     }
   },
   "base": "minecraft:jagged_peaks",

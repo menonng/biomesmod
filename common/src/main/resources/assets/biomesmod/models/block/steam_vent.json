@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "biomesmod:block/steam_vent_top",
+    "side": "biomesmod:block/steam_vent",
+    "bottom": "biomesmod:block/steam_vent"
+  }
+}

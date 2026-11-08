@@ -7,27 +7,233 @@
       "block": {
         "Name": "minecraft:grass_block"
       },
-      "chance": 0.06,
-      "feature": "minecraft:pine_checked"
+      "chance": 0.1,
+      "depth": 3,
+      "feature": "biomesmod:zhangjiajie_cap_trees",
+      "under": {
+        "Name": "minecraft:rooted_dirt"
+      }
     },
     "chance": 1.0,
     "cluster_radius": [
-      18,
-      28
+      26,
+      40
     ],
-    "density": 0.75,
+    "density": 0.8,
+    "flute": 0.12,
     "height": [
-      45,
-      95
+      60,
+      120
     ],
+    "joints": 0.75,
+    "lean": 0.05,
+    "ledge_block": {
+      "Name": "minecraft:grass_block"
+    },
+    "ledge_chance": 0.07,
+    "ledge_feature": "biomesmod:zhangjiajie_ledge_shrubs",
+    "ledges": 0.6,
+    "lobes": 3,
+    "palette": {
+      "mix": 0.35,
+      "strata": [
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 60
+            },
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 25
+            },
+            {
+              "block": {
+                "Name": "minecraft:tuff"
+              },
+              "weight": 10
+            },
+            {
+              "block": {
+                "Name": "minecraft:dripstone_block"
+              },
+              "weight": 5
+            }
+          ],
+          "thickness": 4
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 55
+            },
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 30
+            },
+            {
+              "block": {
+                "Name": "minecraft:tuff"
+              },
+              "weight": 15
+            }
+          ],
+          "thickness": 2
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 70
+            },
+            {
+              "block": {
+                "Name": "minecraft:calcite"
+              },
+              "weight": 6
+            },
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 24
+            }
+          ],
+          "thickness": 3
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:tuff"
+              },
+              "weight": 60
+            },
+            {
+              "block": {
+                "Name": "minecraft:cobbled_deepslate"
+              },
+              "weight": 20
+            },
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 20
+            }
+          ],
+          "thickness": 1
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 55
+            },
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 35
+            },
+            {
+              "block": {
+                "Name": "minecraft:dripstone_block"
+              },
+              "weight": 10
+            }
+          ],
+          "thickness": 3
+        },
+        {
+          "blocks": [
+            {
+              "block": {
+                "Name": "minecraft:andesite"
+              },
+              "weight": 50
+            },
+            {
+              "block": {
+                "Name": "minecraft:stone"
+              },
+              "weight": 40
+            },
+            {
+              "block": {
+                "Name": "minecraft:tuff"
+              },
+              "weight": 10
+            }
+          ],
+          "thickness": 2
+        }
+      ],
+      "warp": 1.2,
+      "warp_scale": 24
+    },
     "pillar_radius": [
       3,
       6
     ],
-    "pillar_spacing": 9,
+    "pillar_spacing": 12,
     "salt": 38456,
     "shape": "pillar_forest",
-    "spacing": 40
+    "spacing": 40,
+    "streak_density": 0.13,
+    "streaks": [
+      {
+        "Name": "minecraft:tuff"
+      },
+      {
+        "Name": "minecraft:tuff"
+      },
+      {
+        "Name": "minecraft:cobbled_deepslate"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      },
+      {
+        "Name": "minecraft:dripstone_block"
+      }
+    ],
+    "talus": 1.1,
+    "talus_blocks": [
+      {
+        "Name": "minecraft:coarse_dirt"
+      },
+      {
+        "Name": "minecraft:rooted_dirt"
+      },
+      {
+        "Name": "minecraft:podzol"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      },
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      },
+      {
+        "Name": "minecraft:stone"
+      }
+    ],
+    "taper": 0.08,
+    "vines": 0.75
   },
   "type": "biomesmod:landform"
 }

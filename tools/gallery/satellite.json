@@ -1,0 +1,160 @@
+{
+  "alaid_volcano": {
+    "source": "eox2016"
+  },
+  "aletsch_glacier": {
+    "source": "eox2016"
+  },
+  "alkefjellet": {
+    "source": "eox2016"
+  },
+  "amazon_varzea": {
+    "source": "eox2016"
+  },
+  "antarctic_peninsula": {
+    "source": "gibs",
+    "date": "2016-01-15.jpg"
+  },
+  "bromo_tengger": {
+    "source": "eox2016"
+  },
+  "cliffs_of_moher": {
+    "source": "eox2016"
+  },
+  "cordillera_darwin": {
+    "source": "eox2016"
+  },
+  "daintree": {
+    "source": "eox2016"
+  },
+  "dallol": {
+    "source": "eox2024"
+  },
+  "dasht_e_lut": {
+    "source": "eox2016"
+  },
+  "denali_massif": {
+    "source": "eox2016"
+  },
+  "devils_tower": {
+    "source": "eox2016"
+  },
+  "everglades": {
+    "source": "eox2024"
+  },
+  "exuma_cays": {
+    "source": "eox2016"
+  },
+  "franz_josef_land": {
+    "source": "eox2016"
+  },
+  "geirangerfjord": {
+    "source": "eox2024"
+  },
+  "giants_causeway": {
+    "source": "eox2016"
+  },
+  "gotjawal": {
+    "source": "eox2016"
+  },
+  "grand_canyon": {
+    "source": "eox2016"
+  },
+  "grand_prismatic": {
+    "source": "eox2016"
+  },
+  "great_barrier_reef": {
+    "source": "gibs",
+    "date": "2019-09-03"
+  },
+  "ha_long_bay": {
+    "source": "eox2016"
+  },
+  "iguazu_falls": {
+    "source": "eox2024"
+  },
+  "krenitsyn_caldera": {
+    "source": "eox2016"
+  },
+  "lake_gairdner": {
+    "source": "eox2016"
+  },
+  "lake_vostok_plateau": {
+    "source": "gibs",
+    "date": "2023-12-28.jpg"
+  },
+  "lauterbrunnen": {
+    "source": "eox2016"
+  },
+  "lencois_maranhenses": {
+    "source": "eox2016"
+  },
+  "lofoten_reine": {
+    "source": "eox2016"
+  },
+  "magellanic_fjords": {
+    "source": "eox2016"
+  },
+  "mcmurdo_dry_valleys": {
+    "source": "gibs",
+    "date": "2024-01-10.jpg"
+  },
+  "monument_valley": {
+    "source": "eox2016"
+  },
+  "moraine_lake": {
+    "source": "eox2016"
+  },
+  "orkhon_steppe": {
+    "source": "eox2016"
+  },
+  "pamukkale": {
+    "source": "eox2016"
+  },
+  "patagonian_icefield": {
+    "source": "eox2016"
+  },
+  "patagonian_steppe": {
+    "source": "eox2016"
+  },
+  "plitvice_lakes": {
+    "source": "eox2024"
+  },
+  "puna_de_atacama": {
+    "source": "eox2024"
+  },
+  "ross_ice_shelf": {
+    "source": "gibs",
+    "date": "2023-12-28.jpg"
+  },
+  "salar_de_tara": {
+    "source": "eox2016"
+  },
+  "salar_de_uyuni": {
+    "source": "eox2024"
+  },
+  "sarek": {
+    "source": "eox2016"
+  },
+  "socotra": {
+    "source": "eox2016"
+  },
+  "sossusvlei": {
+    "source": "eox2016"
+  },
+  "tre_cime": {
+    "source": "eox2016"
+  },
+  "ushishir_caldera": {
+    "source": "eox2016"
+  },
+  "wadi_rum": {
+    "source": "eox2016"
+  },
+  "zhangjiajie": {
+    "source": "eox2024"
+  },
+  "giant_redwood_forest": {
+    "source": "eox2016"
+  }
+}

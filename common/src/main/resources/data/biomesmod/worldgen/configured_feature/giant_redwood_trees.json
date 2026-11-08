@@ -1,0 +1,28 @@
+{
+  "config": {
+    "crown": [
+      5,
+      8
+    ],
+    "dead_limbs": 0.0,
+    "height": [
+      48,
+      74
+    ],
+    "leaves": {
+      "Name": "biomesmod:redwood_leaves"
+    },
+    "log": {
+      "Name": "biomesmod:redwood_log"
+    },
+    "radius": [
+      1.4,
+      2.4
+    ],
+    "style": "spire",
+    "wood": {
+      "Name": "biomesmod:redwood_wood"
+    }
+  },
+  "type": "biomesmod:giant_tree"
+}
