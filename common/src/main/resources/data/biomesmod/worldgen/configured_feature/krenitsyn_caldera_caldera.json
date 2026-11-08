@@ -6,30 +6,34 @@
     "chance": 1.0,
     "cone": 1,
     "cone_height": [
-      30,
-      45
+      58,
+      72
+    ],
+    "cone_offset": [
+      0.4,
+      0.47
     ],
     "cone_radius": [
-      34,
-      48
+      88,
+      104
     ],
     "flank": [
-      60,
-      85
+      90,
+      120
     ],
     "floor": "lake",
-    "floor_depth": 18,
-    "green": 0.7,
+    "floor_depth": 22,
+    "green": 0.75,
+    "max_relief": 200,
     "min_distance": -1,
     "radius": [
-      130,
-      165
+      145,
+      170
     ],
     "rim_height": [
-      40,
-      55
+      26,
+      36
     ],
-    "rise_from": "sea_level",
     "salt": 52421,
     "shape": "caldera",
     "spacing": 48

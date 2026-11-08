@@ -63,7 +63,7 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `great_barrier_reef` | Great Barrier Reef / 그레이트 배리어 리프 | overworld | site, basin y=55, island | 41 |
 | `ha_long_bay` | Ha Long Bay / 하롱베이 | overworld | site, basin y=55, island | 22 |
 | `iguazu_falls` | Iguazu Falls / 이구아수 폭포 | overworld | site, lift y=72 | 9 |
-| `krenitsyn_caldera` | Krenitsyn Caldera / 크레니친 칼데라 | overworld | site, keep | 2 |
+| `krenitsyn_caldera` | Krenitsyn Caldera / 크레니친 칼데라 | overworld | site, lift y=81 (450 m) | 2 |
 | `lake_gairdner` | Lake Gairdner / 게어드너 호 | overworld | site, plateau y=68 | 42 |
 | `lake_vostok_plateau` | Vostok Plateau / 보스토크 고원 | overworld | site, plateau y=227 (3488 m) | 50 |
 | `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, lift y=135 (1850 m), ridges | 23 |

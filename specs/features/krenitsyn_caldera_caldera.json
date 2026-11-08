@@ -13,29 +13,33 @@
       "min_distance": -1,
       "floor": "lake",
       "cone": 1,
-      "rise_from": "sea_level",
       "radius": [
-        130,
-        165
+        145,
+        170
       ],
       "rim_height": [
-        40,
-        55
+        26,
+        36
       ],
       "flank": [
-        60,
-        85
+        90,
+        120
       ],
       "cone_height": [
-        30,
-        45
+        58,
+        72
       ],
       "cone_radius": [
-        34,
-        48
+        88,
+        104
       ],
-      "floor_depth": 18,
-      "green": 0.7
+      "floor_depth": 22,
+      "green": 0.75,
+      "cone_offset": [
+        0.4,
+        0.47
+      ],
+      "max_relief": 200
     }
   },
   "placement": []

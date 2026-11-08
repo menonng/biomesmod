@@ -12,22 +12,27 @@
   "placement": {
     "site": {
       "temperature": [
-        "frozen",
         "cold",
         "temperate"
       ],
-      "size": [
-        380,
-        480
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
       ],
-      "ramp": 160,
-      "terrain": "keep",
-      "relief": 0.5,
+      "size": [
+        400,
+        520
+      ],
+      "ramp": 220,
+      "terrain": "lift",
+      "relief": 0.35,
       "weight": 1.0,
       "zone": [
-        "deep_ocean",
-        "ocean"
-      ]
+        "near_inland",
+        "mid_inland"
+      ],
+      "elevation_m": 450
     }
   },
   "base": "minecraft:cold_ocean",

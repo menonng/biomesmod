@@ -37,6 +37,7 @@ class CalderaShape internal constructor(
 	internal val breachWidth: Float,
 	internal val floorBlock: Optional<BlockState>,
 	internal val green: Float,
+	internal val coneOffset: Span,
 ) : LandformShape() {
 	override fun name(): String = NAME
 
@@ -57,7 +58,7 @@ class CalderaShape internal constructor(
 		val inst = Instance(site, base, foot, crest, rad, r.range(flank), r.angle())
 		if (r.chance(cone.toDouble())) {
 			val a = r.angle()
-			val off = rad * r.range(0.0, 0.35)
+			val off = rad * r.range(coneOffset.min.toDouble(), coneOffset.max.toDouble())
 			inst.cone(site.x + Math.cos(a) * off, site.z + Math.sin(a) * off, r.range(coneRadius), r.range(coneHeight))
 		}
 		return inst
@@ -155,7 +156,9 @@ class CalderaShape internal constructor(
 				if (cd < cw) {
 					val t = cd / cw
 					val ch = floorY + (if (water != Col.NONE) max(0, water - floorY).toDouble() else 0.0) + cch
-					var h = floorY + (ch - floorY) * (1 - t).pow(1.3)
+					// Radial gullies scored down the cone, deepest on the lower slopes (Krenitsyn's ribbed flanks).
+					val gully = abs(LNoise.angular(seed xor 0x7E1, ca + 0.15 * LNoise.noise1(seed xor 0x7E2, cd / 10), 26.0)).pow(2)
+					var h = floorY + (ch - floorY) * (1 - t).pow(1.25) * (1 - 0.14 * gully * sqrt(t))
 					if (t < 0.18) {
 						h -= (0.18 - t) / 0.18 * 4 // small summit crater
 					}
@@ -225,8 +228,9 @@ class CalderaShape internal constructor(
 				Codec.floatRange(0.1f, 2f).optionalFieldOf("breach_width", 0.5f).forGetter { it.breachWidth },
 				BlockState.CODEC.optionalFieldOf("floor_block").forGetter { it.floorBlock },
 				Codec.floatRange(0f, 1f).optionalFieldOf("green", 0f).forGetter { it.green },
-			).apply(i) { radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green ->
-				CalderaShape(radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green)
+				Span.CODEC.optionalFieldOf("cone_offset", Span.of(0.0, 0.35)).forGetter { it.coneOffset },
+			).apply(i) { radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green, coneOffset ->
+				CalderaShape(radius, rimHeight, flank, floor, floorDepth, cone, coneRadius, coneHeight, breachWidth, floorBlock, green, coneOffset)
 			}
 		}
 	}
