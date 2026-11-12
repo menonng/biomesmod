@@ -100,7 +100,9 @@
 	"block.biomesmod.thermal_mat_orange": "주황 미생물 매트",
 	"block.biomesmod.thermal_mat_yellow": "노랑 미생물 매트",
 	"block.biomesmod.travertine": "석회화",
+	"block.biomesmod.tussock_grass": "다발풀",
 	"block.biomesmod.volcanic_ash": "화산재",
 	"block.biomesmod.white_sand": "흰 모래",
+	"block.biomesmod.yareta": "야레타",
 	"commands.biomesmod.sites": "가까운 biomesmod 부지"
 }

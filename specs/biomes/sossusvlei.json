@@ -52,6 +52,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:sossusvlei_dunes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:sossusvlei_dead_trees"
       ]
     },
     "remove": [

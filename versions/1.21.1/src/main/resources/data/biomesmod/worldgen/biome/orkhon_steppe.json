@@ -81,7 +81,8 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:patch_pumpkin",
+      "biomesmod:orkhon_steppe_feather_grass"
     ],
     [
       "minecraft:freeze_top_layer"

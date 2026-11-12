@@ -57,6 +57,10 @@
       ],
       "local_modifications": [
         "biomesmod:puna_de_atacama_volcanoes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:puna_de_atacama_tussock",
+        "biomesmod:puna_de_atacama_yareta"
       ]
     },
     "remove": [
@@ -75,6 +79,11 @@
         "block": "minecraft:brown_terracotta",
         "noise": "minecraft:surface",
         "min": 0.4
+      },
+      {
+        "block": "minecraft:gravel",
+        "noise": "minecraft:surface_secondary",
+        "min": 0.35
       }
     ],
     "top": "minecraft:coarse_dirt"

@@ -135,6 +135,7 @@ class ShotDirector : ClientModInitializer {
 			}
 			Phase.CAPTURE -> {
 				val s = shots[index]
+				log.info("[shots] {}: {} fps", s.name, mc.fps)
 				Screenshot.grab(mc.gameDirectory, "${s.name}.png", mc.gameRenderer.mainRenderTarget(), 1) { msg -> log.info("[shots] {}: {}", s.name, msg.string) }
 				ticks = 0
 				phase = Phase.AFTER

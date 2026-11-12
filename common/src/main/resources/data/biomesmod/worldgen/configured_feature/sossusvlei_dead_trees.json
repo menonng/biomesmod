@@ -1,0 +1,20 @@
+{
+  "config": {
+    "ground": [
+      {
+        "Name": "minecraft:white_terracotta"
+      }
+    ],
+    "height": [
+      3,
+      5
+    ],
+    "log": {
+      "Name": "minecraft:dark_oak_wood",
+      "Properties": {
+        "axis": "y"
+      }
+    }
+  },
+  "type": "biomesmod:dead_tree"
+}

@@ -13,17 +13,17 @@
       "min_distance": -1,
       "count": 3,
       "spread": [
-        10,
-        14
+        20,
+        26
       ],
       "taper": 0.8,
       "radius": [
-        6,
-        9
+        10,
+        14
       ],
       "height": [
-        48,
-        70
+        64,
+        92
       ],
       "columns": 0,
       "flute": 0.0,

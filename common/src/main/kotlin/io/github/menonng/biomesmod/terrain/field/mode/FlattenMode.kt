@@ -30,7 +30,7 @@ import kotlin.math.max
  * @param crustCell polygon size in blocks
  * @param crustBlock block of the polygon ridges
  * @param filmBlock if set, the film is not water at all: the film patches are paved flush with this block (the Uyuni
- *   mirror block) and carry no polygon ridges, so the surface is one calm sheet
+ *   mirror block) and carry no polygon ridges, so the surface is one calm sheet (unless `uyuni.mirror` is `water` in the config)
  */
 data class FlattenMode(
 	override val common: Common, val level: Optional<Int>, val offset: Int, val relief: Double, val waterCoverage: Double,
@@ -61,7 +61,7 @@ data class FlattenMode(
 			val zd = z.toDouble()
 			out.ground = pan + (if (relief > 0) relief * noise.fbm(xd, zd, 220.0, 2) else 0.0)
 			if (waterCoverage > 0 && noise.fbm(xd + 4111, zd - 977, waterScale, 3) > waterT) {
-				if (filmBlock.isPresent) {
+				if (filmBlock.isPresent && io.github.menonng.biomesmod.BiomesConfig.mirrorBlock) {
 						out.surface = filmBlock.get()
 						out.surfaceDepth = 1
 						return

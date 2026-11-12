@@ -63,6 +63,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:patagonian_steppe_mesetas"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:patagonian_steppe_tussock"
       ]
     }
   },

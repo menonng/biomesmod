@@ -21,7 +21,7 @@
       ],
       "ramp": 260,
       "terrain": "plateau",
-      "relief": 0.04,
+      "relief": 0.0,
       "weight": 1.0,
       "zone": [
         "near_inland",

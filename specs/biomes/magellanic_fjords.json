@@ -20,18 +20,25 @@
         399
       ],
       "ramp": 163,
-      "terrain": "keep",
-      "relief": 0.5,
+      "terrain": "mountain",
+      "relief": 0.6,
       "weight": 1.0,
       "continentalness": [
-        -0.3,
-        0.03
+        -0.22,
+        0.1
       ],
       "humidity": [
         "neutral",
         "wet",
         "humid"
-      ]
+      ],
+      "elevation_m": 240,
+      "ridges": 18,
+      "channels": {
+        "count": 3,
+        "width": 64,
+        "depth": 26
+      }
     }
   },
   "base": "minecraft:old_growth_spruce_taiga",

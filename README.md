@@ -15,12 +15,14 @@ Global terrain changes (data overrides):
 
 **Works with other worldgen.** The site engine hooks the world's noise router at runtime instead of overriding vanilla files, so sites appear on every world preset (Default, Large Biomes with sites twice as large, Amplified) and on top of terrain mods. Tested combinations are listed under [Compatibility](#compatibility).
 
-**Config:** `config/biomesmod.json` (written on first start) sets the elevation mapping (sea level, metres per block, the 2,000 m / y=190 highland rule, the 40 m per block above it, the height cap), site cell size, site chance, size scale, Large Biomes scale, per-biome site weights (0 turns a biome off) and the height of the ridged ranges.
+**Config:** `config/biomesmod.json` (written on first start) sets the elevation mapping (sea level, metres per block, the 2,000 m / y=190 highland rule, the 40 m per block above it, the height cap), site cell size, site chance, size scale, Large Biomes scale, per-biome site weights (0 turns a biome off), the height of the ridged ranges and what the Uyuni mirror is made of (`uyuni.mirror`: `block` or `water`).
 
-**New blocks** (40, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
+**New blocks** (43, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
 
 * Socotra: dragon's blood log, wood and leaves, desert rose.
 * Geothermal: geyserite, geyser vent (erupts every 1-3 minutes and throws you up; in 26.2 geyser cones use vanilla's potent sulfur geysers instead), steam vent, orange / yellow / green thermal mats, sulfur crust, travertine.
+* Salar de Uyuni: salt mirror, the flooded salt flat as a solid, dead-calm block whose LabPBR material (smoothness 0.98) mirrors the sky under shader packs with specular reflections switched on (in Bliss: LabPBR → Specular Reflections, Screen Space Reflections, Sky Reflection; they are off by default). Without a shader pack it is a plain pale-blue block. See [docs/uyuni-mirror.md](docs/uyuni-mirror.md).
+* Dry highlands and steppe: tussock grass (paja brava of the Puna, coirón of Patagonia, feather grass of the Mongolian steppe; also roots in sand, gravel and terracotta) and yareta, the green cushion plant of the high Andes.
 * Rock and sand: salt crust, white sand (Lençóis, replaces concrete powder), volcanic ash, scoria, dolerite, glacier ice.
 * White Old Growth: ghostwood log, wood, leaves, hollow (breathes wisps) and sapling (nine in a 3x3 square grow into an ancient ghostwood, the giant of the biome's heart), pale moss and moss carpet, pale fern, silver beard lichen, moon bracket fungus, moonpetal.
 * Giant Redwood Forest: redwood log, wood and leaves.
@@ -67,7 +69,7 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, lift y=135 (1850 m), ridges | 23 |
 | `lencois_maranhenses` | Lençóis Maranhenses / 렌소이스 마라냥세스 | overworld | site, keep | 7, 20 |
 | `lofoten_reine` | Lofoten Peaks / 로포텐 봉우리 | overworld | site, keep | 26, 28 |
-| `magellanic_fjords` | Magellanic Forest / 마젤란 숲 | overworld | site, keep | 48 |
+| `magellanic_fjords` | Magellanic Forest / 마젤란 숲 | overworld | site, mountain y=72 (240 m), ridges | 48 |
 | `mcmurdo_dry_valleys` | McMurdo Dry Valleys / 맥머도 드라이 밸리 | overworld | site, lift y=100 | 46 |
 | `monument_valley` | Monument Valley / 모뉴먼트 밸리 | overworld | site, plateau y=129 (1700 m) | 14 |
 | `moraine_lake` | Moraine Lake / 모레인 호수 | overworld | site, mountain y=137 (1885 m), ridges | 35 |

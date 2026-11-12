@@ -8,8 +8,8 @@
     "count": 3,
     "flute": 0.0,
     "height": [
-      48,
-      70
+      64,
+      92
     ],
     "max_relief": 60,
     "min_distance": -1,
@@ -42,15 +42,15 @@
       ]
     },
     "radius": [
-      6,
-      9
+      10,
+      14
     ],
     "salt": 53627,
     "shape": "monolith",
     "spacing": 40,
     "spread": [
-      10,
-      14
+      20,
+      26
     ],
     "talus_blocks": [
       {

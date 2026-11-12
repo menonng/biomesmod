@@ -196,16 +196,50 @@ def salt_mirror():
     img = canvas()
     for y in range(N):
         for x in range(N):
-            c = mix((168, 198, 228), (184, 210, 236), n(x, y))
-            c = mix(c, (214, 228, 242), max(0.0, hm[y][x] - 0.6) * 0.9)
-            img[y][x] = rgba(jitter(rnd, c, 1))
+            c = mix((170, 200, 229), (178, 206, 233), n(x, y))
+            c = mix(c, (196, 216, 238), max(0.0, hm[y][x] - 0.6) * 0.9)
+            img[y][x] = rgba(c)
     return img
 
 
 def salt_mirror_height():
     """A calm film: flat, with only a trace of the seams below so the reflection carries fine salt detail."""
     hm = salt_height()
-    return [[0.5 + 0.06 * max(0.0, v - 0.6) for v in row] for row in hm]
+    return [[0.5 + 0.03 * max(0.0, v - 0.6) for v in row] for row in hm]
+
+
+def tussock_grass():
+    """A bunch of stiff straw-coloured blades fanning out of one base."""
+    rnd = random.Random(231)
+    img = canvas()
+    cols = [(150, 124, 70), (190, 164, 94), (218, 196, 120), (236, 220, 150)]
+    for tip_x, tip_y in ((1, 6), (3, 3), (5, 5), (6, 1), (8, 2), (9, 0), (11, 3), (12, 1), (13, 5), (15, 7), (4, 8), (10, 6)):
+        bx = 7 + rnd.randrange(3)
+        line(img, bx, 15, tip_x, tip_y, lambda i, n: jitter(rnd, ramp(cols, i / max(1, n - 1)), 5), wrap=False)
+    for x in range(6, 11):
+        img[15][x] = rgba(jitter(rnd, (132, 108, 62), 4))
+        if rnd.random() < 0.7:
+            img[14][x] = rgba(jitter(rnd, (150, 124, 70), 4))
+    return img
+
+
+def yareta():
+    """A tight cushion of tiny rosettes: bright yellow-green, lumpy, with darker seams between the lobes."""
+    rnd = random.Random(241)
+    f = fbm(242, (2, 4), (0.65, 0.35))
+    cell = Noise(243, 4)
+    img = canvas()
+    for y in range(N):
+        for x in range(N):
+            t = 0.65 * f(x, y) + 0.35 * cell(x, y)
+            c = ramp([(74, 112, 36), (104, 148, 44), (136, 180, 58), (170, 206, 86)], t)
+            r = rnd.random()
+            if r < 0.10:
+                c = (188, 218, 104)
+            elif r < 0.16:
+                c = (66, 100, 34)
+            img[y][x] = rgba(jitter(rnd, c, 4))
+    return img
 
 
 def travertine():
@@ -1022,16 +1056,24 @@ def main():
     block("salt_mirror", "bottom_top", ("Salt Mirror", "소금 거울"), ("mineable/shovel",),
           dict(top=t("salt_mirror"), side=t("salt_crust"), bottom=t("salt_crust")))
 
+    block("tussock_grass", "cross", ("Tussock Grass", "다발풀"), ())
+    block("yareta", "all", ("Yareta", "야레타"), ("mineable/hoe",))
+
     # ---- textures
     P = lambda name: os.path.join(TEX, name + ".png")
     png(P("salt_crust"), salt())
     png(P("salt_crust_n"), normal_map(salt_height(), 1.2))
     png(P("salt_crust_s"), spec_map(lambda x, y: (0.82, 0.05, 30, None)))
-    # LabPBR: smoothness 0.97 (roughness (1-s)^2 ~ 0.001), dielectric F0 0.16: looking down the salt shows through,
+    # LabPBR: smoothness 0.98 (roughness (1-s)^2 ~ 0.0004), dielectric F0 0.35: looking down the salt shows through,
     # towards the horizon Fresnel takes it to a full mirror. Porosity 0 (a wet, closed surface).
     png(P("salt_mirror"), salt_mirror())
     png(P("salt_mirror_n"), normal_map(salt_mirror_height(), 0.6))
-    png(P("salt_mirror_s"), spec_map(lambda x, y: (0.97, 0.16, 0, None)))
+    png(P("salt_mirror_s"), spec_map(lambda x, y: (0.98, 0.35, 0, None)))
+    png(P("tussock_grass"), tussock_grass())
+    yar = yareta()
+    png(P("yareta"), yar)
+    png(P("yareta_n"), normal_map(luminance_height(yar), 2.2))
+    png(P("yareta_s"), spec_map(lambda x, y: (0.25, 0.04, 150, None)))
     trav = travertine()
     png(P("travertine"), trav)
     png(P("travertine_n"), normal_map(luminance_height(trav), 2.0))

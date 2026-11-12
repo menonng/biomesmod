@@ -56,6 +56,9 @@
       ],
       "local_modifications": [
         "biomesmod:salar_de_tara_monjes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:salar_de_tara_tussock"
       ]
     },
     "remove": [

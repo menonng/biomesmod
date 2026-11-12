@@ -59,6 +59,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:orkhon_steppe_hills"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:orkhon_steppe_feather_grass"
       ]
     }
   },

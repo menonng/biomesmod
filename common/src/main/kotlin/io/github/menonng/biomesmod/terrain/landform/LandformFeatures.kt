@@ -36,6 +36,7 @@ object LandformFeatures {
 
 	@JvmField
 	val FALLEN_LOG = FallenLogFeature()
+	val DEAD_TREE = DeadTreeFeature()
 
 	@JvmField
 	val CLIFF_FALLS = CliffFallsFeature()
@@ -45,6 +46,7 @@ object LandformFeatures {
 		ModFeatures.register("floating_isle", FLOATING_ISLE)
 		ModFeatures.register("abyss_well", ABYSS_WELL)
 		ModFeatures.register("fallen_log", FALLEN_LOG)
+		ModFeatures.register("dead_tree", DEAD_TREE)
 		ModFeatures.register("giant_tree", GIANT_TREE)
 		ModFeatures.register("rock_swap", ROCK_SWAP)
 		ModFeatures.register("crystal_cluster", CRYSTAL_CLUSTER)

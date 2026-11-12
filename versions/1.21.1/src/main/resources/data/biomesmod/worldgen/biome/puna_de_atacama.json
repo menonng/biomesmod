@@ -82,7 +82,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:patch_dead_bush"
+      "minecraft:patch_dead_bush",
+      "biomesmod:puna_de_atacama_tussock",
+      "biomesmod:puna_de_atacama_yareta"
     ],
     [
       "minecraft:freeze_top_layer"

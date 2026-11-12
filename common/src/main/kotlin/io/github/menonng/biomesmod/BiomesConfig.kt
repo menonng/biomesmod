@@ -19,6 +19,8 @@ import kotlin.math.roundToInt
  * - `sites`: grid cell, chance per cell, size factor of every site (and the extra factor on Large Biomes), and a weight
  *   factor per biome (`"socotra": 0.5` halves how often Socotra is picked).
  * - `mountains.ridge_scale`: height factor of the ridged mountain peaks on mountain sites (0 turns them off).
+ * - `uyuni.mirror`: what the flooded part of Salar de Uyuni is made of. `block` (default): the `salt_mirror` block, a
+ *   dead-calm solid film that PBR shader packs mirror the sky in; `water`: a one-block film of vanilla water.
  */
 object BiomesConfig {
 	class Elevation(
@@ -41,6 +43,7 @@ object BiomesConfig {
 	val elevation: Elevation
 	val sites: Sites
 	val ridgeScale: Double
+	val mirrorBlock: Boolean
 
 	init {
 		val path = FabricLoader.getInstance().configDir.resolve("biomesmod.json")
@@ -60,6 +63,8 @@ object BiomesConfig {
 		sites = Sites(s.num("cell", ds.cell.toDouble()).toInt(), s.num("chance", ds.chance), s.num("size_scale", ds.sizeScale),
 			s.num("large_biomes_scale", ds.largeBiomesScale), w.keySet().associateWith { w.get(it).asDouble })
 		ridgeScale = root.obj("mountains").num("ridge_scale", 1.0)
+		val um = root.obj("uyuni")
+		mirrorBlock = !(um.has("mirror") && um.get("mirror").isJsonPrimitive && um.get("mirror").asString == "water")
 		write(path)
 	}
 
@@ -99,6 +104,11 @@ object BiomesConfig {
 		o.add("mountains", JsonObject().apply {
 			addProperty("_help", "ridge_scale: height factor of the ridged peaks on mountain sites (0 = off).")
 			addProperty("ridge_scale", ridgeScale)
+		})
+		o.add("uyuni", JsonObject().apply {
+			addProperty("_help", "mirror: 'block' paves the flooded salt flat with the salt_mirror block (reflects under PBR shader packs with " +
+				"specular reflections on, plain texture otherwise); 'water' uses a one-block film of vanilla water instead.")
+			addProperty("mirror", if (mirrorBlock) "block" else "water")
 		})
 		try {
 			Files.createDirectories(path.parent)

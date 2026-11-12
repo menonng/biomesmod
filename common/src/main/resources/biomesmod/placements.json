@@ -432,6 +432,11 @@
             "block": "minecraft:brown_terracotta",
             "noise": "minecraft:surface",
             "min": 0.4
+          },
+          {
+            "block": "minecraft:gravel",
+            "noise": "minecraft:surface_secondary",
+            "min": 0.35
           }
         ]
       },
@@ -1273,7 +1278,7 @@
         "ramp": 260.0,
         "terrain": "plateau",
         "target_y": 68,
-        "relief": 0.04,
+        "relief": 0.0,
         "weight": 1.0,
         "biome_threshold": 0.5
       },
@@ -1391,19 +1396,26 @@
           2.0
         ],
         "continentalness": [
-          -0.3,
-          0.03
+          -0.22,
+          0.1
         ],
         "core": [
           326.0,
           399.0
         ],
         "ramp": 163.0,
-        "terrain": "keep",
-        "target_y": 63,
-        "relief": 0.5,
+        "terrain": "mountain",
+        "target_y": 72,
+        "elevation_m": 240.0,
+        "relief": 0.6,
         "weight": 1.0,
-        "biome_threshold": 0.5
+        "biome_threshold": 0.5,
+        "ridges": 18.0,
+        "channels": {
+          "count": 3,
+          "width": 64.0,
+          "depth": 26.0
+        }
       },
       {
         "biome": "biomesmod:mcmurdo_dry_valleys",
@@ -1710,7 +1722,7 @@
         "terrain": "plateau",
         "target_y": 231,
         "elevation_m": 3656.0,
-        "relief": 0.02,
+        "relief": 0.0,
         "weight": 1.3,
         "biome_threshold": 0.5
       },
