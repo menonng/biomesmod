@@ -4,7 +4,7 @@
 
 About 40,000 interlocking basalt columns, mostly hexagonal, step down from the cliff foot into the sea like paving stones, below dark basalt cliffs and green headland.
 
-**In game:** `biomesmod:giants_causeway`, a site of 640–880 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites giants_causeway`.
+**In game:** `biomesmod:giants_causeway`, a site of 540–660 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites giants_causeway`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

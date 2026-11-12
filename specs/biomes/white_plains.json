@@ -41,6 +41,13 @@
         "biomesmod:white_plains_moonpetals",
         "biomesmod:white_old_growth_moss"
       ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_meadow",
+        "minecraft:patch_tall_grass",
+        "minecraft:patch_berry_common"
+      ]
     }
   },
   "surface": {

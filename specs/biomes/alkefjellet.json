@@ -16,10 +16,10 @@
         "cold"
       ],
       "size": [
-        380,
-        520
+        270,
+        330
       ],
-      "ramp": 160,
+      "ramp": 140,
       "terrain": "keep",
       "relief": 0.5,
       "weight": 1.0,

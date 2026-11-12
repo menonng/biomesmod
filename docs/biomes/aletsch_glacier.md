@@ -4,7 +4,7 @@
 
 The Alps' largest glacier (23 km): at Konkordiaplatz four ice streams merge into a 900 m thick ice plain, striped by dark medial moraines, below the Jungfrau peaks.
 
-**In game:** `biomesmod:aletsch_glacier`, a site of 960–1240 blocks across (mountains, low land raised, y=208). Find the nearest one with `/biomesmod sites aletsch_glacier`.
+**In game:** `biomesmod:aletsch_glacier`, a site of 764–936 blocks across (mountains, low land raised, y=208). Find the nearest one with `/biomesmod sites aletsch_glacier`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

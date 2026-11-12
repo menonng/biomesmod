@@ -4,8 +4,8 @@
     "cluster": 6,
     "min_drop": 24,
     "stream": [
-      4,
-      11
+      10,
+      24
     ],
     "tries": 28
   },

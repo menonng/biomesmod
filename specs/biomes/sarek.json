@@ -16,10 +16,10 @@
         "cold"
       ],
       "size": [
-        500,
-        650
+        326,
+        399
       ],
-      "ramp": 240,
+      "ramp": 163,
       "terrain": "mountain",
       "relief": 0.8,
       "weight": 1.0,
@@ -40,7 +40,14 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_meadow",
+        "minecraft:patch_tall_grass",
+        "minecraft:patch_berry_common"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

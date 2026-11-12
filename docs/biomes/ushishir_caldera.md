@@ -4,7 +4,7 @@
 
 A small volcanic island group whose main island Yankicha is a collapsed caldera ring, breached on one side so the sea floods the crater as Kraternaya Bay; steaming fumaroles, seabird cliffs, low tundra.
 
-**In game:** `biomesmod:ushishir_caldera`, a site of 640–840 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites ushishir_caldera`.
+**In game:** `biomesmod:ushishir_caldera`, a site of 540–660 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites ushishir_caldera`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

@@ -4,7 +4,7 @@
 
 Sandstone buttes up to 300 m stand on red sand plains; the Mittens have a slender 'thumb' spire beside their main block, all on talus aprons of shale.
 
-**In game:** `biomesmod:monument_valley`, a site of 920–1200 blocks across (flat plateau, y=129). Find the nearest one with `/biomesmod sites monument_valley`.
+**In game:** `biomesmod:monument_valley`, a site of 652–798 blocks across (flat plateau, y=129). Find the nearest one with `/biomesmod sites monument_valley`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

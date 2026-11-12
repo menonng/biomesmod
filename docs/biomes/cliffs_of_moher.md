@@ -4,7 +4,7 @@
 
 Layered sandstone and shale cliffs rise 214 m straight from the Atlantic for 14 km, topped by green grass, with sea stacks such as Branaunmore at their foot.
 
-**In game:** `biomesmod:cliffs_of_moher`, a site of 760–1040 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites cliffs_of_moher`.
+**In game:** `biomesmod:cliffs_of_moher`, a site of 540–660 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites cliffs_of_moher`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

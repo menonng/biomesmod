@@ -16,10 +16,10 @@
         "temperate"
       ],
       "size": [
-        450,
-        600
+        326,
+        399
       ],
-      "ramp": 200,
+      "ramp": 163,
       "terrain": "keep",
       "relief": 0.5,
       "weight": 1.0,
@@ -42,7 +42,9 @@
   "colors": {
     "grass": "#6a8a4a",
     "foliage": "#4f6f3a",
-    "fog": "#b8c4c0"
+    "fog": "#b8c4c0",
+    "water": "#4cc3c9",
+    "water_fog": "#6fd6d6"
   },
   "features": {
     "remove": [
@@ -51,7 +53,10 @@
     ],
     "add": {
       "vegetal_decoration": [
-        "minecraft:patch_grass_taiga"
+        "minecraft:patch_grass_taiga",
+        "minecraft:patch_large_fern",
+        "minecraft:patch_berry_common",
+        "minecraft:flower_default"
       ]
     },
     "mod": {

@@ -23,10 +23,10 @@
         "ocean"
       ],
       "size": [
-        480,
-        620
+        382,
+        468
       ],
-      "ramp": 220,
+      "ramp": 191,
       "terrain": "lift",
       "relief": 0.35,
       "weight": 1.8,
@@ -70,6 +70,12 @@
         "biomesmod:socotra_bottle_trees",
         "biomesmod:socotra_frankincense",
         "biomesmod:socotra_desert_roses"
+      ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_grass_savanna",
+        "minecraft:flower_default"
       ]
     }
   },

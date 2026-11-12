@@ -4,7 +4,7 @@
 
 275 falls along 2.7 km of a basalt escarpment; the Devil's Throat is a U-shaped chasm where half the river plunges 80 m, in dense Atlantic rainforest with constant spray.
 
-**In game:** `biomesmod:iguazu_falls`, a site of 840–1120 blocks across (raised land, y=72). Find the nearest one with `/biomesmod sites iguazu_falls`.
+**In game:** `biomesmod:iguazu_falls`, a site of 540–660 blocks across (raised land, y=72). Find the nearest one with `/biomesmod sites iguazu_falls`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

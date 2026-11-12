@@ -52,7 +52,8 @@
     ],
     "add": {
       "vegetal_decoration": [
-        "minecraft:patch_tall_grass"
+        "minecraft:patch_tall_grass",
+        "minecraft:flower_plains"
       ]
     },
     "mod": {

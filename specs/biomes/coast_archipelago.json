@@ -22,7 +22,9 @@
   "features": {
     "add": {
       "vegetal_decoration": [
-        "minecraft:patch_grass_plain"
+        "minecraft:patch_grass_plain",
+        "minecraft:flower_warm",
+        "minecraft:patch_grass_jungle"
       ]
     },
     "mod": {

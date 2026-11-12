@@ -67,7 +67,9 @@
     ],
     [
       "minecraft:patch_large_fern",
+      "minecraft:flower_default",
       "minecraft:patch_grass_taiga",
+      "minecraft:patch_berry_common",
       "biomesmod:coast_sunken_pines_trees"
     ],
     [

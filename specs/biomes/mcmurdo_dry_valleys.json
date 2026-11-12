@@ -15,10 +15,10 @@
         "frozen"
       ],
       "size": [
-        480,
-        620
+        326,
+        399
       ],
-      "ramp": 240,
+      "ramp": 163,
       "terrain": "lift",
       "relief": 0.5,
       "weight": 1.0,

@@ -23,10 +23,10 @@
         "humid"
       ],
       "size": [
-        380,
-        500
+        270,
+        330
       ],
-      "ramp": 200,
+      "ramp": 140,
       "terrain": "lift",
       "target_y": 75,
       "relief": 0.4
@@ -60,7 +60,10 @@
         "minecraft:patch_large_fern",
         "minecraft:patch_grass_taiga",
         "minecraft:brown_mushroom_old_growth",
-        "minecraft:red_mushroom_old_growth"
+        "minecraft:red_mushroom_old_growth",
+        "minecraft:flower_forest_flowers",
+        "minecraft:patch_grass_forest",
+        "minecraft:brown_mushroom_normal"
       ]
     },
     "mod": {

@@ -4,7 +4,7 @@
 
 Red sand valleys between towering sandstone and granite inselbergs with smooth domed tops and vertical walls; natural arches and narrow siqs.
 
-**In game:** `biomesmod:wadi_rum`, a site of 920–1200 blocks across (flat plateau, y=102). Find the nearest one with `/biomesmod sites wadi_rum`.
+**In game:** `biomesmod:wadi_rum`, a site of 652–798 blocks across (flat plateau, y=102). Find the nearest one with `/biomesmod sites wadi_rum`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

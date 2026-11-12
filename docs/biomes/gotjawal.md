@@ -4,7 +4,7 @@
 
 Gotjawal is Jeju's forest on rough 'a'a lava fields: a dense evergreen and deciduous woodland growing straight out of jumbled basalt blocks, with mossy rocks, vines and ferns, never cleared for farming because the ground is too rough.
 
-**In game:** `biomesmod:gotjawal`, a site of 760–1000 blocks across (raised land, y=75). Find the nearest one with `/biomesmod sites gotjawal`.
+**In game:** `biomesmod:gotjawal`, a site of 540–660 blocks across (raised land, y=75). Find the nearest one with `/biomesmod sites gotjawal`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

@@ -16,10 +16,10 @@
         "hot"
       ],
       "size": [
-        400,
-        520
+        270,
+        330
       ],
-      "ramp": 220,
+      "ramp": 140,
       "terrain": "basin",
       "relief": 0.05,
       "weight": 1.0,

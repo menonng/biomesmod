@@ -4,7 +4,7 @@
 
 A salt lagoon at 4,300 m ringed by ochre hills and wind-carved ignimbrite towers (the 'Monjes de Pacana'); flamingos feed in shallow pink-white brine.
 
-**In game:** `biomesmod:salar_de_tara`, a site of 880–1120 blocks across (flat plateau, y=248). Find the nearest one with `/biomesmod sites salar_de_tara`.
+**In game:** `biomesmod:salar_de_tara`, a site of 652–798 blocks across (flat plateau, y=248). Find the nearest one with `/biomesmod sites salar_de_tara`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

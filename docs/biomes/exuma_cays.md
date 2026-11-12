@@ -4,7 +4,7 @@
 
 Hundreds of low limestone cays on the edge of the Great Bahama Bank: sandbars and turquoise shallows a few metres deep, with mangroves and casuarina on the islands.
 
-**In game:** `biomesmod:exuma_cays`, a site of 1000–1400 blocks across (flat low basin, y=59). Find the nearest one with `/biomesmod sites exuma_cays`.
+**In game:** `biomesmod:exuma_cays`, a site of 652–798 blocks across (flat low basin, y=59). Find the nearest one with `/biomesmod sites exuma_cays`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

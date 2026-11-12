@@ -4,7 +4,7 @@
 
 Granite horns over 700 m rise straight from the sea around Reine; red fishing cabins sit on skerries at their feet.
 
-**In game:** `biomesmod:lofoten_reine`, a site of 800–1080 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites lofoten_reine`.
+**In game:** `biomesmod:lofoten_reine`, a site of 652–798 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites lofoten_reine`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

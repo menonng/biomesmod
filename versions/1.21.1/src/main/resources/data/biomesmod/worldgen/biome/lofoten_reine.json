@@ -15,8 +15,8 @@
       "tick_delay": 6000
     },
     "sky_color": 8233727,
-    "water_color": 3108751,
-    "water_fog_color": 862778
+    "water_color": 5030857,
+    "water_fog_color": 7329494
   },
   "features": [
     [],
@@ -75,6 +75,8 @@
       "minecraft:glow_lichen",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
+      "minecraft:flower_plains",
+      "minecraft:patch_grass_plain",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",

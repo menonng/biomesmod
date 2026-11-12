@@ -16,10 +16,10 @@
         "temperate"
       ],
       "size": [
-        460,
-        600
+        326,
+        399
       ],
-      "ramp": 240,
+      "ramp": 163,
       "terrain": "lift",
       "relief": 0.5,
       "weight": 1.0,
@@ -39,7 +39,9 @@
   "base": "minecraft:meadow",
   "colors": {
     "grass": "#6fbf4a",
-    "foliage": "#4f9a3a"
+    "foliage": "#4f9a3a",
+    "water": "#4cc3c9",
+    "water_fog": "#6fd6d6"
   },
   "features": {
     "mod": {
@@ -55,7 +57,14 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_meadow",
+        "minecraft:patch_tall_grass",
+        "minecraft:patch_berry_common"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

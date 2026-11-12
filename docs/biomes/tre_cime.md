@@ -4,7 +4,7 @@
 
 Three free-standing dolomite towers (up to 2,999 m) with vertical north faces, rising from pale scree fans above alpine meadows.
 
-**In game:** `biomesmod:tre_cime`, a site of 800–1040 blocks across (raised land, y=198). Find the nearest one with `/biomesmod sites tre_cime`.
+**In game:** `biomesmod:tre_cime`, a site of 540–660 blocks across (raised land, y=198). Find the nearest one with `/biomesmod sites tre_cime`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

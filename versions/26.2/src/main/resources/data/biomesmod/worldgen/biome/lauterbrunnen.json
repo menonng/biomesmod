@@ -7,7 +7,8 @@
         "sound": "minecraft:music.overworld.meadow"
       }
     },
-    "minecraft:visual/sky_color": "#7ba4ff"
+    "minecraft:visual/sky_color": "#7ba4ff",
+    "minecraft:visual/water_fog_color": "#6fd6d6"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
@@ -17,7 +18,7 @@
   "effects": {
     "foliage_color": "#4f9a3a",
     "grass_color": "#6fbf4a",
-    "water_color": "#0e4ecf"
+    "water_color": "#4cc3c9"
   },
   "features": [
     [
@@ -81,7 +82,9 @@
       "minecraft:patch_grass_meadow",
       "minecraft:flower_meadow",
       "minecraft:trees_meadow",
+      "minecraft:patch_tall_grass",
       "minecraft:wildflowers_meadow",
+      "minecraft:patch_berry_common",
       "biomesmod:lauterbrunnen_firs"
     ],
     [

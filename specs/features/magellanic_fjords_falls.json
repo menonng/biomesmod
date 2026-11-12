@@ -6,8 +6,8 @@
       "tries": 28,
       "min_drop": 18,
       "stream": [
-        4,
-        11
+        10,
+        24
       ],
       "cluster": 2,
       "chance": 0.3

@@ -4,7 +4,7 @@
 
 Inside the 10 km Tengger caldera lies a 'sea of sand' of grey volcanic ash, from which rise the smoking Bromo crater and the perfectly fluted Batok cone.
 
-**In game:** `biomesmod:bromo_tengger`, a site of 920–1200 blocks across (raised land, y=192). Find the nearest one with `/biomesmod sites bromo_tengger`.
+**In game:** `biomesmod:bromo_tengger`, a site of 652–798 blocks across (raised land, y=192). Find the nearest one with `/biomesmod sites bromo_tengger`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

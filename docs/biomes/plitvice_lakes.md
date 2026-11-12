@@ -4,7 +4,7 @@
 
 Sixteen terraced lakes in karst, separated by travertine barriers over which countless waterfalls spill; turquoise water inside beech-fir forest.
 
-**In game:** `biomesmod:plitvice_lakes`, a site of 800–1040 blocks across (raised land, y=95). Find the nearest one with `/biomesmod sites plitvice_lakes`.
+**In game:** `biomesmod:plitvice_lakes`, a site of 540–660 blocks across (raised land, y=95). Find the nearest one with `/biomesmod sites plitvice_lakes`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

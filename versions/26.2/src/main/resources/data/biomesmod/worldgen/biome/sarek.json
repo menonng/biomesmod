@@ -76,7 +76,10 @@
     [
       "minecraft:glow_lichen",
       "minecraft:trees_grove",
-      "minecraft:patch_pumpkin"
+      "minecraft:flower_meadow",
+      "minecraft:patch_tall_grass",
+      "minecraft:patch_pumpkin",
+      "minecraft:patch_berry_common"
     ],
     [
       "minecraft:freeze_top_layer"

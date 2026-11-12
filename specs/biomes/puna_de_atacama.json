@@ -61,7 +61,12 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_dead_bush"
+      ]
+    }
   },
   "spawners": "base",
   "surface": {

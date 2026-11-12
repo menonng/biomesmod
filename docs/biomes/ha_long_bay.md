@@ -4,7 +4,7 @@
 
 Some 1,600 limestone karst towers and islets, sheer-sided and jungle-capped, rise from emerald water, notched at the waterline by waves.
 
-**In game:** `biomesmod:ha_long_bay`, a site of 920–1280 blocks across (flat low basin, y=55). Find the nearest one with `/biomesmod sites ha_long_bay`.
+**In game:** `biomesmod:ha_long_bay`, a site of 764–936 blocks across (flat low basin, y=55). Find the nearest one with `/biomesmod sites ha_long_bay`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

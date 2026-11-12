@@ -4,7 +4,7 @@
 
 The world's oldest tropical rainforest runs right down to white beaches and fringing reef: buttressed trees, fan palms, strangler figs, mangroves in the creeks.
 
-**In game:** `biomesmod:daintree`, a site of 900–1300 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites daintree`.
+**In game:** `biomesmod:daintree`, a site of 652–798 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites daintree`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

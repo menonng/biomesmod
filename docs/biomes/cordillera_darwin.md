@@ -4,7 +4,7 @@
 
 An ice-capped range rising to 2,500 m out of the Beagle Channel; tidewater glaciers ('Glacier Alley') tumble from the ice field to the sea.
 
-**In game:** `biomesmod:cordillera_darwin`, a site of 900–1200 blocks across (mountains, low land raised, y=126). Find the nearest one with `/biomesmod sites cordillera_darwin`.
+**In game:** `biomesmod:cordillera_darwin`, a site of 764–936 blocks across (mountains, low land raised, y=126). Find the nearest one with `/biomesmod sites cordillera_darwin`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

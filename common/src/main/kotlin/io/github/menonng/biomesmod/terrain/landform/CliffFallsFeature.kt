@@ -17,7 +17,8 @@ import net.minecraft.world.level.material.Fluids
 
 /**
  * `biomesmod:cliff_falls`: real waterfalls found on real cliffs. The feature looks for a plateau edge with a sheer drop
- * of at least `min_drop` blocks, cuts a stream into the plateau that runs to the lip, and pours it over: the falling
+ * of at least `min_drop` blocks, traces a stream uphill from the lip to an upland source (like a natural stream network,
+ * stepping always to the gentlest rise), lays it down so every step is a small cascade, and pours it over: the falling
  * column is laid down the face to wherever it lands (the fjord, a ledge, the valley floor), where a plunge pool is dug.
  * Several falls can stand side by side along the same edge (`cluster`, the Seven Sisters). Every water block rests on
  * or flows from terrain; nothing is left hanging in the air, and fluid ticks are scheduled so the falls stay live.
@@ -37,6 +38,12 @@ class CliffFallsFeature : Feature<CliffFallsFeature.Config>(Config.CODEC) {
 				).apply(i) { tries, minDrop, stream, cluster, chance -> Config(tries, minDrop, stream, cluster, chance) }
 			}
 		}
+	}
+
+	companion object {
+		/** Falls placed since start (reported by the self-check). */
+		@JvmField
+		val PLACED = java.util.concurrent.atomic.AtomicInteger()
 	}
 
 	private val water: BlockState get() = Blocks.WATER.defaultBlockState()
@@ -70,7 +77,10 @@ class CliffFallsFeature : Feature<CliffFallsFeature.Config>(Config.CODEC) {
 					val lt = ground(level, lx, lz) ?: continue
 					if (findEdge(level, lx, lt, lz, dir, cfg.minDrop, 0) == null) continue
 					val len = (cfg.stream.min + r.nextFloat() * (cfg.stream.max - cfg.stream.min)).toInt() / (if (k == 0) 1 else 2)
-					if (fall(level, cx, cz, lx, lt, lz, dir, len)) placed++
+					if (fall(level, cx, cz, lx, lt, lz, dir, len)) {
+						placed++
+						PLACED.incrementAndGet()
+					}
 				}
 				if (placed > 0) return true
 			}
@@ -119,62 +129,108 @@ class CliffFallsFeature : Feature<CliffFallsFeature.Config>(Config.CODEC) {
 	private fun inside(cx: Int, cz: Int, x: Int, z: Int, margin: Int): Boolean =
 		(x - margin) shr 4 >= cx - 1 && (x + margin) shr 4 <= cx + 1 && (z - margin) shr 4 >= cz - 1 && (z + margin) shr 4 <= cz + 1
 
+	/**
+	 * One waterfall, built the way a real stream reaches a cliff: the channel is traced uphill from the lip, always
+	 * stepping to the neighbouring column that rises least, to a source on the upland; water is laid along it from the
+	 * source down, so every drop on the way is a small cascade. Over the lip it falls down the face; where it lands a
+	 * plunge pool is dug and the stream carries on downhill, a block wider, until it reaches standing water or runs out.
+	 */
 	private fun fall(level: WorldGenLevel, cx: Int, cz: Int, lx: Int, lt: Int, lz: Int, dir: Direction, len: Int): Boolean {
 		val p = BlockPos.MutableBlockPos()
-		// Stream: cut back from the lip into the plateau, following the ground, walled by terrain on both sides.
-		var placed = 0
-		for (s in len downTo 0) {
-			val x = lx - dir.stepX * s
-			val z = lz - dir.stepZ * s
-			if (!inside(cx, cz, x, z, 1)) continue
-			val y = ground(level, x, z) ?: continue
-			if (y > lt + 2 || y < lt - 1) continue
-			// Make sure both banks and the bed hold the water.
-			val side = dir.clockWise
-			val bed = level.getBlockState(p.set(x, y - 1, z))
-			if (!ChunkWriter.isTerrain(bed)) continue
-			for (b in arrayOf(side, side.opposite)) {
-				val bank = p.set(x + b.stepX, y, z + b.stepZ)
-				if (!ChunkWriter.isTerrain(level.getBlockState(bank))) level.setBlock(bank, Blocks.STONE.defaultBlockState(), 2)
+		// 1) Trace upstream from the lip.
+		val path = ArrayList<IntArray>()
+		path.add(intArrayOf(lx, lt, lz))
+		var x = lx
+		var z = lz
+		var y = lt
+		val seen = HashSet<Long>()
+		seen.add(BlockPos.asLong(x, 0, z))
+		for (step in 0 until len) {
+			var best: IntArray? = null
+			for (d in Direction.Plane.HORIZONTAL) {
+				if (d == dir) continue // never back towards the cliff
+				val nx = x + d.stepX
+				val nz = z + d.stepZ
+				if (!inside(cx, cz, nx, nz, 1) || !seen.add(BlockPos.asLong(nx, 0, nz))) continue
+				val ny = ground(level, nx, nz) ?: continue
+				if (ny < y || ny > y + 2) continue // streams only climb gently when traced upstream
+				if (best == null || ny < best[1] || (ny == best[1] && d == dir.opposite)) best = intArrayOf(nx, ny, nz)
 			}
-			clearAbove(level, x, y, z)
-			level.setBlock(p.set(x, y, z), water, 2)
-			level.scheduleTick(p.immutable(), Fluids.WATER, 1)
-			placed++
+			val nb = best ?: break
+			path.add(nb)
+			x = nb[0]
+			y = nb[1]
+			z = nb[2]
 		}
-		if (placed == 0) return false
-		// The falling column down the face, from the open block beyond the lip to the first solid block.
+		if (path.size < 3) return false
+		// 2) Lay the stream from the source down to the lip.
+		for (i in path.indices.reversed()) {
+			val c = path[i]
+			if (!channel(level, c[0], c[1], c[2], dir)) return i < path.size - 2
+		}
+		// 3) The falling column down the face.
 		val fx = lx + dir.stepX
 		val fz = lz + dir.stepZ
-		var y = ground(level, lx, lz) ?: lt
+		var fy = lt
 		var landed = Int.MIN_VALUE
-		while (y > io.github.menonng.biomesmod.compat.LevelCompat.minY(level) + 1) {
-			val s = level.getBlockState(p.set(fx, y, fz))
-			if (!s.isAir && !s.`is`(BlockTags.LEAVES) && !s.canBeReplaced()) {
-				landed = if (s.fluidState.isEmpty) y else Int.MIN_VALUE + 1
+		var intoWater = false
+		while (fy > io.github.menonng.biomesmod.compat.LevelCompat.minY(level) + 1) {
+			val st = level.getBlockState(p.set(fx, fy, fz))
+			if (!st.isAir && !st.`is`(BlockTags.LEAVES) && !st.canBeReplaced()) {
+				intoWater = !st.fluidState.isEmpty
+				landed = fy
 				break
 			}
 			level.setBlock(p, falling, 2)
-			y--
+			fy--
 		}
-		level.scheduleTick(BlockPos(fx, ground(level, lx, lz) ?: lt, fz), Fluids.WATER, 1)
-		// A plunge pool where it hits ground (falls into water need none).
-		if (landed > Int.MIN_VALUE + 1) {
-			for (dz in -1..1) for (dx in -1..1) {
-				val px = fx + dx
-				val pz = fz + dz
-				if (!inside(cx, cz, px, pz, 0)) continue
-				val g = level.getBlockState(p.set(px, landed, pz))
-				if (ChunkWriter.isTerrain(g) && ChunkWriter.isTerrain(level.getBlockState(p.set(px, landed - 1, pz)))) {
-					var walled = true
-					for (d in Direction.Plane.HORIZONTAL) {
-						val n = level.getBlockState(p.set(px + d.stepX, landed, pz + d.stepZ))
-						if (n.isAir && (Math.abs(dx + d.stepX) > 1 || Math.abs(dz + d.stepZ) > 1)) walled = false
-					}
-					if (walled) level.setBlock(p.set(px, landed, pz), water, 2)
-				}
+		level.scheduleTick(BlockPos(fx, lt, fz), Fluids.WATER, 1)
+		if (landed == Int.MIN_VALUE || intoWater) return true
+		// 4) Plunge pool and the stream on below the falls, down to standing water.
+		for (dz in -1..1) for (dx in -1..1) {
+			if (inside(cx, cz, fx + dx, fz + dz, 0)) channel(level, fx + dx, landed, fz + dz, null)
+		}
+		x = fx
+		z = fz
+		y = landed
+		for (step in 0 until 14) {
+			var best: IntArray? = null
+			for (d in Direction.Plane.HORIZONTAL) {
+				val nx = x + d.stepX
+				val nz = z + d.stepZ
+				if (!inside(cx, cz, nx, nz, 1)) continue
+				val top = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, nx, nz) - 1
+				if (!level.getBlockState(p.set(nx, top, nz)).fluidState.isEmpty && top <= y) return true // reached water
+				val ny = ground(level, nx, nz) ?: continue
+				if (ny > y) continue
+				if (best == null || ny < best[1]) best = intArrayOf(nx, ny, nz)
+			}
+			val nb = best ?: break
+			channel(level, nb[0], nb[1], nb[2], null)
+			x = nb[0]
+			y = nb[1]
+			z = nb[2]
+		}
+		return true
+	}
+
+	/** Turns the ground block at (x, y, z) into a water source with solid banks and bed. */
+	private fun channel(level: WorldGenLevel, x: Int, y: Int, z: Int, flow: Direction?): Boolean {
+		val p = BlockPos.MutableBlockPos()
+		if (!ChunkWriter.isTerrain(level.getBlockState(p.set(x, y - 1, z)))) return false
+		for (b in Direction.Plane.HORIZONTAL) {
+			if (flow != null && (b == flow || b == flow.opposite)) continue
+			val bank = p.set(x + b.stepX, y, z + b.stepZ)
+			val st = level.getBlockState(bank)
+			if (st.isAir || (st.canBeReplaced() && st.fluidState.isEmpty)) {
+				// Open side: only a low bank if the neighbour lies lower (otherwise the water spills into the air).
+				val below = level.getBlockState(p.set(x + b.stepX, y - 1, z + b.stepZ))
+				if (!ChunkWriter.isTerrain(below)) level.setBlock(p.set(x + b.stepX, y - 1, z + b.stepZ), Blocks.STONE.defaultBlockState(), 2)
 			}
 		}
+		clearAbove(level, x, y, z)
+		level.setBlock(p.set(x, y, z), water, 2)
+		level.scheduleTick(p.immutable(), Fluids.WATER, 1)
 		return true
 	}
 

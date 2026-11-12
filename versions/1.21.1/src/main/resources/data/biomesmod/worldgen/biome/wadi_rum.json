@@ -79,7 +79,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "minecraft:patch_dead_bush"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

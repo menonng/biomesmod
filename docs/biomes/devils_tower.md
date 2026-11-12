@@ -4,7 +4,7 @@
 
 A 265 m igneous butte of hexagonal columns rising above the Belle Fourche River prairie, ringed by a talus apron and ponderosa pines.
 
-**In game:** `biomesmod:devils_tower`, a site of 800–1040 blocks across (raised land, y=110). Find the nearest one with `/biomesmod sites devils_tower`.
+**In game:** `biomesmod:devils_tower`, a site of 540–660 blocks across (raised land, y=110). Find the nearest one with `/biomesmod sites devils_tower`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

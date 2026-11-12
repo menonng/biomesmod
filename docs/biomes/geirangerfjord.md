@@ -4,7 +4,7 @@
 
 A 15 km fjord between near-vertical walls up to 1,400 m; the Seven Sisters waterfalls fall straight into the deep green water.
 
-**In game:** `biomesmod:geirangerfjord`, a site of 960–1240 blocks across (mountains, low land raised, y=122). Find the nearest one with `/biomesmod sites geirangerfjord`.
+**In game:** `biomesmod:geirangerfjord`, a site of 652–798 blocks across (mountains, low land raised, y=122). Find the nearest one with `/biomesmod sites geirangerfjord`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

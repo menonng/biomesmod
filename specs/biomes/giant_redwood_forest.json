@@ -17,10 +17,10 @@
         "wet"
       ],
       "size": [
-        480,
-        620
+        326,
+        399
       ],
-      "ramp": 240,
+      "ramp": 163,
       "terrain": "lift",
       "relief": 0.5,
       "weight": 1.0,
@@ -54,6 +54,13 @@
       "vegetal_decoration": [
         "biomesmod:giant_redwood_trees",
         "biomesmod:giant_redwood_young"
+      ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_large_fern",
+        "minecraft:patch_berry_common",
+        "minecraft:flower_default"
       ]
     }
   },

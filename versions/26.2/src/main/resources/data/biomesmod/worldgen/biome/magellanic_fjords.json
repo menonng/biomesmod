@@ -8,7 +8,8 @@
       }
     },
     "minecraft:visual/fog_color": "#b8c4c0",
-    "minecraft:visual/sky_color": "#7da3ff"
+    "minecraft:visual/sky_color": "#7da3ff",
+    "minecraft:visual/water_fog_color": "#6fd6d6"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
@@ -18,7 +19,7 @@
   "effects": {
     "foliage_color": "#4f6f3a",
     "grass_color": "#6a8a4a",
-    "water_color": "#3f76e4"
+    "water_color": "#4cc3c9"
   },
   "features": [
     [],

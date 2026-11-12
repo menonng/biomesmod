@@ -4,7 +4,7 @@
 
 Coast redwoods, the tallest trees on Earth (over 110 m), stand in fog-fed groves along Redwood Creek: thick red fibrous trunks rising from a fern and moss floor into a closed canopy far overhead.
 
-**In game:** `biomesmod:giant_redwood_forest`, a site of 960–1240 blocks across (raised land, y=84). Find the nearest one with `/biomesmod sites giant_redwood_forest`.
+**In game:** `biomesmod:giant_redwood_forest`, a site of 652–798 blocks across (raised land, y=84). Find the nearest one with `/biomesmod sites giant_redwood_forest`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

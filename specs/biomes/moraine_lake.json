@@ -16,10 +16,10 @@
         "temperate"
       ],
       "size": [
-        420,
-        560
+        270,
+        330
       ],
-      "ramp": 240,
+      "ramp": 140,
       "terrain": "mountain",
       "relief": 0.8,
       "weight": 1.0,
@@ -46,6 +46,11 @@
     "add": {
       "lakes": [
         "minecraft:lake_lava_underground"
+      ],
+      "vegetal_decoration": [
+        "minecraft:flower_meadow",
+        "minecraft:patch_tall_grass",
+        "minecraft:patch_berry_common"
       ]
     },
     "mod": {

@@ -4,7 +4,7 @@
 
 Basalt islands of Franz Josef Land are buried under domed ice caps that end in ice cliffs at the sea; only black basalt capes poke through.
 
-**In game:** `biomesmod:franz_josef_land`, a site of 900–1200 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites franz_josef_land`.
+**In game:** `biomesmod:franz_josef_land`, a site of 652–798 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites franz_josef_land`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

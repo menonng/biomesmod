@@ -1,6 +1,6 @@
 # Site engine: large real-place biomes at their real elevation
 
-Every real-place biome is **site-placed**. A site is one large, roughly round area of a single biome, typically 800 to 1,600 blocks across (twice that with the Large Biomes preset). The terrain inside it is moved to the place's real elevation, and the edge fades smoothly into the surrounding land. The five generic coast biomes (eroded shore, eroded cliffs, archipelago, polder, sunken pines) still take vanilla climate slots through TerraBlender.
+Every real-place biome is **site-placed**. A site is one large, roughly round area of a single biome, 1.2 to 1.7 times a normal biome (vast places up to about 1,600 blocks; twice that with the Large Biomes preset). The terrain inside it is moved to the place's real elevation, and the edge fades smoothly into the surrounding land. The three generic biomes (archipelago, polder, sunken pines) still take vanilla climate slots through TerraBlender.
 
 The engine works with every world preset (default, Large Biomes, Amplified) and with terrain mods that replace the vanilla density functions (Terralith, Tectonic, JJThunder To The Max, Montane, Mountain Peaks, Cascades). It does not override any vanilla data file; it hooks the noise router at runtime.
 

@@ -8,10 +8,10 @@ A Fabric mod that adds Overworld, Nether and End biomes, each loosely inspired b
 
 Global terrain changes (data overrides):
 
-* **Wider coastlines.** The continentalness noise is remapped so the coast band is stretched about 3 times. Measured on the dev seed, beach plus shallow-shelf width went from 33 to 62 blocks.
+* **Vast coastlines (in the manner of Project Regon).** The continentalness noise is remapped so the coast band is stretched about 4 times with gentle slopes, and every beach gets wide sand flats, bars and shallow lagoons (`coast_flats`, added to all `#minecraft:is_beach` biomes).
 * **No crescent water gorges.** Ravines are kept underground, so they no longer breach the surface near sea level and flood.
 
-**Placement.** Every real-place biome is a large *site* (about 800 to 1,600 blocks across) placed by the site engine ([docs/engine-sites.md](docs/engine-sites.md)). The terrain inside a site is moved to the place's real elevation, and a ramp joins it smoothly to the land around it. Below 2,000 m one block is 25.6 m above sea level (y=63); real high ground from 2,000 m up starts at **y=190** and climbs 40 m per block, so Salar de Uyuni (3,656 m) is a flat salt plateau at y=231 and Grand Prismatic (2,240 m) sits at y=196. Mountain sites add ridged ranges on top (sharp crests and arêtes in the manner of Tectonic), fading out towards the edge. A site can hold several zone biomes (Socotra: highlands, dragon's blood plateau, coast), and fjord sites cut channels down to the sea. Sites are chosen from the world's climate at their centre, so deserts stay among dry land and ice plateaus among frozen land. About a quarter of the world is in sites. The five generic coast biomes still take vanilla climate slots through TerraBlender. In game, `/biomesmod sites [biome]` lists the nearest sites.
+**Placement.** Every real-place biome is a *site*, 1.2 to 1.7 times the size of a normal biome depending on the place (naturally vast places such as salt flats, ice sheets, steppes, dune seas and reefs stay larger, up to about 1,600 blocks across), placed by the site engine ([docs/engine-sites.md](docs/engine-sites.md)). The terrain inside a site is moved to the place's real elevation, and a ramp joins it smoothly to the land around it. Below 2,000 m one block is 25.6 m above sea level (y=63); real high ground from 2,000 m up starts at **y=190** and climbs 40 m per block, so Salar de Uyuni (3,656 m) is a flat salt plateau at y=231 and Grand Prismatic (2,240 m) sits at y=196. Mountain sites add ridged ranges on top (sharp crests and arêtes in the manner of Tectonic), fading out towards the edge. A site can hold several zone biomes (Socotra: highlands, dragon's blood plateau, coast), and fjord sites cut channels down to the sea. Sites are chosen from the world's climate at their centre, so deserts stay among dry land and ice plateaus among frozen land. About a quarter of the world is in sites. The three generic biomes (archipelago, polder tulip fields, sunken pines) still take vanilla climate slots through TerraBlender. In game, `/biomesmod sites [biome]` lists the nearest sites.
 
 **Works with other worldgen.** The site engine hooks the world's noise router at runtime instead of overriding vanilla files, so sites appear on every world preset (Default, Large Biomes with sites twice as large, Amplified) and on top of terrain mods. Tested combinations are listed under [Compatibility](#compatibility).
 
@@ -39,8 +39,6 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `chorus_thicket` | Chorus Thicket / 코러스 덤불 | end | end highlands | — |
 | `cliffs_of_moher` | Cliffs of Moher / 모허 절벽 | overworld | site, keep | 40 |
 | `coast_archipelago` | Archipelago / 열도 | overworld | warm_ocean (+2) | — |
-| `coast_eroded_cliffs` | Eroded Stony Cliffs / 침식 암석 절벽 | overworld | beach (+2) | — |
-| `coast_eroded_shore` | Eroded Shore / 침식 해안 | overworld | beach (+2) | — |
 | `coast_polder_tulips` | Polder Tulip Fields / 간척지 튤립 평원 | overworld | plains (+1) | — |
 | `coast_sunken_pines` | Sunken Pine Barrens / 저지대 성긴 침엽수림 | overworld | taiga (+2) | — |
 | `cordillera_darwin` | Cordillera Darwin / 다윈 산맥 | overworld | site, mountain y=126 (1600 m), ridges | 49 |

@@ -35,14 +35,6 @@
       "dimension": "minecraft:overworld"
     },
     {
-      "id": "biomesmod:coast_eroded_cliffs",
-      "dimension": "minecraft:overworld"
-    },
-    {
-      "id": "biomesmod:coast_eroded_shore",
-      "dimension": "minecraft:overworld"
-    },
-    {
       "id": "biomesmod:coast_polder_tulips",
       "dimension": "minecraft:overworld"
     },
@@ -264,26 +256,14 @@
       "name": "biomesmod:overworld_1",
       "weight": 2,
       "replace": {
-        "minecraft:beach": "biomesmod:coast_eroded_cliffs",
         "minecraft:deep_lukewarm_ocean": "biomesmod:coast_archipelago",
         "minecraft:lukewarm_ocean": "biomesmod:coast_archipelago",
         "minecraft:old_growth_pine_taiga": "biomesmod:coast_sunken_pines",
         "minecraft:old_growth_spruce_taiga": "biomesmod:coast_sunken_pines",
         "minecraft:plains": "biomesmod:coast_polder_tulips",
-        "minecraft:snowy_beach": "biomesmod:coast_eroded_cliffs",
-        "minecraft:stony_shore": "biomesmod:coast_eroded_cliffs",
         "minecraft:sunflower_plains": "biomesmod:coast_polder_tulips",
         "minecraft:taiga": "biomesmod:coast_sunken_pines",
         "minecraft:warm_ocean": "biomesmod:coast_archipelago"
-      }
-    },
-    {
-      "name": "biomesmod:overworld_2",
-      "weight": 2,
-      "replace": {
-        "minecraft:beach": "biomesmod:coast_eroded_shore",
-        "minecraft:snowy_beach": "biomesmod:coast_eroded_shore",
-        "minecraft:stony_shore": "biomesmod:coast_eroded_shore"
       }
     }
   ],
@@ -331,24 +311,6 @@
         "top": "minecraft:grass_block",
         "under": "minecraft:dirt",
         "under_depth": 2
-      },
-      {
-        "biome": "biomesmod:coast_eroded_cliffs",
-        "top": "minecraft:stone",
-        "top_patches": [
-          {
-            "block": "minecraft:gravel",
-            "noise": "minecraft:surface",
-            "min": 0.35
-          }
-        ]
-      },
-      {
-        "biome": "biomesmod:coast_eroded_shore",
-        "top": "minecraft:sand",
-        "under": "minecraft:sandstone",
-        "under_depth": 3,
-        "underwater": "minecraft:sand"
       },
       {
         "biome": "biomesmod:franz_josef_land",
@@ -609,10 +571,10 @@
           -0.19
         ],
         "core": [
-          340.0,
-          460.0
+          326.0,
+          399.0
         ],
-        "ramp": 160.0,
+        "ramp": 163.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -634,10 +596,10 @@
           2.0
         ],
         "core": [
-          480.0,
-          620.0
+          382.0,
+          468.0
         ],
-        "ramp": 260.0,
+        "ramp": 191.0,
         "terrain": "mountain",
         "target_y": 208,
         "elevation_m": 2700.0,
@@ -661,10 +623,10 @@
           -0.06
         ],
         "core": [
-          380.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 160.0,
+        "ramp": 140.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -737,10 +699,10 @@
           2.0
         ],
         "core": [
-          460.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 260.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 192,
         "elevation_m": 2100.0,
@@ -763,10 +725,10 @@
           -0.06
         ],
         "core": [
-          380.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 160.0,
+        "ramp": 140.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -788,10 +750,10 @@
           0.1
         ],
         "core": [
-          450.0,
-          600.0
+          382.0,
+          468.0
         ],
-        "ramp": 220.0,
+        "ramp": 191.0,
         "terrain": "mountain",
         "target_y": 126,
         "elevation_m": 1600.0,
@@ -815,10 +777,10 @@
           -0.06
         ],
         "core": [
-          450.0,
-          650.0
+          326.0,
+          399.0
         ],
-        "ramp": 200.0,
+        "ramp": 163.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -840,10 +802,10 @@
           2.0
         ],
         "core": [
-          400.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 220.0,
+        "ramp": 140.0,
         "terrain": "basin",
         "target_y": 64,
         "relief": 0.05,
@@ -917,10 +879,10 @@
           2.0
         ],
         "core": [
-          400.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 220.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 110,
         "elevation_m": 1200.0,
@@ -968,10 +930,10 @@
           -0.19
         ],
         "core": [
-          500.0,
-          700.0
+          326.0,
+          399.0
         ],
-        "ramp": 220.0,
+        "ramp": 163.0,
         "terrain": "basin",
         "target_y": 59,
         "relief": 0.05,
@@ -993,10 +955,10 @@
           -0.06
         ],
         "core": [
-          450.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 200.0,
+        "ramp": 163.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -1018,10 +980,10 @@
           0.1
         ],
         "core": [
-          480.0,
-          620.0
+          326.0,
+          399.0
         ],
-        "ramp": 220.0,
+        "ramp": 163.0,
         "terrain": "mountain",
         "target_y": 122,
         "elevation_m": 1500.0,
@@ -1050,10 +1012,10 @@
           0.3
         ],
         "core": [
-          480.0,
-          620.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 84,
         "relief": 0.5,
@@ -1075,10 +1037,10 @@
           -0.06
         ],
         "core": [
-          320.0,
-          440.0
+          270.0,
+          330.0
         ],
-        "ramp": 150.0,
+        "ramp": 140.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -1100,10 +1062,10 @@
           2.0
         ],
         "core": [
-          520.0,
-          660.0
+          382.0,
+          468.0
         ],
-        "ramp": 260.0,
+        "ramp": 191.0,
         "terrain": "mountain",
         "target_y": 212,
         "elevation_m": 2900.0,
@@ -1127,10 +1089,10 @@
           0.3
         ],
         "core": [
-          380.0,
-          500.0
+          270.0,
+          330.0
         ],
-        "ramp": 200.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 75,
         "relief": 0.4,
@@ -1178,10 +1140,10 @@
           2.0
         ],
         "core": [
-          420.0,
-          560.0
+          270.0,
+          330.0
         ],
-        "ramp": 260.0,
+        "ramp": 140.0,
         "terrain": "plateau",
         "target_y": 196,
         "elevation_m": 2240.0,
@@ -1229,10 +1191,10 @@
           -0.19
         ],
         "core": [
-          460.0,
-          640.0
+          382.0,
+          468.0
         ],
-        "ramp": 200.0,
+        "ramp": 191.0,
         "terrain": "basin",
         "target_y": 55,
         "relief": 0.1,
@@ -1254,10 +1216,10 @@
           2.0
         ],
         "core": [
-          420.0,
-          560.0
+          270.0,
+          330.0
         ],
-        "ramp": 220.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 72,
         "relief": 0.25,
@@ -1279,10 +1241,10 @@
           0.3
         ],
         "core": [
-          400.0,
-          520.0
+          326.0,
+          399.0
         ],
-        "ramp": 220.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 81,
         "elevation_m": 450.0,
@@ -1356,10 +1318,10 @@
           2.0
         ],
         "core": [
-          460.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 135,
         "elevation_m": 1850.0,
@@ -1408,10 +1370,10 @@
           -0.06
         ],
         "core": [
-          400.0,
-          540.0
+          326.0,
+          399.0
         ],
-        "ramp": 180.0,
+        "ramp": 163.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -1433,10 +1395,10 @@
           0.03
         ],
         "core": [
-          450.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 200.0,
+        "ramp": 163.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -1458,10 +1420,10 @@
           2.0
         ],
         "core": [
-          480.0,
-          620.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 100,
         "relief": 0.5,
@@ -1483,10 +1445,10 @@
           2.0
         ],
         "core": [
-          460.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "plateau",
         "target_y": 129,
         "elevation_m": 1700.0,
@@ -1509,10 +1471,10 @@
           2.0
         ],
         "core": [
-          420.0,
-          560.0
+          270.0,
+          330.0
         ],
-        "ramp": 240.0,
+        "ramp": 140.0,
         "terrain": "mountain",
         "target_y": 137,
         "elevation_m": 1885.0,
@@ -1562,10 +1524,10 @@
           0.3
         ],
         "core": [
-          400.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 220.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 80,
         "relief": 0.5,
@@ -1639,10 +1601,10 @@
           0.3
         ],
         "core": [
-          400.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 200.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 95,
         "relief": 0.35,
@@ -1715,10 +1677,10 @@
           2.0
         ],
         "core": [
-          440.0,
-          560.0
+          326.0,
+          399.0
         ],
-        "ramp": 280.0,
+        "ramp": 163.0,
         "terrain": "plateau",
         "target_y": 248,
         "elevation_m": 4300.0,
@@ -1767,10 +1729,10 @@
           2.0
         ],
         "core": [
-          500.0,
-          650.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "mountain",
         "target_y": 110,
         "elevation_m": 1200.0,
@@ -1794,10 +1756,10 @@
           -0.19
         ],
         "core": [
-          480.0,
-          620.0
+          382.0,
+          468.0
         ],
-        "ramp": 220.0,
+        "ramp": 191.0,
         "terrain": "lift",
         "target_y": 92,
         "elevation_m": 750.0,
@@ -1858,10 +1820,10 @@
           2.0
         ],
         "core": [
-          400.0,
-          520.0
+          270.0,
+          330.0
         ],
-        "ramp": 240.0,
+        "ramp": 140.0,
         "terrain": "lift",
         "target_y": 198,
         "elevation_m": 2300.0,
@@ -1884,10 +1846,10 @@
           -0.19
         ],
         "core": [
-          320.0,
-          420.0
+          270.0,
+          330.0
         ],
-        "ramp": 160.0,
+        "ramp": 140.0,
         "terrain": "keep",
         "target_y": 63,
         "relief": 0.5,
@@ -1909,10 +1871,10 @@
           2.0
         ],
         "core": [
-          460.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "plateau",
         "target_y": 102,
         "elevation_m": 1000.0,
@@ -1935,10 +1897,10 @@
           2.0
         ],
         "core": [
-          520.0,
-          660.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 92,
         "relief": 0.45,
@@ -1967,10 +1929,10 @@
           0.3
         ],
         "core": [
-          460.0,
-          600.0
+          326.0,
+          399.0
         ],
-        "ramp": 240.0,
+        "ramp": 163.0,
         "terrain": "lift",
         "target_y": 90,
         "relief": 0.4,

@@ -4,7 +4,7 @@
 
 A glacier-fed lake of vivid turquoise rock-flour water below the ten peaks' cliffs, dammed by a rockpile, ringed by spruce and larch.
 
-**In game:** `biomesmod:moraine_lake`, a site of 840–1120 blocks across (mountains, low land raised, y=137). Find the nearest one with `/biomesmod sites moraine_lake`.
+**In game:** `biomesmod:moraine_lake`, a site of 540–660 blocks across (mountains, low land raised, y=137). Find the nearest one with `/biomesmod sites moraine_lake`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

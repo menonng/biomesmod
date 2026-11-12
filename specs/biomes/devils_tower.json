@@ -17,10 +17,10 @@
         "warm"
       ],
       "size": [
-        400,
-        520
+        270,
+        330
       ],
-      "ramp": 220,
+      "ramp": 140,
       "terrain": "lift",
       "relief": 0.3,
       "weight": 1.0,
@@ -57,6 +57,12 @@
       ],
       "vegetal_decoration": [
         "biomesmod:devils_tower_pines"
+      ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_plains",
+        "minecraft:patch_tall_grass"
       ]
     }
   },

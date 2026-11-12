@@ -41,8 +41,8 @@
         }
       ]
     },
-    "water_coverage": 0.25,
-    "water_scale": 180
+    "water_coverage": 0.9,
+    "water_scale": 56
   },
   "type": "biomesmod:terrain_shaper"
 }

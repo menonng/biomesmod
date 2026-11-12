@@ -36,6 +36,11 @@
         "biomesmod:socotra_coast_bottle_trees",
         "biomesmod:socotra_desert_roses"
       ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_dead_bush"
+      ]
     }
   },
   "spawners": "base",

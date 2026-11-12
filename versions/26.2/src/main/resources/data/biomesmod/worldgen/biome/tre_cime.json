@@ -72,7 +72,10 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen"
+      "minecraft:glow_lichen",
+      "minecraft:flower_meadow",
+      "minecraft:patch_tall_grass",
+      "minecraft:patch_berry_common"
     ],
     [
       "minecraft:freeze_top_layer"

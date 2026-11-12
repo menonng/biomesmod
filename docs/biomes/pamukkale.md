@@ -4,7 +4,7 @@
 
 A hillside of snow-white travertine terraces built by hot calcium-rich springs: scalloped pools of milky turquoise water stepping down the slope.
 
-**In game:** `biomesmod:pamukkale`, a site of 800–1040 blocks across (raised land, y=80). Find the nearest one with `/biomesmod sites pamukkale`.
+**In game:** `biomesmod:pamukkale`, a site of 540–660 blocks across (raised land, y=80). Find the nearest one with `/biomesmod sites pamukkale`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

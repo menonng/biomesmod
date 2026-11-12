@@ -16,10 +16,10 @@
         "temperate"
       ],
       "size": [
-        400,
-        520
+        270,
+        330
       ],
-      "ramp": 200,
+      "ramp": 140,
       "terrain": "lift",
       "relief": 0.35,
       "weight": 1.0,
@@ -59,6 +59,13 @@
       ],
       "vegetal_decoration": [
         "biomesmod:plitvice_lakes_trees"
+      ]
+    },
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_forest_flowers",
+        "minecraft:patch_grass_forest",
+        "minecraft:brown_mushroom_normal"
       ]
     }
   },

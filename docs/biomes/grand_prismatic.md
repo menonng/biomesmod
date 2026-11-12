@@ -4,7 +4,7 @@
 
 The largest hot spring in the US: a deep-blue pool ringed by green, yellow and orange microbial mats that streak outward over white sinter, in lodgepole-pine country.
 
-**In game:** `biomesmod:grand_prismatic`, a site of 840–1120 blocks across (flat plateau, y=196). Find the nearest one with `/biomesmod sites grand_prismatic`.
+**In game:** `biomesmod:grand_prismatic`, a site of 540–660 blocks across (flat plateau, y=196). Find the nearest one with `/biomesmod sites grand_prismatic`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

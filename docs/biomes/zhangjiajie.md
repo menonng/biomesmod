@@ -4,7 +4,7 @@
 
 Over 3,000 quartz-sandstone pillars, many above 200 m, rise from a misty subtropical forest; their flat tops carry pines.
 
-**In game:** `biomesmod:zhangjiajie`, a site of 920–1200 blocks across (raised land, y=90). Find the nearest one with `/biomesmod sites zhangjiajie`.
+**In game:** `biomesmod:zhangjiajie`, a site of 652–798 blocks across (raised land, y=90). Find the nearest one with `/biomesmod sites zhangjiajie`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

@@ -4,7 +4,7 @@
 
 Onekotan's southern Tao-Rusyr caldera holds the ring-shaped Lake Koltsevoye, with the young Krenitsyn cone (1324 m) rising from the water as an island.
 
-**In game:** `biomesmod:krenitsyn_caldera`, a site of 800–1040 blocks across (raised land, y=81). Find the nearest one with `/biomesmod sites krenitsyn_caldera`.
+**In game:** `biomesmod:krenitsyn_caldera`, a site of 652–798 blocks across (raised land, y=81). Find the nearest one with `/biomesmod sites krenitsyn_caldera`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

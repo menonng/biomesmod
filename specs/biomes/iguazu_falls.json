@@ -16,10 +16,10 @@
         "hot"
       ],
       "size": [
-        420,
-        560
+        270,
+        330
       ],
-      "ramp": 220,
+      "ramp": 140,
       "terrain": "lift",
       "relief": 0.25,
       "weight": 1.0,
@@ -61,7 +61,13 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_warm",
+        "minecraft:patch_grass_jungle"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

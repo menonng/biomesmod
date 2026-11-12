@@ -78,7 +78,10 @@
     [
       "minecraft:glow_lichen",
       "minecraft:trees_grove",
+      "minecraft:flower_meadow",
+      "minecraft:patch_tall_grass",
       "minecraft:patch_pumpkin",
+      "minecraft:patch_berry_common",
       "biomesmod:moraine_lake_conifers"
     ],
     [

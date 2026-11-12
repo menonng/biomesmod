@@ -16,10 +16,10 @@
         "hot"
       ],
       "size": [
-        460,
-        600
+        326,
+        399
       ],
-      "ramp": 240,
+      "ramp": 163,
       "terrain": "plateau",
       "relief": 0.1,
       "weight": 1.0,
@@ -53,7 +53,13 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_dead_bush_badlands",
+        "minecraft:patch_grass_badlands"
+      ]
+    }
   },
   "spawners": "base",
   "surface": {

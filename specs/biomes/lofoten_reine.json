@@ -17,10 +17,10 @@
         "cold"
       ],
       "size": [
-        400,
-        540
+        326,
+        399
       ],
-      "ramp": 180,
+      "ramp": 163,
       "terrain": "keep",
       "relief": 0.5,
       "weight": 1.0,
@@ -36,8 +36,8 @@
     "downfall": 0.8
   },
   "colors": {
-    "water": "#2f6f8f",
-    "water_fog": "#0d2a3a"
+    "water": "#4cc3c9",
+    "water_fog": "#6fd6d6"
   },
   "features": {
     "mod": {
@@ -51,7 +51,13 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_plains",
+        "minecraft:patch_grass_plain"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

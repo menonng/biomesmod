@@ -17,10 +17,10 @@
         "warm"
       ],
       "size": [
-        440,
-        560
+        326,
+        399
       ],
-      "ramp": 280,
+      "ramp": 163,
       "terrain": "plateau",
       "relief": 0.15,
       "weight": 1.0,
@@ -60,7 +60,12 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_dead_bush"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

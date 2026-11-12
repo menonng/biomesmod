@@ -18,6 +18,11 @@ class BiomesMod : ModInitializer {
 		ModFeatures.register()
 		Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, Ids.id("site"), SiteDensity.DATA_CODEC)
 		SiteCommand.register()
+		// Project Regon style coasts on every beach: wide sand flats, bars and shallow lagoons.
+		net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
+			net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_BEACH),
+			net.minecraft.world.level.levelgen.GenerationStep.Decoration.RAW_GENERATION,
+			net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.PLACED_FEATURE, io.github.menonng.biomesmod.compat.Ids.id("coast_flats")))
 		ServerLifecycleEvents.SERVER_STARTING.register { NoFreeze.load(it) }
 		LOGGER.info("Loaded {} biome(s)", ModBiomes.ALL.size)
 

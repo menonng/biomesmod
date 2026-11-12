@@ -4,7 +4,7 @@
 
 A textbook glacial trough: flat green floor between 300-500 m limestone cliffs from which 72 waterfalls, Staubbach the best known, drop free into the valley.
 
-**In game:** `biomesmod:lauterbrunnen`, a site of 920–1200 blocks across (raised land, y=135). Find the nearest one with `/biomesmod sites lauterbrunnen`.
+**In game:** `biomesmod:lauterbrunnen`, a site of 652–798 blocks across (raised land, y=135). Find the nearest one with `/biomesmod sites lauterbrunnen`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

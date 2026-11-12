@@ -84,6 +84,8 @@
     [
       "minecraft:glow_lichen",
       "minecraft:trees_water",
+      "minecraft:flower_meadow",
+      "minecraft:patch_tall_grass",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
       "minecraft:brown_mushroom_normal",
@@ -92,6 +94,7 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:seagrass_cold",
+      "minecraft:patch_berry_common",
       "minecraft:kelp_cold",
       "biomesmod:krenitsyn_caldera_shrubs"
     ],

@@ -14,10 +14,10 @@
         "cold"
       ],
       "size": [
-        520,
-        660
+        382,
+        468
       ],
-      "ramp": 260,
+      "ramp": 191,
       "terrain": "mountain",
       "relief": 0.85,
       "weight": 1.0,

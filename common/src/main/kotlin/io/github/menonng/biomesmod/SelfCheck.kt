@@ -115,6 +115,7 @@ internal object SelfCheck {
 			renderIfSelected(level, inner, id, placed)
 		}
 
+		BiomesMod.LOGGER.info("[selfcheck] cliff falls placed during this run: {}", io.github.menonng.biomesmod.terrain.landform.CliffFallsFeature.PLACED.get())
 		val code = if (failures.isEmpty()) 0 else 1
 		if (code == 0) {
 			BiomesMod.LOGGER.info("[selfcheck] PASSED ({} biome(s))", ModBiomes.ALL.size)

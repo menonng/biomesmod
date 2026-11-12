@@ -57,7 +57,13 @@
     },
     "remove": [
       "minecraft:lake_lava_surface"
-    ]
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:flower_warm",
+        "minecraft:patch_grass_jungle"
+      ]
+    }
   },
   "spawners": "base",
   "carvers": "underground"

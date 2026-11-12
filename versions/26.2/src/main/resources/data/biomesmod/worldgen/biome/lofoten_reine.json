@@ -1,7 +1,7 @@
 {
   "attributes": {
     "minecraft:visual/sky_color": "#7da2ff",
-    "minecraft:visual/water_fog_color": "#0d2a3a"
+    "minecraft:visual/water_fog_color": "#6fd6d6"
   },
   "carvers": [
     "minecraft:cave_extra_underground",
@@ -9,7 +9,7 @@
   ],
   "downfall": 0.8,
   "effects": {
-    "water_color": "#2f6f8f"
+    "water_color": "#4cc3c9"
   },
   "features": [
     [],
@@ -66,6 +66,8 @@
     ],
     [
       "minecraft:glow_lichen",
+      "minecraft:flower_plains",
+      "minecraft:patch_grass_plain",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
       "minecraft:brown_mushroom_normal",
