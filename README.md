@@ -28,6 +28,8 @@ Global terrain changes (data overrides):
 * Giant Redwood Forest: redwood log, wood and leaves.
 * Star Abyss: abyss stone, starlit abyss stone, stardust, star crystal and crystal cluster, star bloom (grows on any face), astral roots, star spring (a fountain of starlight that lifts you up to the floating isles).
 
+All block textures are 16x16 pixel art drawn by `tools/blocks/art.py` (a small hue-shifted colour ramp per material, a height field lit from the top left, hand-drawn plant sprites); the whole set, each solid block tiled 2x2: [docs/block-textures.png](docs/block-textures.png).
+
 Because of them, clients need the mod installed to join a server that runs it.
 
 | Biome | Name | Dimension | Placement | Place n (docs/places.md) |
