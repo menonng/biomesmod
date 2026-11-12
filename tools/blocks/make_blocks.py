@@ -187,6 +187,27 @@ def salt_height():
     return hmap
 
 
+def salt_mirror():
+    """Flooded salt seen through a few centimetres of still water: the pale blue of the sky it mirrors, with the
+    polygon seams of the crust showing faintly through. This is what the block looks like without a shader pack."""
+    rnd = random.Random(211)
+    n = Noise(212, 3)
+    hm = salt_height()
+    img = canvas()
+    for y in range(N):
+        for x in range(N):
+            c = mix((168, 198, 228), (184, 210, 236), n(x, y))
+            c = mix(c, (214, 228, 242), max(0.0, hm[y][x] - 0.6) * 0.9)
+            img[y][x] = rgba(jitter(rnd, c, 1))
+    return img
+
+
+def salt_mirror_height():
+    """A calm film: flat, with only a trace of the seams below so the reflection carries fine salt detail."""
+    hm = salt_height()
+    return [[0.5 + 0.06 * max(0.0, v - 0.6) for v in row] for row in hm]
+
+
 def travertine():
     rnd = random.Random(21)
     n = Noise(22, 4)
@@ -998,11 +1019,19 @@ def main():
     block("star_spring", "bottom_top", ("Star Spring", "별샘"), ("mineable/pickaxe",),
           dict(top=t("star_spring_top"), side=t("starlit_abyss_stone"), bottom=t("abyss_stone")))
 
+    block("salt_mirror", "bottom_top", ("Salt Mirror", "소금 거울"), ("mineable/shovel",),
+          dict(top=t("salt_mirror"), side=t("salt_crust"), bottom=t("salt_crust")))
+
     # ---- textures
     P = lambda name: os.path.join(TEX, name + ".png")
     png(P("salt_crust"), salt())
     png(P("salt_crust_n"), normal_map(salt_height(), 1.2))
     png(P("salt_crust_s"), spec_map(lambda x, y: (0.82, 0.05, 30, None)))
+    # LabPBR: smoothness 0.97 (roughness (1-s)^2 ~ 0.001), dielectric F0 0.16: looking down the salt shows through,
+    # towards the horizon Fresnel takes it to a full mirror. Porosity 0 (a wet, closed surface).
+    png(P("salt_mirror"), salt_mirror())
+    png(P("salt_mirror_n"), normal_map(salt_mirror_height(), 0.6))
+    png(P("salt_mirror_s"), spec_map(lambda x, y: (0.97, 0.16, 0, None)))
     trav = travertine()
     png(P("travertine"), trav)
     png(P("travertine_n"), normal_map(luminance_height(trav), 2.0))

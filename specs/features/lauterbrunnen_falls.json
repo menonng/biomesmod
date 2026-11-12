@@ -3,14 +3,14 @@
   "configured": {
     "type": "biomesmod:cliff_falls",
     "config": {
-      "tries": 28,
+      "tries": 16,
       "min_drop": 22,
       "stream": [
         10,
         24
       ],
       "cluster": 2,
-      "chance": 0.6
+      "chance": 0.14
     }
   },
   "placement": [

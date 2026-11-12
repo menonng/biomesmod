@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "biomesmod:block/salt_mirror",
+    "side": "biomesmod:block/salt_crust",
+    "bottom": "biomesmod:block/salt_crust"
+  }
+}

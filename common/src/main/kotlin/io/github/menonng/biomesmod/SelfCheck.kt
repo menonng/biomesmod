@@ -116,6 +116,7 @@ internal object SelfCheck {
 		}
 
 		BiomesMod.LOGGER.info("[selfcheck] cliff falls placed during this run: {}", io.github.menonng.biomesmod.terrain.landform.CliffFallsFeature.PLACED.get())
+		BiomesMod.LOGGER.info("[selfcheck] cliff falls stats (chunks tried, no slope, too low, too gentle, no stream, placed): {}", io.github.menonng.biomesmod.terrain.landform.CliffFallsFeature.STATS)
 		val code = if (failures.isEmpty()) 0 else 1
 		if (code == 0) {
 			BiomesMod.LOGGER.info("[selfcheck] PASSED ({} biome(s))", ModBiomes.ALL.size)

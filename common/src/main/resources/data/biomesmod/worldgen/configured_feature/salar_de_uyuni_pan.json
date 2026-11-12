@@ -9,6 +9,9 @@
     },
     "crust_cell": 7,
     "edge_blend": 40,
+    "film_block": {
+      "Name": "biomesmod:salt_mirror"
+    },
     "mode": "flatten",
     "offset": 2,
     "palette": {

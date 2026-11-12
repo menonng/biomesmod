@@ -50,6 +50,14 @@ object ModBlocks {
 	val SALT_CRUST: Block = BlockCompat.block("salt_crust",
 		BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.6f).sound(SoundType.CALCITE))
 
+	/**
+	 * Salar de Uyuni in the wet season: salt under a film of still water a few centimetres deep. A solid block of its own
+	 * (not a fluid) whose top carries a LabPBR material of very high smoothness, so shader packs mirror the sky in it.
+	 */
+	@JvmField
+	val SALT_MIRROR: Block = BlockCompat.block("salt_mirror",
+		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.6f).sound(SoundType.CALCITE))
+
 	/** Pamukkale: layered white travertine of the terraces. */
 	@JvmField
 	val TRAVERTINE: Block = BlockCompat.block("travertine", stone(MapColor.TERRACOTTA_WHITE, 1.2f, SoundType.CALCITE))
@@ -245,7 +253,7 @@ object ModBlocks {
 		REDWOOD_LOG, REDWOOD_WOOD, REDWOOD_LEAVES,
 		GLACIER_ICE, ABYSS_STONE, STAR_CRYSTAL, STAR_CRYSTAL_CLUSTER,
 		GHOSTWOOD_SAPLING, PALE_MOSS_CARPET, SILVER_BEARD, MOON_BRACKET, MOONPETAL, GHOSTWOOD_HOLLOW,
-		STARDUST, STARLIT_ABYSS_STONE, STAR_BLOOM, ASTRAL_ROOTS, STAR_SPRING,
+		STARDUST, STARLIT_ABYSS_STONE, STAR_BLOOM, ASTRAL_ROOTS, STAR_SPRING, SALT_MIRROR,
 	)
 
 	/** Blocks drawn with cut-out textures (1.21.1 needs them registered on the client). */
@@ -267,7 +275,7 @@ object ModBlocks {
 			GLACIER_ICE to "glacier_ice", ABYSS_STONE to "abyss_stone", STAR_CRYSTAL to "star_crystal", STAR_CRYSTAL_CLUSTER to "star_crystal_cluster",
 			GHOSTWOOD_SAPLING to "ghostwood_sapling", PALE_MOSS_CARPET to "pale_moss_carpet", SILVER_BEARD to "silver_beard", MOON_BRACKET to "moon_bracket", MOONPETAL to "moonpetal",
 			GHOSTWOOD_HOLLOW to "ghostwood_hollow", STARDUST to "stardust", STARLIT_ABYSS_STONE to "starlit_abyss_stone", STAR_BLOOM to "star_bloom",
-			ASTRAL_ROOTS to "astral_roots", STAR_SPRING to "star_spring",
+			ASTRAL_ROOTS to "astral_roots", STAR_SPRING to "star_spring", SALT_MIRROR to "salt_mirror",
 		)
 		BlockCompat.naturalTab(ALL.map { BlockCompat.item(ids.getValue(it), it) })
 	}

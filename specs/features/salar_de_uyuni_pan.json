@@ -45,6 +45,9 @@
       },
       "crust_block": {
         "Name": "minecraft:calcite"
+      },
+      "film_block": {
+        "Name": "biomesmod:salt_mirror"
       }
     }
   },

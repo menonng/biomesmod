@@ -29,10 +29,13 @@ import kotlin.math.max
  * @param crust fraction of the pan showing polygon ridges (0 = none)
  * @param crustCell polygon size in blocks
  * @param crustBlock block of the polygon ridges
+ * @param filmBlock if set, the film is not water at all: the film patches are paved flush with this block (the Uyuni
+ *   mirror block) and carry no polygon ridges, so the surface is one calm sheet
  */
 data class FlattenMode(
 	override val common: Common, val level: Optional<Int>, val offset: Int, val relief: Double, val waterCoverage: Double,
 	val waterScale: Double, val crust: Double, val crustCell: Double, val crustBlock: Optional<BlockState>,
+	val filmBlock: Optional<BlockState>,
 ) : ShaperMode {
 	override val type: ShaperMode.Type get() = ShaperMode.Type.FLATTEN
 
@@ -58,7 +61,12 @@ data class FlattenMode(
 			val zd = z.toDouble()
 			out.ground = pan + (if (relief > 0) relief * noise.fbm(xd, zd, 220.0, 2) else 0.0)
 			if (waterCoverage > 0 && noise.fbm(xd + 4111, zd - 977, waterScale, 3) > waterT) {
-				out.water = pan + 2 // one block of water over the pan
+				if (filmBlock.isPresent) {
+						out.surface = filmBlock.get()
+						out.surfaceDepth = 1
+						return
+					}
+					out.water = pan + 2 // one block of water over the pan
 			}
 			if (crust > 0 && noise.fbm(xd - 3301, zd + 1907, 90.0, 2) > crustT) {
 				// Polygon ridges: Voronoi cell borders, slightly wobbly so they never look ruled.
@@ -85,8 +93,9 @@ data class FlattenMode(
 				Codec.doubleRange(0.0, 1.0).optionalFieldOf("crust", 0.0).forGetter(FlattenMode::crust),
 				Codec.doubleRange(3.0, 64.0).optionalFieldOf("crust_cell", 7.0).forGetter(FlattenMode::crustCell),
 				BlockState.CODEC.optionalFieldOf("crust_block").forGetter(FlattenMode::crustBlock),
-			).apply(i) { common, level, offset, relief, waterCoverage, waterScale, crust, crustCell, crustBlock ->
-				FlattenMode(common, level, offset, relief, waterCoverage, waterScale, crust, crustCell, crustBlock)
+				BlockState.CODEC.optionalFieldOf("film_block").forGetter(FlattenMode::filmBlock),
+			).apply(i) { common, level, offset, relief, waterCoverage, waterScale, crust, crustCell, crustBlock, filmBlock ->
+				FlattenMode(common, level, offset, relief, waterCoverage, waterScale, crust, crustCell, crustBlock, filmBlock)
 			}
 		}
 	}

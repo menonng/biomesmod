@@ -38,7 +38,7 @@ A column-based feature that reshapes the ground of a biome. It runs once per chu
 
 | Mode | For | Key parameters (defaults) |
 |---|---|---|
-| `flatten` | salt pans: Uyuni, Gairdner, Dallol, Tara | `level` or `offset` (2 above sea), `relief` 0, `water_coverage` 0 (1-block mirror film), `water_scale` 160, `crust` 0 (polygon ridges), `crust_cell` 7, `crust_block` |
+| `flatten` | salt pans: Uyuni, Gairdner, Dallol, Tara | `level` or `offset` (2 above sea), `relief` 0, `water_coverage` 0 (1-block mirror film), `water_scale` 160, `crust` 0 (polygon ridges), `crust_cell` 7, `crust_block`, `film_block` (pave the film patches with a block instead of water: Uyuni's `salt_mirror`) |
 | `depression` | dry land below sea level (polders) | `depth` 6, `relief` 1.2, `dike_height` 2, `dike_width` 4, `ditch_spacing` 0, `ditch_depth` 2. The dike crest sits where the edge factor is ≥ 0.5, so nothing inside can keep sea water. Use a small `edge_blend` (~10). |
 | `dunes` | Lençóis (lagoons), Namib (star) | `style` `transverse`/`linear`/`star`, `height` 10, `wavelength` 40, `direction` 20, `level`/`base_offset`, `lagoon_depth` 0, `pan_coverage` 0, `pan_block`. No barchan crescents, by design. |
 | `terraces` | Pamukkale, Plitvice | `step` 3, `pool_depth` 1, `rim_width` 1.3, `tilt` 30, `tilt_scale` 260, `lobe` 1, `lobe_scale` 40, `falls` 0, `pool_coverage` 1 (below 1 = lake chain inside a noise mask), `pool_scale` 180, `lift` 0 |
