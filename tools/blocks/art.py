@@ -478,7 +478,7 @@ def volcanic_rock(seed, stain=None):
         n = Noise(seed + 2, 6, 2)
         ramp = [mix(stain, (90, 60, 10), 0.45), mix(stain, (150, 110, 20), 0.2), stain, mix(stain, (255, 250, 200), 0.4)]
         for x in range(N):
-            depth = int(1 + 7 * n(x, 3) ** 1.6)
+            depth = max(0, int((n(x, 3) - 0.3) * 11))
             for y in range(depth):
                 t = 1 - y / max(1, depth)
                 img[y][x] = rgba(pick(ramp, 0.25 + 0.75 * t * (0.6 + 0.4 * n(x, y * 4)), x, y, 0.6))
@@ -630,7 +630,7 @@ def abyss_stone():
 
 def star_crystal():
     """Star crystal: cut facets, each a flat plane of its own brightness, with bright edges where two meet."""
-    cells = Cells(711, 3, 1.0)
+    cells = Cells(711, 2, 1.0)
     rnd = random.Random(712)
     tone = [rnd.random() for _ in cells.pts]
     tilt = [rnd.uniform(0, 6.28) for _ in cells.pts]
@@ -640,12 +640,14 @@ def star_crystal():
         for x in range(N):
             f1, f2, k = cells.at(x, y)
             px, py = cells.pts[k]
-            g = ((x - px) * math.cos(tilt[k]) + (y - py) * math.sin(tilt[k])) / 6.0
-            v = 0.1 + 0.5 * tone[k] + 0.3 * g
+            wx = (x + 0.5 - px + N / 2) % N - N / 2
+            wy = (y + 0.5 - py + N / 2) % N - N / 2
+            g = (wx * math.cos(tilt[k]) + wy * math.sin(tilt[k])) / 7.0
+            v = 0.15 + 0.45 * (k % 4) / 3.0 + 0.1 * tone[k] + 0.3 * g
             if f2 - f1 < 0.45:
                 v = 0.92
-            img[y][x] = rgba(pick(ramp, v, x, y, 0.35))
-    for x, y in scatter(713, 3, 5):
+            img[y][x] = rgba(pick(ramp, v, x, y, 0.3))
+    for x, y in scatter(713, 2, 6):
         put(img, x, y, hexc('#ffffff'))
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             put(img, x + dx, y + dy, hexc('#d2e6fc'))
