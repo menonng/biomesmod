@@ -75,7 +75,8 @@
       "minecraft:glow_lichen",
       "minecraft:flower_meadow",
       "minecraft:patch_tall_grass",
-      "minecraft:patch_berry_common"
+      "minecraft:patch_berry_common",
+      "biomesmod:tre_cime_cairns"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -43,6 +43,9 @@
     "mod": {
       "local_modifications": [
         "biomesmod:giants_causeway_columns"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:giants_causeway_cairns"
       ]
     },
     "remove": [

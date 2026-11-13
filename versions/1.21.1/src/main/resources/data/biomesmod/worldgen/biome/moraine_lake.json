@@ -89,7 +89,8 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
       "minecraft:patch_berry_common",
-      "biomesmod:moraine_lake_conifers"
+      "biomesmod:moraine_lake_conifers",
+      "biomesmod:moraine_lake_cairns"
     ],
     [
       "minecraft:freeze_top_layer"

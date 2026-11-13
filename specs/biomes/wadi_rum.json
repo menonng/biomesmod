@@ -52,6 +52,9 @@
     "mod": {
       "local_modifications": [
         "biomesmod:wadi_rum_massifs"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:wadi_rum_tents"
       ]
     },
     "remove": [

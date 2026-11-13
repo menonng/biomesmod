@@ -39,6 +39,9 @@ object LandformFeatures {
 	val DEAD_TREE = DeadTreeFeature()
 
 	@JvmField
+	val HAMLET = HamletFeature()
+
+	@JvmField
 	val CLIFF_FALLS = CliffFallsFeature()
 
 	fun register() {
@@ -47,6 +50,7 @@ object LandformFeatures {
 		ModFeatures.register("abyss_well", ABYSS_WELL)
 		ModFeatures.register("fallen_log", FALLEN_LOG)
 		ModFeatures.register("dead_tree", DEAD_TREE)
+		ModFeatures.register("hamlet", HAMLET)
 		ModFeatures.register("giant_tree", GIANT_TREE)
 		ModFeatures.register("rock_swap", ROCK_SWAP)
 		ModFeatures.register("crystal_cluster", CRYSTAL_CLUSTER)

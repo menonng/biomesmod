@@ -35,6 +35,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:antarctic_peninsula_glaciers"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:antarctic_peninsula_station"
       ]
     },
     "remove": [

@@ -60,7 +60,8 @@
         "biomesmod:everglades_marsh"
       ],
       "vegetal_decoration": [
-        "biomesmod:everglades_hammocks"
+        "biomesmod:everglades_hammocks",
+        "biomesmod:everglades_stilt_huts"
       ]
     }
   },

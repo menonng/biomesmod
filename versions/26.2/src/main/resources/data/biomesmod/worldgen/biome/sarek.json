@@ -79,7 +79,8 @@
       "minecraft:flower_meadow",
       "minecraft:patch_tall_grass",
       "minecraft:patch_pumpkin",
-      "minecraft:patch_berry_common"
+      "minecraft:patch_berry_common",
+      "biomesmod:sarek_cairns"
     ],
     [
       "minecraft:freeze_top_layer"

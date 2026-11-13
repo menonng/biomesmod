@@ -61,7 +61,8 @@
         "biomesmod:orkhon_steppe_hills"
       ],
       "vegetal_decoration": [
-        "biomesmod:orkhon_steppe_feather_grass"
+        "biomesmod:orkhon_steppe_feather_grass",
+        "biomesmod:orkhon_steppe_gers"
       ]
     }
   },

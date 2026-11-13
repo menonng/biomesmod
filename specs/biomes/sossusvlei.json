@@ -54,7 +54,8 @@
         "biomesmod:sossusvlei_dunes"
       ],
       "vegetal_decoration": [
-        "biomesmod:sossusvlei_dead_trees"
+        "biomesmod:sossusvlei_dead_trees",
+        "biomesmod:sossusvlei_tents"
       ]
     },
     "remove": [

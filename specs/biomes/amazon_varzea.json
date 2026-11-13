@@ -52,7 +52,8 @@
         "biomesmod:amazon_varzea_floodplain"
       ],
       "vegetal_decoration": [
-        "biomesmod:amazon_varzea_flooded_forest"
+        "biomesmod:amazon_varzea_flooded_forest",
+        "biomesmod:amazon_varzea_stilt_huts"
       ]
     },
     "remove": [

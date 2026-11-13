@@ -87,7 +87,8 @@
       "minecraft:flower_meadow",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "minecraft:patch_berry_common"
+      "minecraft:patch_berry_common",
+      "biomesmod:sarek_cairns"
     ],
     [
       "minecraft:freeze_top_layer"

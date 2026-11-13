@@ -77,7 +77,8 @@
     ],
     [
       "minecraft:patch_dead_bush",
-      "biomesmod:sossusvlei_dead_trees"
+      "biomesmod:sossusvlei_dead_trees",
+      "biomesmod:sossusvlei_tents"
     ],
     [
       "minecraft:freeze_top_layer"

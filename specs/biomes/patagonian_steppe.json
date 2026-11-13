@@ -65,7 +65,8 @@
         "biomesmod:patagonian_steppe_mesetas"
       ],
       "vegetal_decoration": [
-        "biomesmod:patagonian_steppe_tussock"
+        "biomesmod:patagonian_steppe_tussock",
+        "biomesmod:patagonian_steppe_cairns"
       ]
     }
   },

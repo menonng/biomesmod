@@ -47,6 +47,9 @@
       ],
       "local_modifications": [
         "biomesmod:cliffs_of_moher_stacks"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:cliffs_of_moher_cairns"
       ]
     },
     "remove": [

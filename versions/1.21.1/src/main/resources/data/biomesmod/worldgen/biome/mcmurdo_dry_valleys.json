@@ -71,7 +71,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "biomesmod:mcmurdo_dry_valleys_station"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

@@ -75,7 +75,8 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:patch_dead_bush"
+      "minecraft:patch_dead_bush",
+      "biomesmod:wadi_rum_tents"
     ],
     [
       "minecraft:freeze_top_layer"

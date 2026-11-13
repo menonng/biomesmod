@@ -38,6 +38,9 @@
     "mod": {
       "local_modifications": [
         "biomesmod:tre_cime_spires"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:tre_cime_cairns"
       ]
     },
     "remove": [

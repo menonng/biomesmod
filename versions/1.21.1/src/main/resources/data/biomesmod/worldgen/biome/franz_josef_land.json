@@ -71,7 +71,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "biomesmod:franz_josef_land_station"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

@@ -85,6 +85,8 @@
     [
       "minecraft:glow_lichen",
       "minecraft:trees_water",
+      "minecraft:bamboo_light",
+      "minecraft:trees_sparse_jungle",
       "minecraft:flower_warm",
       "minecraft:patch_grass_jungle",
       "minecraft:flower_default",
@@ -96,7 +98,8 @@
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:warm_ocean_vegetation",
       "minecraft:seagrass_warm",
-      "minecraft:sea_pickle"
+      "minecraft:sea_pickle",
+      "biomesmod:ha_long_bay_village"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -52,6 +52,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:dasht_e_lut_kaluts"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:dasht_e_lut_tents"
       ]
     },
     "remove": [

@@ -41,6 +41,9 @@
         "biomesmod:ha_long_bay_towers",
         "biomesmod:ha_long_bay_massifs",
         "biomesmod:ha_long_bay_islets"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:ha_long_bay_village"
       ]
     },
     "remove": [
@@ -49,7 +52,9 @@
     "add": {
       "vegetal_decoration": [
         "minecraft:flower_warm",
-        "minecraft:patch_grass_jungle"
+        "minecraft:patch_grass_jungle",
+        "minecraft:trees_sparse_jungle",
+        "minecraft:bamboo_light"
       ]
     }
   },

@@ -36,6 +36,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:sarek_valleys"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:sarek_cairns"
       ]
     },
     "remove": [

@@ -3,17 +3,10 @@
   "configured": {
     "type": "biomesmod:landform",
     "config": {
-      "shape": "pillar_forest",
+      "shape": "karst_island",
       "biomes": [
         "biomesmod:ha_long_bay"
       ],
-      "rise_from": "sea_level",
-      "notch": 2,
-      "base_y_range": [
-        -30,
-        2
-      ],
-      "max_relief": 60,
       "palette": {
         "strata": [
           {
@@ -102,23 +95,6 @@
         "warp_scale": 22,
         "mix": 0.4
       },
-      "ledge_block": {
-        "Name": "minecraft:grass_block"
-      },
-      "vines": 0.55,
-      "streaks": [
-        {
-          "Name": "minecraft:tuff"
-        },
-        {
-          "Name": "minecraft:moss_block"
-        },
-        {
-          "Name": "minecraft:mossy_cobblestone"
-        }
-      ],
-      "streak_density": 0.12,
-      "talus": 0.4,
       "talus_blocks": [
         {
           "Name": "minecraft:gravel"
@@ -130,6 +106,11 @@
           "Name": "minecraft:mossy_cobblestone"
         }
       ],
+      "base_y_range": [
+        -45,
+        -1
+      ],
+      "max_relief": 60,
       "cap": {
         "block": {
           "Name": "minecraft:grass_block"
@@ -139,31 +120,31 @@
         },
         "depth": 2,
         "feature": "minecraft:jungle_bush",
-        "chance": 0.16
+        "chance": 0.12
       },
-      "spacing": 16,
-      "chance": 1.0,
       "salt": 14211,
-      "cluster_radius": [
-        6,
-        12
-      ],
-      "pillar_spacing": 7,
-      "density": 0.85,
-      "pillar_radius": [
-        2,
-        4
+      "spacing": 40,
+      "chance": 0.55,
+      "min_distance": 22,
+      "radius": [
+        4,
+        9
       ],
       "height": [
-        7,
-        24
+        8,
+        26
       ],
-      "dome": 1.3,
-      "lobes": 2,
-      "joints": 0.6,
-      "ledges": 0.3,
-      "lean": 0.08,
-      "min_distance": 30
+      "elongation": [
+        1.0,
+        1.5
+      ],
+      "peaks": 1,
+      "shoulder": 0.5,
+      "notch": 1,
+      "lagoon_chance": 0.0,
+      "cave_chance": 0.2,
+      "beach_chance": 0.0,
+      "vines": 0.2
     }
   },
   "placement": []

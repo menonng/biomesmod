@@ -56,8 +56,10 @@
     "above": 34
   },
   "ha_long_bay": {
-    "above": 30,
-    "dist": 0.55
+    "no_landmark": true,
+    "above": 42,
+    "dist": 0.4,
+    "t_above": 10
   },
   "alkefjellet": {
     "above": 28

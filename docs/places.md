@@ -26,7 +26,7 @@ Confidence: **high** = the point is on a named landmark; **medium** = no landmar
 | 19 | Patagonian steppe of Santa Cruz (Corpen Aike), Argentina | high | 215 m | `biomesmod:patagonian_steppe` | golden grass to the horizon over stepped tablelands |
 | 20 | duplicate of n=7 | | | | |
 | 21 | Denali massif, north flank near Peters Dome and Jeffery Glacier, United States (Alaska) | high | 2295 m | `biomesmod:denali_massif` | ice rivers between towering snow ridges |
-| 22 | Hạ Long Bay (Bái Tử Long side, Vân Đồn), Vietnam | high | 0 m | `biomesmod:ha_long_bay` | tall green-topped rock towers standing in calm emerald water |
+| 22 | Hạ Long Bay (Bái Tử Long side, Vân Đồn), Vietnam | high | 0 m | `biomesmod:ha_long_bay` | forested limestone islands with cliff shores, lagoons and floating villages in calm emerald water |
 | 23 | Lauterbrunnen Valley (Staubbach Falls), Switzerland | high | 799 m | `biomesmod:lauterbrunnen` | a flat green valley between sheer walls with ribbon waterfalls |
 | 24 | Tre Cime di Lavaredo, Italy (Dolomites) | high | 2564 m | `biomesmod:tre_cime` | three pale stone spires in a row above scree and grass |
 | 25 | Great Aletsch Glacier at Konkordiaplatz, Switzerland | high | 2691 m | `biomesmod:aletsch_glacier` | a wide white ice river striped with dark moraine lines |

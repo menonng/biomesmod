@@ -47,6 +47,9 @@
       ],
       "fluid_springs": [
         "biomesmod:lofoten_reine_falls"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:lofoten_reine_cairns"
       ]
     },
     "remove": [

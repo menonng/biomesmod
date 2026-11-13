@@ -46,6 +46,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:mcmurdo_dry_valleys_valley"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:mcmurdo_dry_valleys_station"
       ]
     },
     "remove": [

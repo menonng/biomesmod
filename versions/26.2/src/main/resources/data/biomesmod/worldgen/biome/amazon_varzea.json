@@ -86,7 +86,8 @@
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:vines",
       "minecraft:patch_melon",
-      "biomesmod:amazon_varzea_flooded_forest"
+      "biomesmod:amazon_varzea_flooded_forest",
+      "biomesmod:amazon_varzea_stilt_huts"
     ],
     [
       "minecraft:freeze_top_layer"

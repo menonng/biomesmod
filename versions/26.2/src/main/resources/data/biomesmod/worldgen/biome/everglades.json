@@ -91,7 +91,8 @@
       "minecraft:patch_waterlily",
       "minecraft:seagrass_swamp",
       "minecraft:patch_firefly_bush_near_water",
-      "biomesmod:everglades_hammocks"
+      "biomesmod:everglades_hammocks",
+      "biomesmod:everglades_stilt_huts"
     ],
     [
       "minecraft:freeze_top_layer"

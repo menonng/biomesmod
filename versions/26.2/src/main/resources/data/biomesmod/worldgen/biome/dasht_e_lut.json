@@ -75,7 +75,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "biomesmod:dasht_e_lut_tents"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

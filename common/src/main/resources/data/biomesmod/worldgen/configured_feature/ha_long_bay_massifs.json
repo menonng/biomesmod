@@ -1,9 +1,10 @@
 {
   "config": {
     "base_y_range": [
-      -30,
-      2
+      -45,
+      -1
     ],
+    "beach_chance": 0.55,
     "biomes": [
       "biomesmod:ha_long_bay"
     ],
@@ -11,33 +12,26 @@
       "block": {
         "Name": "minecraft:grass_block"
       },
-      "chance": 0.16,
+      "chance": 0.14,
       "depth": 2,
       "feature": "minecraft:jungle_bush",
       "under": {
         "Name": "minecraft:dirt"
       }
     },
-    "chance": 0.8,
-    "cluster_radius": [
-      6,
-      11
+    "cave_chance": 0.3,
+    "chance": 0.9,
+    "elongation": [
+      1.1,
+      2.2
     ],
-    "density": 1.0,
-    "dome": 0.7,
     "height": [
-      32,
-      62
+      42,
+      80
     ],
-    "joints": 0.7,
-    "lean": 0.02,
-    "ledge_block": {
-      "Name": "minecraft:grass_block"
-    },
-    "ledges": 0.45,
-    "lobes": 4,
+    "lagoon_chance": 0.4,
     "max_relief": 60,
-    "min_distance": 170,
+    "min_distance": 120,
     "notch": 2,
     "palette": {
       "mix": 0.4,
@@ -127,28 +121,15 @@
       "warp": 1.5,
       "warp_scale": 22
     },
-    "pillar_radius": [
-      12,
-      20
+    "peaks": 5,
+    "radius": [
+      30,
+      58
     ],
-    "pillar_spacing": 28,
-    "rise_from": "sea_level",
     "salt": 14177,
-    "shape": "pillar_forest",
-    "spacing": 80,
-    "streak_density": 0.12,
-    "streaks": [
-      {
-        "Name": "minecraft:tuff"
-      },
-      {
-        "Name": "minecraft:moss_block"
-      },
-      {
-        "Name": "minecraft:mossy_cobblestone"
-      }
-    ],
-    "talus": 0.4,
+    "shape": "karst_island",
+    "shoulder": 0.22,
+    "spacing": 150,
     "talus_blocks": [
       {
         "Name": "minecraft:gravel"
@@ -160,8 +141,7 @@
         "Name": "minecraft:mossy_cobblestone"
       }
     ],
-    "taper": 0.15,
-    "vines": 0.55
+    "vines": 0.3
   },
   "type": "biomesmod:landform"
 }

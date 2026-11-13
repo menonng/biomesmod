@@ -13,6 +13,7 @@ object LandformShapes {
 		ConeShape.NAME to ConeShape.CODEC,
 		CalderaShape.NAME to CalderaShape.CODEC,
 		SeaStackShape.NAME to SeaStackShape.CODEC,
+		KarstIslandShape.NAME to KarstIslandShape.CODEC,
 		ColumnFieldShape.NAME to ColumnFieldShape.CODEC,
 		HotSpringShape.NAME to HotSpringShape.CODEC,
 		CascadeShape.NAME to CascadeShape.CODEC,
