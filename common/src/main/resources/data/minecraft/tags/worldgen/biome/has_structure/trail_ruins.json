@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:daintree",
+    "biomesmod:giant_redwood_forest",
+    "biomesmod:grand_prismatic",
+    "biomesmod:iguazu_falls",
+    "biomesmod:magellanic_fjords",
+    "biomesmod:white_old_growth",
+    "biomesmod:zhangjiajie"
+  ]
+}

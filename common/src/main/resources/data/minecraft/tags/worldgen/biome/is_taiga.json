@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:coast_sunken_pines",
+    "biomesmod:giant_redwood_forest",
+    "biomesmod:grand_prismatic",
+    "biomesmod:magellanic_fjords"
+  ]
+}

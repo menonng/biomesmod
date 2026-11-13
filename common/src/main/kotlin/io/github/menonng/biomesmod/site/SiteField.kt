@@ -257,7 +257,7 @@ class SiteField private constructor(
 			// Mountains keep the hills above a fixed reference (low land rises towards the target); the other terrains
 			// measure the hills from the site's own mean surface, so the site's typical height is the target.
 			val reference = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) REFERENCE_Y else referenceSurface(site, depth)
-			// Ridged peaks (mountain ranges in the manner of Tectonic): sharp crests and arêtes over the target height.
+			// Ridged peaks (a plain domain-warped ridged multifractal; not Tectonic's slope-shifted ridges): sharp crests and arêtes over the target height.
 			// The ranges rise only inside the site (smoothstep of the weight), so the edges stay gentle and blend out.
 			val peaks = if (spec.ridges > 0) spec.ridges * ridges(x.toDouble(), z.toDouble()) * smooth01((w - 0.25) / 0.6) else 0.0
 			// Soft ceiling: heights approach the configured maximum smoothly instead of being cut flat at the build limit.

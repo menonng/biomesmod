@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:alaid_volcano",
+    "biomesmod:coast_archipelago",
+    "biomesmod:exuma_cays",
+    "biomesmod:great_barrier_reef",
+    "biomesmod:ha_long_bay",
+    "biomesmod:krenitsyn_caldera",
+    "biomesmod:ross_ice_shelf",
+    "biomesmod:ushishir_caldera"
+  ]
+}

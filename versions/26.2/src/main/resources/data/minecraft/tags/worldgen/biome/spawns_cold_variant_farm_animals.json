@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:alaid_volcano",
+    "biomesmod:aletsch_glacier",
+    "biomesmod:alkefjellet",
+    "biomesmod:antarctic_peninsula",
+    "biomesmod:coast_sunken_pines",
+    "biomesmod:cordillera_darwin",
+    "biomesmod:denali_massif",
+    "biomesmod:franz_josef_land",
+    "biomesmod:geirangerfjord",
+    "biomesmod:giant_redwood_forest",
+    "biomesmod:glacier",
+    "biomesmod:grand_prismatic",
+    "biomesmod:krenitsyn_caldera",
+    "biomesmod:lake_vostok_plateau",
+    "biomesmod:magellanic_fjords",
+    "biomesmod:mcmurdo_dry_valleys",
+    "biomesmod:moraine_lake",
+    "biomesmod:patagonian_icefield",
+    "biomesmod:ross_ice_shelf",
+    "biomesmod:sarek",
+    "biomesmod:tre_cime"
+  ]
+}

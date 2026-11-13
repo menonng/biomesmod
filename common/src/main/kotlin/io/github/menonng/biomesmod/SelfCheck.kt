@@ -112,6 +112,7 @@ internal object SelfCheck {
 			if (near.distSqr(inner) > 768.0 * 768.0) {
 				landformDiagnostics(level, holder.get(), near, "$name (nearest patch)", placed)
 			}
+			structureSummary(level, inner, entry, name)
 			renderIfSelected(level, inner, id, placed)
 		}
 
@@ -256,6 +257,7 @@ internal object SelfCheck {
 		if (java.lang.Boolean.getBoolean("biomesmod.overview")) {
 			DebugRender.overview(level, inner, 160, 14, id, spec.biome)
 		}
+		structureSummary(level, inner, entry, name)
 		renderIfSelected(level, inner, id, placed)
 	}
 
@@ -335,6 +337,29 @@ internal object SelfCheck {
 	 * Most common floor blocks (solid block with air above) inside the biome, in a 32x32 area around [center].
 	 * Diagnostic for checking surface rules and features.
 	 */
+	/**
+	 * Vanilla structures planned around the interior point: every structure start in the 21 x 21 chunks around it, and
+	 * how many of them stand in the mod biome itself (the biome at the centre of the structure).
+	 */
+	private fun structureSummary(level: ServerLevel, center: BlockPos, entry: ModBiomes.Entry, name: String) {
+		val names = java.util.IdentityHashMap<Any, String>()
+		level.registryAccess().lookupOrThrow(Registries.STRUCTURE).listElements().forEach { names[it.value()] = Ids.name(it.key()).substringAfter(':') }
+		val all = java.util.TreeMap<String, Int>()
+		val inside = java.util.TreeMap<String, Int>()
+		val cx = center.x shr 4
+		val cz = center.z shr 4
+		for (dz in -10..10) for (dx in -10..10) {
+			val chunk = level.getChunk(cx + dx, cz + dz, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+			for ((structure, start) in chunk.allStarts) {
+				if (!start.isValid) continue
+				val id = names[structure] ?: "?"
+				all.merge(id, 1, Int::plus)
+				if (level.getBiome(start.boundingBox.center).`is`(entry.key)) inside.merge(id, 1, Int::plus)
+			}
+		}
+		BiomesMod.LOGGER.info("[selfcheck] {} structures within 10 chunks: {}; standing in the biome: {}", name, all, inside)
+	}
+
 	private fun surfaceSummary(level: ServerLevel, center: BlockPos, entry: ModBiomes.Entry): String {
 		val counts = HashMap<String, Int>()
 		val pos = BlockPos.MutableBlockPos()

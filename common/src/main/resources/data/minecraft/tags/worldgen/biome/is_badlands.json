@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:grand_canyon",
+    "biomesmod:monument_valley",
+    "biomesmod:puna_de_atacama",
+    "biomesmod:salar_de_tara"
+  ]
+}

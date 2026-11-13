@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:bromo_tengger",
+    "biomesmod:devils_tower",
+    "biomesmod:giants_causeway",
+    "biomesmod:lofoten_reine",
+    "biomesmod:socotra",
+    "biomesmod:socotra_coast",
+    "biomesmod:socotra_highlands",
+    "biomesmod:wadi_rum"
+  ]
+}

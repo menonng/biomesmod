@@ -118,13 +118,37 @@ def lit(h, k=1.0, dx=1, dy=1):
 BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]]
 
 
-def pick(ramp, v, x, y, dither=0.5):
-    i = v * (len(ramp) - 1) + ((BAYER[y % 4][x % 4] + 0.5) / 16 - 0.5) * dither
+def pick(ramp, v, x, y, dither=0.0):
+    """The ramp colour for v. No ordered dither: tones meet along clean edges, as in hand-placed pixel art."""
+    i = v * (len(ramp) - 1)
     return ramp[int(round(max(0, min(len(ramp) - 1, i))))]
 
 
-def paint(v, ramp, dither=0.5, lo=0.0, hi=1.0):
-    return [[rgba(pick(ramp, lo + (hi - lo) * v[y][x], x, y, dither)) for x in range(N)] for y in range(N)]
+def soften(ramp, amt=0.22):
+    """Pulls the ends of a ramp towards its middle: neighbouring tones stay close, the block reads as one material."""
+    mid = ramp[len(ramp) // 2]
+    n = len(ramp) - 1
+    return [mix(c, mid, amt * abs(i - n / 2) / (n / 2)) for i, c in enumerate(ramp)]
+
+
+def despeckle(img, passes=2):
+    """Removes lone pixels: a pixel that matches none of its four neighbours takes the commonest neighbour colour,
+    so every tone sits in a cluster of at least two pixels."""
+    for _ in range(passes):
+        out = [list(r) for r in img]
+        for y in range(N):
+            for x in range(N):
+                nb = [img[(y + dy) % N][(x + dx) % N] for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+                if img[y][x] not in nb:
+                    out[y][x] = max(nb, key=lambda c: (nb.count(c), -abs(sum(c[:3]) - sum(img[y][x][:3]))))
+        img = out
+    return img
+
+
+def paint(v, ramp, dither=0.0, lo=0.0, hi=1.0, clean=True):
+    ramp = soften(ramp)
+    img = [[rgba(pick(ramp, lo + (hi - lo) * v[y][x], x, y)) for x in range(N)] for y in range(N)]
+    return despeckle(img) if clean else img
 
 
 def put(img, x, y, c):
@@ -226,7 +250,8 @@ def sulfur():
     v = lit(field(h), 0.7)
     yellow = R('#7d5c0c', '#a9830c', '#d0a912', '#ebcd2a', '#f8e65c', '#fff5a6')
     orange = R('#6b3d0c', '#96570e', '#bd7613', '#dc9a24', '#f0bd48', '#fadc7c')
-    return [[rgba(pick(orange if stain(x, y) > 0.6 else yellow, v[y][x], x, y, 0.3)) for x in range(N)] for y in range(N)]
+    yellow, orange = soften(yellow), soften(orange)
+    return despeckle([[rgba(pick(orange if stain(x, y) > 0.6 else yellow, v[y][x], x, y)) for x in range(N)] for y in range(N)])
 
 
 _DOL = R('#15161a', '#212328', '#2f3238', '#3e4249', '#50555d', '#646b74')
@@ -322,28 +347,29 @@ def dragon_blood_bark():
 
 
 def rings_top(seed, bark_c, bark_d, wood_cols, ring_step=2.2):
-    """A sawn log end: bark all round, rounded-square growth rings, a darker heart and one drying crack."""
-    n = Noise(seed, 4)
+    """A sawn log end in vanilla's manner: a bark frame and clean square growth rings, one pixel wide, around the heart."""
+    light, dark = wood_cols[0], mix(wood_cols[1 % len(wood_cols)], bark_d, 0.25)
+    rnd = random.Random(seed)
     img = canvas()
     for y in range(N):
         for x in range(N):
-            dx, dy = x - 7.5, y - 7.5
-            if max(abs(dx), abs(dy)) > 7:
-                corner = abs(dx) > 7 and abs(dy) > 7
-                c = bark_d if corner or (x + y + int(n(x, y) * 3)) % 3 == 0 else bark_c
+            d = int(max(abs(x - 7.5), abs(y - 7.5)))  # 0 at the heart .. 7 at the bark
+            if d == 7:
+                c = bark_d if (x in (0, N - 1) and y in (0, N - 1)) or rnd.random() < 0.3 else bark_c
+            elif d == 6:
+                c = mix(light, bark_d, 0.3)
+            elif d in (4, 1):
+                c = dark
+            elif d == 0:
+                c = mix(dark, bark_d, 0.35)
             else:
-                d = (abs(dx) ** 3 + abs(dy) ** 3) ** (1 / 3.0) + 0.9 * (n(x, y) - 0.5)
-                r = d / ring_step
-                c = wood_cols[int(r) % len(wood_cols)]
-                if r % 1.0 < 0.3:
-                    c = mix(c, bark_d, 0.28)
-                if max(abs(dx), abs(dy)) > 6:
-                    c = mix(c, bark_d, 0.35)
-                if d < 1.2:
-                    c = mix(c, bark_d, 0.45)
+                c = light
             img[y][x] = rgba(c)
-    for i in range(2, 6):
-        put(img, 7 + i, 8 + i // 2, mix(wood_cols[0], bark_d, 0.6))
+    # The rings are never perfect: two small jogs and a drying crack.
+    put(img, 4, 3, dark)
+    put(img, 11, 12, dark)
+    for i in range(3):
+        put(img, 9 + i, 9 + i, mix(dark, bark_d, 0.4))
     return img
 
 
@@ -531,7 +557,7 @@ def scoria():
     hm = field(lambda x, y: 0.45 + 0.4 * f(x, y))
     rnd = random.Random(262)
     holes = []
-    for x, y in scatter(263, 13, 2.8):
+    for x, y in scatter(263, 8, 3.6):
         big = rnd.random() < 0.45
         cells = [(x, y)] + ([(x + 1, y), (x, y + 1), (x + 1, y + 1)] if big else [])
         holes.append((cells, big))
@@ -544,8 +570,8 @@ def scoria():
         for cx, cy in cells:
             put(img, cx, cy, hexc('#1f0d0a') if (cx, cy) == (x, y) else hexc('#2b120e'))
         for i in range(s):
-            put(img, x + s, y + i, hexc('#bd7a56') if i == s - 1 else hexc('#a55f41'))
-            put(img, x + i, y + s, hexc('#a55f41'))
+            put(img, x + s, y + i, hexc('#a55f41'))
+            put(img, x + i, y + s, hexc('#8a4731'))
     return img, hm
 
 
@@ -647,6 +673,7 @@ def star_crystal():
             if f2 - f1 < 0.45:
                 v = 0.92
             img[y][x] = rgba(pick(ramp, v, x, y, 0.3))
+    img = despeckle(img)
     for x, y in scatter(713, 2, 6):
         put(img, x, y, hexc('#ffffff'))
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):

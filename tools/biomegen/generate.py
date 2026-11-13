@@ -68,7 +68,7 @@ COLOR_RE = re.compile(r'^#[0-9a-fA-F]{6}$')
 
 BIOME_KEYS = {
     'id', 'names', 'places', 'dimension', 'placement', 'base', 'climate', 'colors', 'particles', 'music', 'features',
-    'spawners', 'spawn_costs', 'creature_spawn_probability', 'surface', 'carvers',
+    'spawners', 'spawn_costs', 'creature_spawn_probability', 'surface', 'carvers', 'structures',
 }
 FEATURE_KEYS = {'configured', 'configured_by_version', 'feature', 'placement', 'placement_by_version'}
 
@@ -1321,9 +1321,53 @@ def build_placements(specs, regions_cfg, problems):
 
 # --------------------------------------------------------------------------------------------- output sync
 
+def vanilla_biome_tags(v):
+    """Vanilla biome tags of one version: {tag path relative to tags/worldgen/biome, no extension: [values]}."""
+    root = os.path.join(v.base, 'data', 'minecraft', 'tags', 'worldgen', 'biome')
+    tags = {}
+    for d, _dirs, files in os.walk(root):
+        for fn in files:
+            if fn.endswith('.json'):
+                with open(os.path.join(d, fn), encoding='utf-8') as f:
+                    values = json.load(f).get('values', [])
+                tags[os.path.relpath(os.path.join(d, fn), root).replace(os.sep, '/')[:-5]] = [x if isinstance(x, str) else x.get('id') for x in values]
+    return tags
+
+
+def build_biome_tags(specs, versions, vanilla, features, problems):
+    """Every mod biome joins the vanilla biome tags that list its `base` biome directly, so it gets what the base gets:
+    strongholds, mineshafts, trial chambers, villages, mob variants, ... (tags that include other tags follow by
+    themselves). `"structures"`: "base" keeps every has_structure tag of the base, "none" drops them, and the default
+    "auto" drops them only where a terrain shaper rebuilds the ground after structures were planned (a village laid out
+    on the original surface would end up buried or in the air). Underground structures tied to is_overworld stay."""
+    out = {}
+    for mc in versions:
+        tags = vanilla_biome_tags(vanilla[mc])
+        per = defaultdict(list)
+        for s in sorted(specs, key=lambda s: s.id):
+            mode = s.data.get('structures', 'auto')
+            if mode not in ('auto', 'base', 'none'):
+                problems.error(s.where, '"structures" must be "auto", "base" or "none"')
+                continue
+            base = s.data.get('base')
+            shaped = any(isinstance(features[x.split(':', 1)[1]].configured.get(mc), dict)
+                         and features[x.split(':', 1)[1]].configured[mc].get('type') == MOD + ':terrain_shaper'
+                         for ids in feature_sections(s, mc)[3].values() for x in ids if x.split(':', 1)[1] in features)
+            for tag, values in tags.items():
+                if base not in values:
+                    continue
+                if tag.startswith('has_structure/') and (mode == 'none' or (mode == 'auto' and shaped)):
+                    continue
+                per[tag].append(MOD + ':' + s.id)
+        out[mc] = {tag: dump_json({'replace': False, 'values': ids}) for tag, ids in per.items()}
+    return out
+
+
 def owned_dirs(versions):
     dirs = []
     for res in [COMMON_RES] + [os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources') for mc in versions]:
+        dirs.append(os.path.join(res, 'data', 'minecraft', 'tags', 'worldgen', 'biome'))
+        dirs.append(os.path.join(res, 'data', 'minecraft', 'tags', 'worldgen', 'biome', 'has_structure'))
         for kind in ('configured_feature', 'placed_feature'):
             dirs.append(os.path.join(res, 'data', MOD, 'worldgen', kind))
     for mc in versions:
@@ -1446,6 +1490,16 @@ def main(argv=None):
             else:
                 for mc, text in texts.items():
                     outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', 'data', MOD, 'worldgen', kind, fid + '.json')] = text
+
+    tag_out = build_biome_tags(specs, versions, vanilla, features, problems)
+    for tag in sorted({t for mc in versions for t in tag_out[mc]}):
+        texts = {mc: tag_out[mc][tag] for mc in versions if tag in tag_out[mc]}
+        sub = os.path.join('data', 'minecraft', 'tags', 'worldgen', 'biome', *(tag + '.json').split('/'))
+        if len(set(texts.values())) == 1 and len(texts) == len(versions):
+            outputs[os.path.join(COMMON_RES, sub)] = next(iter(texts.values()))
+        else:
+            for mc, text in texts.items():
+                outputs[os.path.join(REPO, 'versions', mc, 'src', 'main', 'resources', sub)] = text
 
     placements = build_placements(specs, regions_cfg if isinstance(regions_cfg, dict) else {}, problems)
     outputs[os.path.join(COMMON_RES, MOD, 'placements.json')] = dump_json(placements, sort_keys=False)

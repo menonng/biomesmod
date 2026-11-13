@@ -52,8 +52,7 @@ heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs 
 
 ### Ridges, zones, channels
 
-* **Ridges:** a domain-warped ridged multifractal (sharp crests, arêtes, broad lows, in the manner of Tectonic and
-  Mountain Peaks) adds up to `ridges` blocks (times `ridge_scale` in the config). It rises only inside the site (a
+* **Ridges:** a domain-warped ridged multifractal (sharp crests, arêtes, broad lows, a generic technique; it resembles the look of mountain mods but is not their algorithm: Tectonic, for one, shifts a detail noise by the slope of a base noise) adds up to `ridges` blocks (times `ridge_scale` in the config). It rises only inside the site (a
   smoothstep of the site weight), so the ranges fade out before the edge.
 * **Zones:** concentric sub-biomes by distance from the centre (1 at the centre, 0 at the outer edge, borders jittered).
   A zone biome's spec has `"placement": {"zone_of": "<site biome>"}`. A zone from 0 or to 1 is open on that side.

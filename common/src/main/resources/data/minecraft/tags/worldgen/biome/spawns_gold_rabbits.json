@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dallol",
+    "biomesmod:dasht_e_lut",
+    "biomesmod:lake_gairdner",
+    "biomesmod:salar_de_uyuni",
+    "biomesmod:socotra_coast",
+    "biomesmod:sossusvlei",
+    "biomesmod:wadi_rum"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:aletsch_glacier",
+    "biomesmod:alkefjellet",
+    "biomesmod:antarctic_peninsula",
+    "biomesmod:cordillera_darwin",
+    "biomesmod:denali_massif",
+    "biomesmod:franz_josef_land",
+    "biomesmod:glacier",
+    "biomesmod:lake_vostok_plateau",
+    "biomesmod:mcmurdo_dry_valleys",
+    "biomesmod:moraine_lake",
+    "biomesmod:patagonian_icefield",
+    "biomesmod:ross_ice_shelf",
+    "biomesmod:sarek"
+  ]
+}

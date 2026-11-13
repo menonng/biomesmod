@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:aletsch_glacier",
+    "biomesmod:antarctic_peninsula",
+    "biomesmod:cordillera_darwin",
+    "biomesmod:denali_massif",
+    "biomesmod:glacier",
+    "biomesmod:lauterbrunnen",
+    "biomesmod:patagonian_icefield",
+    "biomesmod:tre_cime",
+    "biomesmod:white_plains"
+  ]
+}
