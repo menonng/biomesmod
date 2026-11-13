@@ -240,8 +240,14 @@ class SiteField private constructor(
 	}
 
 	private fun computeColumn(x: Int, z: Int, depth: DensityFunction): Column {
+		lastDepth = depth
 		val b = blend(x, z)
-		val a = b.a ?: return Column.NONE
+		val a = b.a
+		// Fjords may run on past the edge of their site until they meet open water.
+		val beyond = if (hasChannels) channelSitesBeyond(x, z, a, b.b, depth) else emptyList()
+		if (a == null && beyond.isEmpty()) {
+			return Column.NONE
+		}
 		val s0 = originalSurface(x, z, depth)
 		var delta = 0.0
 		var detail = 1.0
@@ -257,7 +263,7 @@ class SiteField private constructor(
 			// Mountains keep the hills above a fixed reference (low land rises towards the target); the other terrains
 			// measure the hills from the site's own mean surface, so the site's typical height is the target.
 			val reference = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) REFERENCE_Y else referenceSurface(site, depth)
-			// Ridged peaks (a plain domain-warped ridged multifractal; not Tectonic's slope-shifted ridges): sharp crests and arêtes over the target height.
+			// Ridged peaks (see ridges(): a ridged base with slope-shifted detail): sharp crests and arêtes over the target height.
 			// The ranges rise only inside the site (smoothstep of the weight), so the edges stay gentle and blend out.
 			val peaks = if (spec.ridges > 0) spec.ridges * ridges(x.toDouble(), z.toDouble()) * smooth01((w - 0.25) / 0.6) else 0.0
 			// Soft ceiling: heights approach the configured maximum smoothly instead of being cut flat at the build limit.
@@ -275,11 +281,12 @@ class SiteField private constructor(
 			}
 		}
 		// Fjords: channels cut from the site centre towards the sea, below sea level (the aquifer floods them).
-		for ((site, w) in arrayOf(a to b.wa, b.b to b.wb)) {
-			val ch = site?.spec?.channels ?: continue
-			if (w <= 0) {
-				continue
-			}
+		val cutters = ArrayList<Site>(2)
+		if (a != null && b.wa > 0) cutters.add(a)
+		b.b?.let { if (b.wb > 0) cutters.add(it) }
+		cutters.addAll(beyond)
+		for (site in cutters) {
+			val ch = site.spec.channels ?: continue
 			val surface = s0 + delta
 			val cut = channelSurface(site, ch, x.toDouble(), z.toDouble(), surface, depth)
 			if (cut < surface) {
@@ -327,48 +334,128 @@ class SiteField private constructor(
 		return c * c * (3 - 2 * c)
 	}
 
-	/** Ridged multifractal in [0, 1]: thin sharp crests joined into ranges, broad lows between them. */
+	/** One ridged octave pair in [0, 1] at warped coordinates: thin sharp crests, broad lows. */
+	private fun ridgePair(x: Double, z: Double, f: Double, salt: Double): Double {
+		val n0 = noise.getValue(x * f + salt, 120.0 + salt * 0.05, z * f - salt * 0.4)
+		var r0 = (1.0 - kotlin.math.abs(n0) * 1.7).coerceIn(0.0, 1.0)
+		r0 *= r0
+		val n1 = noise.getValue(x * f * 2 + salt + 1013.7, 173.0 + salt * 0.05, z * f * 2 - salt * 0.4 - 419.3)
+		var r1 = (1.0 - kotlin.math.abs(n1) * 1.7).coerceIn(0.0, 1.0)
+		r1 *= r1
+		// The finer octave only builds on the crests of the coarser one (a multifractal).
+		return (r0 + 0.5 * r1 * (r0 * 1.6).coerceIn(0.0, 1.0)) / 1.5
+	}
+
+	/**
+	 * Mountain ranges in [0, 1]. A broad ridged base gives the ranges; the detail on top is built the way Tectonic
+	 * (MIT licence) builds its mountain ridges: the detail noise is not read where it stands but at a point pushed
+	 * away by the steepness of the base (shift = |base slope| x constant, per axis), so the small ridges are dragged
+	 * down the flanks into spurs and gullies instead of lying on the range like an even grain; a "weathering" noise
+	 * thins the detail out in places. The base, the constants and the ridged shaping are written for this mod.
+	 */
 	internal fun ridges(x: Double, z: Double): Double {
 		// Domain warp so the ranges bend and branch instead of running straight.
 		val wx = x + 140 * noise.getValue(x * 0.7 + 1733.0, 50.0, z * 0.7)
 		val wz = z + 140 * noise.getValue(x * 0.7, 50.0, z * 0.7 - 2213.0)
-		var sum = 0.0
-		var amp = 1.0
-		var weight = 1.0
-		var f = 1.2
-		var norm = 0.0
-		for (o in 0 until 4) {
-			val n = noise.getValue(wx * f + o * 1013.7, 120.0 + o * 53, wz * f - o * 419.3)
-			var r = 1.0 - kotlin.math.abs(n) * 1.7
-			r = (r.coerceIn(0.0, 1.0)).let { it * it }
-			r *= weight
-			weight = (r * 1.6).coerceIn(0.0, 1.0)
-			sum += r * amp
-			norm += amp
-			amp *= 0.5
-			f *= 2.0
-		}
-		return (sum / norm * 1.35).coerceIn(0.0, 1.0)
+		val base = ridgePair(wx, wz, 1.2, 0.0)
+		val e = 16.0
+		val slopeX = kotlin.math.abs(ridgePair(wx + e, wz, 1.2, 0.0) - ridgePair(wx - e, wz, 1.2, 0.0))
+		val slopeZ = kotlin.math.abs(ridgePair(wx, wz + e, 1.2, 0.0) - ridgePair(wx, wz - e, 1.2, 0.0))
+		val detail = ridgePair(wx + RIDGE_SHIFT * slopeX, wz + RIDGE_SHIFT * slopeZ, 3.0, 2027.0)
+		val weathering = 1.0 - (kotlin.math.abs(noise.getValue(wx * 2.5 - 911.0, 77.0, wz * 2.5 + 577.0)) * 1.6).coerceIn(0.0, 1.0)
+		// Detail rides on the ranges (none on the flat lows) and is strongest where the rock is least weathered.
+		val onRange = (base * 1.8).coerceIn(0.0, 1.0)
+		return ((base + 0.38 * detail * onRange * (0.35 + 0.65 * weathering)) / 1.28 * 1.35).coerceIn(0.0, 1.0)
 	}
 
-	private class ChannelInfo(val angle: Double, val phase: Double, val phase2: Double)
+	/** [angle] of the main fjord, how far from the centre it [reach]es, and whether open [water] was found there. */
+	internal class ChannelInfo(val angle: Double, val phase: Double, val phase2: Double, val reach: Double, val water: Boolean)
 
 	private val channelInfos = ConcurrentHashMap<Long, ChannelInfo>()
+	private val hasChannels: Boolean = config.specs.any { it.channels != null }
 
-	/** Direction from the site centre to its lowest original ground (the sea), computed once per site. */
+	@Volatile
+	private var lastDepth: DensityFunction? = null
+
+	/**
+	 * Where the main fjord of a site goes, computed once per site: rays are cast from the site in 48 directions and the
+	 * fjord takes the one that reaches open water soonest (the original smooth surface below sea level for 16 blocks:
+	 * the sea, or a river valley, whose river then carries it on to the sea). The fjord is cut all the way to that
+	 * water, past the edge of the site if it has to, so it never ends in a wall of land. If there is no water within
+	 * 1.6 site radii it heads for the lowest ground on the rim, as before.
+	 */
 	private fun channelInfo(site: Site, depth: DensityFunction): ChannelInfo = channelInfos.computeIfAbsent(cellKey(site.x, site.z)) {
-		var best = Double.MAX_VALUE
+		val outer = site.outer()
 		var angle = 0.0
-		val r = site.outer() * 0.92
-		for (k in 0 until 24) {
-			val a = k * PI / 12
-			val h = originalSurface((site.x + kotlin.math.cos(a) * r).toInt(), (site.z + sin(a) * r).toInt(), depth)
-			if (h < best) {
-				best = h
-				angle = a
+		var reach = Double.MAX_VALUE
+		for (k in 0 until 48) {
+			val a = k * PI / 24
+			val ca = kotlin.math.cos(a)
+			val sa = sin(a)
+			var run = 0
+			var r = outer * 0.45
+			while (r < outer * MOUTH_REACH && r < reach) {
+				if (originalSurface((site.x + ca * r).toInt(), (site.z + sa * r).toInt(), depth) < SEA_LEVEL - 3) {
+					if (++run >= 2) {
+						reach = r
+						angle = a
+						break
+					}
+				} else {
+					run = 0
+				}
+				r += 8.0
 			}
 		}
-		ChannelInfo(angle, unit(mix(site.seed + 71)) * PI * 2, unit(mix(site.seed + 73)) * PI * 2)
+		val water = reach != Double.MAX_VALUE
+		if (!water) {
+			var best = Double.MAX_VALUE
+			val r = outer * 0.92
+			for (k in 0 until 24) {
+				val a = k * PI / 12
+				val h = originalSurface((site.x + kotlin.math.cos(a) * r).toInt(), (site.z + sin(a) * r).toInt(), depth)
+				if (h < best) {
+					best = h
+					angle = a
+				}
+			}
+		}
+		ChannelInfo(angle, unit(mix(site.seed + 71)) * PI * 2, unit(mix(site.seed + 73)) * PI * 2,
+			if (water) max(reach + 56.0, outer * 1.05) else outer * 1.05, water)
+	}
+
+	/** The fjord sites other than [a] and [b] whose main channel runs past their own edge and may reach (x, z). */
+	private fun channelSitesBeyond(x: Int, z: Int, a: Site?, b: Site?, depth: DensityFunction): List<Site> {
+		val c = config.cell
+		val r = (reach * MOUTH_REACH + 160).toInt()
+		var out: ArrayList<Site>? = null
+		for (gz in Math.floorDiv(z - r, c)..Math.floorDiv(z + r, c)) {
+			for (gx in Math.floorDiv(x - r, c)..Math.floorDiv(x + r, c)) {
+				val s = site(gx, gz) ?: continue
+				val ch = s.spec.channels ?: continue
+				if (s === a || s === b) {
+					continue
+				}
+				val d = hypot((x - s.x).toDouble(), (z - s.z).toDouble())
+				if (d < s.outer() * 0.9 || d > s.outer() * MOUTH_REACH + 160) {
+					continue
+				}
+				if (d <= channelInfo(s, depth).reach + ch.width * 1.5) {
+					if (out == null) out = ArrayList(1)
+					out.add(s)
+				}
+			}
+		}
+		return out ?: emptyList()
+	}
+
+	/** For the self-check: where the main fjord of [site] ends. */
+	fun fjordMouth(site: Site): String? {
+		val depth = lastDepth ?: return null
+		if (site.spec.channels == null) return null
+		val info = channelInfo(site, depth)
+		return if (info.water) "open water %d blocks from the centre (site edge at %d)".format(info.reach.toInt() - 56, site.outer().toInt())
+		else "NO open water within %d blocks; the fjord ends at the site edge".format((site.outer() * MOUTH_REACH).toInt())
 	}
 
 	/**
@@ -392,11 +479,13 @@ class SiteField private constructor(
 			val pz = z - oz
 			val along = px * cx + pz * cz
 			val head = if (k == 0) -0.25 * site.core else 0.0
-			val end = if (k == 0) outer * 1.05 else outer * 0.55
+			val end = if (k == 0) info.reach else outer * 0.55
 			if (along < head - ch.width * 2 || along > end) {
 				continue
 			}
-			val meander = ch.width * 1.3 * sin(along / 170.0 + info.phase + k) + ch.width * 0.5 * sin(along / 61.0 + info.phase2 + 2 * k)
+			// The meanders die out towards the mouth, so the main fjord ends exactly where the water was found.
+			val swing = if (k == 0) smooth01((end - along) / 280.0) else 1.0
+			val meander = swing * (ch.width * 1.3 * sin(along / 170.0 + info.phase + k) + ch.width * 0.5 * sin(along / 61.0 + info.phase2 + 2 * k))
 			val across = -px * cz + pz * cx - meander
 			val t = ((along - head) / (end - head)).coerceIn(0.0, 1.0)
 			val half = ch.width * (if (k == 0) 0.6 + 0.6 * t else 0.5 + 0.3 * t)
@@ -459,6 +548,12 @@ class SiteField private constructor(
 
 		/** Sea level of the overworld (fjord floors are cut below it). */
 		private const val SEA_LEVEL = 63.0
+
+		/** How far past its site (in site radii) a fjord may run to find open water. */
+		private const val MOUTH_REACH = 1.6
+
+		/** Blocks of detail shift per unit of base slope in [ridges]. */
+		private const val RIDGE_SHIFT = 110.0
 
 		/** Detail kept above the surface of plateau and basin sites (almost flat). */
 		private const val FLAT_DETAIL = 0.06

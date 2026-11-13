@@ -24,12 +24,12 @@
     "dist": 0.5
   },
   "monument_valley": {
-    "above": 14,
-    "dist": 0.55
+    "above": 30,
+    "lm_dist": 100
   },
   "wadi_rum": {
-    "above": 18,
-    "dist": 0.55
+    "above": 30,
+    "lm_dist": 100
   },
   "everglades": {
     "above": 22
@@ -42,8 +42,8 @@
     "dist": 0.4
   },
   "pamukkale": {
-    "above": 24,
-    "dist": 0.5
+    "above": 45,
+    "dist": 0.35
   },
   "plitvice_lakes": {
     "above": 28,
@@ -75,7 +75,9 @@
     "above": 80
   },
   "denali_massif": {
-    "above": 90
+    "above": 140,
+    "dist": 0.5,
+    "t_above": 40
   },
   "cordillera_darwin": {
     "above": 70
@@ -113,8 +115,9 @@
     "above": 22
   },
   "zhangjiajie": {
-    "above": 45,
-    "dist": 0.45
+    "above": 80,
+    "lm_dist": 200,
+    "t_above": 30
   },
   "socotra": {
     "above": 22,
@@ -182,7 +185,8 @@
     "t_above": -10
   },
   "giant_redwood_forest": {
-    "above": 22,
-    "dist": 0.45
+    "above": 60,
+    "dist": 0.45,
+    "t_above": -15
   }
 }

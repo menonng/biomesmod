@@ -52,12 +52,21 @@ heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs 
 
 ### Ridges, zones, channels
 
-* **Ridges:** a domain-warped ridged multifractal (sharp crests, arêtes, broad lows, a generic technique; it resembles the look of mountain mods but is not their algorithm: Tectonic, for one, shifts a detail noise by the slope of a base noise) adds up to `ridges` blocks (times `ridge_scale` in the config). It rises only inside the site (a
-  smoothstep of the site weight), so the ranges fade out before the edge.
+* **Ridges:** mountain ranges of up to `ridges` blocks (times `ridge_scale` in the config). A domain-warped ridged
+  base gives the ranges (sharp crests, broad lows). The detail on top follows the method of Tectonic's mountain ridges
+  (Tectonic is MIT-licensed; the method was reimplemented, no data copied): the detail noise is read at a point pushed
+  away by the steepness of the base (`shift = |base slope| x 110 blocks`, per axis), which drags the small ridges down
+  the flanks into spurs and gullies; a weathering noise thins it out in places. The ranges rise only inside the site
+  (a smoothstep of the site weight), so they fade out before the edge.
 * **Zones:** concentric sub-biomes by distance from the centre (1 at the centre, 0 at the outer edge, borders jittered).
   A zone biome's spec has `"placement": {"zone_of": "<site biome>"}`. A zone from 0 or to 1 is open on that side.
-* **Channels:** fjords cut from the centre towards the lowest original ground (the sea), meandering, widening and
-  deepening seawards, carved below sea level so the sea floods them.
+* **Channels:** fjords. For the main fjord, rays are cast from the site in 48 directions and it takes the one that
+  reaches open water soonest: the original surface below sea level, which is the sea or a river valley (whose river
+  carries it on to the sea). It is cut all the way to that water, up to 1.6 site radii out, past the edge of the site
+  and through the neighbouring biome if it has to, so it joins the water around it instead of ending in a wall of
+  land. Its meanders die out towards the mouth. If no water is in reach it heads for the lowest ground on the rim.
+  Side fjords branch off a third of the way along. All are carved below sea level, so the sea floods them. The
+  self-check logs, for up to 40 sites of each fjord biome, how many reach open water.
 
 ## In game
 

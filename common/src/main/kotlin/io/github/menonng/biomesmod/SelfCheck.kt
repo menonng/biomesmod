@@ -257,6 +257,12 @@ internal object SelfCheck {
 		if (java.lang.Boolean.getBoolean("biomesmod.overview")) {
 			DebugRender.overview(level, inner, 160, 14, id, spec.biome)
 		}
+		if (spec.channels != null) {
+			// Every fjord site in range: does its main channel reach open water?
+			val mouths = sites.take(40).map { field.fjordMouth(it) ?: "?" }
+			BiomesMod.LOGGER.info("[selfcheck] {} fjord mouth: {}; of {} sites checked {} reach open water", name, mouths.first(), mouths.size,
+				mouths.count { it.startsWith("open") })
+		}
 		structureSummary(level, inner, entry, name)
 		renderIfSelected(level, inner, id, placed)
 	}
