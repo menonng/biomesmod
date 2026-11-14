@@ -86,7 +86,7 @@ class LandformFeature : Feature<LandformConfig>(LandformConfig.CODEC) {
 			return if (v === NONE) null else v as Landform
 		}
 
-		private fun key(sampler: WorldSampler, seed: Long, x: Int, z: Int) = LandformConfig.CellKey(sampler.level.level, seed, x, z)
+		private fun key(sampler: WorldSampler, seed: Long, x: Int, z: Int) = LandformConfig.CellKey(sampler.randomState, seed, x, z)
 
 		/** The (cached) instance of grid cell (gx, gz), or null. Pure function of world seed, config and cell. */
 		internal fun instance(sampler: WorldSampler, cfg: LandformConfig, gx: Int, gz: Int): Landform? =
@@ -183,7 +183,7 @@ class LandformFeature : Feature<LandformConfig>(LandformConfig.CODEC) {
 		// ---- one per site (min_distance -1): unique landmarks stand near the centre of their biome's site
 
 		private fun siteField(sampler: WorldSampler): SiteField? =
-			SiteField.forSampler(sampler.level.level.chunkSource.randomState().sampler())
+			SiteField.forSampler(sampler.randomState.sampler())
 
 		private fun siteInstances(sampler: WorldSampler, cfg: LandformConfig, x0: Int, z0: Int, x1: Int, z1: Int): List<Landform> {
 			val field = siteField(sampler) ?: return listOf()

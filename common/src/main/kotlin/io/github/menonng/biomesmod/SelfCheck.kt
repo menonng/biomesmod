@@ -113,6 +113,7 @@ internal object SelfCheck {
 				landformDiagnostics(level, holder.get(), near, "$name (nearest patch)", placed)
 			}
 			structureSummary(level, inner, entry, name)
+		landformHeightCheck(level, placed, name)
 			renderIfSelected(level, inner, id, placed)
 		}
 
@@ -264,6 +265,7 @@ internal object SelfCheck {
 				mouths.count { it.startsWith("open") })
 		}
 		structureSummary(level, inner, entry, name)
+		landformHeightCheck(level, placed, name)
 		renderIfSelected(level, inner, id, placed)
 	}
 
@@ -398,6 +400,33 @@ internal object SelfCheck {
 	 * in the air.
 	 */
 	private var controlDone = false
+
+	/**
+	 * Village planning must see the landforms (LandformHeights): around the first placed landform, the height a village
+	 * would be planned on against the ground that is generated there.
+	 */
+	private fun landformHeightCheck(level: ServerLevel, placed: List<IntArray>, name: String) {
+		val p = placed.firstOrNull() ?: return
+		val gen = level.chunkSource.generator
+		val rs = level.chunkSource.randomState()
+		val type = net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR_WG
+		var worstPlanned = 0
+		var worstBare = 0
+		var n = 0
+		for (r in intArrayOf(30, 70, 110)) for (k in 0 until 8) {
+			val x = p[0] + (r * kotlin.math.cos(k * Math.PI / 4)).toInt()
+			val z = p[1] + (r * kotlin.math.sin(k * Math.PI / 4)).toInt()
+			level.getChunk(x shr 4, z shr 4)
+			val real = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR, x, z)
+			val bare = gen.getBaseHeight(x, z, type, level, rs)
+			val planned = io.github.menonng.biomesmod.terrain.landform.LandformHeights.planning(level.seed) { gen.getBaseHeight(x, z, type, level, rs) }
+			worstPlanned = kotlin.math.max(worstPlanned, kotlin.math.abs(real - planned))
+			worstBare = kotlin.math.max(worstBare, kotlin.math.abs(real - bare))
+			n++
+		}
+		BiomesMod.LOGGER.info("[selfcheck] {} landform at {}, {}: over {} points within 110 blocks the ground differs from the planned height by at most {} (from the bare noise terrain by {})",
+			name, p[0], p[1], n, worstPlanned, worstBare)
+	}
 
 	private fun villageFit(level: ServerLevel, start: net.minecraft.world.level.levelgen.structure.StructureStart, name: String) {
 		val diffs = ArrayList<Int>()

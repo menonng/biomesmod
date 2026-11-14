@@ -25,10 +25,10 @@ internal class Site(
 	val sea: Int = sampler.seaLevel
 
 	@JvmField
-	val minY: Int = LevelCompat.minY(sampler.level)
+	val minY: Int = LevelCompat.minY(sampler.heights)
 
 	@JvmField
-	val maxY: Int = LandformCompat.maxY(sampler.level)
+	val maxY: Int = LandformCompat.maxY(sampler.heights)
 
 	@JvmField
 	val rng = LNoise.Rng(LNoise.sub(seed, 0x51732))

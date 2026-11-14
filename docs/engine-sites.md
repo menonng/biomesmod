@@ -98,6 +98,7 @@ always parts the island from other land. Socotra, Alaid, Ushishir, the Exuma ban
 Vanilla lays a village out from one height and relies on its village biomes being flat. Two rules keep villages of this mod's biomes on the ground:
 
 * A village or outpost (any jigsaw structure with thin terrain adaptation) only starts in a mod biome where the ground within 40 blocks of its centre differs by at most 6 blocks (`LevelGround`, applied by `JigsawStructureMixin`). Vanilla biomes are not affected.
-* Biomes whose ground is rebuilt after structures were planned get no surface structures: terrain shapers, and the `cone` and `caldera` landforms (see "Biome tags and vanilla structures" in `biome-specs.md`).
+* Landforms (cones, calderas, buttes, ...) are built by features, after structures were planned. While a village is planned, the generator's height queries therefore include the landforms that will stand there (`LandformHeights`, applied by `ChunkGeneratorHeightMixin`), so the level-ground check sees a volcano and houses are set on its flank instead of inside it.
+* Biomes whose ground is rebuilt by a terrain shaper still get no surface structures (see "Biome tags and vanilla structures" in `biome-specs.md`): shapers are not visible to village planning yet.
 
-The self-check logs how the ground meets a village (`village at ...: ground minus floor ...`); with `-Pbiomes=` it also measures the nearest village when none stands in the biome.
+The self-check logs how the ground meets a village (`village at ...: ground minus floor ...`) and how far the planned height is from the generated ground around a landform (`landform at ...`); with `-Pbiomes=` it also measures the nearest village when none stands in the biome.

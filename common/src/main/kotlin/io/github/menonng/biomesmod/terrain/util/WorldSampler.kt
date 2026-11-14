@@ -3,6 +3,7 @@ package io.github.menonng.biomesmod.terrain.util
 import net.minecraft.core.Holder
 import net.minecraft.core.QuartPos
 import net.minecraft.resources.ResourceKey
+import net.minecraft.world.level.LevelHeightAccessor
 import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.biome.BiomeSource
@@ -22,12 +23,15 @@ import kotlin.math.sin
  * features use this to make decisions that must agree across chunk borders (a feature may only WRITE inside its own
  * chunk, but it can SAMPLE anywhere through this class).
  */
-class WorldSampler private constructor(val level: WorldGenLevel, private val generator: ChunkGenerator) {
-	private val randomState: RandomState = level.level.chunkSource.randomState()
+class WorldSampler private constructor(
+	/** Build height of the world (a level while features run, a chunk while structures are planned). */
+	val heights: LevelHeightAccessor,
+	private val generator: ChunkGenerator,
+	val randomState: RandomState,
+	val seed: Long,
+) {
 	private val biomeSource: BiomeSource = generator.biomeSource
 	private val climate: Climate.Sampler = randomState.sampler()
-
-	val seed: Long get() = level.seed
 
 	val seaLevel: Int get() = generator.seaLevel
 
@@ -38,10 +42,10 @@ class WorldSampler private constructor(val level: WorldGenLevel, private val gen
 	fun isBiome(x: Int, y: Int, z: Int, key: ResourceKey<Biome>): Boolean = biomeAt(x, y, z).`is`(key)
 
 	/** Terrain height from the noise generator alone (no features), top of the first solid column (OCEAN_FLOOR_WG). */
-	fun baseFloorHeight(x: Int, z: Int): Int = generator.getBaseHeight(x, z, Heightmap.Types.OCEAN_FLOOR_WG, level, randomState)
+	fun baseFloorHeight(x: Int, z: Int): Int = generator.getBaseHeight(x, z, Heightmap.Types.OCEAN_FLOOR_WG, heights, randomState)
 
 	/** Terrain height including fluids (WORLD_SURFACE_WG): water surface over oceans. */
-	fun baseSurfaceHeight(x: Int, z: Int): Int = generator.getBaseHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, level, randomState)
+	fun baseSurfaceHeight(x: Int, z: Int): Int = generator.getBaseHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, heights, randomState)
 
 	/**
 	 * Approximate distance in blocks from (x, z) to the nearest position whose biome (sampled at height y) is not
@@ -68,8 +72,13 @@ class WorldSampler private constructor(val level: WorldGenLevel, private val gen
 	}
 
 	companion object {
-		fun of(context: FeaturePlaceContext<*>): WorldSampler = WorldSampler(context.level(), context.chunkGenerator())
+		fun of(context: FeaturePlaceContext<*>): WorldSampler = of(context.level(), context.chunkGenerator())
 
-		fun of(level: WorldGenLevel, generator: ChunkGenerator): WorldSampler = WorldSampler(level, generator)
+		fun of(level: WorldGenLevel, generator: ChunkGenerator): WorldSampler =
+			WorldSampler(level, generator, level.level.chunkSource.randomState(), level.seed)
+
+		/** A sampler for code that runs before there is a level to ask (structure planning). */
+		fun detached(heights: LevelHeightAccessor, generator: ChunkGenerator, randomState: RandomState, seed: Long): WorldSampler =
+			WorldSampler(heights, generator, randomState, seed)
 	}
 }
