@@ -121,7 +121,7 @@ class SiteField private constructor(
 		val hu = vegetation.compute(at)
 		val co = continents.compute(at)
 		val er = erosion.compute(at)
-		val candidates = config.specs.filter { it.accepts(t, hu, co, er) }
+		val candidates = config.specs.filter { it.accepts(t, hu, co, er) && (!it.island || openSea(x, z, it.coreMax)) }
 		if (candidates.isEmpty()) {
 			return null
 		}
@@ -136,6 +136,26 @@ class SiteField private constructor(
 		}
 		val core = spec.coreMin + unit(mix(h + 4)) * (spec.coreMax - spec.coreMin)
 		return Site(x, z, core, spec.ramp, spec, mix(h + 5), mix(h + 6))
+	}
+
+	/**
+	 * True when (x, z) lies out at sea: the continentalness is below the coast at half or more of 32 points on a ring of
+	 * [radius] blocks and one at two thirds of it. Island sites are only placed here; whatever land still reaches into
+	 * the ring is cut away by the moat of sea every island site digs round itself (see computeColumn).
+	 */
+	private fun openSea(x: Int, z: Int, radius: Double): Boolean {
+		var sea = 0
+		for (ring in 0 until 2) {
+			val r = radius * (if (ring == 0) 1.0 else 0.66)
+			for (k in 0 until 16) {
+				val a = k * PI / 8
+				val at = DensityFunction.SinglePointContext((x + kotlin.math.cos(a) * r).toInt(), 64, (z + sin(a) * r).toInt())
+				if (continents.compute(at) < OPEN_SEA) {
+					sea++
+				}
+			}
+		}
+		return sea >= 16
 	}
 
 	// ---------------------------------------------------------------------------------------------- sampling
@@ -269,6 +289,15 @@ class SiteField private constructor(
 			// Soft ceiling: heights approach the configured maximum smoothly instead of being cut flat at the build limit.
 			val target = softCap(spec.targetY + spec.relief * (s0 - reference) + peaks)
 			val d = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) max(0.0, target - s0) else target - s0
+			if (spec.island) {
+				// An island stands alone: its land takes the inner part of the site, and round it the ground is taken down
+				// below the sea (wherever it is not already), so a ring of water always parts it from any other land.
+				val land = smooth01((w - 0.5) / 0.35)
+				val moat = smooth01(w / 0.25) * (1 - land)
+				delta += land * d + moat * (kotlin.math.min(s0, SEA_LEVEL - 12.0) - s0)
+				detail += land * (max(0.15, spec.relief) - 1) + moat * (0.25 - 1)
+				continue
+			}
 			delta += w * d
 			val s = when (spec.terrain) {
 				SiteConfig.Terrain.PLATEAU, SiteConfig.Terrain.BASIN -> FLAT_DETAIL
@@ -570,6 +599,9 @@ class SiteField private constructor(
 
 		/** Height that `relief` measures the original hills from. */
 		private const val REFERENCE_Y = 72.0
+
+		/** Continentalness below which a point counts as open sea (the vanilla ocean band, clear of the coast). */
+		private const val OPEN_SEA = -0.19
 
 		/** Sea level of the overworld (fjord floors are cut below it). */
 		private const val SEA_LEVEL = 63.0

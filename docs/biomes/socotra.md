@@ -4,7 +4,7 @@
 
 Socotra's limestone plateaus and wadis carry endemic dragon's blood trees with dense umbrella crowns, bottle trees and frankincense on pale rock.
 
-**In game:** `biomesmod:socotra`, a site of 764–936 blocks across (raised land, y=92). Find the nearest one with `/biomesmod sites socotra`.
+**In game:** `biomesmod:socotra`, a site of 1200–1520 blocks across (raised land, y=92). Find the nearest one with `/biomesmod sites socotra`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

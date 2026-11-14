@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      2,
+      3
+    ],
+    "leaves": {
+      "Name": "biomesmod:ghostwood_leaves"
+    },
+    "log": {
+      "Name": "biomesmod:ghostwood_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "shrub"
+  },
+  "type": "biomesmod:wild_tree"
+}

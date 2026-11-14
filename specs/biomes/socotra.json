@@ -23,10 +23,10 @@
         600,
         760
       ],
-      "ramp": 260,
+      "ramp": 320,
       "terrain": "lift",
       "relief": 0.35,
-      "weight": 4.0,
+      "weight": 5.0,
       "elevation_m": 750,
       "ridges": 45,
       "zones": [
@@ -43,8 +43,9 @@
       ],
       "continentalness": [
         -1.2,
-        -0.42
-      ]
+        -0.25
+      ],
+      "island": true
     }
   },
   "base": "minecraft:savanna_plateau",

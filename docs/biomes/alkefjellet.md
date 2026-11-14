@@ -4,7 +4,7 @@
 
 A wall of dark dolerite columns about 100 m high rising straight out of Hinlopenstretet, home to some 60,000 pairs of Brünnich's guillemots; the ledges are streaked white with guano and patched with rust-coloured lichen and green moss, snow lies on the plateau above and ice floes drift below.
 
-**In game:** `biomesmod:alkefjellet`, a site of 540–660 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites alkefjellet`.
+**In game:** `biomesmod:alkefjellet`, a site of 600–760 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites alkefjellet`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

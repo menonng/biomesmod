@@ -4,7 +4,7 @@
 
 The largest ice-free area of Antarctica: brown gravel and sand valleys with wind-sculpted ventifacts, the frozen Lake Vanda and the Onyx River, under dark dolerite-capped walls.
 
-**In game:** `biomesmod:mcmurdo_dry_valleys`, a site of 652–798 blocks across (raised land, y=100). Find the nearest one with `/biomesmod sites mcmurdo_dry_valleys`.
+**In game:** `biomesmod:mcmurdo_dry_valleys`, a site of 720–880 blocks across (mountains, low land raised, y=98). Find the nearest one with `/biomesmod sites mcmurdo_dry_valleys`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

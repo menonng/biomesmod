@@ -565,7 +565,7 @@ SITE_ZONE = {'deep_ocean': (-2.0, -0.455), 'ocean': (-0.455, -0.19), 'coast': (-
              'mid_inland': (0.03, 0.3), 'far_inland': (0.3, 2.0)}
 SITE_TERRAIN = ('keep', 'plateau', 'lift', 'mountain', 'basin')
 SITE_KEYS = {'temperature', 'humidity', 'zone', 'continentalness', 'erosion', 'size', 'ramp', 'terrain', 'elevation_m',
-             'target_y', 'relief', 'weight', 'biome_threshold', 'ridges', 'zones', 'channels'}
+             'target_y', 'relief', 'weight', 'biome_threshold', 'ridges', 'zones', 'channels', 'island'}
 
 
 def site_target_y(elevation_m):
@@ -654,6 +654,11 @@ def validate_site(site, where, problems):
     if not is_number(thr) or not 0 < thr <= 1:
         problems.error(where, 'biome_threshold must be in (0, 1]')
     out['biome_threshold'] = float(thr)
+    if 'island' in site:
+        if not isinstance(site['island'], bool):
+            problems.error(where, 'island must be true or false')
+        if site['island']:
+            out['island'] = True
     if 'ridges' in site:
         if not is_number(site['ridges']) or not 0 <= site['ridges'] <= 160:
             problems.error(where, 'ridges must be 0..160 blocks')

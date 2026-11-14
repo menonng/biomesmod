@@ -59,6 +59,8 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 		val ridges: Double = 0.0,
 		val zones: List<Zone> = listOf(),
 		val channels: Channels? = null,
+		/** The site must stand alone in the sea: it is only placed where open ocean lies all the way round it. */
+		val island: Boolean = false,
 	) {
 		fun accepts(t: Double, h: Double, c: Double, e: Double): Boolean =
 			inRange(temperature, t) && inRange(humidity, h) && inRange(continentalness, c) && inRange(erosion, e)
@@ -66,7 +68,7 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 		private fun inRange(r: DoubleArray, v: Double): Boolean = v >= r[0] && v <= r[1]
 
 		fun scaled(f: Double): Spec = Spec(biome, weight, temperature, humidity, continentalness, erosion, coreMin * f, coreMax * f, ramp * f,
-			terrain, targetY, relief, biomeThreshold, ridges, zones, channels?.let { Channels(it.count, it.width * f, it.depth) })
+			terrain, targetY, relief, biomeThreshold, ridges, zones, channels?.let { Channels(it.count, it.width * f, it.depth) }, island)
 	}
 
 	/** The largest distance from a centre at which any site still has weight, warp included. */
@@ -105,7 +107,8 @@ data class SiteConfig(val cell: Int, val jitter: Double, val chance: Double, val
 				Spec(biome, s.get("weight").asDouble * BiomesConfig.weight(biome), range(s, "temperature"), range(s, "humidity"),
 					range(s, "continentalness"), range(s, "erosion"), core[0], core[1], s.get("ramp").asDouble,
 					Terrain.valueOf(s.get("terrain").asString.uppercase()), target, s.get("relief").asDouble, s.get("biome_threshold").asDouble,
-					if (s.has("ridges")) s.get("ridges").asDouble * BiomesConfig.ridgeScale else 0.0, zones, channels).scaled(cfg.sizeScale)
+					if (s.has("ridges")) s.get("ridges").asDouble * BiomesConfig.ridgeScale else 0.0, zones, channels,
+					s.has("island") && s.get("island").asBoolean).scaled(cfg.sizeScale)
 			}.filter { it.weight > 0 }
 			return SiteConfig(cfg.cell, grid.get("jitter").asDouble, cfg.chance, grid.get("warp").asDouble * cfg.sizeScale, specs)
 		}

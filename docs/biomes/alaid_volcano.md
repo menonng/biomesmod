@@ -4,7 +4,7 @@
 
 The highest Kuril volcano (2339 m): an almost perfect stratovolcano rising straight out of the sea as Atlasov Island, snow-capped, with a summit crater.
 
-**In game:** `biomesmod:alaid_volcano`, a site of 652–798 blocks across (original terrain, shaped by landforms). Find the nearest one with `/biomesmod sites alaid_volcano`.
+**In game:** `biomesmod:alaid_volcano`, a site of 720–880 blocks across (raised land, y=67). Find the nearest one with `/biomesmod sites alaid_volcano`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

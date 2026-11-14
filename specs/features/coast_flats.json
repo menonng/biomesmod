@@ -3,15 +3,16 @@
   "configured": {
     "type": "biomesmod:terrain_shaper",
     "config": {
-      "mode": "islands",
+      "mode": "shore",
       "biomes": "#minecraft:is_beach",
-      "coverage": 0.6,
-      "scale": 64,
-      "height": 2,
-      "beach": 12,
-      "depth": 2,
-      "rocky": 0.0,
-      "edge_blend": 44,
+      "berm": 4,
+      "run": 34,
+      "shelf": 26,
+      "back": 40,
+      "cape": 30,
+      "cove": 14,
+      "scarp": 0.35,
+      "edge_blend": 8,
       "palette": {
         "top": [
           {

@@ -48,11 +48,12 @@
         326,
         399
       ],
-      "ramp": 200,
+      "ramp": 280,
       "terrain": "lift",
       "relief": 0.35,
-      "weight": 1.6,
-      "elevation_m": 450
+      "weight": 2.5,
+      "elevation_m": 450,
+      "island": true
     }
   },
   "base": "minecraft:cold_ocean",

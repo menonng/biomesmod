@@ -85,3 +85,10 @@ heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs 
 `polar` is the coldest slice of the vanilla temperature range (below -0.65); `frozen` now starts above it. Only the
 Antarctic biomes (Ross Ice Shelf, Antarctic Peninsula, McMurdo Dry Valleys, Lake Vostok) accept it, so they only ever
 border each other and vanilla terrain, never another site biome.
+
+### Island sites
+
+`"island": true` in a site spec makes the site an island of its own. It is only placed out at sea (continentalness
+below the coast at half or more of 32 points on two rings round its core), its land takes the inner part of the site (weight
+above 0.5), and round that the ground is lowered to 12 blocks below sea level wherever it is higher: a ring of water
+always parts the island from other land. Socotra, Alaid, Ushishir, the Exuma bank and Krenitsyn's sea variant use it.

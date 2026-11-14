@@ -34,7 +34,7 @@ Because of them, clients need the mod installed to join a server that runs it.
 
 | Biome | Name | Dimension | Placement | Place n (docs/places.md) |
 |---|---|---|---|---|
-| `alaid_volcano` | Alaid Volcano / 알라이드 화산 | overworld | site, keep | 3 |
+| `alaid_volcano` | Alaid Volcano / 알라이드 화산 | overworld | site, lift y=67 | 3 |
 | `aletsch_glacier` | Aletsch Glacier / 알레치 빙하 | overworld | site, mountain y=208 (2700 m), ridges | 25 |
 | `alkefjellet` | Alkefjellet / 알케피엘레 | overworld | site, keep | 43 |
 | `amazon_varzea` | Amazon Várzea / 아마존 바르제아 | overworld | site, basin y=64 | 37 |
@@ -43,17 +43,18 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `chorus_thicket` | Chorus Thicket / 코러스 덤불 | end | end highlands | — |
 | `cliffs_of_moher` | Cliffs of Moher / 모허 절벽 | overworld | site, keep | 40 |
 | `coast_archipelago` | Archipelago / 열도 | overworld | warm_ocean (+2) | — |
-| `coast_polder_tulips` | Polder Tulip Fields / 간척지 튤립 평원 | overworld | plains (+1) | — |
+| `coast_polder` | Polder / 간척 저지대 | overworld | site, basin y=64, 1 zones | — |
+| `coast_polder_tulips` | Polder Tulip Fields / 간척지 튤립 평원 | overworld | zone of `coast_polder` | — |
 | `coast_sunken_pines` | Sunken Pine Barrens / 저지대 성긴 침엽수림 | overworld | taiga (+2) | — |
 | `cordillera_darwin` | Cordillera Darwin / 다윈 산맥 | overworld | site, mountain y=126 (1600 m), ridges | 49 |
 | `daintree` | Daintree Rainforest / 데인트리 열대우림 | overworld | site, keep | 16 |
-| `dallol` | Dallol / 달롤 | overworld | site, basin y=64 | 32 |
+| `dallol` | Dallol / 달롤 | overworld | site, basin y=60 | 32 |
 | `danakil_flats` | Danakil Flats / 다나킬 평원 | nether | nether | — |
 | `dasht_e_lut` | Dasht-e Lut / 다쉬테 루트 | overworld | site, plateau y=79 | 15 |
 | `denali_massif` | Denali Massif / 디날리 산괴 | overworld | site, mountain y=200 (2400 m), ridges | 21 |
 | `devils_tower` | Devils Tower / 데빌스 타워 | overworld | site, lift y=110 (1200 m) | 11 |
 | `everglades` | Everglades / 에버글레이즈 | overworld | site, basin y=63 | 36 |
-| `exuma_cays` | Exuma Cays / 엑수마 케이스 | overworld | site, basin y=59, island | 52 |
+| `exuma_cays` | Exuma Cays / 엑수마 케이스 | overworld | site, basin y=59 | 52 |
 | `franz_josef_land` | Franz Josef Land / 프란츠요제프 제도 | overworld | site, keep | 44 |
 | `geirangerfjord` | Geirangerfjord / 예이랑에르피오르 | overworld | site, mountain y=122 (1500 m), ridges | 27 |
 | `giant_redwood_forest` | Giant Redwood Forest / 거대나무숲 | overworld | site, lift y=84 | — |
@@ -68,11 +69,11 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `krenitsyn_caldera` | Krenitsyn Caldera / 크레니친 칼데라 | overworld | site, lift y=81 (450 m) | 2 |
 | `lake_gairdner` | Lake Gairdner / 게어드너 호 | overworld | site, plateau y=68 | 42 |
 | `lake_vostok_plateau` | Vostok Plateau / 보스토크 고원 | overworld | site, plateau y=227 (3488 m) | 50 |
-| `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, lift y=135 (1850 m), ridges | 23 |
+| `lauterbrunnen` | Lauterbrunnen Valley / 라우터브루넨 계곡 | overworld | site, mountain y=135 (1850 m), ridges | 23 |
 | `lencois_maranhenses` | Lençóis Maranhenses / 렌소이스 마라냥세스 | overworld | site, keep | 7, 20 |
 | `lofoten_reine` | Lofoten Peaks / 로포텐 봉우리 | overworld | site, keep | 26, 28 |
-| `magellanic_fjords` | Magellanic Forest / 마젤란 숲 | overworld | site, mountain y=72 (240 m), ridges | 48 |
-| `mcmurdo_dry_valleys` | McMurdo Dry Valleys / 맥머도 드라이 밸리 | overworld | site, lift y=100 | 46 |
+| `magellanic_fjords` | Magellanic Forest / 마젤란 숲 | overworld | site, mountain y=87 (620 m), ridges | 48 |
+| `mcmurdo_dry_valleys` | McMurdo Dry Valleys / 맥머도 드라이 밸리 | overworld | site, mountain y=98, ridges | 46 |
 | `monument_valley` | Monument Valley / 모뉴먼트 밸리 | overworld | site, plateau y=129 (1700 m) | 14 |
 | `moraine_lake` | Moraine Lake / 모레인 호수 | overworld | site, mountain y=137 (1885 m), ridges | 35 |
 | `orkhon_steppe` | Orkhon Steppe / 오르혼 초원 | overworld | site, lift y=124 (1550 m) | 51 |
@@ -85,7 +86,7 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `salar_de_tara` | Salar de Tara / 타라 염호 | overworld | site, plateau y=248 (4300 m) | 33 |
 | `salar_de_uyuni` | Salar de Uyuni / 우유니 소금사막 | overworld | site, plateau y=231 (3656 m) | 4 |
 | `sarek` | Sarek / 사렉 | overworld | site, mountain y=110 (1200 m), ridges | 29 |
-| `socotra` | Socotra Dragon's Blood Plateau / 소코트라 용혈수 고원 | overworld | site, lift y=92 (750 m), ridges, 2 zones, island | 13 |
+| `socotra` | Socotra Dragon's Blood Plateau / 소코트라 용혈수 고원 | overworld | site, lift y=92 (750 m), ridges, 2 zones | 13 |
 | `socotra_coast` | Socotra Coast / 소코트라 해안 | overworld | zone of `socotra` | 13 |
 | `socotra_highlands` | Socotra Haggeher Highlands / 소코트라 하지르 고지대 | overworld | zone of `socotra` | 13 |
 | `sossusvlei` | Sossusvlei / 소수스블레이 | overworld | site, lift y=85 | 38 |

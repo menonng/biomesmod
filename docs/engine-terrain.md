@@ -71,3 +71,8 @@ Run `./gradlew :26.2:runSelfCheck -Pshowcase=field -Prender=true [-Ponly=dunes_s
 `u_valley` never raises the ground: it cuts troughs into the mountains of a `mountain` site (so the biome has no raised
 rim against its neighbours). The trunk floor lies `floor_depth` below the site's `target_y` and stays level, `shoulder`
 is the height of the trough wall, tributaries are smaller and hang above the trunk, and the width swells and pinches.
+
+`shore` (the `coast_flats` feature on every vanilla beach) builds a beach as a cross-shore profile: a shallow sand shelf
+with bars and a drop-off, a foreshore in long one-block terraces (gentle, or cut into a low scarp), low dunes behind
+the berm; capes, coves and tidal creeks bend the waterline. Parameters: `berm` 4, `run` 34, `shelf` 26, `back` 40,
+`cape` 30, `cove` 14, `scarp` 0.35.

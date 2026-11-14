@@ -19,15 +19,16 @@
         326,
         399
       ],
-      "ramp": 163,
+      "ramp": 240,
       "terrain": "basin",
       "relief": 0.05,
-      "weight": 1.0,
+      "weight": 2.0,
       "target_y": 59,
       "continentalness": [
         -0.8,
         -0.34
-      ]
+      ],
+      "island": true
     }
   },
   "base": "minecraft:warm_ocean",

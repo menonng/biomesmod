@@ -23,11 +23,12 @@
       "ramp": 140,
       "terrain": "keep",
       "relief": 0.5,
-      "weight": 1.0,
+      "weight": 2.0,
       "zone": [
         "deep_ocean",
         "ocean"
-      ]
+      ],
+      "island": true
     }
   },
   "base": "minecraft:ocean",

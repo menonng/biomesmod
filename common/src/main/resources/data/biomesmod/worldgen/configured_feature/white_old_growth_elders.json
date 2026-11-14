@@ -1,0 +1,46 @@
+{
+  "config": {
+    "crown": [
+      7,
+      9
+    ],
+    "dead_limbs": 0.25,
+    "dress": {
+      "bracket": {
+        "Name": "biomesmod:moon_bracket"
+      },
+      "bracket_chance": 0.08,
+      "carpet": {
+        "Name": "biomesmod:pale_moss_carpet"
+      },
+      "carpet_chance": 0.5,
+      "hanging": {
+        "Name": "biomesmod:silver_beard"
+      },
+      "hanging_chance": 0.12,
+      "hollow": {
+        "Name": "biomesmod:ghostwood_hollow"
+      },
+      "hollow_chance": 0.5
+    },
+    "height": [
+      20,
+      28
+    ],
+    "leaves": {
+      "Name": "biomesmod:ghostwood_leaves"
+    },
+    "log": {
+      "Name": "biomesmod:ghostwood_log"
+    },
+    "radius": [
+      1.2,
+      1.7
+    ],
+    "style": "broad",
+    "wood": {
+      "Name": "biomesmod:ghostwood_wood"
+    }
+  },
+  "type": "biomesmod:giant_tree"
+}

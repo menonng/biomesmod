@@ -146,9 +146,28 @@ def despeckle(img, passes=2):
 
 
 def paint(v, ramp, dither=0.0, lo=0.0, hi=1.0, clean=True):
+    """Ramp colours for a lit height field, with the fine grain every vanilla block has: on top of the form, each pixel
+    is nudged by up to about one tone (a per-pixel noise mixed with a slightly coarser one, so the grain comes in
+    pixels and pairs of pixels rather than as static). `dither` scales the grain; lone pixels are kept."""
     ramp = soften(ramp)
-    img = [[rgba(pick(ramp, lo + (hi - lo) * v[y][x], x, y)) for x in range(N)] for y in range(N)]
-    return despeckle(img) if clean else img
+    n = len(ramp) - 1
+    seed = int(sum(ramp[0]) * 31 + sum(ramp[-1]) * 17 + n)
+    g1, g2 = Noise(seed, 16), Noise(seed + 5, 8)
+    amt = GRAIN * (0.45 + dither) / n
+    img = [[rgba(pick(ramp, lo + (hi - lo) * v[y][x] + amt * (0.7 * g1(x, y) + 0.6 * g2(x, y) - 0.65), x, y)) for x in range(N)]
+           for y in range(N)]
+    return img
+
+
+GRAIN = 1.5
+
+
+_G1, _G2 = Noise(9001, 16), Noise(9002, 8)
+
+
+def grain(x, y, amt=0.1):
+    """Fine per-pixel variation for textures that pick their ramp colour themselves."""
+    return amt * (0.7 * _G1(x, y) + 0.6 * _G2(x, y) - 0.65)
 
 
 def put(img, x, y, c):
@@ -241,17 +260,17 @@ def travertine():
 
 def sulfur():
     """Sulfur crust: a tight crowd of rounded yellow crystals, orange where iron stains it."""
-    cells = Cells(21, 3, 0.9)
+    cells = Cells(21, 4, 1.0)
     stain = fbm(22, ((2, 2), (4, 4)), (0.6, 0.4))
 
     def h(x, y):
         f1, f2, _ = cells.at(x, y)
-        return max(0.0, 1 - f1 / 3.8) ** 0.8 - (0.35 if f2 - f1 < 0.6 else 0.0)
-    v = lit(field(h), 0.7)
+        return max(0.0, 1 - f1 / 3.0) ** 0.8 - (0.15 if f2 - f1 < 0.5 else 0.0)
+    v = lit(field(h), 0.5)
     yellow = R('#7d5c0c', '#a9830c', '#d0a912', '#ebcd2a', '#f8e65c', '#fff5a6')
     orange = R('#6b3d0c', '#96570e', '#bd7613', '#dc9a24', '#f0bd48', '#fadc7c')
     yellow, orange = soften(yellow), soften(orange)
-    return despeckle([[rgba(pick(orange if stain(x, y) > 0.6 else yellow, v[y][x], x, y)) for x in range(N)] for y in range(N)])
+    return [[rgba(pick(orange if stain(x, y) > 0.62 else yellow, 0.2 + 0.65 * v[y][x] + grain(x, y, 0.22), x, y)) for x in range(N)] for y in range(N)]
 
 
 _DOL = R('#15161a', '#212328', '#2f3238', '#3e4249', '#50555d', '#646b74')
@@ -260,7 +279,7 @@ _DOL = R('#15161a', '#212328', '#2f3238', '#3e4249', '#50555d', '#646b74')
 def dolerite_side():
     """Columnar jointing seen from the side: three pillars with rounded faces, tight vertical joints, a few cross joints."""
     rnd = random.Random(31)
-    edges = [0, 5, 11, 16]
+    edges = [0, 6, 10, 16]
     streak = Noise(32, 16, 2)
     joints = {c: sorted(rnd.sample(range(N), 2)) for c in range(3)}
     img = canvas()
@@ -269,15 +288,13 @@ def dolerite_side():
             c = max(i for i in range(3) if edges[i] <= x)
             w = edges[c + 1] - edges[c]
             dx = x - edges[c]
-            v = 0.42 + 0.34 * math.sin(math.pi * (dx + 0.5) / w) + 0.14 * (0.5 - dx / w) + 0.12 * (streak(x, y) - 0.5)
+            v = 0.42 + 0.2 * math.sin(math.pi * (dx + 0.5) / w) + 0.1 * (0.5 - dx / w) + 0.3 * (streak(x, y) - 0.5) + grain(x, y, 0.22)
             if dx == 0:
-                v = 0.04
+                v = 0.12 + 0.12 * streak(x * 3, y)
             elif dx == 1:
-                v += 0.12
-            if y in joints[c] and dx > 0:
-                v -= 0.3
-            elif (y - 1) % N in joints[c] and dx > 0:
-                v += 0.12
+                v += 0.08
+            if y == joints[c][0] and dx > 0:
+                v -= 0.16
             img[y][x] = rgba(pick(_DOL, v, x, y, 0.4))
     return img
 
@@ -298,11 +315,11 @@ def dolerite_top():
             if d > 7.3:
                 t = 0.30 + 0.2 * f(x, y)
             elif d > 6.4:
-                t = 0.03
+                t = 0.1
             elif d > 5.5:
-                t = 0.62 if (x - 7.5) + (y - 7.5) < 0 else 0.3
+                t = (0.52 if (x - 7.5) + (y - 7.5) < 0 else 0.3) + grain(x, y, 0.15)
             else:
-                t = 0.3 + 0.45 * v[y][x]
+                t = 0.3 + 0.4 * v[y][x] + grain(x, y, 0.2)
             img[y][x] = rgba(pick(_DOL, t, x, y, 0.4))
     return img
 
@@ -361,15 +378,15 @@ def rings_top(seed, bark_c, bark_d, wood_cols, ring_step=2.2):
             elif d in (4, 1):
                 c = dark
             elif d == 0:
-                c = mix(dark, bark_d, 0.35)
+                c = mix(light, dark, 0.5)
             else:
                 c = light
             img[y][x] = rgba(c)
     # The rings are never perfect: two small jogs and a drying crack.
     put(img, 4, 3, dark)
     put(img, 11, 12, dark)
-    for i in range(3):
-        put(img, 9 + i, 9 + i, mix(dark, bark_d, 0.4))
+    for i in range(2):
+        put(img, 10 + i, 9 + i, dark)
     return img
 
 
@@ -557,8 +574,8 @@ def scoria():
     hm = field(lambda x, y: 0.45 + 0.4 * f(x, y))
     rnd = random.Random(262)
     holes = []
-    for x, y in scatter(263, 8, 3.6):
-        big = rnd.random() < 0.45
+    for x, y in scatter(263, 5, 4.6):
+        big = rnd.random() < 0.3
         cells = [(x, y)] + ([(x + 1, y), (x, y + 1), (x + 1, y + 1)] if big else [])
         holes.append((cells, big))
         for cx, cy in cells:
@@ -624,7 +641,7 @@ def glacier_ice():
     img = paint(norm(hm), R('#4a82c4', '#6699d6', '#84b1e4', '#a3c8ef', '#c3dcf6', '#e2f0fb'), 0.6, 0.0, 0.78)
     for x, y in crack:
         put(img, x, y, hexc('#e2f0fb'))
-    for x, y in scatter(603, 4, 5, lambda x, y: (x, y) not in crack):
+    for x, y in scatter(603, 2, 7, lambda x, y: (x, y) not in crack):
         put(img, x, y, hexc('#f4fafe'))
         put(img, x + 1, y + 1, hexc('#6699d6'))
     return img, hm
@@ -671,9 +688,9 @@ def star_crystal():
             g = (wx * math.cos(tilt[k]) + wy * math.sin(tilt[k])) / 7.0
             v = 0.15 + 0.45 * (k % 4) / 3.0 + 0.1 * tone[k] + 0.3 * g
             if f2 - f1 < 0.45:
-                v = 0.92
+                v += 0.22
+            v += grain(x, y, 0.16)
             img[y][x] = rgba(pick(ramp, v, x, y, 0.3))
-    img = despeckle(img)
     for x, y in scatter(713, 2, 6):
         put(img, x, y, hexc('#ffffff'))
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):

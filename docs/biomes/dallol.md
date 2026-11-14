@@ -4,7 +4,7 @@
 
 At -125 m, one of the hottest inhabited places on Earth: hot springs dissolve salt and sulfur into acid pools ringed by neon yellow, green and white crusts and salt chimneys.
 
-**In game:** `biomesmod:dallol`, a site of 540–660 blocks across (flat low basin, y=64). Find the nearest one with `/biomesmod sites dallol`.
+**In game:** `biomesmod:dallol`, a site of 540–660 blocks across (flat low basin, y=60). Find the nearest one with `/biomesmod sites dallol`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

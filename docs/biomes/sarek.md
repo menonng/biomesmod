@@ -4,7 +4,7 @@
 
 Sweden's wildest park: alpine tundra, small hanging glaciers and deep U-shaped valleys like Rapadalen, with mountain birch below the treeline.
 
-**In game:** `biomesmod:sarek`, a site of 652–798 blocks across (mountains, low land raised, y=110). Find the nearest one with `/biomesmod sites sarek`.
+**In game:** `biomesmod:sarek`, a site of 720–880 blocks across (mountains, low land raised, y=110). Find the nearest one with `/biomesmod sites sarek`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|

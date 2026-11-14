@@ -4,7 +4,7 @@
 
 Cold, wet hills of lenga and coigüe beech forest, peat bogs and wind-bent trees around the fjords and channels north of the Strait of Magellan.
 
-**In game:** `biomesmod:magellanic_fjords`, a site of 652–798 blocks across (mountains, low land raised, y=72). Find the nearest one with `/biomesmod sites magellanic_fjords`.
+**In game:** `biomesmod:magellanic_fjords`, a site of 652–798 blocks across (mountains, low land raised, y=87). Find the nearest one with `/biomesmod sites magellanic_fjords`.
 
 | Satellite (real place) | In-game map (top-down) | In-game view |
 |---|---|---|
