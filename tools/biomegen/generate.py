@@ -1362,8 +1362,14 @@ def build_biome_tags(specs, versions, vanilla, features, problems):
                 problems.error(s.where, '"structures" must be "auto", "base" or "none"')
                 continue
             base = s.data.get('base')
-            shaped = any(isinstance(features[x.split(':', 1)[1]].configured.get(mc), dict)
-                         and features[x.split(':', 1)[1]].configured[mc].get('type') == MOD + ':terrain_shaper'
+            # Ground that is built after structures were planned: terrain shapers, and the landforms that raise whole
+            # mountains (a village on the flank of a cone would be buried in it).
+            def rebuilds(conf):
+                if not isinstance(conf, dict):
+                    return False
+                text = json.dumps(conf)
+                return conf.get('type') == MOD + ':terrain_shaper' or '"shape": "cone"' in text or '"shape": "caldera"' in text
+            shaped = any(rebuilds(features[x.split(':', 1)[1]].configured.get(mc))
                          for ids in feature_sections(s, mc)[3].values() for x in ids if x.split(':', 1)[1] in features)
             for tag, values in tags.items():
                 if base not in values:

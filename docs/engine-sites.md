@@ -92,3 +92,12 @@ border each other and vanilla terrain, never another site biome.
 below the coast at half or more of 32 points on two rings round its core), its land takes the inner part of the site (weight
 above 0.5), and round that the ground is lowered to 12 blocks below sea level wherever it is higher: a ring of water
 always parts the island from other land. Socotra, Alaid, Ushishir, the Exuma bank and Krenitsyn's sea variant use it.
+
+## Villages in sites
+
+Vanilla lays a village out from one height and relies on its village biomes being flat. Two rules keep villages of this mod's biomes on the ground:
+
+* A village or outpost (any jigsaw structure with thin terrain adaptation) only starts in a mod biome where the ground within 40 blocks of its centre differs by at most 6 blocks (`LevelGround`, applied by `JigsawStructureMixin`). Vanilla biomes are not affected.
+* Biomes whose ground is rebuilt after structures were planned get no surface structures: terrain shapers, and the `cone` and `caldera` landforms (see "Biome tags and vanilla structures" in `biome-specs.md`).
+
+The self-check logs how the ground meets a village (`village at ...: ground minus floor ...`); with `-Pbiomes=` it also measures the nearest village when none stands in the biome.

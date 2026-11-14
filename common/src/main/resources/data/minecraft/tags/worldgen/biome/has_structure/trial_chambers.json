@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "biomesmod:alaid_volcano",
-    "biomesmod:bromo_tengger",
     "biomesmod:coast_polder",
     "biomesmod:coast_polder_tulips",
     "biomesmod:daintree",
@@ -13,7 +11,6 @@
     "biomesmod:grand_prismatic",
     "biomesmod:ha_long_bay",
     "biomesmod:iguazu_falls",
-    "biomesmod:krenitsyn_caldera",
     "biomesmod:lofoten_reine",
     "biomesmod:magellanic_fjords",
     "biomesmod:monument_valley",
@@ -22,7 +19,6 @@
     "biomesmod:socotra_coast",
     "biomesmod:socotra_highlands",
     "biomesmod:tre_cime",
-    "biomesmod:ushishir_caldera",
     "biomesmod:white_old_growth",
     "biomesmod:white_plains",
     "biomesmod:zhangjiajie"

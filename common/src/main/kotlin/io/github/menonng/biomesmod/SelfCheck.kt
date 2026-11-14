@@ -352,6 +352,7 @@ internal object SelfCheck {
 		level.registryAccess().lookupOrThrow(Registries.STRUCTURE).listElements().forEach { names[it.value()] = Ids.name(it.key()).substringAfter(':') }
 		val all = java.util.TreeMap<String, Int>()
 		val inside = java.util.TreeMap<String, Int>()
+		val villages = ArrayList<net.minecraft.world.level.levelgen.structure.StructureStart>()
 		val cx = center.x shr 4
 		val cz = center.z shr 4
 		for (dz in -10..10) for (dx in -10..10) {
@@ -360,10 +361,72 @@ internal object SelfCheck {
 				if (!start.isValid) continue
 				val id = names[structure] ?: "?"
 				all.merge(id, 1, Int::plus)
-				if (level.getBiome(start.boundingBox.center).`is`(entry.key)) inside.merge(id, 1, Int::plus)
+				if (level.getBiome(start.boundingBox.center).`is`(entry.key)) {
+					inside.merge(id, 1, Int::plus)
+					if (id.startsWith("village") && villages.size < 2) villages.add(start)
+				}
+			}
+		}
+		for (start in villages) villageFit(level, start, name)
+		if (villages.isEmpty() && System.getProperty("biomesmod.selfcheck.only", "").isNotEmpty()) {
+			// Only on a selective run: the nearest village around, wherever it stands.
+			val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, center, 60, false)
+			if (at != null) {
+				val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+				for ((_, start) in chunk.allStarts) {
+					if (start.isValid && start.pieces.size > 8) villageFit(level, start, name + " NEAREST in " + Ids.name(level.getBiome(start.boundingBox.center).unwrapKey().get()))
+				}
+			}
+		}
+		if (villages.isNotEmpty() && !controlDone) {
+			// A vanilla village far from this site, measured the same way, for comparison.
+			controlDone = true
+			for (k in 0 until 3) {
+				val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, BlockPos(20000 + k * 3000, 64, 20000), 100, false) ?: continue
+				val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+				for ((_, start) in chunk.allStarts) {
+					if (start.isValid && start.pieces.size > 8) villageFit(level, start, "CONTROL " + Ids.name(level.getBiome(at).unwrapKey().get()))
+				}
 			}
 		}
 		BiomesMod.LOGGER.info("[selfcheck] {} structures within 10 chunks: {}; standing in the biome: {}", name, all, inside)
+	}
+
+	/**
+	 * How well the ground meets a village: for every building (pieces at least 5 high), the generated ground just outside
+	 * its four corners against the height of its floor. 0 is a house standing on the ground, positive buried, negative
+	 * in the air.
+	 */
+	private var controlDone = false
+
+	private fun villageFit(level: ServerLevel, start: net.minecraft.world.level.levelgen.structure.StructureStart, name: String) {
+		val diffs = ArrayList<Int>()
+		val pred = ArrayList<Int>()
+		val gen = level.chunkSource.generator
+		val rs = level.chunkSource.randomState()
+		val sb = StringBuilder()
+		for (piece in start.pieces) {
+			val bb = piece.boundingBox
+			if (bb.ySpan < 5) continue
+			for (cx in intArrayOf(bb.minX() - 2, bb.maxX() + 2)) for (cz in intArrayOf(bb.minZ() - 2, bb.maxZ() + 2)) {
+				level.getChunk(cx shr 4, cz shr 4)
+				val h = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR, cx, cz)
+				val ph = gen.getBaseHeight(cx, cz, net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG, level, rs)
+				diffs.add(h - (bb.minY() + 1))
+				pred.add(h - ph)
+				if (kotlin.math.abs(h - bb.minY() - 1) > 6 && sb.length < 500) sb.append(" [").append(cx).append(',').append(cz).append(" floor ").append(bb.minY() + 1)
+					.append(" pred ").append(ph).append(" real ").append(h).append(' ').append(level.getBlockState(BlockPos(cx, h - 1, cz)).block.name.string).append(']')
+			}
+		}
+		if (diffs.isEmpty()) return
+		diffs.sort()
+		pred.sort()
+		BiomesMod.LOGGER.info("[selfcheck] {} village ground minus predicted height: median {}, 10% {}, 90% {}, min {}, max {}; worst:{}", name, pred[pred.size / 2],
+			pred[pred.size / 10], pred[pred.size * 9 / 10], pred.first(), pred.last(), sb)
+		val c = start.boundingBox.center
+		BiomesMod.LOGGER.info("[selfcheck] {} village at {}, {}: {} corner samples, ground minus floor median {}, 10% {}, 90% {}, min {}, max {}, within 2 blocks {}%",
+			name, c.x, c.z, diffs.size, diffs[diffs.size / 2], diffs[diffs.size / 10], diffs[diffs.size * 9 / 10], diffs.first(), diffs.last(),
+			diffs.count { kotlin.math.abs(it) <= 2 } * 100 / diffs.size)
 	}
 
 	private fun surfaceSummary(level: ServerLevel, center: BlockPos, entry: ModBiomes.Entry): String {
