@@ -179,7 +179,7 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 				val len = 1.6 + h * 0.3 + r.nextFloat()
 				for (k in 0..2) {
 					val t = k / 2.0
-					pen.blob(x + fx + wx * len * t, y + h - 0.2 - t * (0.5 + r.nextFloat()), z + fz + wz * len * t, 1.9 - 0.5 * t, 1.1, leaves)
+					pen.blob(x + fx + wx * len * t, y + h - 0.2 - t * (0.5 + r.nextFloat()), z + fz + wz * len * t, 2.0 - 0.5 * t, 1.5 - 0.3 * t, leaves)
 				}
 			}
 			"broadleaf" -> {
@@ -217,9 +217,10 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 				pen.leaf(tx, top, tz, leaves)
 				for (k in 0 until 8) {
 					val fa = k * Math.PI / 4 + (r.nextDouble() - 0.5) * 0.3
-					val len = if (k % 2 == 0) 3 + r.nextInt(2) else 2 + r.nextInt(2)
+					val len = if (k % 2 == 0) 4 + r.nextInt(2) else 3 + r.nextInt(2)
 					for (s in 1..len) {
-						val drop = if (s <= 1) 0 else ((s - 1) * (s - 1) * 0.3).roundToInt()
+						val drop = if (s <= 2) 0 else ((s - 2) * (s - 2) * 0.45).roundToInt()
+						if (s == 1) pen.leaf(tx + (cos(fa) * s).roundToInt(), top + 1, tz + (sin(fa) * s).roundToInt(), leaves)
 						pen.leaf(tx + (cos(fa) * s).roundToInt(), top - drop, tz + (sin(fa) * s).roundToInt(), leaves)
 					}
 				}
@@ -332,6 +333,13 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 				yy--
 			}
 		}
+		if (cfg.kind == "spire" || cfg.kind == "arch" || cfg.kind == "mound") {
+			for (d in arrayOf(intArrayOf(4, 0), intArrayOf(-4, 0), intArrayOf(0, 4), intArrayOf(0, -4))) {
+				if (abs(level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG, x + d[0], z + d[1]) - y) > 2) {
+					return false
+				}
+			}
+		}
 		when (cfg.kind) {
 			"boulder" -> {
 				val ra = size * (0.75 + r.nextFloat() * 0.6)
@@ -375,12 +383,12 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 			"spire" -> {
 				val h = (size * (2.2 + r.nextFloat() * 1.6)).toInt() + 2
 				val base = min(2.6, 0.8 + size * 0.45)
-				val hoodoo = r.nextBoolean()
+				val hoodoo = r.nextInt(3) == 0
 				val lean = r.nextDouble() * Math.PI * 2
 				for (i in -1..h) {
 					val t = max(0, i) / h.toDouble()
 					var rad = base * (1 - 0.75 * t)
-					if (hoodoo && t > 0.8) rad = base * 0.75 else if (hoodoo && t > 0.6) rad = base * 0.3
+					if (hoodoo && t > 0.8) rad = base * 0.8 else if (hoodoo && t > 0.6) rad = base * 0.5
 					val cx = x + cos(lean) * t * size * 0.5
 					val cz = z + sin(lean) * t * size * 0.5
 					val ir = rad.toInt() + 1
@@ -410,15 +418,15 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 			}
 			"arch" -> {
 				val a = r.nextDouble() * Math.PI
-				val half = size * 1.6 + 2
-				val h = size * (1.4 + r.nextFloat() * 0.8) + 2
-				val thick = 1.6 + r.nextFloat() * 1.2
+				val half = size * 0.9 + 2
+				val h = size * (0.8 + r.nextFloat() * 0.5) + 2
+				val thick = 2.0 + r.nextFloat() * 1.3
 				val ir = (half + thick).toInt() + 1
 				for (i in -ir..ir) {
 					for (j in -1..1) {
 						val px = x + (cos(a) * i - sin(a) * j).roundToInt()
 						val pz = z + (sin(a) * i + cos(a) * j).roundToInt()
-						if (abs(j) == 1 && r.nextFloat() < 0.35) continue
+						if (abs(j) == 1 && abs(i) < half * 0.5 && r.nextFloat() < 0.3) continue
 						for (dy in -3..(h + thick).toInt() + 1) {
 							val yy = max(0, dy).toDouble()
 							val inner = (i / half).pow(2) + (yy / h).pow(2)

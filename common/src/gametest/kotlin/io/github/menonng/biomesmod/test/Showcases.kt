@@ -4,6 +4,7 @@ import io.github.menonng.biomesmod.BiomesMod
 import io.github.menonng.biomesmod.test.showcase.CoastShowcase
 import io.github.menonng.biomesmod.test.showcase.FieldShowcase
 import io.github.menonng.biomesmod.test.showcase.LandformShowcase
+import io.github.menonng.biomesmod.test.showcase.WildShowcase
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.server.MinecraftServer
@@ -20,6 +21,7 @@ class Showcases : ModInitializer {
 		val showcase: ((MinecraftServer) -> Unit) = when (which) {
 			"field" -> FieldShowcase::run
 			"landform" -> LandformShowcase::run
+			"wild" -> WildShowcase::run
 			"coast" -> CoastShowcase::run
 			else -> return
 		}
