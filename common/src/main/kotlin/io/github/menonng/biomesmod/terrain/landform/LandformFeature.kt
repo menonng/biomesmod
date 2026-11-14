@@ -218,9 +218,13 @@ class LandformFeature : Feature<LandformConfig>(LandformConfig.CODEC) {
 			}
 			val seed = LNoise.mix(s.seed xor (cfg.salt * GOLDEN + cfg.shape.name().hashCode()))
 			val r = LNoise.Rng(seed)
-			for (attempt in 0 until 10) {
+			// The landmark stands in the middle of some sites and somewhere off to a side in the others.
+			val central = r.next() < 0.4
+			for (attempt in 0 until 12) {
 				val a = r.angle()
-				val d = if (attempt == 0) 0.0 else s.core * 0.35 * sqrt(r.next())
+				val d = if (central) (if (attempt == 0) 0.0 else s.core * 0.3 * sqrt(r.next()))
+					else if (attempt >= 9) 0.0 else kotlin.math.min(s.core * (0.25 + 0.4 * sqrt(r.next())) * (1 - attempt / 14.0),
+						max(0.0, s.core * 1.05 - cfg.shape.maxReach() * 0.85))
 				val x = LNoise.floor(s.x + cos(a) * d)
 				val z = LNoise.floor(s.z + sin(a) * d)
 				val floor0 = sampler.baseFloorHeight(x, z) - 1

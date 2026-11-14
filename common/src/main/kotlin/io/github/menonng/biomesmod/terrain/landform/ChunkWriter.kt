@@ -111,7 +111,10 @@ internal class ChunkWriter(
 		val fluid = c.fluid ?: WATER
 		if (c.top != Col.NONE) {
 			c.span = c.top
-			val t = min(max(c.top, minY + 1), maxY - 2)
+			var t = min(max(c.top, minY + 1), maxY - 2)
+			if (c.blend < 1.0 && t > g) {
+				t = g + Math.round((t - g) * max(0.0, c.blend)).toInt()
+			}
 			val fluidTop = max(c.water, water[i])
 			val wet = t < fluidTop
 			if (t > g) {

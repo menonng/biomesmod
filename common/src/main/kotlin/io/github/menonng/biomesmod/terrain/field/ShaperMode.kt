@@ -11,6 +11,7 @@ import io.github.menonng.biomesmod.terrain.field.mode.GlacierMode
 import io.github.menonng.biomesmod.terrain.field.mode.IceSheetMode
 import io.github.menonng.biomesmod.terrain.field.mode.IslandsMode
 import io.github.menonng.biomesmod.terrain.field.mode.RollingMode
+import io.github.menonng.biomesmod.terrain.field.mode.SeaCliffMode
 import io.github.menonng.biomesmod.terrain.field.mode.TerracesMode
 import io.github.menonng.biomesmod.terrain.field.mode.UValleyMode
 import io.github.menonng.biomesmod.terrain.field.mode.WetlandMode
@@ -41,6 +42,7 @@ interface ShaperMode : FeatureConfiguration {
 		WETLAND("wetland", { WetlandMode.CODEC }),
 		YARDANGS("yardangs", { YardangsMode.CODEC }),
 		ROLLING("rolling", { RollingMode.CODEC }),
+		SEA_CLIFF("sea_cliff", { SeaCliffMode.CODEC }),
 		ISLANDS("islands", { IslandsMode.CODEC });
 
 		fun codec(): MapCodec<out ShaperMode> = codecSupplier()

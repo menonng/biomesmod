@@ -396,7 +396,7 @@ class SiteField private constructor(
 			var r = outer * 0.45
 			while (r < outer * MOUTH_REACH && r < reach) {
 				if (originalSurface((site.x + ca * r).toInt(), (site.z + sa * r).toInt(), depth) < SEA_LEVEL - 3) {
-					if (++run >= 2) {
+					if (++run >= 5) { // 40 blocks of water: the sea or a bay, not a river
 						reach = r
 						angle = a
 						break
@@ -467,40 +467,65 @@ class SiteField private constructor(
 		val info = channelInfo(site, depth)
 		val outer = site.outer()
 		var best = surface
+		val headMain = -0.25 * site.core
+		val ca = kotlin.math.cos(info.angle)
+		val sa = sin(info.angle)
 		for (k in 0 until ch.count) {
-			// The main fjord heads inland from the sea; side fjords branch off it at a third of the way.
-			val turn = if (k == 0) 0.0 else (if (k % 2 == 1) 0.75 else -0.85) * (1 + 0.2 * unit(mix(site.seed + 80 + k)))
-			val ox = if (k == 0) site.x.toDouble() else site.x + kotlin.math.cos(info.angle) * outer * 0.3
-			val oz = if (k == 0) site.z.toDouble() else site.z + sin(info.angle) * outer * 0.3
-			val dir = info.angle + turn
+			val main = k == 0
+			val ox: Double
+			val oz: Double
+			val dir: Double
+			val length: Double
+			if (main) {
+				// The main fjord: from behind the site centre out to the open water that was found.
+				ox = site.x + ca * headMain
+				oz = site.z + sa * headMain
+				dir = info.angle
+				length = info.reach - headMain
+			} else {
+				// An arm: it comes down from inland and joins the main fjord, each at its own stretch of it (so no two
+				// meet in one pool) and on alternating sides. It is measured from the junction up to its head.
+				val at = info.reach * (0.1 + 0.5 * ((k - 1) + 0.2 + 0.6 * unit(mix(site.seed + 90 + k))) / (ch.count - 1))
+				val m = mainMeander(ch, info, at - headMain, info.reach - headMain)
+				ox = site.x + ca * at - sa * m
+				oz = site.z + sa * at + ca * m
+				dir = info.angle + PI + (if (k % 2 == 1) 1.0 else -1.0) * (0.55 + 0.5 * unit(mix(site.seed + 80 + k)))
+				length = outer * (0.26 + 0.2 * unit(mix(site.seed + 100 + k)))
+			}
 			val cx = kotlin.math.cos(dir)
 			val cz = sin(dir)
 			val px = x - ox
 			val pz = z - oz
 			val along = px * cx + pz * cz
-			val head = if (k == 0) -0.25 * site.core else 0.0
-			val end = if (k == 0) info.reach else outer * 0.55
-			if (along < head - ch.width * 2 || along > end) {
+			if (along < (if (main) -ch.width * 2 else 0.0) || along > length) {
 				continue
 			}
-			// The meanders die out towards the mouth, so the main fjord ends exactly where the water was found.
-			val swing = if (k == 0) smooth01((end - along) / 280.0) else 1.0
-			val meander = swing * (ch.width * 1.3 * sin(along / 170.0 + info.phase + k) + ch.width * 0.5 * sin(along / 61.0 + info.phase2 + 2 * k))
+			val meander = if (main) mainMeander(ch, info, along, length)
+				else smooth01(along / 90.0) * ch.width * 0.55 * sin(along / 130.0 + info.phase2 + 2.3 * k)
 			val across = -px * cz + pz * cx - meander
-			val t = ((along - head) / (end - head)).coerceIn(0.0, 1.0)
-			val half = ch.width * (if (k == 0) 0.6 + 0.6 * t else 0.5 + 0.3 * t)
+			// 1 at the seaward end of a channel, 0 at its head.
+			val t = if (main) (along / length).coerceIn(0.0, 1.0) else 1 - along / length
+			// The width swells into basins and narrows at sills along the way, and opens out towards the sea.
+			val vary = 1 + 0.3 * sin(along / 113.0 + info.phase * 1.7 + 2.1 * k) + 0.18 * sin(along / 47.0 + info.phase2 * 1.3 + k)
+			val half = ch.width * vary * (if (main) 0.36 + 0.5 * t * t else 0.2 + 0.16 * t)
 			val q = kotlin.math.abs(across) / half
 			if (q >= 1.0) {
 				continue
 			}
-			// Fjord head: the floor climbs to the surrounding ground over the first stretch.
-			val headRise = ((along - head) / (ch.width * 3)).coerceIn(0.0, 1.0)
-			val floor = SEA_LEVEL - ch.depth * headRise + (surface - SEA_LEVEL) * (1 - headRise) * 0.85
+			// Fjord head: the floor climbs to the surrounding ground over the last stretch.
+			val fromHead = if (main) along else length - along
+			val headRise = (fromHead / (ch.width * 3)).coerceIn(0.0, 1.0)
+			val deep = ch.depth * (if (main) 1.0 else 0.7) * (0.75 + 0.25 * vary)
+			val floor = SEA_LEVEL - deep * headRise + (surface - SEA_LEVEL) * (1 - headRise) * 0.85
 			val profile = q * q * q * (0.35 + 0.65 * q)
 			best = kotlin.math.min(best, floor + (surface - floor) * profile)
 		}
 		return best
 	}
+
+	/** Sideways swing of the main fjord at [along] blocks from its head; it dies out towards the mouth. */
+	private fun mainMeander(ch: SiteConfig.Channels, info: ChannelInfo, along: Double, length: Double): Double =
+		smooth01((length - along) / 280.0) * (ch.width * 1.3 * sin(along / 170.0 + info.phase) + ch.width * 0.5 * sin(along / 61.0 + info.phase2))
 
 	private val references = ConcurrentHashMap<Long, Double>()
 
@@ -550,7 +575,7 @@ class SiteField private constructor(
 		private const val SEA_LEVEL = 63.0
 
 		/** How far past its site (in site radii) a fjord may run to find open water. */
-		private const val MOUTH_REACH = 1.6
+		private const val MOUTH_REACH = 2.0
 
 		/** Blocks of detail shift per unit of base slope in [ridges]. */
 		private const val RIDGE_SHIFT = 110.0

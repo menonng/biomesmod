@@ -19,10 +19,10 @@
         326,
         399
       ],
-      "ramp": 163,
+      "ramp": 360,
       "terrain": "lift",
       "relief": 0.4,
-      "weight": 1.0,
+      "weight": 2.2,
       "zone": [
         "near_inland",
         "mid_inland",
@@ -33,7 +33,11 @@
         "wet",
         "humid"
       ],
-      "elevation_m": 2100
+      "elevation_m": 2100,
+      "erosion": [
+        -1.0,
+        0.1
+      ]
     }
   },
   "base": "minecraft:savanna",

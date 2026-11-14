@@ -6,23 +6,23 @@
     "chance": 1.0,
     "cone": 1,
     "cone_height": [
-      58,
-      72
+      84,
+      104
     ],
     "cone_offset": [
-      0.4,
-      0.47
+      0.3,
+      0.4
     ],
     "cone_radius": [
-      88,
-      104
+      92,
+      108
     ],
     "flank": [
       90,
       120
     ],
     "floor": "lake",
-    "floor_depth": 22,
+    "floor_depth": 26,
     "green": 0.75,
     "max_relief": 200,
     "min_distance": -1,

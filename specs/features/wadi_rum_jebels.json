@@ -1,0 +1,92 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:terrain_shaper",
+    "config": {
+      "mode": "canyon",
+      "biomes": [
+        "biomesmod:wadi_rum"
+      ],
+      "plateau": 70,
+      "depth": 70,
+      "width": 330,
+      "floor_width": 240,
+      "benches": 2,
+      "spacing": 190,
+      "side_spacing": 0,
+      "river_width": 0,
+      "domes": 22,
+      "edge_blend": 60,
+      "palette": {
+        "strata": {
+          "strata": [
+            {
+              "block": {
+                "Name": "minecraft:red_sandstone"
+              },
+              "thickness": 6
+            },
+            {
+              "block": {
+                "Name": "minecraft:smooth_red_sandstone"
+              },
+              "thickness": 3
+            },
+            {
+              "block": {
+                "Name": "minecraft:terracotta"
+              },
+              "thickness": 4
+            },
+            {
+              "block": {
+                "Name": "minecraft:orange_terracotta"
+              },
+              "thickness": 3
+            },
+            {
+              "block": {
+                "Name": "minecraft:red_sandstone"
+              },
+              "thickness": 5
+            },
+            {
+              "block": {
+                "Name": "minecraft:brown_terracotta"
+              },
+              "thickness": 2
+            },
+            {
+              "block": {
+                "Name": "minecraft:granite"
+              },
+              "thickness": 6
+            },
+            {
+              "block": {
+                "Name": "minecraft:polished_granite"
+              },
+              "thickness": 2
+            }
+          ]
+        },
+        "cliff_slope": 2,
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:red_sand"
+            },
+            "depth": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:red_sandstone"
+            },
+            "depth": 3
+          }
+        ]
+      }
+    }
+  },
+  "placement": []
+}

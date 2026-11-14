@@ -16,13 +16,13 @@
         "hot"
       ],
       "size": [
-        326,
-        399
+        420,
+        520
       ],
       "ramp": 163,
       "terrain": "plateau",
-      "relief": 0.12,
-      "weight": 1.0,
+      "relief": 0.06,
+      "weight": 2.5,
       "zone": [
         "near_inland",
         "mid_inland",
@@ -50,9 +50,6 @@
       "vegetal_decoration"
     ],
     "mod": {
-      "local_modifications": [
-        "biomesmod:wadi_rum_massifs"
-      ],
       "vegetal_decoration": [
         "biomesmod:wadi_rum_tents",
         "biomesmod:wadi_rum_acacia",
@@ -60,6 +57,9 @@
         "biomesmod:wadi_rum_boulders",
         "biomesmod:wadi_rum_arches",
         "biomesmod:wadi_rum_mushrooms"
+      ],
+      "raw_generation": [
+        "biomesmod:wadi_rum_jebels"
       ]
     },
     "remove": [

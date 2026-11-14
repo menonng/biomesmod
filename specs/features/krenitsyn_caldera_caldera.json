@@ -26,18 +26,18 @@
         120
       ],
       "cone_height": [
-        58,
-        72
-      ],
-      "cone_radius": [
-        88,
+        84,
         104
       ],
-      "floor_depth": 22,
+      "cone_radius": [
+        92,
+        108
+      ],
+      "floor_depth": 26,
       "green": 0.75,
       "cone_offset": [
-        0.4,
-        0.47
+        0.3,
+        0.4
       ],
       "max_relief": 200
     }

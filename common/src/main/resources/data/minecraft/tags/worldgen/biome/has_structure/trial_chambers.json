@@ -3,11 +3,12 @@
   "values": [
     "biomesmod:alaid_volcano",
     "biomesmod:bromo_tengger",
+    "biomesmod:coast_polder",
+    "biomesmod:coast_polder_tulips",
     "biomesmod:daintree",
     "biomesmod:devils_tower",
     "biomesmod:geirangerfjord",
     "biomesmod:giant_redwood_forest",
-    "biomesmod:giants_causeway",
     "biomesmod:gotjawal",
     "biomesmod:grand_prismatic",
     "biomesmod:ha_long_bay",
@@ -22,7 +23,6 @@
     "biomesmod:socotra_highlands",
     "biomesmod:tre_cime",
     "biomesmod:ushishir_caldera",
-    "biomesmod:wadi_rum",
     "biomesmod:white_old_growth",
     "biomesmod:white_plains",
     "biomesmod:zhangjiajie"

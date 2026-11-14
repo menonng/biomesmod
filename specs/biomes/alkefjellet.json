@@ -16,20 +16,20 @@
         "cold"
       ],
       "size": [
-        270,
-        330
+        300,
+        380
       ],
       "ramp": 140,
       "terrain": "keep",
       "relief": 0.5,
       "weight": 1.0,
       "continentalness": [
-        -0.3,
-        -0.06
+        -0.2,
+        -0.1
       ]
     }
   },
-  "base": "minecraft:snowy_beach",
+  "base": "minecraft:snowy_plains",
   "climate": {
     "temperature": 0.2,
     "downfall": 0.6

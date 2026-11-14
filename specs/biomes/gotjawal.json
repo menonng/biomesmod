@@ -63,11 +63,14 @@
         "minecraft:red_mushroom_old_growth",
         "minecraft:flower_forest_flowers",
         "minecraft:patch_grass_forest",
-        "minecraft:brown_mushroom_normal"
+        "minecraft:brown_mushroom_normal",
+        "minecraft:vines",
+        "minecraft:patch_tall_grass"
       ]
     },
     "mod": {
       "vegetal_decoration": [
+        "biomesmod:gotjawal_clinker",
         "biomesmod:gotjawal_trees",
         "biomesmod:gotjawal_evergreen_oak",
         "biomesmod:gotjawal_camellia",

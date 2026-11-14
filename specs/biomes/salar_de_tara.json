@@ -20,10 +20,10 @@
         326,
         399
       ],
-      "ramp": 163,
+      "ramp": 520,
       "terrain": "plateau",
       "relief": 0.15,
-      "weight": 1.0,
+      "weight": 3.0,
       "zone": [
         "mid_inland",
         "far_inland"
@@ -32,7 +32,11 @@
         "arid",
         "dry"
       ],
-      "elevation_m": 4300
+      "elevation_m": 4300,
+      "erosion": [
+        -1.0,
+        -0.05
+      ]
     }
   },
   "base": "minecraft:badlands",

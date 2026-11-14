@@ -3,14 +3,16 @@
   "configured": {
     "type": "biomesmod:terrain_shaper",
     "config": {
-      "mode": "rolling",
+      "mode": "sea_cliff",
       "biomes": [
         "biomesmod:cliffs_of_moher"
       ],
-      "smooth": 0.3,
-      "hills": 2,
-      "lift": 22,
-      "edge_blend": 6,
+      "height": 46,
+      "ledges": 1,
+      "indent": 60,
+      "shelf": 3,
+      "inland": 4,
+      "edge_blend": 24,
       "palette": {
         "strata": {
           "strata": [
@@ -164,6 +166,20 @@
               "Name": "minecraft:stone"
             },
             "depth": 2
+          }
+        ],
+        "top": [
+          {
+            "block": {
+              "Name": "minecraft:grass_block"
+            },
+            "depth": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:dirt"
+            },
+            "depth": 3
           }
         ]
       }

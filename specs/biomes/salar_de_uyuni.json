@@ -19,10 +19,10 @@
         620,
         700
       ],
-      "ramp": 320,
+      "ramp": 560,
       "terrain": "plateau",
       "relief": 0.0,
-      "weight": 1.3,
+      "weight": 3.0,
       "zone": [
         "mid_inland",
         "far_inland"
@@ -32,7 +32,11 @@
         "dry",
         "neutral"
       ],
-      "elevation_m": 3656
+      "elevation_m": 3656,
+      "erosion": [
+        -1.0,
+        -0.05
+      ]
     }
   },
   "base": "minecraft:desert",

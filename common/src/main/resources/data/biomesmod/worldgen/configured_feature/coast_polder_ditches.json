@@ -1,0 +1,10 @@
+{
+  "config": {
+    "biome": "biomesmod:coast_polder",
+    "fallow": 0.12,
+    "field_size": 110,
+    "flowers": [],
+    "strip_width": 3
+  },
+  "type": "biomesmod:flower_strips"
+}

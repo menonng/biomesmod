@@ -16,6 +16,7 @@
       26
     ],
     "floor": "sea",
+    "floor_depth": 10,
     "min_distance": -1,
     "radius": [
       40,

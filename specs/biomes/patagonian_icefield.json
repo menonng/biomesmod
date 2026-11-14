@@ -19,17 +19,21 @@
         560,
         700
       ],
-      "ramp": 260,
+      "ramp": 300,
       "terrain": "lift",
       "relief": 0.5,
-      "weight": 1.0,
+      "weight": 1.6,
       "zone": [
         "near_inland",
         "mid_inland",
         "far_inland"
       ],
       "elevation_m": 1500,
-      "ridges": 40
+      "ridges": 40,
+      "erosion": [
+        -1.0,
+        -0.15
+      ]
     }
   },
   "base": "minecraft:frozen_peaks",

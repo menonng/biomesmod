@@ -19,15 +19,19 @@
         270,
         330
       ],
-      "ramp": 140,
+      "ramp": 360,
       "terrain": "lift",
       "relief": 0.45,
-      "weight": 1.0,
+      "weight": 2.2,
       "zone": [
         "mid_inland",
         "far_inland"
       ],
-      "elevation_m": 2300
+      "elevation_m": 2300,
+      "erosion": [
+        -1.0,
+        0.1
+      ]
     }
   },
   "base": "minecraft:stony_peaks",

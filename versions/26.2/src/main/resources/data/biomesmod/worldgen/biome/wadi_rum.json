@@ -20,13 +20,14 @@
     "water_color": "#3f76e4"
   },
   "features": [
-    [],
+    [
+      "biomesmod:wadi_rum_jebels"
+    ],
     [
       "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode",
-      "biomesmod:wadi_rum_massifs"
+      "minecraft:amethyst_geode"
     ],
     [
       "minecraft:fossil_upper",

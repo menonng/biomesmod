@@ -1,7 +1,7 @@
 {
   "config": {
     "biome": "biomesmod:coast_polder_tulips",
-    "fallow": 0.18,
+    "fallow": 0.12,
     "field_size": 60,
     "flowers": [
       {

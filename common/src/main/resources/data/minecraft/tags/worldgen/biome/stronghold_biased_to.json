@@ -1,10 +1,13 @@
 {
   "replace": false,
   "values": [
+    "biomesmod:alaid_volcano",
     "biomesmod:aletsch_glacier",
+    "biomesmod:alkefjellet",
     "biomesmod:amazon_varzea",
     "biomesmod:antarctic_peninsula",
     "biomesmod:bromo_tengger",
+    "biomesmod:coast_polder",
     "biomesmod:coast_polder_tulips",
     "biomesmod:coast_sunken_pines",
     "biomesmod:cordillera_darwin",

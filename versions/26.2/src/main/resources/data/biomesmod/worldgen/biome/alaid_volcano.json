@@ -1,20 +1,10 @@
 {
   "attributes": {
     "minecraft:audio/background_music": {
-      "creative": {
-        "max_delay": 24000,
-        "min_delay": 12000,
-        "sound": "minecraft:music.creative"
-      },
       "default": {
         "max_delay": 24000,
         "min_delay": 12000,
-        "sound": "minecraft:music.game"
-      },
-      "underwater": {
-        "max_delay": 24000,
-        "min_delay": 12000,
-        "sound": "minecraft:music.under_water"
+        "sound": "minecraft:music.overworld.meadow"
       }
     },
     "minecraft:visual/fog_color": "#c0c8d0",
@@ -73,25 +63,23 @@
       "minecraft:underwater_magma",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
-      "minecraft:disk_gravel"
+      "minecraft:disk_gravel",
+      "minecraft:ore_emerald"
     ],
-    [],
+    [
+      "minecraft:ore_infested"
+    ],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:trees_water",
-      "minecraft:flower_default",
-      "minecraft:patch_grass_badlands",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_pumpkin",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_firefly_bush_near_water",
-      "minecraft:seagrass_cold",
-      "minecraft:kelp_cold",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:patch_grass_meadow",
+      "minecraft:flower_meadow",
+      "minecraft:trees_meadow",
+      "minecraft:wildflowers_meadow",
       "biomesmod:alaid_volcano_bombs",
       "biomesmod:alaid_volcano_wind_birch"
     ],
@@ -111,7 +99,26 @@
       }
     ],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "maxCount": 2,
+        "minCount": 1,
+        "type": "minecraft:donkey",
+        "weight": 1
+      },
+      {
+        "maxCount": 6,
+        "minCount": 2,
+        "type": "minecraft:rabbit",
+        "weight": 2
+      },
+      {
+        "maxCount": 4,
+        "minCount": 2,
+        "type": "minecraft:sheep",
+        "weight": 2
+      }
+    ],
     "misc": [],
     "monster": [
       {
@@ -161,12 +168,6 @@
         "minCount": 1,
         "type": "minecraft:witch",
         "weight": 5
-      },
-      {
-        "maxCount": 1,
-        "minCount": 1,
-        "type": "minecraft:drowned",
-        "weight": 5
       }
     ],
     "underground_water_creature": [
@@ -177,34 +178,8 @@
         "weight": 10
       }
     ],
-    "water_ambient": [
-      {
-        "maxCount": 6,
-        "minCount": 3,
-        "type": "minecraft:cod",
-        "weight": 15
-      },
-      {
-        "maxCount": 5,
-        "minCount": 1,
-        "type": "minecraft:salmon",
-        "weight": 15
-      }
-    ],
-    "water_creature": [
-      {
-        "maxCount": 4,
-        "minCount": 1,
-        "type": "minecraft:squid",
-        "weight": 3
-      },
-      {
-        "maxCount": 1,
-        "minCount": 1,
-        "type": "minecraft:nautilus",
-        "weight": 2
-      }
-    ]
+    "water_ambient": [],
+    "water_creature": []
   },
   "temperature": 0.3
 }

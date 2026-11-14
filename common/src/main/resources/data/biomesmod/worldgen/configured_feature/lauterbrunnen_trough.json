@@ -4,12 +4,13 @@
       "biomesmod:lauterbrunnen"
     ],
     "falls": 0.0,
-    "floor_width": 42,
+    "floor_depth": 14,
+    "floor_width": 70,
     "mode": "u_valley",
-    "shoulder": 60,
-    "spacing": 420,
+    "shoulder": 78,
+    "spacing": 230,
     "steepness": 6,
-    "width": 110
+    "width": 210
   },
   "type": "biomesmod:terrain_shaper"
 }

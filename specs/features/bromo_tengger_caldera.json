@@ -14,28 +14,32 @@
       "floor": "sand",
       "cone": 1,
       "radius": [
-        62,
-        80
+        112,
+        138
       ],
       "rim_height": [
-        22,
-        34
+        26,
+        38
       ],
       "flank": [
-        20,
-        28
+        40,
+        60
       ],
       "cone_height": [
-        20,
-        30
+        44,
+        58
       ],
       "cone_radius": [
-        12,
-        18
+        40,
+        52
       ],
       "floor_block": {
         "Name": "minecraft:gravel"
-      }
+      },
+      "cone_offset": [
+        0.2,
+        0.45
+      ]
     }
   },
   "placement": []

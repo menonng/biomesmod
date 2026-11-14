@@ -16,13 +16,13 @@
         "temperate"
       ],
       "size": [
-        326,
-        399
+        360,
+        440
       ],
-      "ramp": 163,
-      "terrain": "lift",
-      "relief": 0.5,
-      "weight": 1.0,
+      "ramp": 260,
+      "terrain": "mountain",
+      "relief": 0.7,
+      "weight": 2.2,
       "zone": [
         "mid_inland",
         "far_inland"
@@ -33,7 +33,11 @@
         "humid"
       ],
       "elevation_m": 1850,
-      "ridges": 40
+      "ridges": 75,
+      "erosion": [
+        -1.0,
+        0.1
+      ]
     }
   },
   "base": "minecraft:meadow",

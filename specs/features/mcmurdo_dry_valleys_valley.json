@@ -7,10 +7,10 @@
       "biomes": [
         "biomesmod:mcmurdo_dry_valleys"
       ],
-      "spacing": 420,
-      "width": 170,
-      "floor_width": 80,
-      "shoulder": 45,
+      "spacing": 250,
+      "width": 300,
+      "floor_width": 120,
+      "shoulder": 42,
       "falls": 0.0,
       "steepness": 3,
       "palette": {
@@ -44,7 +44,8 @@
             }
           ]
         }
-      }
+      },
+      "floor_depth": 8
     }
   },
   "placement": []

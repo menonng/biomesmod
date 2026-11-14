@@ -31,15 +31,14 @@ import kotlin.math.min
  */
 data class CanyonMode(
 	override val common: Common, val plateau: Int, val depth: Int, val width: Double, val floorWidth: Double, val benches: Int,
-	val direction: Double, val spacing: Double, val sideSpacing: Double, val riverWidth: Double,
+	val direction: Double, val spacing: Double, val sideSpacing: Double, val riverWidth: Double, val domes: Double,
 ) : ShaperMode {
 	override val type: ShaperMode.Type get() = ShaperMode.Type.CANYON
 
 	override fun createShaper(seed: Long): Shaper = S(seed)
 
 	private inner class S(seed: Long) : Shaper(seed) {
-		private val main = Meander(noise.fork(1), direction, spacing, spacing * 0.18, width * 3.5)
-		private val side: Meander? = if (sideSpacing > 0) Meander(noise.fork(2), direction + 90, sideSpacing, sideSpacing * 0.18, width * 1.6) else null
+		private val drain = Drainage(noise.fork(1), direction, spacing)
 
 		override fun fullSurface(): Boolean = false // the plateau keeps its own surface; only cut columns get the palette
 
@@ -69,39 +68,42 @@ data class CanyonMode(
 			val zd = z.toDouble()
 			val tmp = DoubleArray(3) // shapers are shared by every worldgen thread, so the scratch array is per call
 			val top = frame.blurBase(x, z) + plateau
-			val floorY = top - depth * (0.85 + 0.15 * noise.fbm01(xd, zd, 400.0, 1))
-			main.eval(xd, zd, tmp)
-			val half = width * 0.5 * (0.8 + 0.4 * noise.fbm01(xd, zd, 300.0, 2))
-			val fh = floorWidth * 0.5
-			val dMain = abs(tmp[0])
+			// One branching network: the trunk is the great canyon, its tributaries the side canyons, which narrow and
+			// shallow towards their heads and leave buttes and promontories standing between them.
+			drain.eval(xd, zd, tmp)
+			val d = tmp[0]
+			// Headwater gullies are left out: a canyon starts where a few of them have joined.
+			val size = Noise.clamp((tmp[2] - 0.1) / 0.9, 0.0, 1.0)
+			val cut = Noise.smoothstep(0.08, 0.2, tmp[2])
+			val sf = (0.22 + 0.78 * size) * cut
+			val half = width * 0.5 * sf * (0.8 + 0.4 * noise.fbm01(xd, zd, 300.0, 2))
+			val fh = floorWidth * 0.5 * sf
+			val floorY = top - depth * (0.35 + 0.65 * size) * cut * (0.85 + 0.15 * noise.fbm01(xd, zd, 400.0, 1))
 			var g = top
-			if (dMain < half) {
-				val t = (dMain - fh) / (half - fh)
+			if (cut > 0 && d < half) {
+				val t = (d - fh) / (half - fh)
 				g = floorY + (top - floorY) * wall(t, xd, zd)
-			}
-			if (side != null) {
-				side.eval(xd, zd, tmp)
-				val sd = abs(tmp[0])
-				// Side canyons fade out away from the main one: depth falls with distance from it.
-				val reachT = Noise.smoothstep(spacing * 0.42, half, dMain)
-				val sideDepth = depth * 0.7 * (1 - reachT)
-				val sideHalf = width * 0.22
-				if (sideDepth > 2 && sd < sideHalf) {
-					val sideFloor = top - sideDepth
-					val t = sd / sideHalf
-					g = min(g, sideFloor + (top - sideFloor) * wall(t, xd + 91, zd - 37))
-				}
 			}
 			// The plateau is the regional surface lifted by `plateau` (faded in at the biome edge by the frame), with a
 			// little of the original relief kept so it is not a table.
 			if (g >= top - 0.01) {
 				g = top + 0.35 * (frame.orig(i) - frame.blurBase(x, z))
+				if (domes > 0) {
+					// Rounded, lumpy summits that fall away towards the walls (weathered sandstone domes).
+					val inward = Noise.smoothstep(half, half + 40.0, d)
+					g += domes * inward * (0.35 + 0.65 * noise.fbm01(xd, zd, 46.0, 3)) - domes * 0.4 * (1 - inward)
+				}
 			}
 			out.ground = g
-			if (riverWidth > 0 && dMain < riverWidth * 0.5 + 0.5) {
-				val f = floor(floorY + 0.5).toInt()
-				out.ground = (f - 2).toDouble()
-				out.water = f
+			// The inner gorge: the trunk river has cut a narrow slot into the canyon floor.
+			if (size > 0.55 && d < fh * 0.6 + 3) {
+				val slot = depth * 0.16 * (size - 0.55) / 0.45 * (1 - Noise.smoothstep(fh * 0.25, fh * 0.6 + 3, d))
+				out.ground = g - slot
+				if (riverWidth > 0 && size >= 0.999 && d < riverWidth * 0.5 + 0.5) {
+					val f = floor(top - depth * 1.12 + 0.5).toInt()
+					out.ground = (f - 2).toDouble()
+					out.water = f
+				}
 			}
 		}
 	}
@@ -114,14 +116,15 @@ data class CanyonMode(
 				Codec.intRange(0, 120).optionalFieldOf("plateau", 18).forGetter(CanyonMode::plateau),
 				Codec.intRange(8, 200).optionalFieldOf("depth", 70).forGetter(CanyonMode::depth),
 				Codec.doubleRange(16.0, 600.0).optionalFieldOf("width", 140.0).forGetter(CanyonMode::width),
-				Codec.doubleRange(2.0, 200.0).optionalFieldOf("floor_width", 14.0).forGetter(CanyonMode::floorWidth),
+				Codec.doubleRange(2.0, 400.0).optionalFieldOf("floor_width", 14.0).forGetter(CanyonMode::floorWidth),
 				Codec.intRange(1, 12).optionalFieldOf("benches", 5).forGetter(CanyonMode::benches),
 				Codec.doubleRange(-360.0, 360.0).optionalFieldOf("direction", 35.0).forGetter(CanyonMode::direction),
 				Codec.doubleRange(128.0, 4096.0).optionalFieldOf("spacing", 520.0).forGetter(CanyonMode::spacing),
 				Codec.doubleRange(0.0, 2048.0).optionalFieldOf("side_spacing", 150.0).forGetter(CanyonMode::sideSpacing),
 				Codec.doubleRange(0.0, 24.0).optionalFieldOf("river_width", 4.0).forGetter(CanyonMode::riverWidth),
-			).apply(i) { common, plateau, depth, width, floorWidth, benches, direction, spacing, sideSpacing, riverWidth ->
-				CanyonMode(common, plateau, depth, width, floorWidth, benches, direction, spacing, sideSpacing, riverWidth)
+				Codec.doubleRange(0.0, 60.0).optionalFieldOf("domes", 0.0).forGetter(CanyonMode::domes),
+			).apply(i) { common, plateau, depth, width, floorWidth, benches, direction, spacing, sideSpacing, riverWidth, domes ->
+				CanyonMode(common, plateau, depth, width, floorWidth, benches, direction, spacing, sideSpacing, riverWidth, domes)
 			}
 		}
 	}

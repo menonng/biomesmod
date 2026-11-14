@@ -25,7 +25,7 @@
       ],
       "strip_width": 3,
       "field_size": 60,
-      "fallow": 0.18,
+      "fallow": 0.12,
       "biome": "biomesmod:coast_polder_tulips"
     }
   },

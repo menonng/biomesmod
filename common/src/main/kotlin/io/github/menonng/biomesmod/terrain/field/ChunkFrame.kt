@@ -120,6 +120,7 @@ class ChunkFrame private constructor() {
 
 	internal fun begin(level: WorldGenLevel, generator: ChunkGenerator, sampler: FieldSampler, common: Common, shaper: Shaper, x0: Int, z0: Int) {
 		this.levelRef = level
+		this.siteYKnown = false
 		this.generatorRef = generator
 		this.sampler = sampler
 		this.common = common
@@ -147,6 +148,32 @@ class ChunkFrame private constructor() {
 	}
 
 	// ------------------------------------------------------------------ grid helpers
+
+	private var siteY = Double.NaN
+	private var siteYKnown = false
+
+	/**
+	 * The height the site under this chunk built its terrain around (its `target_y`), or NaN outside every site. The
+	 * same for every chunk of one site, so a mode can hang an absolute level on it (a valley floor that stays level
+	 * while the mountains above it rise and fall).
+	 */
+	fun siteTargetY(): Double {
+		if (!siteYKnown) {
+			siteYKnown = true
+			siteY = Double.NaN
+			val field = io.github.menonng.biomesmod.site.SiteField.forSampler(level.level.chunkSource.randomState().sampler())
+			if (field != null) {
+				for (k in 0 until 5) {
+					val s = field.blend(x0 + (if (k == 0) 8 else if (k % 2 == 1) 0 else 15), z0 + (if (k == 0) 8 else if (k < 3) 0 else 15)).a
+					if (s != null) {
+						siteY = s.spec.targetY.toDouble()
+						break
+					}
+				}
+			}
+		}
+		return siteY
+	}
 
 	fun idx(x: Int, z: Int): Int = (x - x0 + m) + (z - z0 + m) * n
 

@@ -127,9 +127,15 @@ class CalderaShape internal constructor(
 			var top: Double
 			var kind = K_BODY
 			var inside = false
+			var skirt = 1.0
 			if (d < rr - wall) {
 				inside = true
-				top = floorY + 0.8 * LNoise.noise2(seed xor 0x74, px / 9, pz / 9)
+				val u = d / max(1.0, rr - wall)
+				top = floorY + 0.8 * LNoise.noise2(seed xor 0x74, px / 9, pz / 9) + 2.4 * LNoise.noise2(seed xor 0x7B, px / 41, pz / 41) +
+					(crestH - floorY) * 0.14 * u * u * u * u
+				if (water != Col.NONE) {
+					top -= floorDepth * 0.7 * (1 - u * u) // the lake or bay deepens towards the middle
+				}
 				if (floor == "sand") {
 					kind = K_SAND
 				}
@@ -146,6 +152,8 @@ class CalderaShape internal constructor(
 				val low = min(foot, base).toDouble()
 				top = low + (crestH - low) * (1 - k).pow(1.4) * (1 - 0.18 * g)
 				kind = K_FLANK
+				// The foot of the flank runs out into the ground that is really there.
+				skirt = LNoise.clamp((1 - k) / 0.4, 0.0, 1.0)
 			} else {
 				return
 			}
@@ -160,7 +168,7 @@ class CalderaShape internal constructor(
 					val gully = abs(LNoise.angular(seed xor 0x7E1, ca + 0.15 * LNoise.noise1(seed xor 0x7E2, cd / 10), 26.0)).pow(2)
 					var h = floorY + (ch - floorY) * (1 - t).pow(1.25) * (1 - 0.14 * gully * sqrt(t))
 					if (t < 0.18) {
-						h -= (0.18 - t) / 0.18 * 4 // small summit crater
+						h -= (0.18 - t) / 0.18 * max(4.0, cch * 0.16) // summit crater
 					}
 					if (h > top) {
 						top = h
@@ -169,7 +177,7 @@ class CalderaShape internal constructor(
 				}
 			}
 			val ti = Math.round(top).toInt()
-			if (inside && ti < base) {
+			if (inside) {
 				c.carve = true
 			}
 			if (inside && water != Col.NONE && ti < water) {
@@ -182,6 +190,9 @@ class CalderaShape internal constructor(
 			}
 			c.top = ti
 			c.kind = kind
+			if (kind == K_FLANK && floor != "sea") {
+				c.blend = skirt
+			}
 		}
 
 		override fun block(x: Int, y: Int, z: Int, depth: Int, c: Col, wet: Boolean): BlockState {

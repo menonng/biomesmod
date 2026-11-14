@@ -12,7 +12,7 @@
   "placement": {
     "site": {
       "temperature": [
-        "frozen"
+        "polar"
       ],
       "size": [
         480,
@@ -21,10 +21,10 @@
       "ramp": 220,
       "terrain": "mountain",
       "relief": 0.9,
-      "weight": 1.0,
+      "weight": 2.0,
       "continentalness": [
         -0.3,
-        0.1
+        0.0
       ],
       "target_y": 100,
       "ridges": 60
@@ -48,5 +48,8 @@
     ]
   },
   "spawners": "base",
-  "carvers": "underground"
+  "carvers": "underground",
+  "climate": {
+    "temperature": -0.9
+  }
 }

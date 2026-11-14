@@ -3,10 +3,12 @@
     "biomes": [
       "biomesmod:cliffs_of_moher"
     ],
-    "edge_blend": 6,
-    "hills": 2,
-    "lift": 22,
-    "mode": "rolling",
+    "edge_blend": 24,
+    "height": 46,
+    "indent": 60,
+    "inland": 4,
+    "ledges": 1,
+    "mode": "sea_cliff",
     "palette": {
       "cliff_slope": 3,
       "strata": {
@@ -148,6 +150,20 @@
         "warp": 1.1,
         "warp_scale": 64
       },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:grass_block"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:dirt"
+          },
+          "depth": 3
+        }
+      ],
       "underwater": [
         {
           "block": {
@@ -163,7 +179,7 @@
         }
       ]
     },
-    "smooth": 0.3
+    "shelf": 3
   },
   "type": "biomesmod:terrain_shaper"
 }

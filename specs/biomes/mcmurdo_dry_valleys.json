@@ -12,27 +12,28 @@
   "placement": {
     "site": {
       "temperature": [
-        "frozen"
+        "polar"
       ],
       "size": [
-        326,
-        399
+        360,
+        440
       ],
-      "ramp": 163,
-      "terrain": "lift",
-      "relief": 0.5,
-      "weight": 1.0,
+      "ramp": 240,
+      "terrain": "mountain",
+      "relief": 0.7,
+      "weight": 2.0,
       "zone": [
         "near_inland",
         "mid_inland",
         "far_inland"
       ],
-      "target_y": 100
+      "target_y": 98,
+      "ridges": 50
     }
   },
   "base": "minecraft:snowy_plains",
   "climate": {
-    "temperature": -0.5,
+    "temperature": -0.9,
     "downfall": 0.0,
     "has_precipitation": false
   },

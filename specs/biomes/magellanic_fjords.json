@@ -21,22 +21,22 @@
       ],
       "ramp": 163,
       "terrain": "mountain",
-      "relief": 0.6,
+      "relief": 0.8,
       "weight": 1.0,
       "continentalness": [
-        -0.22,
-        0.1
+        -0.2,
+        -0.04
       ],
       "humidity": [
         "neutral",
         "wet",
         "humid"
       ],
-      "elevation_m": 240,
-      "ridges": 18,
+      "elevation_m": 620,
+      "ridges": 48,
       "channels": {
         "count": 3,
-        "width": 64,
+        "width": 80,
         "depth": 26
       }
     }

@@ -1,5 +1,9 @@
 {
   "config": {
+    "base_y_range": [
+      -60,
+      40
+    ],
     "biomes": [
       "biomesmod:alaid_volcano"
     ],
@@ -20,11 +24,12 @@
       115,
       140
     ],
+    "max_relief": 120,
     "min_distance": -1,
     "parasites": 2,
     "radius": [
-      150,
-      185
+      170,
+      205
     ],
     "rise_from": "sea_level",
     "salt": 85028,

@@ -1,0 +1,73 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "coast_polder",
+  "names": {
+    "en_us": "Polder",
+    "ko_kr": "간척 저지대"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "temperature": [
+        "cold",
+        "temperate"
+      ],
+      "humidity": [
+        "dry",
+        "neutral",
+        "wet"
+      ],
+      "continentalness": [
+        -0.17,
+        0.08
+      ],
+      "erosion": [
+        0.1,
+        1.0
+      ],
+      "size": [
+        640,
+        800
+      ],
+      "ramp": 420,
+      "terrain": "basin",
+      "relief": 0.03,
+      "weight": 1.4,
+      "target_y": 64,
+      "zones": [
+        {
+          "biome": "biomesmod:coast_polder_tulips",
+          "from": 0.62,
+          "to": 1.0
+        }
+      ]
+    }
+  },
+  "base": "minecraft:plains",
+  "climate": {
+    "temperature": 0.7,
+    "downfall": 0.8
+  },
+  "colors": {
+    "grass": "#79c05a",
+    "foliage": "#59a33c",
+    "sky": "#8fb3d9",
+    "fog": "#d7e1ea",
+    "water": "#3f6f8f"
+  },
+  "features": {
+    "mod": {
+      "vegetal_decoration": [
+        "biomesmod:coast_polder_ditches",
+        "biomesmod:coast_polder_windmills",
+        "biomesmod:coast_polder_poplars"
+      ]
+    },
+    "remove": [
+      "minecraft:lake_lava_surface"
+    ]
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

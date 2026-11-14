@@ -19,7 +19,7 @@ Elevation: `y = 63 + metres × 0.039` (1 block = 25.6 m), capped at 250. Salar d
 ```jsonc
 "placement": {"site": {
   "zone": ["mid_inland", "far_inland"],          // continentalness band(s) of the centre, or "continentalness": [min, max]
-  "temperature": ["temperate", "warm", "hot"],   // frozen, cold, temperate, warm, hot (adjacent bands)
+  "temperature": ["temperate", "warm", "hot"],   // polar, frozen, cold, temperate, warm, hot (adjacent bands)
   "humidity": ["arid", "dry", "neutral"],        // arid, dry, neutral, wet, humid
   "erosion": [-1.0, 1.0],                        // optional
   "size": [620, 700],                            // core radius range in blocks (drawn per site)
@@ -43,6 +43,8 @@ Elevation: `y = 63 + metres × 0.039` (1 block = 25.6 m), capped at 250. Salar d
 | `mountain` | max(original, target + relief × hills) | kept | massifs, alpine valleys, fjords |
 | `basin` | target + relief × hills | flattened (0.06), flat top profile | wetlands, floodplains, depressions |
 
+A biome may have a second site spec, `placement.site_also`, with the same keys: Krenitsyn's caldera stands on land and, by the second spec, on a volcanic island of its own out in the deep ocean. Use `erosion` to keep high places among mountains and uplands (the high plateaus take `[-1, -0.05]`) and `continentalness` below about -0.45 for islands far from any coast (Socotra).
+
 ### Elevation
 
 `elevation_m` is turned into a target height by `config/biomesmod.json` (`elevation`): below `highland_metres` (2,000 m)
@@ -65,7 +67,9 @@ heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs 
   carries it on to the sea). It is cut all the way to that water, up to 1.6 site radii out, past the edge of the site
   and through the neighbouring biome if it has to, so it joins the water around it instead of ending in a wall of
   land. Its meanders die out towards the mouth. If no water is in reach it heads for the lowest ground on the rim.
-  Side fjords branch off a third of the way along. All are carved below sea level, so the sea floods them. The
+  Open water means 40 blocks of it (the sea or a bay, not a river). Arms come down from inland and join the main
+  fjord at separate points on alternating sides; every channel swells and narrows along its length and widens
+  towards the sea. All are carved below sea level, so the sea floods them. The
   self-check logs, for up to 40 sites of each fjord biome, how many reach open water.
 
 ## In game
@@ -75,3 +79,9 @@ heights approach `max_target_y` + 12 smoothly (a soft ceiling), so high massifs 
 ## Verify
 
 `runSelfCheck` locates each site biome from the layout (nearest site within 60,000 blocks). It then checks the biome at the centre and logs the noise terrain over the core: median, min and max height against the target, flat area, and share under the sea. A plateau with a target of y ≥ 200 fails unless it holds at least 600,000 m² of flat land at y ≥ 200. `-Ppreset=minecraft:large_biomes` (or `minecraft:amplified`) runs it on another preset, `-PextraMods=<dir>` adds every mod jar in a folder and `-Pdatapacks=<dir>` every data pack zip, for compatibility tests. `-Poverview=true` writes a 2.2 km noise-terrain overview of every site (`<biome>_overview.png`) without generating chunks. `-Prender=true` writes the full top-down and section renders (`-PrenderSize=192` for a smaller, faster area).
+
+### The polar band
+
+`polar` is the coldest slice of the vanilla temperature range (below -0.65); `frozen` now starts above it. Only the
+Antarctic biomes (Ross Ice Shelf, Antarctic Peninsula, McMurdo Dry Valleys, Lake Vostok) accept it, so they only ever
+border each other and vanilla terrain, never another site biome.

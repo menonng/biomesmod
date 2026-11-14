@@ -486,6 +486,7 @@ class BiomeSpec:
         self.dimension = data.get('dimension')
         self.slots = []
         self.site = None
+        self.site_also = None
         self.zone_of = None
         self.nether_point = None
         self.end = None
@@ -558,7 +559,7 @@ def validate_biome(spec, versions, vanilla, features, places, problems):
 
 
 # Vanilla climate parameter bins (Climate / OverworldBiomeBuilder), used for site climate filters.
-SITE_TEMPERATURE = {'frozen': (-2.0, -0.45), 'cold': (-0.45, -0.15), 'temperate': (-0.15, 0.2), 'warm': (0.2, 0.55), 'hot': (0.55, 2.0)}
+SITE_TEMPERATURE = {'polar': (-2.0, -0.65), 'frozen': (-0.65, -0.45), 'cold': (-0.45, -0.15), 'temperate': (-0.15, 0.2), 'warm': (0.2, 0.55), 'hot': (0.55, 2.0)}
 SITE_HUMIDITY = {'arid': (-2.0, -0.35), 'dry': (-0.35, -0.1), 'neutral': (-0.1, 0.1), 'wet': (0.1, 0.3), 'humid': (0.3, 2.0)}
 SITE_ZONE = {'deep_ocean': (-2.0, -0.455), 'ocean': (-0.455, -0.19), 'coast': (-0.19, -0.11), 'near_inland': (-0.11, 0.03),
              'mid_inland': (0.03, 0.3), 'far_inland': (0.3, 2.0)}
@@ -686,7 +687,7 @@ def validate_placement(spec, versions, vanilla, problems):
         problems.error(where, '"placement" is required')
         return
     if spec.dimension == 'overworld':
-        unknown_keys(p, {'replace', 'site', 'zone_of'}, where + ' placement', problems)
+        unknown_keys(p, {'replace', 'site', 'site_also', 'zone_of'}, where + ' placement', problems)
         if sum(k in p for k in ('replace', 'site', 'zone_of')) != 1:
             problems.error(where, 'overworld placement needs exactly one of "replace" (climate slots), "site" (large site) or '
                                   '"zone_of" (a sub-biome of another site biome)')
@@ -696,6 +697,8 @@ def validate_placement(spec, versions, vanilla, problems):
             return
         if 'site' in p:
             spec.site = validate_site(p['site'], where + ' placement.site', problems)
+            if 'site_also' in p:
+                spec.site_also = validate_site(p['site_also'], where + ' placement.site_also', problems)
             return
         slots = p.get('replace')
         if isinstance(slots, str):
@@ -1270,6 +1273,10 @@ def build_sites(specs, regions_cfg, problems):
                     problems.error(s.where, 'zone %s must be a biome spec with placement {"zone_of": "%s"}' % (z['biome'], s.id))
                 used.add(z['biome'])
             out.append(e)
+            if s.site_also:
+                e2 = {'biome': MOD + ':' + s.id}
+                e2.update(s.site_also)
+                out.append(e2)
     for bid, child in zone_of.items():
         if bid not in used:
             problems.error(child.where, 'zone_of %s, but that site does not list this biome in its zones' % child.zone_of)

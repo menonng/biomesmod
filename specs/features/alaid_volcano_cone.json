@@ -13,8 +13,8 @@
       "min_distance": -1,
       "rise_from": "sea_level",
       "radius": [
-        150,
-        185
+        170,
+        205
       ],
       "height": [
         115,
@@ -34,7 +34,12 @@
       "parasites": 2,
       "vents": 6,
       "green": 0.35,
-      "gullies": 0.6
+      "gullies": 0.6,
+      "base_y_range": [
+        -60,
+        40
+      ],
+      "max_relief": 120
     }
   },
   "placement": []

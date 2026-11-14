@@ -3,29 +3,17 @@
   "configured": {
     "type": "biomesmod:terrain_shaper",
     "config": {
-      "mode": "rolling",
+      "mode": "sea_cliff",
       "biomes": [
         "biomesmod:alkefjellet"
       ],
-      "smooth": 0.55,
-      "hills": 3,
-      "lift": 36,
-      "edge_blend": 8,
+      "height": 42,
+      "ledges": 3,
+      "indent": 52,
+      "shelf": 4,
+      "inland": 8,
+      "edge_blend": 24,
       "palette": {
-        "top": [
-          {
-            "block": {
-              "Name": "minecraft:snow_block"
-            },
-            "depth": 1
-          },
-          {
-            "block": {
-              "Name": "biomesmod:dolerite"
-            },
-            "depth": 2
-          }
-        ],
         "strata": {
           "strata": [
             {
@@ -103,6 +91,9 @@
           ]
         },
         "cliff_slope": 3
+      },
+      "top": {
+        "Name": "minecraft:snow_block"
       }
     }
   },

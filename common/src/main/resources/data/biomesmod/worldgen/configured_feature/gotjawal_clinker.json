@@ -1,0 +1,24 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:basalt",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      }
+    ],
+    "kind": "outcrop",
+    "size": [
+      1.2,
+      2.6
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

@@ -20,10 +20,10 @@
         270,
         330
       ],
-      "ramp": 140,
+      "ramp": 300,
       "terrain": "lift",
       "relief": 0.3,
-      "weight": 1.0,
+      "weight": 2.2,
       "zone": [
         "near_inland",
         "mid_inland",
@@ -34,7 +34,11 @@
         "dry",
         "neutral"
       ],
-      "elevation_m": 1200
+      "elevation_m": 1200,
+      "erosion": [
+        -1.0,
+        0.1
+      ]
     }
   },
   "base": "minecraft:plains",

@@ -16,20 +16,21 @@
         "cold"
       ],
       "size": [
-        326,
-        399
+        360,
+        440
       ],
-      "ramp": 163,
-      "terrain": "keep",
-      "relief": 0.5,
+      "ramp": 200,
+      "terrain": "lift",
+      "relief": 0.3,
       "weight": 1.0,
       "zone": [
         "deep_ocean",
         "ocean"
-      ]
+      ],
+      "target_y": 67
     }
   },
-  "base": "minecraft:cold_ocean",
+  "base": "minecraft:meadow",
   "climate": {
     "temperature": 0.3,
     "downfall": 0.8

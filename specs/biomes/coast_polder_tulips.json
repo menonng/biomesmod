@@ -8,12 +8,9 @@
   "places": [],
   "dimension": "overworld",
   "placement": {
-    "replace": [
-      "minecraft:plains",
-      "minecraft:sunflower_plains"
-    ]
+    "zone_of": "coast_polder"
   },
-  "base": "minecraft:flower_forest",
+  "base": "minecraft:plains",
   "climate": {
     "temperature": 0.7,
     "downfall": 0.8
@@ -35,9 +32,6 @@
       ]
     },
     "mod": {
-      "raw_generation": [
-        "biomesmod:coast_polder_tulips_polder"
-      ],
       "vegetal_decoration": [
         "biomesmod:coast_polder_tulips_windmills",
         "biomesmod:coast_polder_tulips_fields",

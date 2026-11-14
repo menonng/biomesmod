@@ -2,10 +2,11 @@
   "replace": false,
   "values": [
     "biomesmod:bromo_tengger",
+    "biomesmod:coast_polder",
+    "biomesmod:coast_polder_tulips",
     "biomesmod:devils_tower",
     "biomesmod:grand_prismatic",
     "biomesmod:moraine_lake",
-    "biomesmod:socotra_coast",
-    "biomesmod:wadi_rum"
+    "biomesmod:socotra_coast"
   ]
 }

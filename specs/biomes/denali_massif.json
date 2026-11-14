@@ -19,16 +19,20 @@
         520,
         660
       ],
-      "ramp": 260,
+      "ramp": 300,
       "terrain": "mountain",
       "relief": 1.0,
-      "weight": 1.0,
+      "weight": 2.5,
       "zone": [
         "mid_inland",
         "far_inland"
       ],
       "elevation_m": 2400,
-      "ridges": 100
+      "ridges": 100,
+      "erosion": [
+        -1.0,
+        0.0
+      ]
     }
   },
   "base": "minecraft:jagged_peaks",

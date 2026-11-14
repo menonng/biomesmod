@@ -25,15 +25,15 @@
       "relief": 0.8,
       "weight": 1.0,
       "continentalness": [
-        -0.25,
-        0.1
+        -0.2,
+        -0.04
       ],
       "elevation_m": 1500,
-      "ridges": 60,
+      "ridges": 75,
       "channels": {
-        "count": 1,
-        "width": 70,
-        "depth": 28
+        "count": 2,
+        "width": 84,
+        "depth": 30
       }
     }
   },

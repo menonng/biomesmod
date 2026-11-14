@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      7,
+      12
+    ],
+    "leaves": {
+      "Name": "minecraft:oak_leaves"
+    },
+    "log": {
+      "Name": "minecraft:birch_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "columnar"
+  },
+  "type": "biomesmod:wild_tree"
+}

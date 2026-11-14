@@ -7,8 +7,8 @@
       "biomes": [
         "biomesmod:giants_causeway"
       ],
-      "spacing": 40,
-      "chance": 1.0,
+      "spacing": 56,
+      "chance": 0.8,
       "salt": 61323,
       "cell": 2.2,
       "length": [
@@ -18,6 +18,10 @@
       "width": [
         16,
         26
+      ],
+      "base_y_range": [
+        -5,
+        2
       ]
     }
   },

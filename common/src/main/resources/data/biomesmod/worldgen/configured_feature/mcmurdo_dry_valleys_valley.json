@@ -4,7 +4,8 @@
       "biomesmod:mcmurdo_dry_valleys"
     ],
     "falls": 0.0,
-    "floor_width": 80,
+    "floor_depth": 8,
+    "floor_width": 120,
     "mode": "u_valley",
     "palette": {
       "strata": {
@@ -38,10 +39,10 @@
         }
       ]
     },
-    "shoulder": 45,
-    "spacing": 420,
+    "shoulder": 42,
+    "spacing": 250,
     "steepness": 3,
-    "width": 170
+    "width": 300
   },
   "type": "biomesmod:terrain_shaper"
 }

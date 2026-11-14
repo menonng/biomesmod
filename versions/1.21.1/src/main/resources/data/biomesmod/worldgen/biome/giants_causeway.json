@@ -20,7 +20,9 @@
     "water_fog_color": 993843
   },
   "features": [
-    [],
+    [
+      "biomesmod:giants_causeway_cliffs"
+    ],
     [
       "minecraft:lake_lava_underground"
     ],

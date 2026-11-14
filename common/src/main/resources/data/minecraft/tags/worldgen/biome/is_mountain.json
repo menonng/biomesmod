@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "biomesmod:alaid_volcano",
     "biomesmod:aletsch_glacier",
     "biomesmod:antarctic_peninsula",
     "biomesmod:cordillera_darwin",

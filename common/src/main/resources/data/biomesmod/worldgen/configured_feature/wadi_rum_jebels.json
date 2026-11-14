@@ -1,0 +1,88 @@
+{
+  "config": {
+    "benches": 2,
+    "biomes": [
+      "biomesmod:wadi_rum"
+    ],
+    "depth": 70,
+    "domes": 22,
+    "edge_blend": 60,
+    "floor_width": 240,
+    "mode": "canyon",
+    "palette": {
+      "cliff_slope": 2,
+      "strata": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:red_sandstone"
+            },
+            "thickness": 6
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_red_sandstone"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:terracotta"
+            },
+            "thickness": 4
+          },
+          {
+            "block": {
+              "Name": "minecraft:orange_terracotta"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:red_sandstone"
+            },
+            "thickness": 5
+          },
+          {
+            "block": {
+              "Name": "minecraft:brown_terracotta"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:granite"
+            },
+            "thickness": 6
+          },
+          {
+            "block": {
+              "Name": "minecraft:polished_granite"
+            },
+            "thickness": 2
+          }
+        ]
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:red_sand"
+          },
+          "depth": 3
+        },
+        {
+          "block": {
+            "Name": "minecraft:red_sandstone"
+          },
+          "depth": 3
+        }
+      ]
+    },
+    "plateau": 70,
+    "river_width": 0,
+    "side_spacing": 0,
+    "spacing": 190,
+    "width": 330
+  },
+  "type": "biomesmod:terrain_shaper"
+}

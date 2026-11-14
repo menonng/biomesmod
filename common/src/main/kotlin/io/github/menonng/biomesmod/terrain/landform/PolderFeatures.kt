@@ -66,6 +66,8 @@ class FlowerStripsFeature : Feature<FlowerStripsFeature.Config>(Config.CODEC) {
 		val p = BlockPos.MutableBlockPos()
 		var placed = false
 		val fs = cfg.fieldSize.toDouble()
+		// Without flowers the feature only digs the ditches of open pasture.
+		val ditchesOnly = cfg.flowers.isEmpty()
 		for (dz in 0 until 16) {
 			for (dx in 0 until 16) {
 				val x = x0 + dx
@@ -77,11 +79,9 @@ class FlowerStripsFeature : Feature<FlowerStripsFeature.Config>(Config.CODEC) {
 				val fz = floor(gz / (fs * 0.7)).toInt()
 				val ux = gx - fx * fs
 				val uz = gz - fz * fs * 0.7
-				if (ux < 2 || uz < 2) {
-					continue
-				}
+				val lane = ux < 2 || uz < 2
 				val fh = LNoise.hash(seed, fx, fz)
-				if (LNoise.unit(fh) < cfg.fallow) {
+				if (!lane && (ditchesOnly || LNoise.unit(fh) < cfg.fallow)) {
 					continue
 				}
 				// The terrain shaper may have lowered the ground below the heightmap: walk down to the real surface.
@@ -96,6 +96,27 @@ class FlowerStripsFeature : Feature<FlowerStripsFeature.Config>(Config.CODEC) {
 				}
 				val here = level.getBiome(p)
 				if (if (key != null) !here.`is`(key) else here != biome) {
+					continue
+				}
+				if (lane) {
+					// Between the fields: a drainage canal along some boundaries (the whole line, so canals run long and
+					// straight), a trodden lane along the others.
+					val canal = if (ux < 2) LNoise.unit(seed xor 0xCA, fx, 1) < (if (ditchesOnly) 0.55 else 0.22)
+						else LNoise.unit(seed xor 0xCB, 2, fz) < (if (ditchesOnly) 0.4 else 0.14)
+					if (canal) {
+						var tight = true
+						for (d in net.minecraft.core.Direction.Plane.HORIZONTAL) {
+							val st = level.getBlockState(p.set(x + d.stepX, y - 1, z + d.stepZ))
+							if (!st.blocksMotion() && st.fluidState.isEmpty) tight = false
+						}
+						if (tight && level.getBlockState(p.set(x, y - 2, z)).blocksMotion()) {
+							level.setBlock(p.set(x, y - 1, z), Blocks.WATER.defaultBlockState(), 2)
+							placed = true
+						}
+					} else if (!ditchesOnly) {
+						level.setBlock(p.set(x, y - 1, z), Blocks.DIRT_PATH.defaultBlockState(), 2)
+						placed = true
+					}
 					continue
 				}
 				// Rows run along x or z (decided per field); one blank row between strips of different colour.

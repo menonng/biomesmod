@@ -41,6 +41,8 @@ All of this is a pure function of the seed and the cells, with caches. `SelfChec
 
 Ranges such as `[8, 20]` are drawn separately for each instance, so no two look alike.
 
+A landform with `min_distance: -1` (one per site) stands at the centre of about four sites in ten and off to one side in the rest, kept far enough in that it stays inside its site. Where a shape has an outer skirt (the flank of a caldera) the skirt fades into the ground that is actually there instead of ending in a step.
+
 ## Shapes
 
 | Shape | For | Key parameters |

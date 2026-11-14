@@ -12,7 +12,6 @@
   "placement": {
     "site": {
       "temperature": [
-        "temperate",
         "warm",
         "hot"
       ],
@@ -20,19 +19,25 @@
         560,
         700
       ],
-      "ramp": 280,
+      "ramp": 420,
       "terrain": "plateau",
       "relief": 0.08,
-      "weight": 1.0,
+      "weight": 3.5,
       "zone": [
+        "near_inland",
         "mid_inland",
         "far_inland"
       ],
       "humidity": [
         "arid",
-        "dry"
+        "dry",
+        "neutral"
       ],
-      "elevation_m": 2100
+      "elevation_m": 2100,
+      "erosion": [
+        -1.0,
+        0.1
+      ]
     }
   },
   "base": "minecraft:badlands",

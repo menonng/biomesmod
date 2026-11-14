@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "biomesmod:socotra_coast",
-    "biomesmod:wadi_rum"
+    "biomesmod:socotra_coast"
   ]
 }

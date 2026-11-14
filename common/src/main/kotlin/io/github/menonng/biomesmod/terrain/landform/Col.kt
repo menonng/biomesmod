@@ -11,6 +11,14 @@ internal class Col {
 	@JvmField
 	var top = NONE
 
+	/**
+	 * Share of the way from the existing ground up to [top] that a raised column actually goes (1 = all the way). The
+	 * outer skirt of a landform fades it to 0, so the form runs out into whatever ground is really there instead of
+	 * ending in a step.
+	 */
+	@JvmField
+	var blend = 1.0
+
 	/** Allow lowering the existing terrain to [top]. */
 	@JvmField
 	var carve = false

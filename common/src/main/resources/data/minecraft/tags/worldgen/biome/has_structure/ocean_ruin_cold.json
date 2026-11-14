@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "biomesmod:alaid_volcano",
     "biomesmod:krenitsyn_caldera",
     "biomesmod:ushishir_caldera"
   ]

@@ -1,17 +1,21 @@
 {
   "config": {
+    "base_y_range": [
+      -5,
+      2
+    ],
     "biomes": [
       "biomesmod:giants_causeway"
     ],
     "cell": 2.2,
-    "chance": 1.0,
+    "chance": 0.8,
     "length": [
       36,
       60
     ],
     "salt": 61323,
     "shape": "column_field",
-    "spacing": 40,
+    "spacing": 56,
     "width": [
       16,
       26

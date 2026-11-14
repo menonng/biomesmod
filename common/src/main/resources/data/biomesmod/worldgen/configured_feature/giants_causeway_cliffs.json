@@ -1,0 +1,84 @@
+{
+  "config": {
+    "biomes": [
+      "biomesmod:giants_causeway"
+    ],
+    "edge_blend": 24,
+    "height": 32,
+    "indent": 64,
+    "inland": 5,
+    "ledges": 3,
+    "mode": "sea_cliff",
+    "palette": {
+      "cliff_slope": 3,
+      "strata": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:basalt"
+            },
+            "thickness": 5
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_basalt"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:red_terracotta"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt"
+            },
+            "thickness": 6
+          },
+          {
+            "block": {
+              "Name": "minecraft:blackstone"
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_basalt"
+            },
+            "thickness": 3
+          },
+          {
+            "block": {
+              "Name": "minecraft:brown_terracotta"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt"
+            },
+            "thickness": 4
+          }
+        ]
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:grass_block"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:dirt"
+          },
+          "depth": 3
+        }
+      ]
+    },
+    "shelf": 16
+  },
+  "type": "biomesmod:terrain_shaper"
+}

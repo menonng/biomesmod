@@ -2,7 +2,7 @@
   "feature": "biomesmod:gotjawal_lava_domes",
   "placement": [
     {
-      "chance": 8,
+      "chance": 3,
       "type": "minecraft:rarity_filter"
     },
     {
