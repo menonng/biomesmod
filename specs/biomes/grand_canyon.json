@@ -52,7 +52,12 @@
         "biomesmod:grand_canyon_canyon"
       ],
       "vegetal_decoration": [
-        "biomesmod:grand_canyon_junipers"
+        "biomesmod:grand_canyon_junipers",
+        "biomesmod:grand_canyon_hoodoos",
+        "biomesmod:grand_canyon_boulders",
+        "biomesmod:grand_canyon_ledges",
+        "biomesmod:grand_canyon_pinyon",
+        "biomesmod:grand_canyon_sagebrush"
       ]
     },
     "remove": [

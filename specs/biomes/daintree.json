@@ -47,7 +47,11 @@
   "features": {
     "mod": {
       "vegetal_decoration": [
-        "biomesmod:daintree_canopy"
+        "biomesmod:daintree_canopy",
+        "biomesmod:daintree_palms",
+        "biomesmod:daintree_understory",
+        "biomesmod:daintree_fig",
+        "biomesmod:daintree_boulders"
       ]
     },
     "remove": [

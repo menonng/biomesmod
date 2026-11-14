@@ -94,7 +94,11 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
       "minecraft:vines",
-      "minecraft:patch_melon"
+      "minecraft:patch_melon",
+      "biomesmod:iguazu_falls_palms",
+      "biomesmod:iguazu_falls_understory",
+      "biomesmod:iguazu_falls_lapacho",
+      "biomesmod:iguazu_falls_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -55,6 +55,11 @@
     "mod": {
       "local_modifications": [
         "biomesmod:bromo_tengger_caldera"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:bromo_tengger_casuarina",
+        "biomesmod:bromo_tengger_scrub",
+        "biomesmod:bromo_tengger_bombs"
       ]
     },
     "remove": [

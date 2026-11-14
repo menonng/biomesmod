@@ -1,0 +1,18 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:sand"
+      },
+      {
+        "Name": "minecraft:sandstone"
+      }
+    ],
+    "kind": "mound",
+    "size": [
+      2,
+      4
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

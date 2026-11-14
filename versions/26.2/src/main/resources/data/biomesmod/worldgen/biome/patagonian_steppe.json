@@ -78,7 +78,11 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "biomesmod:patagonian_steppe_tussock",
-      "biomesmod:patagonian_steppe_cairns"
+      "biomesmod:patagonian_steppe_cairns",
+      "biomesmod:patagonian_steppe_calafate",
+      "biomesmod:patagonian_steppe_flag_nire",
+      "biomesmod:patagonian_steppe_boulders",
+      "biomesmod:patagonian_steppe_ledges"
     ],
     [
       "minecraft:freeze_top_layer"

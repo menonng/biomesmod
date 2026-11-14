@@ -32,7 +32,9 @@
         "biomesmod:coast_archipelago_islands"
       ],
       "vegetal_decoration": [
-        "biomesmod:coast_archipelago_trees"
+        "biomesmod:coast_archipelago_trees",
+        "biomesmod:coast_archipelago_boulders",
+        "biomesmod:coast_archipelago_wind_pine"
       ]
     }
   },

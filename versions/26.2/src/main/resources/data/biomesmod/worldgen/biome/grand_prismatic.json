@@ -84,7 +84,10 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:patch_berry_common",
-      "biomesmod:grand_prismatic_pines"
+      "biomesmod:grand_prismatic_pines",
+      "biomesmod:grand_prismatic_lodgepole",
+      "biomesmod:grand_prismatic_young_pine",
+      "biomesmod:grand_prismatic_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

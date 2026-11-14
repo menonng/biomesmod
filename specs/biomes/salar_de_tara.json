@@ -58,7 +58,9 @@
         "biomesmod:salar_de_tara_monjes"
       ],
       "vegetal_decoration": [
-        "biomesmod:salar_de_tara_tussock"
+        "biomesmod:salar_de_tara_tussock",
+        "biomesmod:salar_de_tara_bombs",
+        "biomesmod:salar_de_tara_penitent_rocks"
       ]
     },
     "remove": [

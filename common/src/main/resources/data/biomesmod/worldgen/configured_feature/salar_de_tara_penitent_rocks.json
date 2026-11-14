@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:tuff"
+      },
+      {
+        "Name": "minecraft:andesite"
+      },
+      {
+        "Name": "minecraft:granite"
+      }
+    ],
+    "kind": "spire",
+    "size": [
+      1.2,
+      2.6
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

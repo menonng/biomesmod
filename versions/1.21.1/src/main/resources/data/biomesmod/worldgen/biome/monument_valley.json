@@ -87,7 +87,12 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane_badlands",
       "minecraft:patch_pumpkin",
-      "minecraft:patch_cactus_decorated"
+      "minecraft:patch_cactus_decorated",
+      "biomesmod:monument_valley_hoodoos",
+      "biomesmod:monument_valley_boulders",
+      "biomesmod:monument_valley_arches",
+      "biomesmod:monument_valley_juniper",
+      "biomesmod:monument_valley_sagebrush"
     ],
     [
       "minecraft:freeze_top_layer"

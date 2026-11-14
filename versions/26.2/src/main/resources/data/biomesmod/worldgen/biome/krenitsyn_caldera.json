@@ -96,7 +96,9 @@
       "minecraft:seagrass_cold",
       "minecraft:patch_berry_common",
       "minecraft:kelp_cold",
-      "biomesmod:krenitsyn_caldera_shrubs"
+      "biomesmod:krenitsyn_caldera_shrubs",
+      "biomesmod:krenitsyn_caldera_bombs",
+      "biomesmod:krenitsyn_caldera_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

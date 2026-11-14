@@ -62,7 +62,11 @@
       ],
       "vegetal_decoration": [
         "biomesmod:orkhon_steppe_feather_grass",
-        "biomesmod:orkhon_steppe_gers"
+        "biomesmod:orkhon_steppe_gers",
+        "biomesmod:orkhon_steppe_larch",
+        "biomesmod:orkhon_steppe_caragana",
+        "biomesmod:orkhon_steppe_boulders",
+        "biomesmod:orkhon_steppe_tors"
       ]
     }
   },

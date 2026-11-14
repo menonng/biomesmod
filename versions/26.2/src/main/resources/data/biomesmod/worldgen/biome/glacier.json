@@ -85,7 +85,10 @@
       "minecraft:spring_lava_frozen"
     ],
     [
-      "minecraft:glow_lichen"
+      "minecraft:glow_lichen",
+      "biomesmod:glacier_erratics",
+      "biomesmod:glacier_seracs",
+      "biomesmod:glacier_hummocks"
     ],
     [
       "minecraft:freeze_top_layer"

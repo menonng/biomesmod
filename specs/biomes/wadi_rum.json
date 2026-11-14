@@ -54,7 +54,12 @@
         "biomesmod:wadi_rum_massifs"
       ],
       "vegetal_decoration": [
-        "biomesmod:wadi_rum_tents"
+        "biomesmod:wadi_rum_tents",
+        "biomesmod:wadi_rum_acacia",
+        "biomesmod:wadi_rum_broom",
+        "biomesmod:wadi_rum_boulders",
+        "biomesmod:wadi_rum_arches",
+        "biomesmod:wadi_rum_mushrooms"
       ]
     },
     "remove": [

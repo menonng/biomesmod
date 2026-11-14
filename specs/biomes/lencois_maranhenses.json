@@ -48,6 +48,10 @@
     "mod": {
       "raw_generation": [
         "biomesmod:lencois_maranhenses_dunes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:lencois_maranhenses_restinga",
+        "biomesmod:lencois_maranhenses_driftwood"
       ]
     },
     "remove": [

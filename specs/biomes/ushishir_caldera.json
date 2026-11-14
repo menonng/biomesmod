@@ -50,6 +50,10 @@
     "mod": {
       "local_modifications": [
         "biomesmod:ushishir_caldera_caldera"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:ushishir_caldera_bombs",
+        "biomesmod:ushishir_caldera_wind_birch"
       ]
     },
     "remove": [

@@ -81,7 +81,11 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:patch_pumpkin",
+      "biomesmod:pamukkale_cypress",
+      "biomesmod:pamukkale_olive",
+      "biomesmod:pamukkale_maquis",
+      "biomesmod:pamukkale_tufa"
     ],
     [
       "minecraft:freeze_top_layer"

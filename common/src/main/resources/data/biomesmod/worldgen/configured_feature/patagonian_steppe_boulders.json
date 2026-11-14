@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:basalt"
+      },
+      {
+        "Name": "minecraft:stone"
+      },
+      {
+        "Name": "minecraft:andesite"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1,
+      2.6
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

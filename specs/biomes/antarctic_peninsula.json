@@ -37,7 +37,10 @@
         "biomesmod:antarctic_peninsula_glaciers"
       ],
       "vegetal_decoration": [
-        "biomesmod:antarctic_peninsula_station"
+        "biomesmod:antarctic_peninsula_station",
+        "biomesmod:antarctic_peninsula_erratics",
+        "biomesmod:antarctic_peninsula_seracs",
+        "biomesmod:antarctic_peninsula_hummocks"
       ]
     },
     "remove": [

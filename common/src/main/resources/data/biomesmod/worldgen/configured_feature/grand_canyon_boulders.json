@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:red_sandstone"
+      },
+      {
+        "Name": "minecraft:terracotta"
+      },
+      {
+        "Name": "minecraft:sandstone"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1.2,
+      3.2
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

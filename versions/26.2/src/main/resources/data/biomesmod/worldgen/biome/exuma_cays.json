@@ -93,7 +93,10 @@
       "minecraft:warm_ocean_vegetation",
       "minecraft:seagrass_warm",
       "minecraft:sea_pickle",
-      "biomesmod:exuma_cays_palms"
+      "biomesmod:exuma_cays_palms",
+      "biomesmod:exuma_cays_sea_grape",
+      "biomesmod:exuma_cays_driftwood",
+      "biomesmod:exuma_cays_ironshore"
     ],
     [
       "minecraft:freeze_top_layer"

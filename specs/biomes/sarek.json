@@ -38,7 +38,12 @@
         "biomesmod:sarek_valleys"
       ],
       "vegetal_decoration": [
-        "biomesmod:sarek_cairns"
+        "biomesmod:sarek_cairns",
+        "biomesmod:sarek_boulders",
+        "biomesmod:sarek_ledges",
+        "biomesmod:sarek_fjell_birch",
+        "biomesmod:sarek_spruce",
+        "biomesmod:sarek_willow"
       ]
     },
     "remove": [

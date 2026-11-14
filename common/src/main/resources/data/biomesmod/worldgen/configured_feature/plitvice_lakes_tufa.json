@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:calcite"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      },
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      }
+    ],
+    "kind": "mound",
+    "size": [
+      1.5,
+      3.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

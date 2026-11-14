@@ -38,7 +38,10 @@
         "biomesmod:franz_josef_land_cap"
       ],
       "vegetal_decoration": [
-        "biomesmod:franz_josef_land_station"
+        "biomesmod:franz_josef_land_station",
+        "biomesmod:franz_josef_land_erratics",
+        "biomesmod:franz_josef_land_seracs",
+        "biomesmod:franz_josef_land_hummocks"
       ]
     },
     "remove": [

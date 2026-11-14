@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:wild_rock",
+    "config": {
+      "kind": "mound",
+      "blocks": [
+        {
+          "Name": "minecraft:calcite"
+        },
+        {
+          "Name": "minecraft:moss_block"
+        },
+        {
+          "Name": "minecraft:mossy_cobblestone"
+        }
+      ],
+      "size": [
+        1.5,
+        3.5
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 8
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -72,7 +72,10 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "biomesmod:alkefjellet_rockfall",
+      "biomesmod:alkefjellet_driftwood"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

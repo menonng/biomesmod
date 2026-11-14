@@ -83,7 +83,9 @@
     ],
     [
       "minecraft:patch_dead_bush",
-      "biomesmod:salar_de_tara_tussock"
+      "biomesmod:salar_de_tara_tussock",
+      "biomesmod:salar_de_tara_bombs",
+      "biomesmod:salar_de_tara_penitent_rocks"
     ],
     [
       "minecraft:freeze_top_layer"

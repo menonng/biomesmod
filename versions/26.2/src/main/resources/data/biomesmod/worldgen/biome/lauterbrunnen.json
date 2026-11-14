@@ -85,7 +85,12 @@
       "minecraft:patch_tall_grass",
       "minecraft:wildflowers_meadow",
       "minecraft:patch_berry_common",
-      "biomesmod:lauterbrunnen_firs"
+      "biomesmod:lauterbrunnen_firs",
+      "biomesmod:lauterbrunnen_boulders",
+      "biomesmod:lauterbrunnen_ledges",
+      "biomesmod:lauterbrunnen_spruce",
+      "biomesmod:lauterbrunnen_maple",
+      "biomesmod:lauterbrunnen_alder"
     ],
     [
       "minecraft:freeze_top_layer"

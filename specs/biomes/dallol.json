@@ -57,6 +57,10 @@
       ],
       "local_modifications": [
         "biomesmod:dallol_pools"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:dallol_salt_pillars",
+        "biomesmod:dallol_salt_domes"
       ]
     },
     "remove": [

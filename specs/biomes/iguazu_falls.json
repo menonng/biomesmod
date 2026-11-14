@@ -57,6 +57,12 @@
     "mod": {
       "local_modifications": [
         "biomesmod:iguazu_falls_falls"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:iguazu_falls_palms",
+        "biomesmod:iguazu_falls_understory",
+        "biomesmod:iguazu_falls_lapacho",
+        "biomesmod:iguazu_falls_boulders"
       ]
     },
     "remove": [

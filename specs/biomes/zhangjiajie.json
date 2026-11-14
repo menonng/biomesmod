@@ -64,7 +64,10 @@
         "biomesmod:zhangjiajie_pillars"
       ],
       "vegetal_decoration": [
-        "biomesmod:zhangjiajie_forest"
+        "biomesmod:zhangjiajie_forest",
+        "biomesmod:zhangjiajie_pine",
+        "biomesmod:zhangjiajie_fir",
+        "biomesmod:zhangjiajie_boulders"
       ]
     },
     "add": {

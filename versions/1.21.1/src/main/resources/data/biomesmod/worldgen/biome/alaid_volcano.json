@@ -80,7 +80,9 @@
       "minecraft:patch_pumpkin",
       "minecraft:seagrass_cold",
       "minecraft:seagrass_simple",
-      "minecraft:kelp_cold"
+      "minecraft:kelp_cold",
+      "biomesmod:alaid_volcano_bombs",
+      "biomesmod:alaid_volcano_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

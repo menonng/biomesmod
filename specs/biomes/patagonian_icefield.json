@@ -41,6 +41,11 @@
     "mod": {
       "raw_generation": [
         "biomesmod:patagonian_icefield_ice"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:patagonian_icefield_erratics",
+        "biomesmod:patagonian_icefield_seracs",
+        "biomesmod:patagonian_icefield_hummocks"
       ]
     },
     "remove": [

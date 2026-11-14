@@ -40,6 +40,11 @@
     "mod": {
       "raw_generation": [
         "biomesmod:denali_massif_glaciers"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:denali_massif_erratics",
+        "biomesmod:denali_massif_seracs",
+        "biomesmod:denali_massif_hummocks"
       ]
     },
     "remove": [

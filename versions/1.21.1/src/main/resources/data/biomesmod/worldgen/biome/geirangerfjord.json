@@ -83,7 +83,12 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "minecraft:patch_berry_common"
+      "minecraft:patch_berry_common",
+      "biomesmod:geirangerfjord_boulders",
+      "biomesmod:geirangerfjord_ledges",
+      "biomesmod:geirangerfjord_spruce",
+      "biomesmod:geirangerfjord_birch",
+      "biomesmod:geirangerfjord_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

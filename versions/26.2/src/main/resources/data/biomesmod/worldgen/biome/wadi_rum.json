@@ -76,7 +76,12 @@
     ],
     [
       "minecraft:patch_dead_bush",
-      "biomesmod:wadi_rum_tents"
+      "biomesmod:wadi_rum_tents",
+      "biomesmod:wadi_rum_acacia",
+      "biomesmod:wadi_rum_broom",
+      "biomesmod:wadi_rum_boulders",
+      "biomesmod:wadi_rum_arches",
+      "biomesmod:wadi_rum_mushrooms"
     ],
     [
       "minecraft:freeze_top_layer"

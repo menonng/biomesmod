@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:packed_ice"
+      },
+      {
+        "Name": "minecraft:blue_ice"
+      },
+      {
+        "Name": "minecraft:snow_block"
+      }
+    ],
+    "kind": "spire",
+    "size": [
+      1.5,
+      3.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

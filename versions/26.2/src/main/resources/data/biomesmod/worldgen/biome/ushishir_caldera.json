@@ -99,7 +99,9 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:seagrass_normal",
-      "minecraft:kelp_cold"
+      "minecraft:kelp_cold",
+      "biomesmod:ushishir_caldera_bombs",
+      "biomesmod:ushishir_caldera_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

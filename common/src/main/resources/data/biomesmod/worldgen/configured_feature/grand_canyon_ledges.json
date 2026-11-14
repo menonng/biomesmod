@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:sandstone"
+      },
+      {
+        "Name": "minecraft:red_sandstone"
+      },
+      {
+        "Name": "minecraft:terracotta"
+      }
+    ],
+    "kind": "outcrop",
+    "size": [
+      1.5,
+      3.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

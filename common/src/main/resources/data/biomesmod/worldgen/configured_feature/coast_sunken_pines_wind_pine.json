@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      3,
+      6
+    ],
+    "leaves": {
+      "Name": "minecraft:spruce_leaves"
+    },
+    "log": {
+      "Name": "minecraft:spruce_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "krummholz"
+  },
+  "type": "biomesmod:wild_tree"
+}

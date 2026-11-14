@@ -59,7 +59,12 @@
       ],
       "vegetal_decoration": [
         "biomesmod:moraine_lake_conifers",
-        "biomesmod:moraine_lake_cairns"
+        "biomesmod:moraine_lake_cairns",
+        "biomesmod:moraine_lake_boulders",
+        "biomesmod:moraine_lake_ledges",
+        "biomesmod:moraine_lake_fir",
+        "biomesmod:moraine_lake_lodgepole",
+        "biomesmod:moraine_lake_timberline"
       ]
     },
     "remove": [

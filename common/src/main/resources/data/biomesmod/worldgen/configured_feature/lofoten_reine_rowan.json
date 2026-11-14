@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      3,
+      5
+    ],
+    "leaves": {
+      "Name": "minecraft:birch_leaves"
+    },
+    "log": {
+      "Name": "minecraft:birch_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "broadleaf"
+  },
+  "type": "biomesmod:wild_tree"
+}

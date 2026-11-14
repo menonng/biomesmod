@@ -36,6 +36,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:ross_ice_shelf_shelf"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:ross_ice_shelf_hummocks"
       ]
     },
     "remove": [

@@ -56,7 +56,10 @@
         "biomesmod:devils_tower_tower"
       ],
       "vegetal_decoration": [
-        "biomesmod:devils_tower_pines"
+        "biomesmod:devils_tower_pines",
+        "biomesmod:devils_tower_cottonwood",
+        "biomesmod:devils_tower_sagebrush",
+        "biomesmod:devils_tower_talus"
       ]
     },
     "add": {

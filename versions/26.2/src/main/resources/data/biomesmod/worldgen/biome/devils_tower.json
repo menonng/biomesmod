@@ -75,7 +75,10 @@
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
-      "biomesmod:devils_tower_pines"
+      "biomesmod:devils_tower_pines",
+      "biomesmod:devils_tower_cottonwood",
+      "biomesmod:devils_tower_sagebrush",
+      "biomesmod:devils_tower_talus"
     ],
     [
       "minecraft:freeze_top_layer"

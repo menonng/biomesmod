@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:granite"
+      },
+      {
+        "Name": "minecraft:stone"
+      },
+      {
+        "Name": "minecraft:andesite"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1,
+      2.8
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

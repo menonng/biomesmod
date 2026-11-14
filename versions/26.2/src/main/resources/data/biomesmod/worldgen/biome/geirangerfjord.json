@@ -78,7 +78,12 @@
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
-      "minecraft:patch_berry_common"
+      "minecraft:patch_berry_common",
+      "biomesmod:geirangerfjord_boulders",
+      "biomesmod:geirangerfjord_ledges",
+      "biomesmod:geirangerfjord_spruce",
+      "biomesmod:geirangerfjord_birch",
+      "biomesmod:geirangerfjord_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

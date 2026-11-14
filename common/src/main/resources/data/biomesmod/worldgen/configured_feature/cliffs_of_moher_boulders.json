@@ -1,0 +1,24 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:stone"
+      },
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      },
+      {
+        "Name": "minecraft:andesite"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1,
+      2.4
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

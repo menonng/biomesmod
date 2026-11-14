@@ -36,7 +36,10 @@
       ],
       "vegetal_decoration": [
         "biomesmod:socotra_highlands_dragon_blood",
-        "biomesmod:socotra_desert_roses"
+        "biomesmod:socotra_desert_roses",
+        "biomesmod:socotra_highlands_boulders",
+        "biomesmod:socotra_highlands_croton",
+        "biomesmod:socotra_highlands_ledges"
       ]
     },
     "add": {

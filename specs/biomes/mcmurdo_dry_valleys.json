@@ -48,7 +48,9 @@
         "biomesmod:mcmurdo_dry_valleys_valley"
       ],
       "vegetal_decoration": [
-        "biomesmod:mcmurdo_dry_valleys_station"
+        "biomesmod:mcmurdo_dry_valleys_station",
+        "biomesmod:mcmurdo_dry_valleys_ventifacts",
+        "biomesmod:mcmurdo_dry_valleys_ledges"
       ]
     },
     "remove": [

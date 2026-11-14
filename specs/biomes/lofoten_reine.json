@@ -49,7 +49,10 @@
         "biomesmod:lofoten_reine_falls"
       ],
       "vegetal_decoration": [
-        "biomesmod:lofoten_reine_cairns"
+        "biomesmod:lofoten_reine_cairns",
+        "biomesmod:lofoten_reine_boulders",
+        "biomesmod:lofoten_reine_wind_birch",
+        "biomesmod:lofoten_reine_rowan"
       ]
     },
     "remove": [

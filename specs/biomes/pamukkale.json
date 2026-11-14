@@ -48,6 +48,12 @@
     "mod": {
       "raw_generation": [
         "biomesmod:pamukkale_terraces"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:pamukkale_cypress",
+        "biomesmod:pamukkale_olive",
+        "biomesmod:pamukkale_maquis",
+        "biomesmod:pamukkale_tufa"
       ]
     },
     "remove": [

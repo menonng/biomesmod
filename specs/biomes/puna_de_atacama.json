@@ -61,7 +61,9 @@
       "vegetal_decoration": [
         "biomesmod:puna_de_atacama_tussock",
         "biomesmod:puna_de_atacama_yareta",
-        "biomesmod:puna_de_atacama_cairns"
+        "biomesmod:puna_de_atacama_cairns",
+        "biomesmod:puna_de_atacama_bombs",
+        "biomesmod:puna_de_atacama_penitent_rocks"
       ]
     },
     "remove": [

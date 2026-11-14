@@ -51,6 +51,10 @@
       ],
       "local_modifications": [
         "biomesmod:alkefjellet_stacks"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:alkefjellet_rockfall",
+        "biomesmod:alkefjellet_driftwood"
       ]
     },
     "remove": [

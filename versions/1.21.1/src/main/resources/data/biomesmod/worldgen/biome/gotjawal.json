@@ -91,7 +91,11 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "biomesmod:gotjawal_trees"
+      "biomesmod:gotjawal_trees",
+      "biomesmod:gotjawal_evergreen_oak",
+      "biomesmod:gotjawal_camellia",
+      "biomesmod:gotjawal_lava_blocks",
+      "biomesmod:gotjawal_lava_domes"
     ],
     [
       "minecraft:freeze_top_layer"

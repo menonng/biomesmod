@@ -52,7 +52,9 @@
         "biomesmod:krenitsyn_caldera_caldera"
       ],
       "vegetal_decoration": [
-        "biomesmod:krenitsyn_caldera_shrubs"
+        "biomesmod:krenitsyn_caldera_shrubs",
+        "biomesmod:krenitsyn_caldera_bombs",
+        "biomesmod:krenitsyn_caldera_wind_birch"
       ]
     },
     "remove": [

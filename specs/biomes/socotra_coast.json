@@ -34,7 +34,9 @@
     "mod": {
       "vegetal_decoration": [
         "biomesmod:socotra_coast_bottle_trees",
-        "biomesmod:socotra_desert_roses"
+        "biomesmod:socotra_desert_roses",
+        "biomesmod:socotra_coast_boulders",
+        "biomesmod:socotra_coast_croton"
       ]
     },
     "add": {

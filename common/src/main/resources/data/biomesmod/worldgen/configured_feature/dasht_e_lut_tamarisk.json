@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      1,
+      2
+    ],
+    "leaves": {
+      "Name": "minecraft:azalea_leaves"
+    },
+    "log": {
+      "Name": "minecraft:acacia_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "shrub"
+  },
+  "type": "biomesmod:wild_tree"
+}

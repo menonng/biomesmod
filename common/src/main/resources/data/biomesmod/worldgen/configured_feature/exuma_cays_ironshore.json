@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:calcite"
+      },
+      {
+        "Name": "minecraft:diorite"
+      },
+      {
+        "Name": "minecraft:sandstone"
+      }
+    ],
+    "kind": "outcrop",
+    "size": [
+      1,
+      2.4
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

@@ -1,0 +1,18 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:snow_block"
+      },
+      {
+        "Name": "minecraft:packed_ice"
+      }
+    ],
+    "kind": "mound",
+    "size": [
+      2,
+      5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

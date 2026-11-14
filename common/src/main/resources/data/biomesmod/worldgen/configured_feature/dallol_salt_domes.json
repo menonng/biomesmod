@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "biomesmod:salt_crust"
+      },
+      {
+        "Name": "minecraft:calcite"
+      },
+      {
+        "Name": "biomesmod:sulfur_crust"
+      }
+    ],
+    "kind": "mound",
+    "size": [
+      1.5,
+      3.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

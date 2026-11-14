@@ -96,7 +96,9 @@
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:seagrass_warm",
       "minecraft:kelp_warm",
-      "biomesmod:coast_archipelago_trees"
+      "biomesmod:coast_archipelago_trees",
+      "biomesmod:coast_archipelago_boulders",
+      "biomesmod:coast_archipelago_wind_pine"
     ],
     [
       "minecraft:freeze_top_layer"

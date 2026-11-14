@@ -43,6 +43,10 @@
     "mod": {
       "local_modifications": [
         "biomesmod:alaid_volcano_cone"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:alaid_volcano_bombs",
+        "biomesmod:alaid_volcano_wind_birch"
       ]
     },
     "remove": [

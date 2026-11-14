@@ -70,7 +70,10 @@
       "minecraft:flower_default",
       "minecraft:patch_grass_taiga",
       "minecraft:patch_berry_common",
-      "biomesmod:coast_sunken_pines_trees"
+      "biomesmod:coast_sunken_pines_trees",
+      "biomesmod:coast_sunken_pines_boulders",
+      "biomesmod:coast_sunken_pines_wind_pine",
+      "biomesmod:coast_sunken_pines_driftwood"
     ],
     [
       "minecraft:freeze_top_layer"

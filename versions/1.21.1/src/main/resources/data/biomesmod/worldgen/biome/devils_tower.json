@@ -81,7 +81,10 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "biomesmod:devils_tower_pines"
+      "biomesmod:devils_tower_pines",
+      "biomesmod:devils_tower_cottonwood",
+      "biomesmod:devils_tower_sagebrush",
+      "biomesmod:devils_tower_talus"
     ],
     [
       "minecraft:freeze_top_layer"

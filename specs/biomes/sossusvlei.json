@@ -55,7 +55,9 @@
       ],
       "vegetal_decoration": [
         "biomesmod:sossusvlei_dead_trees",
-        "biomesmod:sossusvlei_tents"
+        "biomesmod:sossusvlei_tents",
+        "biomesmod:sossusvlei_camel_thorn",
+        "biomesmod:sossusvlei_nara"
       ]
     },
     "remove": [

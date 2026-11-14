@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:granite"
+      },
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1.2,
+      3
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

@@ -1,0 +1,24 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:red_sandstone"
+      },
+      {
+        "Name": "minecraft:smooth_red_sandstone"
+      },
+      {
+        "Name": "minecraft:terracotta"
+      },
+      {
+        "Name": "minecraft:orange_terracotta"
+      }
+    ],
+    "kind": "spire",
+    "size": [
+      1.5,
+      3.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

@@ -40,7 +40,10 @@
         "biomesmod:exuma_cays_cays"
       ],
       "vegetal_decoration": [
-        "biomesmod:exuma_cays_palms"
+        "biomesmod:exuma_cays_palms",
+        "biomesmod:exuma_cays_sea_grape",
+        "biomesmod:exuma_cays_driftwood",
+        "biomesmod:exuma_cays_ironshore"
       ]
     },
     "remove": [

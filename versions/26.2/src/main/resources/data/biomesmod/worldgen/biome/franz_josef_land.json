@@ -64,7 +64,10 @@
       "minecraft:spring_lava"
     ],
     [
-      "biomesmod:franz_josef_land_station"
+      "biomesmod:franz_josef_land_station",
+      "biomesmod:franz_josef_land_erratics",
+      "biomesmod:franz_josef_land_seracs",
+      "biomesmod:franz_josef_land_hummocks"
     ],
     [
       "minecraft:freeze_top_layer"

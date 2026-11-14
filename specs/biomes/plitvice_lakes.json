@@ -58,7 +58,12 @@
         "biomesmod:plitvice_lakes_lakes"
       ],
       "vegetal_decoration": [
-        "biomesmod:plitvice_lakes_trees"
+        "biomesmod:plitvice_lakes_trees",
+        "biomesmod:plitvice_lakes_beech",
+        "biomesmod:plitvice_lakes_fir",
+        "biomesmod:plitvice_lakes_hazel",
+        "biomesmod:plitvice_lakes_tufa",
+        "biomesmod:plitvice_lakes_boulders"
       ]
     },
     "add": {

@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      3,
+      5
+    ],
+    "leaves": {
+      "Name": "minecraft:azalea_leaves"
+    },
+    "log": {
+      "Name": "minecraft:oak_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "broadleaf"
+  },
+  "type": "biomesmod:wild_tree"
+}

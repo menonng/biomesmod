@@ -49,6 +49,13 @@
     "mod": {
       "local_modifications": [
         "biomesmod:monument_valley_buttes"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:monument_valley_hoodoos",
+        "biomesmod:monument_valley_boulders",
+        "biomesmod:monument_valley_arches",
+        "biomesmod:monument_valley_juniper",
+        "biomesmod:monument_valley_sagebrush"
       ]
     },
     "remove": [

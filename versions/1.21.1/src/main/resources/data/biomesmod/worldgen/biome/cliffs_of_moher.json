@@ -82,7 +82,11 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "biomesmod:cliffs_of_moher_cairns"
+      "biomesmod:cliffs_of_moher_cairns",
+      "biomesmod:cliffs_of_moher_ledges",
+      "biomesmod:cliffs_of_moher_boulders",
+      "biomesmod:cliffs_of_moher_gorse",
+      "biomesmod:cliffs_of_moher_thorn"
     ],
     [
       "minecraft:freeze_top_layer"

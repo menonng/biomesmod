@@ -74,7 +74,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "biomesmod:lake_gairdner_salt_domes"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

@@ -76,7 +76,11 @@
       "minecraft:flower_meadow",
       "minecraft:patch_tall_grass",
       "minecraft:patch_berry_common",
-      "biomesmod:tre_cime_cairns"
+      "biomesmod:tre_cime_cairns",
+      "biomesmod:tre_cime_boulders",
+      "biomesmod:tre_cime_ledges",
+      "biomesmod:tre_cime_mugo_pine",
+      "biomesmod:tre_cime_larch"
     ],
     [
       "minecraft:freeze_top_layer"

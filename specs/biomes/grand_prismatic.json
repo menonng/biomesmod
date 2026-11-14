@@ -58,7 +58,10 @@
         "biomesmod:grand_prismatic_geysers"
       ],
       "vegetal_decoration": [
-        "biomesmod:grand_prismatic_pines"
+        "biomesmod:grand_prismatic_pines",
+        "biomesmod:grand_prismatic_lodgepole",
+        "biomesmod:grand_prismatic_young_pine",
+        "biomesmod:grand_prismatic_boulders"
       ]
     },
     "add": {

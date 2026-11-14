@@ -1,0 +1,19 @@
+{
+  "feature": "biomesmod:lake_gairdner_salt_domes",
+  "placement": [
+    {
+      "chance": 100,
+      "type": "minecraft:rarity_filter"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -89,7 +89,12 @@
       "minecraft:patch_sugar_cane_badlands",
       "minecraft:patch_pumpkin",
       "minecraft:patch_cactus_decorated",
-      "biomesmod:grand_canyon_junipers"
+      "biomesmod:grand_canyon_junipers",
+      "biomesmod:grand_canyon_hoodoos",
+      "biomesmod:grand_canyon_boulders",
+      "biomesmod:grand_canyon_ledges",
+      "biomesmod:grand_canyon_pinyon",
+      "biomesmod:grand_canyon_sagebrush"
     ],
     [
       "minecraft:freeze_top_layer"

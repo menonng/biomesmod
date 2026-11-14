@@ -76,7 +76,11 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_firefly_bush_near_water"
+      "minecraft:patch_firefly_bush_near_water",
+      "biomesmod:pamukkale_cypress",
+      "biomesmod:pamukkale_olive",
+      "biomesmod:pamukkale_maquis",
+      "biomesmod:pamukkale_tufa"
     ],
     [
       "minecraft:freeze_top_layer"

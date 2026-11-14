@@ -40,7 +40,11 @@
         "biomesmod:tre_cime_spires"
       ],
       "vegetal_decoration": [
-        "biomesmod:tre_cime_cairns"
+        "biomesmod:tre_cime_cairns",
+        "biomesmod:tre_cime_boulders",
+        "biomesmod:tre_cime_ledges",
+        "biomesmod:tre_cime_mugo_pine",
+        "biomesmod:tre_cime_larch"
       ]
     },
     "remove": [

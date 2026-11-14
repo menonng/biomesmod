@@ -51,6 +51,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:lake_gairdner_salt"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:lake_gairdner_salt_domes"
       ]
     },
     "remove": [

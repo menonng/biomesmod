@@ -49,7 +49,12 @@
         "biomesmod:lauterbrunnen_trough"
       ],
       "vegetal_decoration": [
-        "biomesmod:lauterbrunnen_firs"
+        "biomesmod:lauterbrunnen_firs",
+        "biomesmod:lauterbrunnen_boulders",
+        "biomesmod:lauterbrunnen_ledges",
+        "biomesmod:lauterbrunnen_spruce",
+        "biomesmod:lauterbrunnen_maple",
+        "biomesmod:lauterbrunnen_alder"
       ],
       "fluid_springs": [
         "biomesmod:lauterbrunnen_falls"

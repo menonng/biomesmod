@@ -61,7 +61,11 @@
       ],
       "vegetal_decoration": [
         "biomesmod:everglades_hammocks",
-        "biomesmod:everglades_stilt_huts"
+        "biomesmod:everglades_stilt_huts",
+        "biomesmod:everglades_cabbage_palm",
+        "biomesmod:everglades_cypress",
+        "biomesmod:everglades_wax_myrtle",
+        "biomesmod:everglades_driftwood"
       ]
     }
   },

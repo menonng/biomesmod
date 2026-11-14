@@ -91,7 +91,9 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:seagrass_cold",
-      "minecraft:kelp_cold"
+      "minecraft:kelp_cold",
+      "biomesmod:alaid_volcano_bombs",
+      "biomesmod:alaid_volcano_wind_birch"
     ],
     [
       "minecraft:freeze_top_layer"

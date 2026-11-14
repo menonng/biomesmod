@@ -68,7 +68,12 @@
     },
     "mod": {
       "vegetal_decoration": [
-        "biomesmod:magellanic_fjords_beech"
+        "biomesmod:magellanic_fjords_beech",
+        "biomesmod:magellanic_fjords_boulders",
+        "biomesmod:magellanic_fjords_ledges",
+        "biomesmod:magellanic_fjords_flag_beech",
+        "biomesmod:magellanic_fjords_lenga",
+        "biomesmod:magellanic_fjords_canelo"
       ],
       "fluid_springs": [
         "biomesmod:magellanic_fjords_falls"

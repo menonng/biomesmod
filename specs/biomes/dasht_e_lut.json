@@ -54,7 +54,10 @@
         "biomesmod:dasht_e_lut_kaluts"
       ],
       "vegetal_decoration": [
-        "biomesmod:dasht_e_lut_tents"
+        "biomesmod:dasht_e_lut_tents",
+        "biomesmod:dasht_e_lut_ventifacts",
+        "biomesmod:dasht_e_lut_nebkhas",
+        "biomesmod:dasht_e_lut_tamarisk"
       ]
     },
     "remove": [

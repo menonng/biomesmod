@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:wild_rock",
+    "config": {
+      "kind": "boulder",
+      "blocks": [
+        {
+          "Name": "minecraft:basalt"
+        },
+        {
+          "Name": "minecraft:stone"
+        },
+        {
+          "Name": "minecraft:andesite"
+        }
+      ],
+      "size": [
+        1.2,
+        3
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 5
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

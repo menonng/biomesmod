@@ -46,6 +46,9 @@
     "mod": {
       "raw_generation": [
         "biomesmod:lake_vostok_plateau_plateau"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:lake_vostok_plateau_hummocks"
       ]
     },
     "remove": [

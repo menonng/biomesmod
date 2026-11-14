@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      3,
+      6
+    ],
+    "leaves": {
+      "Name": "minecraft:acacia_leaves"
+    },
+    "log": {
+      "Name": "minecraft:acacia_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "flat_top"
+  },
+  "type": "biomesmod:wild_tree"
+}

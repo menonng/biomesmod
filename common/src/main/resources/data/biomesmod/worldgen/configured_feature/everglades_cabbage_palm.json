@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      4,
+      8
+    ],
+    "leaves": {
+      "Name": "minecraft:jungle_leaves"
+    },
+    "log": {
+      "Name": "minecraft:oak_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "palm"
+  },
+  "type": "biomesmod:wild_tree"
+}

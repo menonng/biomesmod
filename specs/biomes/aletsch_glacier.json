@@ -36,6 +36,11 @@
     "mod": {
       "raw_generation": [
         "biomesmod:aletsch_glacier_ice"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:aletsch_glacier_erratics",
+        "biomesmod:aletsch_glacier_seracs",
+        "biomesmod:aletsch_glacier_hummocks"
       ]
     },
     "remove": [

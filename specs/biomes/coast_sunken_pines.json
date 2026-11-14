@@ -36,7 +36,10 @@
         "biomesmod:coast_sunken_pines_basin"
       ],
       "vegetal_decoration": [
-        "biomesmod:coast_sunken_pines_trees"
+        "biomesmod:coast_sunken_pines_trees",
+        "biomesmod:coast_sunken_pines_boulders",
+        "biomesmod:coast_sunken_pines_wind_pine",
+        "biomesmod:coast_sunken_pines_driftwood"
       ]
     }
   },

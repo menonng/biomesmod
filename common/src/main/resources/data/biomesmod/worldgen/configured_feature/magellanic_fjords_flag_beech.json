@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      3,
+      6
+    ],
+    "leaves": {
+      "Name": "minecraft:dark_oak_leaves"
+    },
+    "log": {
+      "Name": "minecraft:dark_oak_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "krummholz"
+  },
+  "type": "biomesmod:wild_tree"
+}

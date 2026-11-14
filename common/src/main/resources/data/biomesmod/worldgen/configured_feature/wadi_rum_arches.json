@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:red_sandstone"
+      },
+      {
+        "Name": "minecraft:smooth_red_sandstone"
+      },
+      {
+        "Name": "minecraft:orange_terracotta"
+      }
+    ],
+    "kind": "arch",
+    "size": [
+      2,
+      4.5
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

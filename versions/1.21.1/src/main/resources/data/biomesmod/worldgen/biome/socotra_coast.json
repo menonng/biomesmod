@@ -89,7 +89,9 @@
       "minecraft:patch_sugar_cane_desert",
       "minecraft:patch_pumpkin",
       "biomesmod:socotra_coast_bottle_trees",
-      "biomesmod:socotra_desert_roses"
+      "biomesmod:socotra_desert_roses",
+      "biomesmod:socotra_coast_boulders",
+      "biomesmod:socotra_coast_croton"
     ],
     [
       "minecraft:freeze_top_layer"

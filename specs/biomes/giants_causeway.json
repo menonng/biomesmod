@@ -45,7 +45,9 @@
         "biomesmod:giants_causeway_columns"
       ],
       "vegetal_decoration": [
-        "biomesmod:giants_causeway_cairns"
+        "biomesmod:giants_causeway_cairns",
+        "biomesmod:giants_causeway_boulders",
+        "biomesmod:giants_causeway_gorse"
       ]
     },
     "remove": [

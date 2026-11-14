@@ -39,6 +39,11 @@
     "mod": {
       "raw_generation": [
         "biomesmod:cordillera_darwin_ice"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:cordillera_darwin_erratics",
+        "biomesmod:cordillera_darwin_seracs",
+        "biomesmod:cordillera_darwin_hummocks"
       ]
     },
     "remove": [

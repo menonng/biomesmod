@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:basalt"
+      },
+      {
+        "Name": "minecraft:blackstone"
+      },
+      {
+        "Name": "minecraft:smooth_basalt"
+      }
+    ],
+    "kind": "boulder",
+    "size": [
+      1,
+      2.6
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

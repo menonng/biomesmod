@@ -81,7 +81,10 @@
       "minecraft:spring_lava_frozen"
     ],
     [
-      "minecraft:glow_lichen"
+      "minecraft:glow_lichen",
+      "biomesmod:patagonian_icefield_erratics",
+      "biomesmod:patagonian_icefield_seracs",
+      "biomesmod:patagonian_icefield_hummocks"
     ],
     [
       "minecraft:freeze_top_layer"

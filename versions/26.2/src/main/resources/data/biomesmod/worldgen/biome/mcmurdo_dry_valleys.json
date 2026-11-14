@@ -64,7 +64,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "biomesmod:mcmurdo_dry_valleys_station"
+      "biomesmod:mcmurdo_dry_valleys_station",
+      "biomesmod:mcmurdo_dry_valleys_ventifacts",
+      "biomesmod:mcmurdo_dry_valleys_ledges"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:smooth_basalt"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      },
+      {
+        "Name": "minecraft:basalt"
+      }
+    ],
+    "kind": "mound",
+    "size": [
+      2,
+      4
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

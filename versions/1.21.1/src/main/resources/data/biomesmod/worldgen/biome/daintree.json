@@ -88,7 +88,11 @@
       "minecraft:patch_pumpkin",
       "minecraft:vines",
       "minecraft:patch_melon",
-      "biomesmod:daintree_canopy"
+      "biomesmod:daintree_canopy",
+      "biomesmod:daintree_palms",
+      "biomesmod:daintree_understory",
+      "biomesmod:daintree_fig",
+      "biomesmod:daintree_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

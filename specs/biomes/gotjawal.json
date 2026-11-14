@@ -68,7 +68,11 @@
     },
     "mod": {
       "vegetal_decoration": [
-        "biomesmod:gotjawal_trees"
+        "biomesmod:gotjawal_trees",
+        "biomesmod:gotjawal_evergreen_oak",
+        "biomesmod:gotjawal_camellia",
+        "biomesmod:gotjawal_lava_blocks",
+        "biomesmod:gotjawal_lava_domes"
       ]
     }
   },

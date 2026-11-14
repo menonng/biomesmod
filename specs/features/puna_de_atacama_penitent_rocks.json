@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:wild_rock",
+    "config": {
+      "kind": "spire",
+      "blocks": [
+        {
+          "Name": "minecraft:tuff"
+        },
+        {
+          "Name": "minecraft:andesite"
+        },
+        {
+          "Name": "minecraft:granite"
+        }
+      ],
+      "size": [
+        1.2,
+        2.6
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 50
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -64,7 +64,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:seagrass_normal"
+      "minecraft:seagrass_normal",
+      "biomesmod:lencois_maranhenses_restinga",
+      "biomesmod:lencois_maranhenses_driftwood"
     ],
     [
       "minecraft:freeze_top_layer"

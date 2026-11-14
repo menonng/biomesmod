@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:basalt"
+      },
+      {
+        "Name": "minecraft:blackstone"
+      },
+      {
+        "Name": "minecraft:magma_block"
+      }
+    ],
+    "kind": "spire",
+    "size": [
+      1.2,
+      2.6
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

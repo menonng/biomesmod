@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:basalt"
+      },
+      {
+        "Name": "minecraft:smooth_basalt"
+      },
+      {
+        "Name": "minecraft:stone"
+      }
+    ],
+    "kind": "outcrop",
+    "size": [
+      1.5,
+      3
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

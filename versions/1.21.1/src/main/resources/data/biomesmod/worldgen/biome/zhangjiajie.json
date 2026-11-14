@@ -93,7 +93,10 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
       "minecraft:vines",
-      "biomesmod:zhangjiajie_forest"
+      "biomesmod:zhangjiajie_forest",
+      "biomesmod:zhangjiajie_pine",
+      "biomesmod:zhangjiajie_fir",
+      "biomesmod:zhangjiajie_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

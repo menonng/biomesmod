@@ -87,7 +87,10 @@
       "minecraft:patch_firefly_bush_near_water",
       "minecraft:patch_berry_common",
       "biomesmod:giant_redwood_trees",
-      "biomesmod:giant_redwood_young"
+      "biomesmod:giant_redwood_young",
+      "biomesmod:giant_redwood_forest_tanoak",
+      "biomesmod:giant_redwood_forest_huckleberry",
+      "biomesmod:giant_redwood_forest_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

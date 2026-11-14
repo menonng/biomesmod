@@ -76,7 +76,10 @@
       "minecraft:spring_lava_frozen"
     ],
     [
-      "minecraft:glow_lichen"
+      "minecraft:glow_lichen",
+      "biomesmod:denali_massif_erratics",
+      "biomesmod:denali_massif_seracs",
+      "biomesmod:denali_massif_hummocks"
     ],
     [
       "minecraft:freeze_top_layer"

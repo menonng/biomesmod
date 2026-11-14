@@ -83,7 +83,12 @@
       "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water",
-      "biomesmod:plitvice_lakes_trees"
+      "biomesmod:plitvice_lakes_trees",
+      "biomesmod:plitvice_lakes_beech",
+      "biomesmod:plitvice_lakes_fir",
+      "biomesmod:plitvice_lakes_hazel",
+      "biomesmod:plitvice_lakes_tufa",
+      "biomesmod:plitvice_lakes_boulders"
     ],
     [
       "minecraft:freeze_top_layer"

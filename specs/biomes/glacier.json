@@ -53,6 +53,11 @@
     "mod": {
       "raw_generation": [
         "biomesmod:glacier_ice_river"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:glacier_erratics",
+        "biomesmod:glacier_seracs",
+        "biomesmod:glacier_hummocks"
       ]
     }
   },

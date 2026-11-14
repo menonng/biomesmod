@@ -86,7 +86,12 @@
       "minecraft:patch_pumpkin",
       "minecraft:patch_cactus_decorated",
       "minecraft:patch_firefly_bush_near_water",
-      "biomesmod:grand_canyon_junipers"
+      "biomesmod:grand_canyon_junipers",
+      "biomesmod:grand_canyon_hoodoos",
+      "biomesmod:grand_canyon_boulders",
+      "biomesmod:grand_canyon_ledges",
+      "biomesmod:grand_canyon_pinyon",
+      "biomesmod:grand_canyon_sagebrush"
     ],
     [
       "minecraft:freeze_top_layer"

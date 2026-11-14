@@ -49,7 +49,11 @@
         "biomesmod:cliffs_of_moher_stacks"
       ],
       "vegetal_decoration": [
-        "biomesmod:cliffs_of_moher_cairns"
+        "biomesmod:cliffs_of_moher_cairns",
+        "biomesmod:cliffs_of_moher_ledges",
+        "biomesmod:cliffs_of_moher_boulders",
+        "biomesmod:cliffs_of_moher_gorse",
+        "biomesmod:cliffs_of_moher_thorn"
       ]
     },
     "remove": [

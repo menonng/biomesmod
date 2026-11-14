@@ -1,0 +1,19 @@
+{
+  "config": {
+    "height": [
+      6,
+      10
+    ],
+    "leaves": {
+      "Name": "minecraft:cherry_leaves"
+    },
+    "log": {
+      "Name": "minecraft:jungle_log",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "style": "broadleaf"
+  },
+  "type": "biomesmod:wild_tree"
+}
