@@ -360,6 +360,63 @@ class ChunkFrame private constructor() {
 		}
 	}
 
+	private val shoreGrid = DoubleArray(64)
+
+	/**
+	 * Prepares [shoreDistance]: for every node of the base grid the distance to the nearest node on the other side of
+	 * the waterline (within the blur radius of [prepareBase], which must be at least 1), placed between the two nodes
+	 * where the ground crosses sea level.
+	 */
+	fun prepareShore() {
+		val r = max(1, blurRadius)
+		val rc = bcnt + 2 * r
+		val line = seaLevel - 1.5
+		val far = r * 16.0
+		// Open water only: a wet node with dry land on two or more sides is a river or a pond, not the sea.
+		fun sea(i: Int, j: Int): Boolean {
+			if (rawWin[i + j * rc] >= line) {
+				return false
+			}
+			var dry = 0
+			if (i > 0 && rawWin[i - 1 + j * rc] >= line) dry++
+			if (i < rc - 1 && rawWin[i + 1 + j * rc] >= line) dry++
+			if (j > 0 && rawWin[i + (j - 1) * rc] >= line) dry++
+			if (j < rc - 1 && rawWin[i + (j + 1) * rc] >= line) dry++
+			return dry < 2
+		}
+		for (j in 0 until bcnt) {
+			for (i in 0 until bcnt) {
+				val h = rawWin[(i + r) + (j + r) * rc]
+				val wet = sea(i + r, j + r)
+				var best = far
+				for (dj in -r..r) {
+					for (di in -r..r) {
+						val dd = di * di + dj * dj
+						if (dd == 0 || dd > r * r) {
+							continue
+						}
+						val h2 = rawWin[(i + r + di) + (j + r + dj) * rc]
+						if (sea(i + r + di, j + r + dj) != wet) {
+							// A river node on the land side has no crossing to place: half way.
+							val t = if ((h < line) == (h2 < line)) 0.5 else (h - line) / (h - h2)
+							val dist = sqrt(dd.toDouble()) * 16.0 * t
+							if (dist < best) {
+								best = dist
+							}
+						}
+					}
+				}
+				shoreGrid[i + j * bcnt] = if (wet) -best else best
+			}
+		}
+	}
+
+	/**
+	 * Distance in blocks from the waterline of the noise terrain: positive inland, negative out at sea, limited to the
+	 * blur radius of [prepareBase] times 16. Call [prepareShore] first.
+	 */
+	fun shoreDistance(x: Int, z: Int): Double = bicubic(shoreGrid, x, z)
+
 	/** Smooth noise-only terrain height (bicubic over the 16-block base grid). Call prepareBase first. */
 	fun base(x: Int, z: Int): Double = bicubic(raw, x, z)
 

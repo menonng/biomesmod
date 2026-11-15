@@ -76,3 +76,10 @@ is the height of the trough wall, tributaries are smaller and hang above the tru
 with bars and a drop-off, a foreshore in long one-block terraces (gentle, or cut into a low scarp), low dunes behind
 the berm; capes, coves and tidal creeks bend the waterline. Parameters: `berm` 4, `run` 34, `shelf` 26, `back` 40,
 `cape` 30, `cove` 14, `scarp` 0.35.
+
+The profile runs along the real distance from the waterline (`ChunkFrame.prepareShore` / `shoreDistance`: distance to
+the nearest node of the 16-block base grid on the other side of sea level, up to 112 blocks; a wet node with land on two
+or more sides is a river or a pond and does not count as sea). Bare sand belongs to the foreshore only: behind the berm
+the dunes are grown over, with blowouts of sand that thin out inland, and the rest of the beach biome is a grassy
+coastal plain, so a wide beach biome is no longer a sand flat from the sea to the forest. Rivers and ponds behind the
+shore keep their bed and water.

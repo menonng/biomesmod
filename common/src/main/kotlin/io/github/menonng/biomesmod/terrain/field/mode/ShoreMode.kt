@@ -51,7 +51,8 @@ data class ShoreMode(
 			P.strata(Blocks.STONE, 4, Blocks.ANDESITE, 1), 3)
 
 		override fun prepare(frame: ChunkFrame) {
-			frame.prepareBase(6)
+			frame.prepareBase(7)
+			frame.prepareShore()
 		}
 
 		override fun column(frame: ChunkFrame, x: Int, z: Int, i: Int, out: Column) {
@@ -59,8 +60,9 @@ data class ShoreMode(
 			val zd = z.toDouble()
 			val sea = frame.seaLevel.toDouble()
 			val orig = frame.orig(i).toDouble()
-			// Rough distance inland from the waterline, in blocks (negative = out at sea).
-			var s = (frame.blurBase(x, z) - sea) * 6.0 + cape * noise.fbm(xd, zd, 280.0, 2) + cove * noise.fbm(xd + 311, zd - 97, 72.0, 3)
+			// Distance inland from the waterline, in blocks (negative = out at sea), bent into capes, bays and coves.
+			val far = frame.shoreDistance(x, z)
+			var s = far + cape * noise.fbm(xd, zd, 280.0, 2) + cove * noise.fbm(xd + 311, zd - 97, 72.0, 3)
 			// Tidal creeks and narrow coves bitten into the beach, along the thin lines of a ridged noise.
 			val bite = Noise.smoothstep(0.86, 0.97, 1 - abs(noise.fbm(xd - 800, zd + 450, 150.0, 2)))
 			s -= bite * run * 1.1 * Noise.smoothstep(run * 1.8, run * 0.3, s)
@@ -83,6 +85,9 @@ data class ShoreMode(
 				out.surfaceDepth = 3
 				return
 			}
+			if (orig < sea - 1) {
+				return // a river or a pond behind the shore: it keeps its bed and its water
+			}
 			// How the sea has treated this stretch: 0 a gentle beach, 1 a cut scarp.
 			val cut = Noise.smoothstep(1 - scarp - 0.12, 1 - scarp + 0.12, noise.fbm01(xd + 2000, zd - 2000, 190.0, 2))
 			val gentle = berm * min(1.0, s / run).pow(0.8)
@@ -98,16 +103,24 @@ data class ShoreMode(
 				g += (orig - g) * Noise.smoothstep(run + back * 0.3, run + back, s)
 			}
 			out.ground = g
-			// The sand ends in a ragged line, so grass and sand interfinger at the back of the beach.
-			if (s < run + back * (0.45 + 0.35 * noise.fbm(xd, zd, 23.0, 2))) {
+			// The sand ends in a ragged line, so grass and sand interfinger at the back of the beach. Behind it the beach
+			// biome is a grown-over coastal plain, with blowouts of bare sand that thin out inland: the sand belongs to the
+			// shore, not to the whole width of the biome.
+			val limit = run * (0.85 + 0.3 * noise.fbm(xd, zd, 23.0, 2))
+			val blowout = noise.fbm(xd + 50, zd - 90, 13.0, 2) > 0.25 + 0.45 * Noise.smoothstep(limit, limit + back, s)
+			if (s < limit || blowout) {
 				out.surface = SAND
 				out.surfaceDepth = 3
+			} else {
+				out.surface = GRASS
+				out.surfaceDepth = 1
 			}
 		}
 	}
 
 	companion object {
 		private val SAND = Blocks.SAND.defaultBlockState()
+		private val GRASS = Blocks.GRASS_BLOCK.defaultBlockState()
 
 		@JvmField
 		val CODEC: MapCodec<ShoreMode> = RecordCodecBuilder.mapCodec { i ->
