@@ -272,6 +272,7 @@ class SiteField private constructor(
 		var delta = 0.0
 		var detail = 1.0
 		var flat = 0.0
+		var bench = 0.0
 		for ((site, w) in arrayOf(a to b.wa, b.b to b.wb)) {
 			if (site == null || w <= 0) {
 				continue
@@ -289,6 +290,10 @@ class SiteField private constructor(
 			// Soft ceiling: heights approach the configured maximum smoothly instead of being cut flat at the build limit.
 			val target = softCap(spec.targetY + spec.relief * (s0 - reference) + peaks)
 			val d = if (spec.terrain == SiteConfig.Terrain.MOUNTAIN) max(0.0, target - s0) else target - s0
+			if ((spec.terrain == SiteConfig.Terrain.LIFT || spec.terrain == SiteConfig.Terrain.MOUNTAIN) && spec.channels == null) {
+				// Only where the site stands well above the sea: a low island keeps the little height it has.
+				bench += w * ((spec.targetY - SEA_LEVEL - 10.0) / 20.0).coerceIn(0.0, 1.0)
+			}
 			if (spec.island) {
 				// An island stands alone: its land takes the inner part of the site, and round it the ground is taken down
 				// below the sea (wherever it is not already), so a ring of water always parts it from any other land.
@@ -307,6 +312,17 @@ class SiteField private constructor(
 			detail += w * (s - 1)
 			if (spec.terrain == SiteConfig.Terrain.PLATEAU || spec.terrain == SiteConfig.Terrain.BASIN) {
 				flat += w
+			}
+		}
+		// Where a raised site meets the sea its slope would run straight into the water. Round sea level the ground is
+		// eased into a shore: a low strand above the waterline and a shallow shelf below it, steepening again further up
+		// and further out.
+		if (bench > 0) {
+			val d = s0 + delta - SEA_LEVEL
+			if (d > -BENCH_DOWN && d < BENCH_UP) {
+				val band = if (d > 0) BENCH_UP else BENCH_DOWN
+				val eased = Math.signum(d) * band * Math.pow(Math.abs(d) / band, 1.7)
+				delta += (eased - d) * kotlin.math.min(1.0, bench)
 			}
 		}
 		// Fjords: channels cut from the site centre towards the sea, below sea level (the aquifer floods them).
@@ -605,6 +621,8 @@ class SiteField private constructor(
 
 		/** Sea level of the overworld (fjord floors are cut below it). */
 		private const val SEA_LEVEL = 63.0
+		private const val BENCH_UP = 10.0
+		private const val BENCH_DOWN = 8.0
 
 		/** How far past its site (in site radii) a fjord may run to find open water. */
 		private const val MOUTH_REACH = 2.0

@@ -6,6 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.biome.Biome
+import net.minecraft.world.level.levelgen.VerticalAnchor
 import net.minecraft.world.level.levelgen.SurfaceRules
 import net.minecraft.world.level.levelgen.placement.CaveSurface
 import net.minecraft.world.level.levelgen.synth.NormalNoise
@@ -43,6 +44,12 @@ object ModSurfaceRules {
 		val perBiome = ArrayList<SurfaceRules.RuleSource>()
 		for (s in surfaces) {
 			val rules = ArrayList<SurfaceRules.RuleSource>()
+			if (overworld && s.shore != null) {
+				// The strand: where the land of the biome meets the sea its own ground gives way to beach material.
+				val band = SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(SHORE_BOTTOM), 0),
+					SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(SHORE_TOP), 0)), state(s.shore)))
+				rules.add(SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, band))
+			}
 			val top = ArrayList<SurfaceRules.RuleSource>()
 			for (p in s.topPatches) {
 				val key = ResourceKey.create(Registries.NOISE, BiomegenCompat.id(p.noise))
@@ -72,6 +79,9 @@ object ModSurfaceRules {
 		}
 		return if (perBiome.isEmpty()) null else sequence(perBiome)
 	}
+
+	private const val SHORE_BOTTOM = 57
+	private const val SHORE_TOP = 65
 
 	private fun sequence(rules: List<SurfaceRules.RuleSource>): SurfaceRules.RuleSource =
 		if (rules.size == 1) rules[0] else SurfaceRules.sequence(*rules.toTypedArray())

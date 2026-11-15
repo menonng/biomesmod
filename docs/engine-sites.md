@@ -103,3 +103,7 @@ Vanilla lays a village out from one height and relies on its village biomes bein
 * A village does not start on water (a fjord, a lagoon, a salt lake).
 
 The self-check logs how the ground meets a village (`village at ...: ground minus floor ...`) and how far the planned height is from the generated ground (`planned heights round the ...`); with `-Pbiomes=` it also measures the nearest village when none stands in the biome.
+
+## Where a site meets the sea
+
+A `lift` or `mountain` site without fjord channels whose `target_y` stands well above the sea (fully from 30 blocks up) eases its ground round sea level: within 10 blocks above and 8 below, the height is bent towards the waterline (power 1.7), which leaves a low strand and a shallow shelf instead of a slope running straight into the water. A biome can name the material of that strand with `surface.shore` (a block for the ground between y 57 and 64).

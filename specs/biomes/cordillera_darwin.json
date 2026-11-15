@@ -51,5 +51,8 @@
     ]
   },
   "spawners": "base",
-  "carvers": "underground"
+  "carvers": "underground",
+  "surface": {
+    "shore": "minecraft:gravel"
+  }
 }

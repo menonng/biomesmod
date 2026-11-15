@@ -961,13 +961,15 @@ def validate_surface(spec, versions, vanilla, problems):
     if not isinstance(s, dict):
         problems.error(where, '"surface" must be an object')
         return
-    unknown_keys(s, {'top', 'under', 'under_depth', 'underwater', 'top_patches'}, where + ' surface', problems)
+    unknown_keys(s, {'top', 'under', 'under_depth', 'underwater', 'top_patches', 'shore'}, where + ' surface', problems)
     if spec.dimension == 'end':
         problems.error(where, 'surface rules are supported for overworld and nether biomes only')
         return
     if spec.dimension == 'nether' and 'underwater' in s:
         problems.error(where, 'surface.underwater has no meaning in the nether')
-    for k in ('top', 'under', 'underwater'):
+    if spec.dimension != 'overworld' and 'shore' in s:
+        problems.error(where, 'surface.shore is for overworld biomes')
+    for k in ('top', 'under', 'underwater', 'shore'):
         if k in s:
             s[k] = check_block(s[k], where, 'surface.' + k, versions, vanilla, problems)
     if 'under_depth' in s:
@@ -1321,7 +1323,7 @@ def build_placements(specs, regions_cfg, problems):
             if not sf:
                 continue
             entry = {'biome': MOD + ':' + s.id}
-            for k in ('top', 'under', 'under_depth', 'underwater'):
+            for k in ('top', 'under', 'under_depth', 'underwater', 'shore'):
                 if k in sf:
                     entry[k] = sf[k]
             if sf.get('top_patches'):

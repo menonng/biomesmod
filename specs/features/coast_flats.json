@@ -5,14 +5,12 @@
     "config": {
       "mode": "shore",
       "biomes": "#minecraft:is_beach",
-      "berm": 4,
-      "run": 34,
-      "shelf": 26,
-      "back": 40,
-      "cape": 30,
-      "cove": 14,
-      "scarp": 0.35,
-      "edge_blend": 8,
+      "berm": 1,
+      "run": 24,
+      "shelf": 44,
+      "cape": 0,
+      "cove": 0,
+      "edge_blend": 24,
       "palette": {
         "top": [
           {
@@ -42,7 +40,8 @@
             "depth": 1
           }
         ]
-      }
+      },
+      "depth": 18
     }
   },
   "placement": []

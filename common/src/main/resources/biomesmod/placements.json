@@ -309,10 +309,18 @@
         "under_depth": 2
       },
       {
+        "biome": "biomesmod:antarctic_peninsula",
+        "shore": "minecraft:gravel"
+      },
+      {
         "biome": "biomesmod:cliffs_of_moher",
         "top": "minecraft:grass_block",
         "under": "minecraft:dirt",
         "under_depth": 2
+      },
+      {
+        "biome": "biomesmod:cordillera_darwin",
+        "shore": "minecraft:gravel"
       },
       {
         "biome": "biomesmod:franz_josef_land",
@@ -396,6 +404,10 @@
             "max": -0.6
           }
         ]
+      },
+      {
+        "biome": "biomesmod:krenitsyn_caldera",
+        "shore": "minecraft:gravel"
       },
       {
         "biome": "biomesmod:lake_gairdner",
@@ -508,6 +520,10 @@
         "top": "minecraft:red_sand",
         "under": "minecraft:red_sandstone",
         "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:ushishir_caldera",
+        "shore": "minecraft:gravel"
       },
       {
         "biome": "biomesmod:wadi_rum",

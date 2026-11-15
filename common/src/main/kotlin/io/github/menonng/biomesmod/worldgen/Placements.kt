@@ -41,6 +41,8 @@ class Placements private constructor(root: JsonObject) {
 	data class Surface(
 		val biome: String, val top: String?, val under: String?, val underDepth: Int, val underwater: String?,
 		val topPatches: List<Patch>,
+		/** Block of the strand: the ground from a little under the sea to a few blocks above it. */
+		val shore: String? = null,
 	)
 
 	val biomes: List<BiomeEntry>
@@ -107,7 +109,7 @@ class Placements private constructor(root: JsonObject) {
 				Patch(str(p, "block"), str(p, "noise"), p.get("min").asDouble, if (p.has("max")) p.get("max").asDouble else Double.MAX_VALUE)
 			}
 			Surface(str(o, "biome"), optStr(o, "top"), optStr(o, "under"), if (o.has("under_depth")) o.get("under_depth").asInt else 0,
-				optStr(o, "underwater"), patches)
+				optStr(o, "underwater"), patches, optStr(o, "shore"))
 		}
 
 		private fun str(o: JsonObject, key: String): String = o.get(key).asString

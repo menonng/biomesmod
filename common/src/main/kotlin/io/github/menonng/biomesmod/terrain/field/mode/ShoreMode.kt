@@ -11,32 +11,27 @@ import io.github.menonng.biomesmod.terrain.field.Noise
 import io.github.menonng.biomesmod.terrain.field.Shaper
 import io.github.menonng.biomesmod.terrain.field.ShaperMode
 import net.minecraft.world.level.block.Blocks
-import kotlin.math.abs
-import kotlin.math.floor
-import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
 /**
- * `shore`: an eroded sandy coast, built as a cross-shore profile rather than as noise. Every column gets a rough
- * distance from the waterline (the regional surface relative to the sea, bent into capes, bays and coves, with tidal
- * creeks bitten into it), and the ground follows a beach profile along that distance:
+ * `shore`: the beach of the Regon data pack (a fork of Tectonic, MIT), whose coast is a piece of its terrain spline:
+ * the sea bed climbs from about 18 blocks down to sea level across a short stretch, and from the waterline on the land
+ * lies flat, at sea level to one block above it, for the whole width of the coast. No dunes, bars, terraces or creeks:
+ * a broad level strand with a clean waterline. Here the same profile is laid along the distance from the waterline of
+ * the noise terrain ([ChunkFrame.shoreDistance]).
  *
- * a shallow sand shelf under water with bars and spits that break the surface, a drop-off at its outer edge; the
- * foreshore climbing in long one-block terraces to the berm, gently in some stretches and as a low sand scarp cut by
- * the sea in others; behind the berm low dunes that run out into the land that was there.
- *
- * @param berm height of the beach crest above the sea
- * @param run width of the foreshore, from the waterline to the crest
- * @param shelf width of the shallow shelf off the beach
- * @param back width of the backshore, over which the beach runs out into the original land
- * @param cape how far capes and bays move the waterline, in blocks
+ * @param berm height the strand reaches above the sea at its back (Regon: about 1)
+ * @param run distance from the waterline over which the strand rises to it
+ * @param shelf width of the slope from the waterline down to the sea bed
+ * @param depth depth of the sea bed at the foot of that slope (Regon: about 18)
+ * @param back unused by this profile (the edge of the biome blends into the land behind, see `edge_blend`)
+ * @param cape how far capes and bays move the waterline, in blocks (0 = the waterline of the terrain as it is)
  * @param cove how far coves move it
- * @param scarp share of the shore that is cut into a low scarp instead of a gentle slope
+ * @param scarp unused by this profile
  */
 data class ShoreMode(
 	override val common: Common, val berm: Double, val run: Double, val shelf: Double, val back: Double, val cape: Double, val cove: Double,
-	val scarp: Double,
+	val scarp: Double, val depth: Double,
 ) : ShaperMode {
 	override val type: ShaperMode.Type get() = ShaperMode.Type.SHORE
 
@@ -60,26 +55,14 @@ data class ShoreMode(
 			val zd = z.toDouble()
 			val sea = frame.seaLevel.toDouble()
 			val orig = frame.orig(i).toDouble()
-			// Distance inland from the waterline, in blocks (negative = out at sea), bent into capes, bays and coves.
-			val far = frame.shoreDistance(x, z)
-			var s = far + cape * noise.fbm(xd, zd, 280.0, 2) + cove * noise.fbm(xd + 311, zd - 97, 72.0, 3)
-			// Tidal creeks and narrow coves bitten into the beach, along the thin lines of a ridged noise.
-			val bite = Noise.smoothstep(0.86, 0.97, 1 - abs(noise.fbm(xd - 800, zd + 450, 150.0, 2)))
-			s -= bite * run * 1.1 * Noise.smoothstep(run * 1.8, run * 0.3, s)
+			// Distance inland from the waterline, in blocks (negative = out at sea).
+			var s = frame.shoreDistance(x, z)
+			if (cape > 0) s += cape * noise.fbm(xd, zd, 280.0, 2)
+			if (cove > 0) s += cove * noise.fbm(xd + 311, zd - 97, 72.0, 3)
 			if (s <= 0) {
-				val off = -s
-				var g = if (off < shelf) {
-					sea - 1.3 - 1.4 * Noise.smoothstep(0.0, shelf, off) + 0.5 * noise.fbm(xd, zd, 11.0, 1)
-				} else {
-					// The edge of the shelf: a step down, then the bed falls away.
-					sea - 4.8 - min(12.0, (off - shelf) * 0.45)
-				}
-				// Bars and spits: sand ridges on the shelf that break the surface and half close a lagoon behind them.
-				val bar = Noise.smoothstep(0.9, 0.98, 1 - abs(noise.fbm(xd + 90, zd + 1300, 95.0, 2))) *
-					Noise.smoothstep(shelf * 1.2, shelf * 0.6, off) * Noise.smoothstep(2.0, 7.0, off)
-				g += (sea + 1.2 - g) * bar
-				// Never fill deep water: beyond the shelf the sea bed is only ever lowered.
-				out.ground = if (off >= shelf && bar <= 0) min(orig, g) else g
+				// The slope of the sea bed: sea level at the waterline, [depth] down at its foot. Deeper water is left alone.
+				val g = sea - 1 - depth * Noise.smoothstep(0.0, shelf, -s)
+				out.ground = if (-s >= shelf) min(orig, g) else g
 				out.water = frame.seaLevel
 				out.surface = SAND
 				out.surfaceDepth = 3
@@ -88,52 +71,29 @@ data class ShoreMode(
 			if (orig < sea - 1) {
 				return // a river or a pond behind the shore: it keeps its bed and its water
 			}
-			// How the sea has treated this stretch: 0 a gentle beach, 1 a cut scarp.
-			val cut = Noise.smoothstep(1 - scarp - 0.12, 1 - scarp + 0.12, noise.fbm01(xd + 2000, zd - 2000, 190.0, 2))
-			val gentle = berm * min(1.0, s / run).pow(0.8)
-			val steep = min(berm, 0.6 + s * 0.8)
-			var h = gentle + (steep - gentle) * cut
-			// Long flat treads with short risers: the terraces sand takes on a block grid.
-			val k = floor(h)
-			h = max(1.0, k + Noise.smoothstep(0.7, 1.0, h - k))
-			var g = sea + h
-			if (s > run) {
-				// Low dunes behind the crest, then the beach runs out into the land.
-				g += 1.8 * noise.fbm01(xd, zd, 38.0, 2) * Noise.smoothstep(run, run + 12, s)
-				g += (orig - g) * Noise.smoothstep(run + back * 0.3, run + back, s)
-			}
-			out.ground = g
-			// The sand ends in a ragged line, so grass and sand interfinger at the back of the beach. Behind it the beach
-			// biome is a grown-over coastal plain, with blowouts of bare sand that thin out inland: the sand belongs to the
-			// shore, not to the whole width of the biome.
-			val limit = run * (0.85 + 0.3 * noise.fbm(xd, zd, 23.0, 2))
-			val blowout = noise.fbm(xd + 50, zd - 90, 13.0, 2) > 0.25 + 0.45 * Noise.smoothstep(limit, limit + back, s)
-			if (s < limit || blowout) {
-				out.surface = SAND
-				out.surfaceDepth = 3
-			} else {
-				out.surface = GRASS
-				out.surfaceDepth = 1
-			}
+			// The strand: level, from sea level at the waterline to [berm] above it.
+			out.ground = sea + berm * Noise.smoothstep(0.0, run, s)
+			out.surface = SAND
+			out.surfaceDepth = 3
 		}
 	}
 
 	companion object {
 		private val SAND = Blocks.SAND.defaultBlockState()
-		private val GRASS = Blocks.GRASS_BLOCK.defaultBlockState()
 
 		@JvmField
 		val CODEC: MapCodec<ShoreMode> = RecordCodecBuilder.mapCodec { i ->
 			i.group(
 				Common.MAP_CODEC.forGetter(ShoreMode::common),
-				Codec.doubleRange(1.0, 12.0).optionalFieldOf("berm", 4.0).forGetter(ShoreMode::berm),
-				Codec.doubleRange(4.0, 200.0).optionalFieldOf("run", 34.0).forGetter(ShoreMode::run),
-				Codec.doubleRange(0.0, 200.0).optionalFieldOf("shelf", 26.0).forGetter(ShoreMode::shelf),
+				Codec.doubleRange(0.0, 12.0).optionalFieldOf("berm", 1.0).forGetter(ShoreMode::berm),
+				Codec.doubleRange(4.0, 200.0).optionalFieldOf("run", 24.0).forGetter(ShoreMode::run),
+				Codec.doubleRange(0.0, 200.0).optionalFieldOf("shelf", 44.0).forGetter(ShoreMode::shelf),
 				Codec.doubleRange(4.0, 200.0).optionalFieldOf("back", 40.0).forGetter(ShoreMode::back),
-				Codec.doubleRange(0.0, 200.0).optionalFieldOf("cape", 30.0).forGetter(ShoreMode::cape),
-				Codec.doubleRange(0.0, 100.0).optionalFieldOf("cove", 14.0).forGetter(ShoreMode::cove),
+				Codec.doubleRange(0.0, 200.0).optionalFieldOf("cape", 0.0).forGetter(ShoreMode::cape),
+				Codec.doubleRange(0.0, 100.0).optionalFieldOf("cove", 0.0).forGetter(ShoreMode::cove),
 				Codec.doubleRange(0.0, 1.0).optionalFieldOf("scarp", 0.35).forGetter(ShoreMode::scarp),
-			).apply(i) { common, berm, run, shelf, back, cape, cove, scarp -> ShoreMode(common, berm, run, shelf, back, cape, cove, scarp) }
+				Codec.doubleRange(1.0, 40.0).optionalFieldOf("depth", 18.0).forGetter(ShoreMode::depth),
+			).apply(i) { common, berm, run, shelf, back, cape, cove, scarp, depth -> ShoreMode(common, berm, run, shelf, back, cape, cove, scarp, depth) }
 		}
 	}
 }

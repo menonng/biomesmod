@@ -72,14 +72,13 @@ Run `./gradlew :26.2:runSelfCheck -Pshowcase=field -Prender=true [-Ponly=dunes_s
 rim against its neighbours). The trunk floor lies `floor_depth` below the site's `target_y` and stays level, `shoulder`
 is the height of the trough wall, tributaries are smaller and hang above the trunk, and the width swells and pinches.
 
-`shore` (the `coast_flats` feature on every vanilla beach) builds a beach as a cross-shore profile: a shallow sand shelf
-with bars and a drop-off, a foreshore in long one-block terraces (gentle, or cut into a low scarp), low dunes behind
-the berm; capes, coves and tidal creeks bend the waterline. Parameters: `berm` 4, `run` 34, `shelf` 26, `back` 40,
-`cape` 30, `cove` 14, `scarp` 0.35.
-
-The profile runs along the real distance from the waterline (`ChunkFrame.prepareShore` / `shoreDistance`: distance to
-the nearest node of the 16-block base grid on the other side of sea level, up to 112 blocks; a wet node with land on two
-or more sides is a river or a pond and does not count as sea). Bare sand belongs to the foreshore only: behind the berm
-the dunes are grown over, with blowouts of sand that thin out inland, and the rest of the beach biome is a grassy
-coastal plain, so a wide beach biome is no longer a sand flat from the sea to the forest. Rivers and ponds behind the
-shore keep their bed and water.
+`shore` (the `coast_flats` feature on every vanilla beach) lays out the beach of the Regon data pack (a fork of
+Tectonic, MIT licence; only the shape of its coast is followed, no file of it is included). There the beach is a piece
+of the terrain spline: the sea bed climbs from about 18 blocks down to sea level across a short stretch, and from the
+waterline on the land lies flat, at sea level to one block above it. No dunes, bars, terraces or creeks. Here the same
+profile runs along the real distance from the waterline (`ChunkFrame.prepareShore` / `shoreDistance`: distance to the
+nearest node of the 16-block base grid on the other side of sea level, up to 112 blocks; a wet node with land on two or
+more sides is a river or a pond and does not count as sea). Parameters: `berm` 1 (height of the strand at its back),
+`run` 24 (distance over which it rises), `shelf` 44 and `depth` 18 (the slope of the sea bed), `cape` and `cove` 0
+(noise on the waterline, off). Rivers and ponds behind the shore keep their bed and water. Difference from Regon: its
+spline also flattens the lowland behind the beach; here the profile applies inside beach biomes only.
