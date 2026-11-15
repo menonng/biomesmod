@@ -118,8 +118,24 @@ class ChunkFrame private constructor() {
 	private val column = Column()
 	private var wetSafe = false
 
+	private var heightsRef: net.minecraft.world.level.LevelHeightAccessor? = null
+
+	// planning (see plan()): the frame is kept between calls for the same chunk and shaper
+	private var planShaper: Shaper? = null
+	private var planActive = false
+
+	/** Water level (first free block above it) of the column last planned, or NONE. */
+	internal var planWater = NONE
+
 	internal fun begin(level: WorldGenLevel, generator: ChunkGenerator, sampler: FieldSampler, common: Common, shaper: Shaper, x0: Int, z0: Int) {
+		begin(level, level, generator, sampler, common, shaper, x0, z0)
+	}
+
+	private fun begin(level: WorldGenLevel?, heights: net.minecraft.world.level.LevelHeightAccessor, generator: ChunkGenerator, sampler: FieldSampler,
+		common: Common, shaper: Shaper, x0: Int, z0: Int) {
 		this.levelRef = level
+		this.heightsRef = heights
+		this.planShaper = null
 		this.siteYKnown = false
 		this.generatorRef = generator
 		this.sampler = sampler
@@ -140,6 +156,7 @@ class ChunkFrame private constructor() {
 
 	internal fun end() {
 		levelRef = null
+		heightsRef = null
 		generatorRef = null
 		Arrays.fill(tSurface, null)
 		Arrays.fill(origTop, null)
@@ -161,7 +178,7 @@ class ChunkFrame private constructor() {
 		if (!siteYKnown) {
 			siteYKnown = true
 			siteY = Double.NaN
-			val field = io.github.menonng.biomesmod.site.SiteField.forSampler(level.level.chunkSource.randomState().sampler())
+			val field = io.github.menonng.biomesmod.site.SiteField.forSampler(sampler.randomState.sampler())
 			if (field != null) {
 				for (k in 0 until 5) {
 					val s = field.blend(x0 + (if (k == 0) 8 else if (k % 2 == 1) 0 else 15), z0 + (if (k == 0) 8 else if (k < 3) 0 else 15)).a
@@ -310,7 +327,7 @@ class ChunkFrame private constructor() {
 		val rc = bcnt + 2 * r
 		for (j in 0 until rc) {
 			for (i in 0 until rc) {
-				rawWin[i + j * rc] = sampler.baseNode(generator, level, bgx0 - r + i, bgz0 - r + j).toDouble()
+				rawWin[i + j * rc] = sampler.baseNode(generator, heightsRef!!, bgx0 - r + i, bgz0 - r + j).toDouble()
 			}
 		}
 		for (j in 0 until bcnt) {
@@ -416,6 +433,61 @@ class ChunkFrame private constructor() {
 			origDeep[i] = if (isGround(deep) && deep.block !is FallingBlock) deep
 			else if (y - 4 < 0) Blocks.DEEPSLATE.defaultBlockState() else Blocks.STONE.defaultBlockState()
 		}
+	}
+
+	// ------------------------------------------------------------------ planning
+
+	/**
+	 * The ground this shaper will give column (x, z), without a generated chunk: for structure planning, which happens
+	 * before any block exists. [ground] is the top ground block there before the shaper. The other columns of the frame
+	 * stand on the smooth noise terrain, and the water walls are left out, so this is the mode's own shape of the land.
+	 */
+	private fun planColumn(heights: net.minecraft.world.level.LevelHeightAccessor, generator: ChunkGenerator, sampler: FieldSampler, common: Common,
+		shaper: Shaper, x: Int, z: Int, ground: Int): Int {
+		val cx = x and 15.inv()
+		val cz = z and 15.inv()
+		if (planShaper !== shaper || x0 != cx || z0 != cz || this.sampler !== sampler) {
+			begin(null, heights, generator, sampler, common, shaper, cx, cz)
+			planShaper = shaper
+			planActive = computeEdge(shaper.edgeReach())
+			if (planActive) {
+				prepareBase(0)
+				for (i in 0 until n * n) {
+					o[i] = floor(base(gridX(i), gridZ(i)) + 0.5).toInt()
+					ow[i] = if (o[i] < seaLevel - 1) seaLevel else NONE
+				}
+				shaper.prepare(this)
+			}
+		}
+		planWater = NONE
+		if (!planActive) {
+			return ground
+		}
+		val i = idx(x, z)
+		if (f[i] <= 0) {
+			return ground
+		}
+		o[i] = ground
+		ow[i] = if (ground < seaLevel - 1) seaLevel else NONE
+		val c = column
+		c.reset(ground.toDouble())
+		shaper.column(this, x, z, i, c)
+		val b = if (c.blend >= 0) c.blend else f[i]
+		var gg = if (b > 0) ground + (c.ground - ground) * b else ground.toDouble()
+		if (b > 0 && c.minGround > gg) {
+			gg = c.minGround
+		}
+		val gi = max(minY + 1, min(maxY - 2, floor(gg + 0.5).toInt()))
+		var wi = NONE
+		if (b > 0 && c.water != NONE && f[i] >= WET_F && gi < c.water - 1) {
+			wi = c.water
+		}
+		val keepOrig = b <= 0 || shaper.waterPolicy() == Shaper.WaterPolicy.KEEP || f[i] < WET_F
+		if (ow[i] != NONE && keepOrig && c.keepWaterBelow == NONE && gi < ow[i] - 1) {
+			wi = max(wi, ow[i])
+		}
+		planWater = wi
+		return gi
 	}
 
 	// ------------------------------------------------------------------ targets, hydrology, walls
@@ -688,6 +760,14 @@ class ChunkFrame private constructor() {
 		private val LOCAL: ThreadLocal<ChunkFrame> = ThreadLocal.withInitial { ChunkFrame() }
 
 		internal fun get(): ChunkFrame = LOCAL.get()
+
+		private val PLAN: ThreadLocal<ChunkFrame> = ThreadLocal.withInitial { ChunkFrame() }
+
+		/** See [planColumn]; the frame's [planWater] holds the column's water afterwards. Uses a frame of its own. */
+		internal fun plan(heights: net.minecraft.world.level.LevelHeightAccessor, generator: ChunkGenerator, sampler: FieldSampler, common: Common, shaper: Shaper,
+			x: Int, z: Int, ground: Int): Int = PLAN.get().planColumn(heights, generator, sampler, common, shaper, x, z, ground)
+
+		internal fun planWater(): Int = PLAN.get().planWater
 
 		internal fun isGround(s: BlockState): Boolean {
 			if (s.isAir || !s.fluidState.isEmpty || s.canBeReplaced()) {

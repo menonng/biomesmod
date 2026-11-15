@@ -67,5 +67,6 @@
     "under": "biomesmod:dolerite",
     "under_depth": 2
   },
-  "carvers": "underground"
+  "carvers": "underground",
+  "structures": "none"
 }

@@ -122,7 +122,7 @@ So the number of regions equals the largest number of biomes that share a slot, 
 
 ### Biome tags and vanilla structures
 
-The generator adds every mod biome to the vanilla biome tags that list its `base` biome directly (`data/minecraft/tags/worldgen/biome/**`), so it gets what the base gets: strongholds, mineshafts, trial chambers, ruined portals, villages, mob variants. `"structures"` in the biome spec: `"base"` keeps every `has_structure/*` tag of the base, `"none"` drops them, and the default `"auto"` drops them only for biomes whose ground a `terrain_shaper` rebuilds after structures are planned (a village laid out on the original surface would be buried or left in the air). The self-check logs the structure starts around each biome.
+The generator adds every mod biome to the vanilla biome tags that list its `base` biome directly (`data/minecraft/tags/worldgen/biome/**`), so it gets what the base gets: strongholds, mineshafts, trial chambers, ruined portals, villages, mob variants. `"structures"` in the biome spec: `"base"` keeps every `has_structure/*` tag of the base, `"none"` drops them, and the default `"auto"` drops them for biomes whose ground a `terrain_shaper` rebuilds after structures are planned, except villages and pillager outposts, which are planned on the shaped ground (see "Villages in sites" in `engine-sites.md`). Uninhabited places (Antarctica, salt pans, the great dune seas) use `"none"`. The self-check logs the structure starts around each biome.
 
 ### Surface
 

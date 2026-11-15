@@ -69,5 +69,6 @@
     ],
     "top": "minecraft:coarse_dirt"
   },
-  "carvers": "underground"
+  "carvers": "underground",
+  "structures": "none"
 }

@@ -1362,18 +1362,16 @@ def build_biome_tags(specs, versions, vanilla, features, problems):
                 problems.error(s.where, '"structures" must be "auto", "base" or "none"')
                 continue
             base = s.data.get('base')
-            # Ground that is rebuilt after structures were planned: terrain shapers. (Landforms are not in the way:
-            # village planning sees them, see LandformHeights.)
-            def rebuilds(conf):
-                if not isinstance(conf, dict):
-                    return False
-                return conf.get('type') == MOD + ':terrain_shaper'
-            shaped = any(rebuilds(features[x.split(':', 1)[1]].configured.get(mc))
+            # Ground that is rebuilt by a terrain shaper after structures were planned: only villages and outposts are
+            # planned on the shaped ground (LandformHeights), every other surface structure would be buried or in the air.
+            shaped = any(isinstance(features[x.split(':', 1)[1]].configured.get(mc), dict)
+                         and features[x.split(':', 1)[1]].configured[mc].get('type') == MOD + ':terrain_shaper'
                          for ids in feature_sections(s, mc)[3].values() for x in ids if x.split(':', 1)[1] in features)
             for tag, values in tags.items():
                 if base not in values:
                     continue
-                if tag.startswith('has_structure/') and (mode == 'none' or (mode == 'auto' and shaped)):
+                planned = tag.startswith('has_structure/village_') or tag == 'has_structure/pillager_outpost'
+                if tag.startswith('has_structure/') and (mode == 'none' or (mode == 'auto' and shaped and not planned)):
                     continue
                 per[tag].append(MOD + ':' + s.id)
         out[mc] = {tag: dump_json({'replace': False, 'values': ids}) for tag, ids in per.items()}

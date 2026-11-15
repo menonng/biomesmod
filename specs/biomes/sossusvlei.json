@@ -75,5 +75,6 @@
     "under": "minecraft:red_sandstone",
     "under_depth": 3
   },
-  "carvers": "underground"
+  "carvers": "underground",
+  "structures": "none"
 }

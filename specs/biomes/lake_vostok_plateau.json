@@ -60,5 +60,6 @@
     ]
   },
   "spawners": "base",
-  "carvers": "underground"
+  "carvers": "underground",
+  "structures": "none"
 }

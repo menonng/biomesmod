@@ -22,10 +22,9 @@ import java.util.concurrent.atomic.AtomicReferenceArray
  * never read generated blocks), so every chunk sees the same values. The caches are lock-free direct-mapped tables
  * shared by all worldgen threads; neighbouring chunks reuse almost all of each other's samples.
  */
-class FieldSampler private constructor(level: WorldGenLevel, generator: ChunkGenerator) {
+class FieldSampler private constructor(level: LevelHeightAccessor, generator: ChunkGenerator, internal val randomState: RandomState, val seed: Long) {
 	private class BiomeEntry(val key: Long, val biome: Holder<Biome>)
 
-	val seed: Long = level.seed
 	val seaLevel: Int = generator.seaLevel
 	val minY: Int = LevelCompat.minY(level)
 	private val height: Int = level.height
@@ -33,7 +32,6 @@ class FieldSampler private constructor(level: WorldGenLevel, generator: ChunkGen
 	// Sample biomes near the top of the world: there the climate "depth" parameter is far negative, so the surface
 	// biome wins over cave biomes (lush caves, dripstone, deep dark) everywhere, mountains included.
 	private val biomeQuartY: Int = QuartPos.fromBlock(minY + height - 8)
-	private val randomState: RandomState = level.level.chunkSource.randomState()
 	private val biomeSource: BiomeSource = generator.biomeSource
 	private val climate: Climate.Sampler = randomState.sampler()
 	private val biomes = AtomicReferenceArray<BiomeEntry>(BIOME_CACHE)
@@ -76,11 +74,15 @@ class FieldSampler private constructor(level: WorldGenLevel, generator: ChunkGen
 		private const val HEIGHT_CACHE = 1 shl 15
 		private val BY_GENERATOR: MutableMap<ChunkGenerator, FieldSampler> = Collections.synchronizedMap(WeakHashMap())
 
-		fun of(level: WorldGenLevel, generator: ChunkGenerator): FieldSampler {
+		fun of(level: WorldGenLevel, generator: ChunkGenerator): FieldSampler =
+			of(level, generator, level.level.chunkSource.randomState(), level.seed)
+
+		/** Also for code that runs before there is a level to ask (structure planning works from a chunk). */
+		fun of(heights: LevelHeightAccessor, generator: ChunkGenerator, randomState: RandomState, seed: Long): FieldSampler {
 			synchronized(BY_GENERATOR) {
 				var s = BY_GENERATOR[generator]
-				if (s == null || s.seed != level.seed) {
-					s = FieldSampler(level, generator)
+				if (s == null || s.seed != seed || s.randomState !== randomState) {
+					s = FieldSampler(heights, generator, randomState, seed)
 					BY_GENERATOR[generator] = s
 				}
 				return s

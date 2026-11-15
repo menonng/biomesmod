@@ -24,10 +24,16 @@ object LevelGround {
 		if (!biome.unwrapKey().map { Ids.name(it).startsWith("biomesmod:") }.orElse(false)) {
 			return true
 		}
+		if (generator.getBaseHeight(x, z, Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), random) < y) {
+			return false // water (a fjord, a lagoon, a salt lake)
+		}
 		var low = y
 		var high = y
 		for (r in RADII) for (k in 0 until 8) {
 			val h = generator.getBaseHeight(x + r * DX[k], z + r * DZ[k], Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), random)
+			if (r == RADII[0] && generator.getBaseHeight(x + r * DX[k], z + r * DZ[k], Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), random) < h) {
+				return false
+			}
 			low = min(low, h)
 			high = max(high, h)
 			if (high - low > MAX_RANGE) {

@@ -15,5 +15,13 @@ import org.spongepowered.asm.mixin.Mixin
 abstract class ChunkGeneratorHeightMixin {
 	@WrapMethod(method = ["getBaseHeight"])
 	private fun `biomesmod$landformHeight`(x: Int, z: Int, type: Heightmap.Types, heights: LevelHeightAccessor, random: RandomState, original: Operation<Int>): Int =
-		LandformHeights.adjust(this as Any as ChunkGenerator, random, heights, x, z, original.call(x, z, type, heights, random))
+		original.call(x, z, type, heights, random).let { base ->
+			if (!LandformHeights.active()) {
+				base
+			} else {
+				val wantFloor = type == Heightmap.Types.OCEAN_FLOOR_WG || type == Heightmap.Types.OCEAN_FLOOR
+				val floor = if (wantFloor) base else original.call(x, z, Heightmap.Types.OCEAN_FLOOR_WG, heights, random)
+				LandformHeights.adjust(this as Any as ChunkGenerator, random, heights, x, z, base, floor, wantFloor)
+			}
+		}
 }

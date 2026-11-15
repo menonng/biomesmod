@@ -70,5 +70,6 @@
     "under": "minecraft:calcite",
     "under_depth": 3
   },
-  "carvers": "underground"
+  "carvers": "underground",
+  "structures": "none"
 }

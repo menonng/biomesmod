@@ -55,5 +55,6 @@
     "under": "minecraft:packed_ice",
     "under_depth": 2,
     "underwater": "minecraft:gravel"
-  }
+  },
+  "structures": "none"
 }

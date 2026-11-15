@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "biomesmod:coast_sunken_pines",
     "biomesmod:grand_prismatic"
   ]
 }
