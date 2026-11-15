@@ -178,6 +178,7 @@ internal object SelfCheck {
 		}
 		BiomesMod.LOGGER.info("[selfcheck] {} OK - zone of {} site at {}, {}: {} of the 16-block samples, first at {}; surface: {}", name, parent.biome,
 			s.x, s.z, hits, at.toShortString(), surfaceSummary(level, at, entry))
+		if (System.getProperty("biomesmod.selfcheck.only", "").isNotEmpty()) structureSummary(level, at, entry, name)
 		val placed = ArrayList<IntArray>()
 		landformDiagnostics(level, biome, at, name, placed)
 		renderIfSelected(level, at, id, placed)
@@ -373,16 +374,41 @@ internal object SelfCheck {
 		}
 		for (start in villages) villageFit(level, start, name)
 		if (villages.isEmpty() && System.getProperty("biomesmod.selfcheck.only", "").isNotEmpty()) {
-			// Only on a selective run: the nearest village around, wherever it stands.
-			val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, center, 60, false)
-			if (at != null) {
-				val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
-				for ((_, start) in chunk.allStarts) {
-					if (start.isValid && start.pieces.size > 8) villageFit(level, start, name + " NEAREST in " + Ids.name(level.getBiome(start.boundingBox.center).unwrapKey().get()))
+			// Only on a selective run: look through the sites around for a village that stands in this biome.
+			val rs = level.chunkSource.randomState()
+			val source = level.chunkSource.generator.biomeSource
+			val field = io.github.menonng.biomesmod.site.SiteField.forSampler(rs.sampler())
+			var found = false
+			var tried = 0
+			if (field != null) {
+				for (site in field.sitesNear(center.x, center.z, 40000, null)) {
+					if (found || tried >= 14) break
+					// Where in this site does the biome lie (it may be one zone of it)?
+					var spot: BlockPos? = null
+					for (k in 0 until 17) {
+						val r = if (k == 0) 0.0 else site.core * (if (k <= 8) 0.45 else 0.85)
+						val x = site.x + (r * kotlin.math.cos(k * Math.PI / 4)).toInt()
+						val z = site.z + (r * kotlin.math.sin(k * Math.PI / 4)).toInt()
+						if (source.getNoiseBiome(x shr 2, 80, z shr 2, rs.sampler()).`is`(entry.key)) {
+							spot = BlockPos(x, 64, z)
+							break
+						}
+					}
+					if (spot == null) continue
+					tried++
+					val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, spot, 16, false) ?: continue
+					val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+					for ((_, start) in chunk.allStarts) {
+						if (!found && start.isValid && start.pieces.size > 8 && level.getBiome(start.boundingBox.center).`is`(entry.key)) {
+							found = true
+							villageFit(level, start, name + " IN BIOME")
+						}
+					}
 				}
 			}
+			if (!found) BiomesMod.LOGGER.info("[selfcheck] {} village search: none standing in the biome round {} site(s)", name, tried)
 		}
-		if (!controlDone && System.getProperty("biomesmod.selfcheck.only", "").isNotEmpty()) {
+		if (!controlDone && java.lang.Boolean.getBoolean("biomesmod.selfcheck.control")) {
 			// A vanilla village far from this site, measured the same way, for comparison.
 			controlDone = true
 			for (k in 0 until 3) {
