@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "biomesmod:block/redwood_pressure_plate"
+    },
+    "powered=true": {
+      "model": "biomesmod:block/redwood_pressure_plate_down"
+    }
+  }
+}

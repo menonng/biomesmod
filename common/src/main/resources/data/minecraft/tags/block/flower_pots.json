@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:potted_dragon_blood_sapling",
+    "biomesmod:potted_redwood_sapling",
+    "biomesmod:potted_ghostwood_sapling",
+    "biomesmod:potted_desert_rose",
+    "biomesmod:potted_moonpetal",
+    "biomesmod:potted_pale_fern"
+  ]
+}

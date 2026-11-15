@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_log",
+    "biomesmod:dragon_blood_wood",
+    "biomesmod:stripped_dragon_blood_log",
+    "biomesmod:stripped_dragon_blood_wood"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "biomesmod:block/dragon_blood_planks"
+  }
+}

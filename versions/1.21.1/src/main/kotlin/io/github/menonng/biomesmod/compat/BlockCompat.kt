@@ -29,6 +29,8 @@ object BlockCompat {
 	/** Walk-through plant properties (the method name differs between versions). */
 	fun plantProperties(): BlockBehaviour.Properties = BlockBehaviour.Properties.of().noCollission().instabreak()
 
+	fun noCollision(properties: BlockBehaviour.Properties): BlockBehaviour.Properties = properties.noCollission()
+
 	fun <T : BlockEntity> blockEntity(name: String, factory: (BlockPos, BlockState) -> T, vararg blocks: Block): BlockEntityType<T> =
 		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Ids.id(name),
 			BlockEntityType.Builder.of({ p, s -> factory(p, s) }, *blocks).build(null))
@@ -38,8 +40,14 @@ object BlockCompat {
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register { entries -> items.forEach { entries.accept(it) } }
 	}
 
-	fun item(name: String, block: Block): Item =
-		Registry.register(BuiltInRegistries.ITEM, Ids.id(name), BlockItem(block, Item.Properties()))
+	/** [tall]: a two-block item such as a door. */
+	fun item(name: String, block: Block, tall: Boolean = false): Item =
+		Registry.register(BuiltInRegistries.ITEM, Ids.id(name),
+			if (tall) net.minecraft.world.item.DoubleHighBlockItem(block, Item.Properties()) else BlockItem(block, Item.Properties()))
+
+	fun buildingTab(items: List<Item>) {
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register { entries -> items.forEach { entries.accept(it) } }
+	}
 
 	/** Client only: cut-out render layers (plants, crystals) and mipped cut-out (leaves). */
 	fun cutout(blocks: List<Block>, mipped: List<Block>) {

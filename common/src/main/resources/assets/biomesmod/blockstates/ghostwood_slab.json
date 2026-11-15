@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "biomesmod:block/ghostwood_slab"
+    },
+    "type=top": {
+      "model": "biomesmod:block/ghostwood_slab_top"
+    },
+    "type=double": {
+      "model": "biomesmod:block/ghostwood_planks"
+    }
+  }
+}

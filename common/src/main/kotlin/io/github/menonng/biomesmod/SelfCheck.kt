@@ -50,6 +50,7 @@ internal object SelfCheck {
 		val failures = ArrayList<String>()
 		val biomes = server.registryAccess().lookupOrThrow(Registries.BIOME)
 
+		blockChecks(server, failures)
 		val onlyBiomes = System.getProperty("biomesmod.selfcheck.only", "")
 		for (entry in ModBiomes.ALL) {
 			val name = "${Ids.name(entry.key)} [${Ids.name(entry.dimension)}]"
@@ -128,6 +129,36 @@ internal object SelfCheck {
 		}
 		// Exit from another thread so the server's shutdown hook can stop the server thread cleanly.
 		Thread({ exitProcess(code) }, "biomesmod-selfcheck-exit").start()
+	}
+
+	/** Blocks: every sapling grows into its tree on bare dirt (bone meal), alone and in the square a giant needs. */
+	private fun blockChecks(server: MinecraftServer, failures: MutableList<String>) {
+		val level = server.overworld()
+		net.minecraft.world.item.AxeItem::class.java.declaredMethods // loads the class, so a broken stripping mixin fails here
+		val cases = listOf(Triple("dragon_blood_sapling", ModBlocks.DRAGON_BLOOD_SAPLING, 1), Triple("redwood_sapling", ModBlocks.REDWOOD_SAPLING, 1),
+			Triple("redwood_sapling 2x2", ModBlocks.REDWOOD_SAPLING, 2), Triple("ghostwood_sapling", ModBlocks.GHOSTWOOD_SAPLING, 1),
+			Triple("ghostwood_sapling 3x3", ModBlocks.GHOSTWOOD_SAPLING, 3))
+		for ((k, case) in cases.withIndex()) {
+			val (name, sapling, n) = case
+			val base = BlockPos(8 + 96 * k, 200, 8)
+			for (dx in -4..6) for (dz in -4..6) {
+				level.setBlock(base.offset(dx, -1, dz), net.minecraft.world.level.block.Blocks.DIRT.defaultBlockState(), 2)
+			}
+			for (i in 0 until n) for (j in 0 until n) level.setBlock(base.offset(i, 0, j), sapling.defaultBlockState(), 2)
+			var tries = 0
+			while (tries++ < 4 && level.getBlockState(base).block === sapling) {
+				(sapling as net.minecraft.world.level.block.BonemealableBlock).performBonemeal(level, level.random, base, level.getBlockState(base))
+			}
+			var logs = 0
+			for (p in BlockPos.betweenClosed(base.offset(-2, 0, -2), base.offset(n + 1, 6, n + 1))) {
+				if (level.getBlockState(p).`is`(BlockTags.LOGS)) logs++
+			}
+			if (logs == 0) {
+				failures.add("block $name: did not grow into a tree")
+			} else {
+				BiomesMod.LOGGER.info("[selfcheck] {} grew ({} log block(s) at its foot)", name, logs)
+			}
+		}
 	}
 
 	private fun renderIfSelected(level: ServerLevel, inner: BlockPos, id: String, placed: List<IntArray>) {

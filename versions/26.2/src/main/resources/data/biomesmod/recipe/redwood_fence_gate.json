@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "W": "biomesmod:redwood_planks",
+    "#": "minecraft:stick"
+  },
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "biomesmod:redwood_fence_gate"
+  },
+  "group": "wooden_fence_gate"
+}

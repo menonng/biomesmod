@@ -2,6 +2,6 @@
 	"required": true,
 	"package": "io.github.menonng.biomesmod.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": ["BiomeFreezeMixin", "ChunkGeneratorHeightMixin", "JigsawStructureMixin", "MultiNoiseBiomeSourceMixin", "RandomStateMixin"],
+	"mixins": ["AxeItemMixin", "BiomeFreezeMixin", "ChunkGeneratorHeightMixin", "JigsawStructureMixin", "MultiNoiseBiomeSourceMixin", "RandomStateMixin"],
 	"injectors": { "defaultRequire": 1 }
 }

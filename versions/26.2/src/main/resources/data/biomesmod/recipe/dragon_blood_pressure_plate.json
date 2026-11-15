@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "biomesmod:dragon_blood_planks"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "biomesmod:dragon_blood_pressure_plate"
+  },
+  "group": "wooden_pressure_plate"
+}

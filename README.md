@@ -17,16 +17,20 @@ Global terrain changes (data overrides):
 
 **Config:** `config/biomesmod.json` (written on first start) sets the elevation mapping (sea level, metres per block, the 2,000 m / y=190 highland rule, the 40 m per block above it, the height cap), site cell size, site chance, size scale, Large Biomes scale, per-biome site weights (0 turns a biome off), the height of the ridged ranges and what the Uyuni mirror is made of (`uyuni.mirror`: `block` or `water`).
 
-**New blocks** (43, all in the Natural Blocks creative tab; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
+**New blocks** (84; the natural ones are in the Natural Blocks creative tab, the worked wood in Building Blocks; textures carry LabPBR normal and specular maps for shader packs, so the salt flats, ice and wet sinter shine and the star blocks glow under Bliss and other PBR shaders):
 
-* Socotra: dragon's blood log, wood and leaves, desert rose.
+* Socotra: dragon's blood log, wood, leaves and sapling, desert rose.
 * Geothermal: geyserite, geyser vent (erupts every 1-3 minutes and throws you up; in 26.2 geyser cones use vanilla's potent sulfur geysers instead), steam vent, orange / yellow / green thermal mats, sulfur crust, travertine.
 * Salar de Uyuni: salt mirror, the flooded salt flat as a solid, dead-calm block whose LabPBR material (smoothness 0.98) mirrors the sky under shader packs with specular reflections switched on (in Bliss: LabPBR → Specular Reflections, Screen Space Reflections, Sky Reflection; they are off by default). Without a shader pack it is a plain pale-blue block. See [docs/uyuni-mirror.md](docs/uyuni-mirror.md).
 * Dry highlands and steppe: tussock grass (paja brava of the Puna, coirón of Patagonia, feather grass of the Mongolian steppe; also roots in sand, gravel and terracotta) and yareta, the green cushion plant of the high Andes.
 * Rock and sand: salt crust, white sand (Lençóis, replaces concrete powder), volcanic ash, scoria, dolerite, glacier ice.
 * White Old Growth: ghostwood log, wood, leaves, hollow (breathes wisps) and sapling (nine in a 3x3 square grow into an ancient ghostwood, the giant of the biome's heart), pale moss and moss carpet, pale fern, silver beard lichen, moon bracket fungus, moonpetal.
-* Giant Redwood Forest: redwood log, wood and leaves.
+* Giant Redwood Forest: redwood log, wood, leaves and sapling (one grows into a young redwood, four in a 2x2 square into a giant).
+* Worked wood: dragon's blood, ghostwood and redwood each come as stripped log and wood (use an axe), planks, stairs, slab, fence, fence gate, door, trapdoor, pressure plate and button, with the vanilla recipes. There are no signs or boats.
+* Potted plants: the three saplings, desert rose, moonpetal and pale fern go into a flower pot.
 * Star Abyss: abyss stone, starlit abyss stone, stardust, star crystal and crystal cluster, star bloom (grows on any face), astral roots, star spring (a fountain of starlight that lifts you up to the floating isles).
+
+The blocks behave like their vanilla counterparts: wood, leaves and plants burn, logs, planks and saplings are furnace fuel, leaves drop saplings and sticks, plants and leaves go into the composter, stone needs a pickaxe, and each block has its note block sound. Other recipes: pale moss carpet from pale moss, pink / white / light blue dye from desert rose / moonpetal / star bloom, glass from white sand. Every recipe is unlocked in the recipe book by picking up its ingredient.
 
 All block textures are 16x16 pixel art drawn by `tools/blocks/art.py` (a small hue-shifted colour ramp per material, a height field lit from the top left, hand-drawn plant sprites); the whole set, each solid block tiled 2x2: [docs/block-textures.png](docs/block-textures.png).
 

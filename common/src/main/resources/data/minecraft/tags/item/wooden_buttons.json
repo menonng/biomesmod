@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_button",
+    "biomesmod:ghostwood_button",
+    "biomesmod:redwood_button"
+  ]
+}

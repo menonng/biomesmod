@@ -960,3 +960,165 @@ def astral_roots():
         "................",
         "................",
     ], dict(a='#2a3f9a', b='#4f7fe0', c='#8fd0ff', d='#ffffff'))
+
+
+# ---------------------------------------------------------------- worked wood
+
+WOODS = {
+    'dragon_blood': R('#7a4634', '#96583f', '#b06c4e', '#c98463', '#d99c7a', '#e6b494'),
+    'ghostwood': R('#a9a595', '#bfbbaa', '#d2cebd', '#e2dfd0', '#eeece0', '#f8f6ee'),
+    'redwood': R('#5c2418', '#763020', '#8f3f2a', '#a85036', '#bd6446', '#cf7c5a'),
+}
+
+
+def _tone(ramp, v):
+    return ramp[int(round(max(0.0, min(1.0, v)) * (len(ramp) - 1)))]
+
+
+def planks(seed, ramp):
+    """Four boards across the tile in vanilla's layout: dark seams, staggered butt joints, grain along the boards."""
+    rnd = random.Random(seed)
+    g = Noise(seed + 1, 4, 16)
+    joints = [rnd.choice((3, 5, 9, 11, 13)) for _ in range(4)]
+    tone = [rnd.uniform(-0.07, 0.07) for _ in range(8)]
+    img = canvas()
+    for y in range(N):
+        b = y // 4
+        for x in range(N):
+            v = 0.56 + tone[b * 2 + (1 if x >= joints[b] else 0)] + 0.3 * (g(x, y) - 0.5)
+            if y % 4 == 3:
+                v = 0.12
+            elif x == joints[b]:
+                v = 0.24
+            elif y % 4 == 0:
+                v += 0.12
+            img[y][x] = rgba(_tone(ramp, v))
+    return img
+
+
+def stripped_side(seed, ramp):
+    """Bare sapwood: long vertical fibres, a few darker streaks."""
+    g, h = Noise(seed, 16, 2), Noise(seed + 1, 8, 3)
+    return [[rgba(_tone(ramp, 0.62 + 0.42 * (g(x, y) - 0.5) + 0.2 * (h(x, y) - 0.5))) for x in range(N)] for y in range(N)]
+
+
+def stripped_top(seed, ramp):
+    return rings_top(seed, ramp[3], ramp[1], [ramp[5], ramp[3], ramp[4]])
+
+
+def door(seed, ramp):
+    """Top and bottom halves of a panelled door; the top half has a four-pane window."""
+    rnd = random.Random(seed)
+    g = Noise(seed + 1, 16, 3)
+    halves = []
+    for top in (True, False):
+        img = canvas()
+        for y in range(N):
+            for x in range(N):
+                edge = x in (0, N - 1) or (top and y == 0) or (not top and y == N - 1)
+                v = 0.5 + 0.3 * (g(x, y + (0 if top else 16)) - 0.5)
+                if edge:
+                    v = 0.14
+                elif x in (1, N - 2) or (top and y == 1) or (not top and y == N - 2):
+                    v += 0.2
+                img[y][x] = rgba(_tone(ramp, v))
+        if top:
+            for y in range(3, 11):
+                for x in range(3, 13):
+                    if y in (2, 11) or x in (2, 13):
+                        continue
+                    img[y][x] = rgba(_tone(ramp, 0.2)) if x in (7, 8) or y in (6, 7) else (0, 0, 0, 0)
+            for x in range(2, 14):
+                img[2][x] = img[11][x] = rgba(_tone(ramp, 0.3))
+            for y in range(2, 12):
+                img[y][2] = img[y][13] = rgba(_tone(ramp, 0.3))
+            for x in range(3, 13):
+                img[13][x] = rgba(_tone(ramp, 0.3))
+        else:
+            for x0 in (3, 9):
+                for y in range(2, 12):
+                    for x in range(x0, x0 + 4):
+                        rim = y in (2, 11) or x in (x0, x0 + 3)
+                        img[y][x] = rgba(_tone(ramp, 0.28 if rim else 0.66 + 0.2 * (g(x, y) - 0.5)))
+        # the handle, on the hinge-free side
+        hy = 13 if top else 1
+        img[hy][12] = rgba(hexc('#3d3d3d'))
+        img[hy][13] = rgba(hexc('#6e6e6e'))
+        halves.append(img)
+    return halves[0], halves[1]
+
+
+def door_item(top, bottom):
+    """The door as an inventory icon: both halves at half scale."""
+    img = canvas()
+    for y in range(N):
+        src = top if y < 8 else bottom
+        for x in range(8):
+            img[y][4 + x] = src[(y % 8) * 2][x * 2]
+    for y in range(N):
+        img[y][4] = img[y][11] = top[4][0]
+    return img
+
+
+def trapdoor(seed, ramp):
+    """A framed hatch of two boards with four small openings."""
+    g = Noise(seed, 4, 16)
+    img = canvas()
+    for y in range(N):
+        for x in range(N):
+            frame = x in (0, N - 1) or y in (0, N - 1)
+            v = 0.52 + 0.3 * (g(x, y) - 0.5)
+            if frame:
+                v = 0.16
+            elif x in (1, N - 2) or y in (1, N - 2):
+                v += 0.18
+            elif y in (7, 8):
+                v = 0.26
+            img[y][x] = rgba(_tone(ramp, v))
+    for x0, y0 in ((3, 3), (10, 3), (3, 10), (10, 10)):
+        for y in range(y0, y0 + 3):
+            for x in range(x0, x0 + 3):
+                img[y][x] = (0, 0, 0, 0)
+    return img
+
+
+def dragon_blood_sapling():
+    return sprite([
+        "................",
+        "................",
+        "..d.m.h.m.h.d...",
+        "..mdhmhmhmhdm...",
+        ".dmhhmhhhmhhmd..",
+        ".mhhmmhmhmmhhm..",
+        "..dmmdmmmdmmd...",
+        "...ddkdkdkdd....",
+        ".....kkKkk......",
+        "......kKk.......",
+        "......kK........",
+        "......kK........",
+        "......kK........",
+        "......kKk.......",
+        ".....kkKk.......",
+        "................",
+    ], dict(K='#b7ad9d', k='#6f655a', d='#28472a', m='#3d6b3a', h='#5d9450'))
+
+
+def redwood_sapling():
+    return sprite([
+        "................",
+        ".......h........",
+        "......mhm.......",
+        "......dmh.......",
+        ".....mhmmd......",
+        ".....dmhm.......",
+        "....mhmmhmd.....",
+        "....dmhmmd......",
+        "...mhmmhmmhd....",
+        "...dmmhmmmd.....",
+        "..dmhmmkmhmmd...",
+        "...ddm.Kk.dd....",
+        ".......Kk.......",
+        ".......Kk.......",
+        "......kKkk......",
+        "................",
+    ], dict(K='#84402d', k='#4b1e15', d='#1e3a22', m='#30583a', h='#4e7840'))

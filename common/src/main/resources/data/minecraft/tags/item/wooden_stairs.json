@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_stairs",
+    "biomesmod:ghostwood_stairs",
+    "biomesmod:redwood_stairs"
+  ]
+}

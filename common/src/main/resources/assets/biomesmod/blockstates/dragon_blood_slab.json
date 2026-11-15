@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "biomesmod:block/dragon_blood_slab"
+    },
+    "type=top": {
+      "model": "biomesmod:block/dragon_blood_slab_top"
+    },
+    "type=double": {
+      "model": "biomesmod:block/dragon_blood_planks"
+    }
+  }
+}

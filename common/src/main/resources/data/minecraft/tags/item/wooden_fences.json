@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_fence",
+    "biomesmod:ghostwood_fence",
+    "biomesmod:redwood_fence"
+  ]
+}

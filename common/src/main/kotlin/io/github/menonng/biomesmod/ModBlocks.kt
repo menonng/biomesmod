@@ -6,6 +6,11 @@ import io.github.menonng.biomesmod.block.HangingPlantBlock
 import io.github.menonng.biomesmod.block.VentBlock
 import io.github.menonng.biomesmod.block.VentBlockEntity
 import io.github.menonng.biomesmod.block.WispLogBlock
+import io.github.menonng.biomesmod.block.WoodFamily
+import io.github.menonng.biomesmod.compat.Ids
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
 import io.github.menonng.biomesmod.compat.BlockCompat
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.util.ColorRGBA
@@ -15,9 +20,16 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.ColoredFallingBlock
 import net.minecraft.world.level.block.FlowerBlock
+import net.minecraft.world.level.block.FlowerPotBlock
 import net.minecraft.world.level.block.RotatedPillarBlock
+import net.minecraft.world.level.block.SaplingBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.entity.BlockEntityType
+import net.minecraft.world.level.block.grower.TreeGrower
+import net.minecraft.world.level.block.state.properties.BlockSetType
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
+import net.minecraft.world.level.block.state.properties.WoodType
+import java.util.Optional
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.level.material.PushReaction
@@ -29,10 +41,23 @@ import net.minecraft.world.level.material.PushReaction
  */
 object ModBlocks {
 	private fun stone(color: MapColor, hardness: Float, sound: SoundType): BlockBehaviour.Properties =
-		BlockBehaviour.Properties.of().mapColor(color).strength(hardness, hardness * 3).sound(sound).requiresCorrectToolForDrops()
+		BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASEDRUM).strength(hardness, hardness * 3).sound(sound)
+			.requiresCorrectToolForDrops()
 
 	private fun log(color: MapColor, sound: SoundType): BlockBehaviour.Properties =
-		BlockBehaviour.Properties.of().mapColor(color).strength(2.0f).sound(sound).ignitedByLava()
+		BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASS).strength(2.0f).sound(sound).ignitedByLava()
+
+	/** Loose ground that falls: sand, ash, stardust. */
+	private fun sand(color: MapColor): BlockBehaviour.Properties =
+		BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.SNARE).strength(0.5f).sound(SoundType.SAND)
+
+	private fun sapling(color: MapColor, sound: SoundType): BlockBehaviour.Properties =
+		BlockCompat.plantProperties().randomTicks().mapColor(color).sound(sound).pushReaction(PushReaction.DESTROY)
+
+	private fun potted(name: String, plant: Block): Block = BlockCompat.register("potted_$name",
+		BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)) { FlowerPotBlock(plant, it) }
+
+	private fun tree(name: String) = Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, Ids.id(name)))
 
 	private fun leavesProps(color: MapColor, sound: SoundType): BlockBehaviour.Properties =
 		BlockBehaviour.Properties.of().mapColor(color).strength(0.2f).randomTicks().sound(sound).noOcclusion()
@@ -41,14 +66,14 @@ object ModBlocks {
 
 	private fun plant(color: MapColor): BlockBehaviour.Properties =
 		BlockCompat.plantProperties().mapColor(color).sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)
-			.pushReaction(PushReaction.DESTROY)
+			.ignitedByLava().pushReaction(PushReaction.DESTROY)
 
 	// ---- existing ----
 
 	/** Salar de Uyuni, Salar de Tara, Lake Gairdner: bright crystalline salt. */
 	@JvmField
 	val SALT_CRUST: Block = BlockCompat.block("salt_crust",
-		BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.6f).sound(SoundType.CALCITE))
+		BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6f).sound(SoundType.CALCITE))
 
 	/**
 	 * Salar de Uyuni in the wet season: salt under a film of still water a few centimetres deep. A solid block of its own
@@ -77,7 +102,7 @@ object ModBlocks {
 	/** Dallol: neon sulfur and salt crust around the acid pools. */
 	@JvmField
 	val SULFUR_CRUST: Block = BlockCompat.block("sulfur_crust",
-		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).strength(0.8f).sound(SoundType.TUFF))
+		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).strength(0.8f).sound(SoundType.TUFF))
 
 	/** Alkefjellet: dark columnar dolerite of the bird cliffs. */
 	@JvmField
@@ -129,13 +154,11 @@ object ModBlocks {
 
 	/** Lençóis Maranhenses: pure white quartz sand (replaces white concrete powder). */
 	@JvmField
-	val WHITE_SAND: Block = BlockCompat.register("white_sand",
-		BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.5f).sound(SoundType.SAND)) { ColoredFallingBlock(ColorRGBA(-0x50709), it) }
+	val WHITE_SAND: Block = BlockCompat.register("white_sand", sand(MapColor.SNOW)) { ColoredFallingBlock(ColorRGBA(-0x50709), it) }
 
 	/** Fresh tephra on volcano flanks. */
 	@JvmField
-	val VOLCANIC_ASH: Block = BlockCompat.register("volcanic_ash",
-		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(0.5f).sound(SoundType.SAND)) { ColoredFallingBlock(ColorRGBA(-0xb5b7b9), it) }
+	val VOLCANIC_ASH: Block = BlockCompat.register("volcanic_ash", sand(MapColor.COLOR_GRAY)) { ColoredFallingBlock(ColorRGBA(-0xb5b7b9), it) }
 
 	/** Red-brown vesicular cinder of scoria cones and lava crusts. */
 	@JvmField
@@ -160,12 +183,12 @@ object ModBlocks {
 	/** Thin silver moss over logs, boulders and the forest floor. */
 	@JvmField
 	val PALE_MOSS_CARPET: Block = BlockCompat.register("pale_moss_carpet",
-		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(0.1f).sound(SoundType.MOSS_CARPET).pushReaction(PushReaction.DESTROY), ::CarpetBlock)
+		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(0.1f).sound(SoundType.MOSS_CARPET).ignitedByLava().pushReaction(PushReaction.DESTROY), ::CarpetBlock)
 
 	/** Beard lichen (Usnea) hanging in pale strands from the limbs. */
 	@JvmField
 	val SILVER_BEARD: Block = BlockCompat.register("silver_beard",
-		BlockCompat.plantProperties().mapColor(MapColor.COLOR_LIGHT_GRAY).sound(SoundType.HANGING_ROOTS).pushReaction(PushReaction.DESTROY)) { HangingPlantBlock(it, null) }
+		BlockCompat.plantProperties().mapColor(MapColor.COLOR_LIGHT_GRAY).sound(SoundType.HANGING_ROOTS).ignitedByLava().pushReaction(PushReaction.DESTROY)) { HangingPlantBlock(it, null) }
 
 	/** Faintly glowing shelf fungus on old trunks; pale spores drift off it. */
 	@JvmField
@@ -186,7 +209,7 @@ object ModBlocks {
 	/** Nine in a 3x3 square grow into an ancient ghostwood. */
 	@JvmField
 	val GHOSTWOOD_SAPLING: Block = BlockCompat.register("ghostwood_sapling",
-		BlockCompat.plantProperties().randomTicks().mapColor(MapColor.QUARTZ).sound(SoundType.CHERRY_SAPLING).pushReaction(PushReaction.DESTROY), ::GhostwoodSaplingBlock)
+		sapling(MapColor.QUARTZ, SoundType.CHERRY_SAPLING), ::GhostwoodSaplingBlock)
 
 	@JvmField
 	val PALE_FERN: Block = BlockCompat.register("pale_fern", plant(MapColor.COLOR_LIGHT_GRAY)) { FlowerBlock(MobEffects.NIGHT_VISION, 5f, it) }
@@ -207,7 +230,7 @@ object ModBlocks {
 	/** Old glacier ice: deep blue, bubble-streaked, never melts. */
 	@JvmField
 	val GLACIER_ICE: Block = BlockCompat.block("glacier_ice",
-		BlockBehaviour.Properties.of().mapColor(MapColor.ICE).strength(2.8f).friction(0.989f).sound(SoundType.GLASS))
+		BlockBehaviour.Properties.of().mapColor(MapColor.ICE).instrument(NoteBlockInstrument.CHIME).strength(2.8f).friction(0.989f).sound(SoundType.GLASS))
 
 	// ---- star abyss ----
 
@@ -216,7 +239,7 @@ object ModBlocks {
 
 	@JvmField
 	val STAR_CRYSTAL: Block = BlockCompat.block("star_crystal",
-		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.5f).sound(SoundType.AMETHYST).lightLevel { 12 }
+		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).instrument(NoteBlockInstrument.HAT).strength(1.5f).sound(SoundType.AMETHYST).lightLevel { 12 }
 			.requiresCorrectToolForDrops())
 
 	@JvmField
@@ -227,7 +250,7 @@ object ModBlocks {
 	/** Glittering star-blue sand of the abyss floors. */
 	@JvmField
 	val STARDUST: Block = BlockCompat.register("stardust",
-		BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.5f).sound(SoundType.SAND).lightLevel { 3 }) { ColoredFallingBlock(ColorRGBA(-0xd5c78f), it) }
+		sand(MapColor.COLOR_BLUE).lightLevel { 3 }) { ColoredFallingBlock(ColorRGBA(-0xd5c78f), it) }
 
 	/** Abyss stone shot through with glowing veins. */
 	@JvmField
@@ -252,6 +275,42 @@ object ModBlocks {
 		VentBlock(it, VentBlock.STAR)
 	}
 
+	// ---- saplings, potted plants ----
+
+	/** Grows into a dragon's blood tree (the umbrella tree of Socotra). */
+	@JvmField
+	val DRAGON_BLOOD_SAPLING: Block = BlockCompat.register("dragon_blood_sapling", sapling(MapColor.PLANT, SoundType.GRASS)) {
+		SaplingBlock(TreeGrower("biomesmod_dragon_blood", Optional.empty(), tree("socotra_dragon_blood_tree"), Optional.empty()), it)
+	}
+
+	/** Alone it grows into a young redwood; four in a 2x2 square grow into a giant. */
+	@JvmField
+	val REDWOOD_SAPLING: Block = BlockCompat.register("redwood_sapling", sapling(MapColor.PLANT, SoundType.GRASS)) {
+		SaplingBlock(TreeGrower("biomesmod_redwood", tree("giant_redwood_trees"), tree("giant_redwood_young"), Optional.empty()), it)
+	}
+
+	private val POTTED: List<Block> = listOf(
+		potted("dragon_blood_sapling", DRAGON_BLOOD_SAPLING), potted("redwood_sapling", REDWOOD_SAPLING), potted("ghostwood_sapling", GHOSTWOOD_SAPLING),
+		potted("desert_rose", DESERT_ROSE), potted("moonpetal", MOONPETAL), potted("pale_fern", PALE_FERN),
+	)
+
+	// ---- worked wood ----
+
+	@JvmField
+	val DRAGON_BLOOD: WoodFamily = WoodFamily("dragon_blood", DRAGON_BLOOD_LOG, DRAGON_BLOOD_WOOD, MapColor.TERRACOTTA_ORANGE, SoundType.WOOD, BlockSetType.OAK, WoodType.OAK)
+
+	@JvmField
+	val GHOSTWOOD: WoodFamily = WoodFamily("ghostwood", GHOSTWOOD_LOG, GHOSTWOOD_WOOD, MapColor.QUARTZ, SoundType.CHERRY_WOOD, BlockSetType.CHERRY, WoodType.CHERRY)
+
+	@JvmField
+	val REDWOOD: WoodFamily = WoodFamily("redwood", REDWOOD_LOG, REDWOOD_WOOD, MapColor.TERRACOTTA_RED, SoundType.WOOD, BlockSetType.OAK, WoodType.OAK)
+
+	private val FAMILIES: List<WoodFamily> get() = listOf(DRAGON_BLOOD, GHOSTWOOD, REDWOOD)
+
+	/** What an axe turns each log and wood into (see AxeItemMixin). */
+	@JvmField
+	val STRIPPED: Map<Block, Block> = listOf(DRAGON_BLOOD, GHOSTWOOD, REDWOOD).flatMap { listOf(it.log to it.strippedLog, it.wood to it.strippedWood) }.toMap()
+
 	lateinit var VENT_ENTITY: BlockEntityType<VentBlockEntity>
 		private set
 
@@ -270,7 +329,7 @@ object ModBlocks {
 
 	/** Blocks drawn with cut-out textures (1.21.1 needs them registered on the client). */
 	internal val CUTOUT: List<Block> get() = listOf(DESERT_ROSE, TUSSOCK_GRASS, PALE_FERN, GHOSTWOOD_SAPLING, STAR_CRYSTAL_CLUSTER, SILVER_BEARD, MOON_BRACKET, MOONPETAL, STAR_BLOOM,
-		ASTRAL_ROOTS)
+		ASTRAL_ROOTS, DRAGON_BLOOD_SAPLING, REDWOOD_SAPLING) + POTTED + FAMILIES.flatMap { listOf(it.door, it.trapdoor) }
 	internal val CUTOUT_MIPPED: List<Block> get() = listOf(DRAGON_BLOOD_LEAVES, GHOSTWOOD_LEAVES, REDWOOD_LEAVES)
 
 	internal fun register() {
@@ -289,6 +348,30 @@ object ModBlocks {
 			GHOSTWOOD_HOLLOW to "ghostwood_hollow", STARDUST to "stardust", STARLIT_ABYSS_STONE to "starlit_abyss_stone", STAR_BLOOM to "star_bloom",
 			ASTRAL_ROOTS to "astral_roots", STAR_SPRING to "star_spring", SALT_MIRROR to "salt_mirror", TUSSOCK_GRASS to "tussock_grass", YARETA to "yareta",
 		)
-		BlockCompat.naturalTab(ALL.map { BlockCompat.item(ids.getValue(it), it) })
+		val natural = ALL.map { BlockCompat.item(ids.getValue(it), it) } +
+			listOf(BlockCompat.item("dragon_blood_sapling", DRAGON_BLOOD_SAPLING), BlockCompat.item("redwood_sapling", REDWOOD_SAPLING))
+		BlockCompat.naturalTab(natural)
+		BlockCompat.buildingTab(FAMILIES.flatMap { f -> f.all.map { (name, block) -> BlockCompat.item(name, block, tall = block === f.door) } })
+		behaviour()
+	}
+
+	/** What the blocks do besides standing there: stripping, burning, composting. Fuel values come from the item tags. */
+	private fun behaviour() {
+		val fire = FlammableBlockRegistry.getDefaultInstance()
+		for (f in FAMILIES) {
+			for (b in listOf(f.log, f.wood, f.strippedLog, f.strippedWood)) fire.add(b, 5, 5)
+			for (b in listOf(f.planks, f.stairs, f.slab, f.fence, f.fenceGate)) fire.add(b, 5, 20)
+		}
+		fire.add(GHOSTWOOD_HOLLOW, 5, 5)
+		for (b in listOf(DRAGON_BLOOD_LEAVES, GHOSTWOOD_LEAVES, REDWOOD_LEAVES)) fire.add(b, 30, 60)
+		for (b in listOf(DESERT_ROSE, MOONPETAL, PALE_FERN, TUSSOCK_GRASS)) fire.add(b, 60, 100)
+		for (b in listOf(SILVER_BEARD, PALE_MOSS_CARPET)) fire.add(b, 30, 60)
+		mapOf(
+			DRAGON_BLOOD_LEAVES to 0.3f, GHOSTWOOD_LEAVES to 0.3f, REDWOOD_LEAVES to 0.3f,
+			DRAGON_BLOOD_SAPLING to 0.3f, REDWOOD_SAPLING to 0.3f, GHOSTWOOD_SAPLING to 0.3f,
+			TUSSOCK_GRASS to 0.3f, SILVER_BEARD to 0.3f, ASTRAL_ROOTS to 0.3f, PALE_MOSS_CARPET to 0.3f,
+			YARETA to 0.5f, PALE_MOSS to 0.65f, PALE_FERN to 0.65f, DESERT_ROSE to 0.65f, MOONPETAL to 0.65f, STAR_BLOOM to 0.65f,
+			MOON_BRACKET to 0.65f,
+		).forEach { (block, chance) -> net.minecraft.world.level.block.ComposterBlock.COMPOSTABLES.put(block, chance) }
 	}
 }

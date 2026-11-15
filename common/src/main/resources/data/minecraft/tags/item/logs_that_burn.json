@@ -7,6 +7,12 @@
     "biomesmod:ghostwood_wood",
     "biomesmod:redwood_log",
     "biomesmod:redwood_wood",
-    "biomesmod:ghostwood_hollow"
+    "biomesmod:ghostwood_hollow",
+    "biomesmod:stripped_dragon_blood_log",
+    "biomesmod:stripped_dragon_blood_wood",
+    "biomesmod:stripped_ghostwood_log",
+    "biomesmod:stripped_ghostwood_wood",
+    "biomesmod:stripped_redwood_log",
+    "biomesmod:stripped_redwood_wood"
   ]
 }

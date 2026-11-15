@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "biomesmod:dragon_blood_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "biomesmod:dragon_blood_planks"
+  },
+  "group": "planks"
+}

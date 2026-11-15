@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "biomesmod:block/dragon_blood_sapling"
+  }
+}

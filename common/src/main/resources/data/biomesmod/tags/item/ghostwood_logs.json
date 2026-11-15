@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:ghostwood_log",
+    "biomesmod:ghostwood_wood",
+    "biomesmod:stripped_ghostwood_log",
+    "biomesmod:stripped_ghostwood_wood",
+    "biomesmod:ghostwood_hollow"
+  ]
+}

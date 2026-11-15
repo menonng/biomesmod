@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "biomesmod:desert_rose"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:pink_dye"
+  },
+  "group": "pink_dye"
+}

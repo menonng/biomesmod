@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "biomesmod:block/redwood_planks",
+    "top": "biomesmod:block/redwood_planks",
+    "side": "biomesmod:block/redwood_planks"
+  }
+}

@@ -161,7 +161,9 @@ from art import (abyss_stone, astral_roots, blob_leaves, desert_rose, dolerite_s
                  dragon_blood_leaves, dragon_blood_top, geyserite, ghost_bark, ghost_hollow, ghost_sapling, glacier_ice, grains,
                  moon_bracket, moonpetal, pale_fern, pale_moss, redwood_bark, rings_top, salt, salt_height, salt_mirror,
                  salt_mirror_height, scoria, silver_beard, star_bloom, star_cluster, star_crystal, star_spring_top, stardust,
-                 starlit, sulfur, sword_leaves, thermal_mat, travertine, tussock_grass, vent_top, volcanic_rock, yareta)
+                 starlit, sulfur, sword_leaves, thermal_mat, travertine, tussock_grass, vent_top, volcanic_rock, yareta,
+                 WOODS, door, door_item, dragon_blood_sapling, planks, redwood_sapling, stripped_side, stripped_top, trapdoor)
+import wood  # noqa: E402
 
 
 # ---------------------------------------------------------------- assets
@@ -229,14 +231,6 @@ def models(name, b):
         write(f"assets/biomesmod/models/item/{name}.json", gen)
         write(f"assets/biomesmod/items/{name}.json", {"model": {"type": "minecraft:model", "model": f"biomesmod:item/{name}"}})
     write(f"data/biomesmod/loot_table/blocks/{name}.json", loot(name, k))
-    if name == "ghostwood_leaves":
-        tool = loot(name, k)["pools"][0]["entries"][0]["conditions"][0]
-        write(f"data/biomesmod/loot_table/blocks/{name}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "bonus_rolls": 0, "entries": [
-            {"type": "minecraft:alternatives", "children": [
-                {"type": "minecraft:item", "name": "biomesmod:ghostwood_leaves", "conditions": [tool]},
-                {"type": "minecraft:item", "name": "biomesmod:ghostwood_sapling",
-                 "conditions": [{"condition": "minecraft:survives_explosion"}, {"condition": "minecraft:random_chance", "chance": 0.05}]}]}]}],
-            "random_sequence": f"biomesmod:blocks/{name}"})
 
 
 def loot(name, kind):
@@ -292,7 +286,8 @@ def main():
     block("abyss_stone", "all", ("Abyss Stone", "심연석"), ("mineable/pickaxe",))
     block("star_crystal", "all", ("Star Crystal", "별 수정"), ("mineable/pickaxe",))
     block("star_crystal_cluster", "cluster", ("Star Crystal Cluster", "별 수정 군집"), ("mineable/pickaxe",))
-    block("pale_moss_carpet", "carpet", ("Pale Moss Carpet", "은빛 이끼 카펫"), ("mineable/hoe",), dict(wool=t("pale_moss")))
+    block("pale_moss_carpet", "carpet", ("Pale Moss Carpet", "은빛 이끼 카펫"), ("mineable/hoe", "combination_step_sound_blocks"),
+          dict(wool=t("pale_moss")))
     block("silver_beard", "hanging", ("Silver Beard", "은빛 수염이끼"), ())
     block("moon_bracket", "cluster", ("Moon Bracket", "달빛 선반버섯"), ("mineable/axe",))
     block("moonpetal", "cross", ("Moonpetal", "달꽃잎"), ("small_flowers", "flowers"))
@@ -308,8 +303,18 @@ def main():
     block("salt_mirror", "bottom_top", ("Salt Mirror", "소금 거울"), ("mineable/shovel",),
           dict(top=t("salt_mirror"), side=t("salt_crust"), bottom=t("salt_crust")))
 
-    block("tussock_grass", "cross", ("Tussock Grass", "다발풀"), ())
+    block("tussock_grass", "cross", ("Tussock Grass", "다발풀"), ("replaceable_by_trees",))
     block("yareta", "all", ("Yareta", "야레타"), ("mineable/hoe",))
+
+    # ---- saplings and worked wood
+    block("dragon_blood_sapling", "cross", ("Dragon's Blood Sapling", "용혈수 묘목"), ("saplings",))
+    block("redwood_sapling", "cross", ("Redwood Sapling", "레드우드 묘목"), ("saplings",))
+    wood_names = {"dragon_blood": ("Dragon's Blood", "용혈수"), "ghostwood": ("Ghostwood", "백목"), "redwood": ("Redwood", "레드우드")}
+    for w, (en, ko) in wood_names.items():
+        block(f"stripped_{w}_log", "log", (f"Stripped {en} Log", f"껍질 벗긴 {ko} 원목"), ("logs", "logs_that_burn"),
+              dict(side=t(f"stripped_{w}_log"), end=t(f"stripped_{w}_log_top")))
+        block(f"stripped_{w}_wood", "wood", (f"Stripped {en} Wood", f"껍질 벗긴 {ko}"), ("logs", "logs_that_burn"), dict(side=t(f"stripped_{w}_log")))
+        block(f"{w}_planks", "all", (f"{en} Planks", f"{ko} 판자"), ("planks",))
 
     # ---- textures
     P = lambda name: os.path.join(TEX, name + ".png")
@@ -410,17 +415,42 @@ def main():
     png(P("astral_roots"), astral_roots())
     png(P("star_spring_top"), star_spring_top(ab))
 
+    png(P("dragon_blood_sapling"), dragon_blood_sapling())
+    png(P("redwood_sapling"), redwood_sapling())
+    for k, (w, cols) in enumerate(WOODS.items()):
+        png(P(f"{w}_planks"), planks(700 + k * 10, cols))
+        png(P(f"stripped_{w}_log"), stripped_side(701 + k * 10, cols))
+        png(P(f"stripped_{w}_log_top"), stripped_top(702 + k * 10, cols))
+        top, bottom = door(703 + k * 10, cols)
+        png(P(f"{w}_door_top"), top)
+        png(P(f"{w}_door_bottom"), bottom)
+        png(os.path.join(RES, "assets", "biomesmod", "textures", "item", f"{w}_door.png"), door_item(top, bottom))
+        png(P(f"{w}_trapdoor"), trapdoor(704 + k * 10, cols))
+
     # ---- models, loot, tags
+    out = wood.Out(write, REPO)
+    for w, (en, ko) in wood_names.items():
+        wood.family(out, w, en, ko)
+    out.own_tags["ghostwood_logs"].append("biomesmod:ghostwood_hollow")
+    for plant in ("dragon_blood_sapling", "redwood_sapling", "ghostwood_sapling", "desert_rose", "moonpetal", "pale_fern"):
+        wood.potted(out, plant, *BLOCKS[plant]["names"])
     tags = {}
     for name, b in BLOCKS.items():
         models(name, b)
         for tg in b["tags"]:
             tags.setdefault(tg, []).append("biomesmod:" + name)
-    tag_dir = os.path.join(RES, "data", "minecraft", "tags", "block")
+    for w in wood_names:
+        wood.leaves_loot(out, f"{w}_leaves", f"{w}_sapling")
+    for tg, vals in out.block_tags.items():
+        tags.setdefault(tg, []).extend(vals)
     for tg, vals in sorted(tags.items()):
         write(f"data/minecraft/tags/block/{tg}.json", {"replace": False, "values": vals})
-        if tg in ("logs", "logs_that_burn", "leaves", "sand", "small_flowers", "flowers", "saplings"):
+        if tg in ("logs", "logs_that_burn", "leaves", "sand", "small_flowers", "flowers", "saplings") + wood.ITEM_TAGS:
             write(f"data/minecraft/tags/item/{tg}.json", {"replace": False, "values": vals})
+    for tg, vals in out.own_tags.items():
+        write(f"data/biomesmod/tags/block/{tg}.json", {"replace": False, "values": vals})
+        write(f"data/biomesmod/tags/item/{tg}.json", {"replace": False, "values": vals})
+    n_recipes = wood.recipes(out, list(wood_names))
 
     # ---- names, merged into specs/lang (the biome generator turns them into the lang files)
     for loc, i in (("en_us", 0), ("ko_kr", 1)):
@@ -429,11 +459,15 @@ def main():
             lang = json.load(f)
         for name, b in BLOCKS.items():
             lang[f"block.biomesmod.{name}"] = b["names"][i]
+        for name, names in out.names.items():
+            lang[f"block.biomesmod.{name}"] = names[i]
+        for w, wn in wood_names.items():
+            lang[f"tag.item.biomesmod.{w}_logs"] = (wn[0] + " Logs", wn[1] + " 원목")[i]
         lang = dict(sorted(lang.items()))
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             json.dump(lang, f, indent=2, ensure_ascii=False)
             f.write("\n")
-    print("%d blocks written" % len(BLOCKS))
+    print("%d blocks, %d recipes written" % (len(BLOCKS) + len(out.names), n_recipes))
 
 
 if __name__ == "__main__":

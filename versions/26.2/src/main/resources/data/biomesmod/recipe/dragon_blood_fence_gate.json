@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "W": "biomesmod:dragon_blood_planks",
+    "#": "minecraft:stick"
+  },
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "biomesmod:dragon_blood_fence_gate"
+  },
+  "group": "wooden_fence_gate"
+}

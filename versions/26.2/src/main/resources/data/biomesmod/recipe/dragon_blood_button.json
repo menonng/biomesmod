@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "biomesmod:dragon_blood_planks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "biomesmod:dragon_blood_button"
+  },
+  "group": "wooden_button"
+}

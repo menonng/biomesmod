@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "biomesmod:block/redwood_slab"
+    },
+    "type=top": {
+      "model": "biomesmod:block/redwood_slab_top"
+    },
+    "type=double": {
+      "model": "biomesmod:block/redwood_planks"
+    }
+  }
+}

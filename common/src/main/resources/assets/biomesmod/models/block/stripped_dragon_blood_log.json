@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "biomesmod:block/stripped_dragon_blood_log_top",
+    "side": "biomesmod:block/stripped_dragon_blood_log"
+  }
+}

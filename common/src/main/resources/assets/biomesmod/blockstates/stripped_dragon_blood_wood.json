@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "biomesmod:block/stripped_dragon_blood_wood"
+    },
+    "axis=z": {
+      "model": "biomesmod:block/stripped_dragon_blood_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "biomesmod:block/stripped_dragon_blood_wood",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

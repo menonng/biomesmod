@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:dragon_blood_pressure_plate",
+    "biomesmod:ghostwood_pressure_plate",
+    "biomesmod:redwood_pressure_plate"
+  ]
+}

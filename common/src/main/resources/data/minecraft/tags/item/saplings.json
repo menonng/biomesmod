@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "biomesmod:ghostwood_sapling"
+    "biomesmod:ghostwood_sapling",
+    "biomesmod:dragon_blood_sapling",
+    "biomesmod:redwood_sapling"
   ]
 }

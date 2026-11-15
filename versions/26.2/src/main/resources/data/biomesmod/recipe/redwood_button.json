@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "biomesmod:redwood_planks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "biomesmod:redwood_button"
+  },
+  "group": "wooden_button"
+}

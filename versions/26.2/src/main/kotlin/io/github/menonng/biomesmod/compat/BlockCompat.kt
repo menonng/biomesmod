@@ -34,6 +34,8 @@ object BlockCompat {
 	/** Walk-through plant properties (the method name differs between versions). */
 	fun plantProperties(): BlockBehaviour.Properties = BlockBehaviour.Properties.of().noCollision().instabreak()
 
+	fun noCollision(properties: BlockBehaviour.Properties): BlockBehaviour.Properties = properties.noCollision()
+
 	fun <T : BlockEntity> blockEntity(name: String, factory: (BlockPos, BlockState) -> T, vararg blocks: Block): BlockEntityType<T> =
 		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Ids.id(name), BlockEntityType({ p, s -> factory(p, s) }, setOf(*blocks)))
 
@@ -42,9 +44,16 @@ object BlockCompat {
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register { output -> items.forEach { output.accept(it) } }
 	}
 
-	fun item(name: String, block: Block): Item {
+	/** [tall]: a two-block item such as a door. */
+	fun item(name: String, block: Block, tall: Boolean = false): Item {
 		val key = ResourceKey.create(Registries.ITEM, Ids.id(name))
-		return Registry.register(BuiltInRegistries.ITEM, key, BlockItem(block, Item.Properties().setId(key).useBlockDescriptionPrefix()))
+		val properties = Item.Properties().setId(key).useBlockDescriptionPrefix()
+		return Registry.register(BuiltInRegistries.ITEM, key,
+			if (tall) net.minecraft.world.item.DoubleHighBlockItem(block, properties) else BlockItem(block, properties))
+	}
+
+	fun buildingTab(items: List<Item>) {
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register { output -> items.forEach { output.accept(it) } }
 	}
 
 	/** 26.2 picks each quad's render layer from its texture's alpha, so cut-out textures need no registration. */

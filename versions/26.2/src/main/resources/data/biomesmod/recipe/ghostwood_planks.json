@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#biomesmod:ghostwood_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "biomesmod:ghostwood_planks"
+  },
+  "group": "planks"
+}

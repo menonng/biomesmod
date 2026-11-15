@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "biomesmod:block/ghostwood_door_bottom",
+    "top": "biomesmod:block/ghostwood_door_top"
+  }
+}
