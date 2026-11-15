@@ -18,7 +18,7 @@ class BiomesMod : ModInitializer {
 		ModFeatures.register()
 		Registry.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, Ids.id("site"), SiteDensity.DATA_CODEC)
 		SiteCommand.register()
-		// Project Regon style coasts on every beach: wide sand flats, bars and shallow lagoons.
+		// The beach of the Regon data pack on every beach biome: a flat strand at sea level and an even slope into the sea.
 		net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
 			// Not on this mod's own biomes: they shape their own shore, and the flats would level it again.
 			net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_BEACH)

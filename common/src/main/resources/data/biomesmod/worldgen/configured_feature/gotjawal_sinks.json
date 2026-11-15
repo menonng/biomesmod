@@ -1,0 +1,21 @@
+{
+  "config": {
+    "blocks": [
+      {
+        "Name": "minecraft:mossy_cobblestone"
+      },
+      {
+        "Name": "minecraft:basalt"
+      },
+      {
+        "Name": "minecraft:moss_block"
+      }
+    ],
+    "kind": "sink",
+    "size": [
+      2.2,
+      4.2
+    ]
+  },
+  "type": "biomesmod:wild_rock"
+}

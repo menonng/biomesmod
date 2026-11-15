@@ -2,10 +2,7 @@
   "config": {
     "blocks": [
       {
-        "Name": "minecraft:basalt",
-        "Properties": {
-          "axis": "y"
-        }
+        "Name": "minecraft:basalt"
       },
       {
         "Name": "minecraft:mossy_cobblestone"

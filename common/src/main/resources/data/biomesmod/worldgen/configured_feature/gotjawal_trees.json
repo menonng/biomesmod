@@ -1,16 +1,19 @@
 {
   "config": {
-    "default": "minecraft:oak_checked",
-    "features": [
-      {
-        "chance": 0.35,
-        "feature": "minecraft:dark_oak_checked"
-      },
-      {
-        "chance": 0.25,
-        "feature": "minecraft:fancy_oak_checked"
+    "height": [
+      5,
+      9
+    ],
+    "leaves": {
+      "Name": "minecraft:oak_leaves"
+    },
+    "log": {
+      "Name": "minecraft:oak_log",
+      "Properties": {
+        "axis": "y"
       }
-    ]
+    },
+    "style": "coppice"
   },
-  "type": "minecraft:random_selector"
+  "type": "biomesmod:wild_tree"
 }

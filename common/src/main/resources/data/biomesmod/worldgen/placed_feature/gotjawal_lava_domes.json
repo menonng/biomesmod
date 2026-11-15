@@ -2,14 +2,14 @@
   "feature": "biomesmod:gotjawal_lava_domes",
   "placement": [
     {
-      "chance": 3,
+      "chance": 2,
       "type": "minecraft:rarity_filter"
     },
     {
       "type": "minecraft:in_square"
     },
     {
-      "heightmap": "WORLD_SURFACE_WG",
+      "heightmap": "OCEAN_FLOOR_WG",
       "type": "minecraft:heightmap"
     },
     {

@@ -8,7 +8,7 @@ A Fabric mod that adds Overworld, Nether and End biomes, each loosely inspired b
 
 Global terrain changes (data overrides):
 
-* **Vast coastlines (in the manner of Project Regon).** The continentalness noise is remapped so the coast band is stretched about 4 times with gentle slopes, and every beach gets wide sand flats, bars and shallow lagoons (`coast_flats`, added to all `#minecraft:is_beach` biomes).
+* **Vast coastlines (in the manner of Project Regon).** The continentalness noise is remapped so the coast band is stretched about 4 times with gentle slopes, and every beach biome gets the beach of the Regon data pack: a flat strand at sea level and an even slope down to the sea bed (`coast_flats`, added to all `#minecraft:is_beach` biomes that are not this mod's own).
 * **No crescent water gorges.** Ravines are kept underground, so they no longer breach the surface near sea level and flood.
 
 **Placement.** Every real-place biome is a *site*, 1.2 to 1.7 times the size of a normal biome depending on the place (naturally vast places such as salt flats, ice sheets, steppes, dune seas and reefs stay larger, up to about 1,600 blocks across), placed by the site engine ([docs/engine-sites.md](docs/engine-sites.md)). The terrain inside a site is moved to the place's real elevation, and a ramp joins it smoothly to the land around it. Below 2,000 m one block is 25.6 m above sea level (y=63); real high ground from 2,000 m up starts at **y=190** and climbs 40 m per block, so Salar de Uyuni (3,656 m) is a flat salt plateau at y=231 and Grand Prismatic (2,240 m) sits at y=196. Mountain sites add ridged ranges on top (sharp crests and arêtes in the manner of Tectonic), fading out towards the edge. A site can hold several zone biomes (Socotra: highlands, dragon's blood plateau, coast), and fjord sites cut channels down to the sea. Sites are chosen from the world's climate at their centre, so deserts stay among dry land and ice plateaus among frozen land. About a quarter of the world is in sites. The three generic biomes (archipelago, polder tulip fields, sunken pines) still take vanilla climate slots through TerraBlender. In game, `/biomesmod sites [biome]` lists the nearest sites.
@@ -95,6 +95,7 @@ Because of them, clients need the mod installed to join a server that runs it.
 | `socotra_highlands` | Socotra Haggeher Highlands / 소코트라 하지르 고지대 | overworld | zone of `socotra` | 13 |
 | `sossusvlei` | Sossusvlei / 소수스블레이 | overworld | site, lift y=85 | 38 |
 | `star_abyss` | Star Abyss / 별의 심연 | end | end highlands | — |
+| `takachiho_gorge` | Takachiho Gorge / 다카치호 협곡 | overworld | site, plateau y=100 | — |
 | `tre_cime` | Tre Cime / 트레 치메 | overworld | site, lift y=198 (2300 m) | 24 |
 | `ushishir_caldera` | Ushishir Caldera / 우시시르 칼데라 | overworld | site, keep | 1 |
 | `wadi_rum` | Wadi Rum / 와디 럼 | overworld | site, plateau y=102 (1000 m) | 31 |
@@ -104,14 +105,24 @@ Because of them, clients need the mod installed to join a server that runs it.
 
 ## Compatibility
 
-Last measured with 0.5.0-beta.1 on Minecraft 26.2 (self-check on a biome subset, seed 0); not yet re-run for 0.6.0:
+| Minecraft | Loader and libraries | State |
+|---|---|---|
+| 26.2 | Fabric Loader 0.20.1, Fabric API 0.161.0+26.2, Fabric Language Kotlin 1.14.2+kotlin.2.4.21, TerraBlender 26.2.0.0.2, Java 25 | tested, see below |
+| 1.21.1 | Fabric API 0.116.17+1.21.1, the same Fabric Language Kotlin, TerraBlender 4.1.0.8, Java 21 | builds; **not tested since 0.6.0-beta.14** |
 
-| Configuration | Result |
+The jars are bound to their Minecraft version (1.21.1 exactly; 26.2 and its patch releases). Clients need the mod to join a server that runs it.
+
+Tested for 0.6.0 on Minecraft 26.2 with the headless self-check (seed 0): every biome on the Default preset. The Large Biomes and Amplified presets were last checked at 0.5.0-beta.1 and have not been re-run for 0.6.0. The client has only been used to take the gallery pictures; nothing has been played in it. See [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
+
+Other worldgen mods were last measured with 0.5.0-beta.1 and have **not** been re-run since:
+
+| Configuration | Result at 0.5.0-beta.1 |
 |---|---|
-| Default, Large Biomes, Amplified presets | passed, sites generate on every preset |
 | Tectonic, Terralith (Lithostitched), Montane, Mountain Peaks, Hybrid Beta | passed |
 | WWOO, OTBWG (1.21.1) | feature-order cycles, fixed with per-version order hints |
 | JJThunder To The Max | its biome search hangs the locate step; not verified |
+
+The mod overrides two vanilla worldgen files (the `continents` density function for the wide coasts and the `canyon` carver). A data pack or mod that replaces the same files wins or loses as a whole, depending on load order; the site engine itself hooks the noise router at runtime and does not depend on them.
 
 ## Layout
 

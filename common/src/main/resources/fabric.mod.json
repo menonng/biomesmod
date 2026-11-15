@@ -3,14 +3,17 @@
 	"id": "biomesmod",
 	"version": "${version}",
 	"name": "Biomes Mod",
-	"description": "Adds new Overworld, Nether and End biomes inspired by real places.",
+	"description": "64 biomes built after real places, each at its real elevation: salt flats, fjords, calderas, canyons, ice sheets, dune seas. With the blocks to dress them.",
 	"authors": [
 		"menonng"
 	],
 	"contact": {
-		"sources": "https://github.com/menonng/biomesmod"
+		"homepage": "https://github.com/menonng/biomesmod",
+		"sources": "https://github.com/menonng/biomesmod",
+		"issues": "https://github.com/menonng/biomesmod/issues"
 	},
-	"license": "ARR",
+	"icon": "assets/biomesmod/icon.png",
+	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

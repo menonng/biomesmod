@@ -3,7 +3,7 @@
   "configured": {
     "type": "biomesmod:wild_tree",
     "config": {
-      "style": "broadleaf",
+      "style": "coppice",
       "log": {
         "Name": "minecraft:dark_oak_log",
         "Properties": {
@@ -14,7 +14,7 @@
         "Name": "minecraft:dark_oak_leaves"
       },
       "height": [
-        4,
+        5,
         8
       ]
     }
@@ -22,7 +22,7 @@
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 2
+      "count": 6
     },
     {
       "type": "minecraft:in_square"

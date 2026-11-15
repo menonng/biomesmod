@@ -29,7 +29,7 @@
       "ramp": 140,
       "terrain": "lift",
       "target_y": 75,
-      "relief": 0.4
+      "relief": 0.5
     }
   },
   "base": "minecraft:forest",
@@ -53,9 +53,7 @@
       "minecraft:patch_grass_forest"
     ],
     "add": {
-      "local_modifications": [
-        "minecraft:forest_rock"
-      ],
+      "local_modifications": [],
       "vegetal_decoration": [
         "minecraft:patch_large_fern",
         "minecraft:patch_grass_taiga",
@@ -69,15 +67,38 @@
       ]
     },
     "mod": {
-      "vegetal_decoration": [
+      "local_modifications": [
+        "biomesmod:gotjawal_sinks",
+        "biomesmod:gotjawal_lava_domes",
         "biomesmod:gotjawal_clinker",
-        "biomesmod:gotjawal_trees",
+        "biomesmod:gotjawal_lava_blocks"
+      ],
+      "vegetal_decoration": [
         "biomesmod:gotjawal_evergreen_oak",
-        "biomesmod:gotjawal_camellia",
-        "biomesmod:gotjawal_lava_blocks",
-        "biomesmod:gotjawal_lava_domes"
+        "biomesmod:gotjawal_trees",
+        "biomesmod:gotjawal_camellia"
       ]
     }
   },
-  "spawners": "base"
+  "spawners": "base",
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:mossy_cobblestone",
+        "noise": "minecraft:surface_secondary",
+        "min": 0.3
+      },
+      {
+        "block": "minecraft:moss_block",
+        "noise": "minecraft:surface",
+        "min": -0.15,
+        "max": 0.55
+      },
+      {
+        "block": "minecraft:podzol",
+        "noise": "minecraft:surface",
+        "min": 0.55
+      }
+    ]
+  }
 }

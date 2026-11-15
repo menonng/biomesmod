@@ -27,7 +27,8 @@ object LandformHeights {
 	}
 
 	private val STATE: ThreadLocal<State> = ThreadLocal.withInitial { State() }
-	private val BUILDERS = ConcurrentHashMap<Biome, List<Any>>()
+	/** Weak keys: the biomes of a world that was closed (a client switching worlds) must not be kept alive. */
+	private val BUILDERS: MutableMap<Biome, List<Any>> = java.util.Collections.synchronizedMap(java.util.WeakHashMap())
 
 	/** Runs [body] with landform-aware height queries on this thread. */
 	@JvmStatic

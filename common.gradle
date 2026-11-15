@@ -37,6 +37,11 @@ processResources {
 	filesMatching('fabric.mod.json') { expand props }
 }
 
+// The MIT licence travels with every copy of the jar.
+jar {
+	from(rootProject.file('LICENSE')) { rename { 'LICENSE_biomesmod' } }
+}
+
 
 // Dev-only 'gametest' source set (never packaged into the release jar): the engine showcases
 // (common/src/gametest) and their per-version fabric.mod.json (versions/<mc>/src/gametest).

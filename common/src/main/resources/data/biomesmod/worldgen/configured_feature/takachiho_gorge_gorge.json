@@ -1,0 +1,104 @@
+{
+  "config": {
+    "benches": 1,
+    "biomes": [
+      "biomesmod:takachiho_gorge"
+    ],
+    "depth": 36,
+    "edge_blend": 28,
+    "floor_width": 9,
+    "mode": "canyon",
+    "palette": {
+      "strata": {
+        "strata": [
+          {
+            "block": {
+              "Name": "minecraft:basalt",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "thickness": 9
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_basalt"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "thickness": 7
+          },
+          {
+            "block": {
+              "Name": "minecraft:mossy_cobblestone"
+            },
+            "thickness": 1
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "thickness": 10
+          },
+          {
+            "block": {
+              "Name": "minecraft:deepslate",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "thickness": 2
+          },
+          {
+            "block": {
+              "Name": "minecraft:basalt",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "thickness": 8
+          },
+          {
+            "block": {
+              "Name": "minecraft:smooth_basalt"
+            },
+            "thickness": 2
+          }
+        ]
+      },
+      "top": [
+        {
+          "block": {
+            "Name": "minecraft:moss_block"
+          },
+          "depth": 1
+        },
+        {
+          "block": {
+            "Name": "minecraft:basalt",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "depth": 2
+        }
+      ]
+    },
+    "plateau": 0,
+    "river_width": 7,
+    "side_spacing": 120,
+    "spacing": 230,
+    "width": 30
+  },
+  "type": "biomesmod:terrain_shaper"
+}

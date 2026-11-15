@@ -15,7 +15,7 @@ dependencies {
 // Dev-only docs screenshot director (never packaged): a client that quick-plays the pre-generated world
 // run/shots/saves/shots and photographs every biome from a plan (see ShotDirector). Shader/LOD mods are added from
 // -PclientMods=<dir> (every jar in it), e.g. Sodium, Iris and Voxy.
-//   ./gradlew :26.2:runShots -Pplan=<plan.json> -PclientMods=<dir> [-Ponly=a,b]
+//   ./gradlew :26.2:runShots -Pplan=<plan.json> -PclientMods=<dir> [-Ponly=a,b] [-PshotsHeap=6G]
 sourceSets {
 	shots {
 		kotlin.srcDir('src/shots/kotlin')
@@ -34,7 +34,7 @@ loom {
 			name = 'Docs Screenshots (26.2)'
 			runDir = 'run/shots'
 			source sourceSets.shots
-			vmArg '-Xmx10G'
+			vmArg "-Xmx${project.findProperty('shotsHeap') ?: '10G'}"  // -PshotsHeap=6G when the machine is short of memory
 			vmArg "-Dbiomesmod.shots=${file(project.findProperty('plan') ?: 'run/shots/plan.json').absolutePath}"
 			vmArg "-Dbiomesmod.shots.only=${project.findProperty('only') ?: ''}"
 			if (project.hasProperty('clientMods')) {

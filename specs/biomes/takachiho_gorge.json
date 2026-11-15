@@ -1,0 +1,94 @@
+{
+  "$schema": "../schema/biome.schema.json",
+  "id": "takachiho_gorge",
+  "names": {
+    "en_us": "Takachiho Gorge",
+    "ko_kr": "다카치호 협곡"
+  },
+  "places": [],
+  "dimension": "overworld",
+  "placement": {
+    "site": {
+      "zone": [
+        "near_inland",
+        "mid_inland"
+      ],
+      "temperature": [
+        "temperate",
+        "warm"
+      ],
+      "humidity": [
+        "neutral",
+        "wet",
+        "humid"
+      ],
+      "size": [
+        300,
+        360
+      ],
+      "ramp": 180,
+      "terrain": "plateau",
+      "target_y": 100,
+      "relief": 0.12,
+      "weight": 1.4
+    }
+  },
+  "base": "minecraft:forest",
+  "climate": {
+    "temperature": 0.7,
+    "downfall": 0.9,
+    "has_precipitation": true
+  },
+  "colors": {
+    "water": "#2f9e8f",
+    "water_fog": "#0b4a45",
+    "grass": "#5c9440",
+    "foliage": "#3f7a34"
+  },
+  "surface": {
+    "top_patches": [
+      {
+        "block": "minecraft:moss_block",
+        "noise": "minecraft:surface",
+        "min": 0.3
+      },
+      {
+        "block": "minecraft:podzol",
+        "noise": "minecraft:surface_secondary",
+        "min": 0.35
+      }
+    ]
+  },
+  "features": {
+    "remove": [
+      "minecraft:trees_birch_and_oak",
+      "minecraft:trees_birch_and_oak_leaf_litter",
+      "minecraft:forest_flowers",
+      "minecraft:lake_lava_surface"
+    ],
+    "add": {
+      "vegetal_decoration": [
+        "minecraft:patch_large_fern",
+        "minecraft:patch_grass_taiga",
+        "minecraft:flower_default",
+        "minecraft:vines"
+      ]
+    },
+    "mod": {
+      "raw_generation": [
+        "biomesmod:takachiho_gorge_gorge"
+      ],
+      "local_modifications": [
+        "biomesmod:takachiho_gorge_boulders"
+      ],
+      "vegetal_decoration": [
+        "biomesmod:takachiho_gorge_cedar",
+        "biomesmod:takachiho_gorge_oak",
+        "biomesmod:takachiho_gorge_maple",
+        "biomesmod:takachiho_gorge_falls"
+      ]
+    }
+  },
+  "spawners": "base",
+  "carvers": "underground"
+}

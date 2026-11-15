@@ -53,16 +53,19 @@ object BiomesConfig {
 			BiomesMod.LOGGER.warn("config/biomesmod.json is not valid JSON, using the defaults", e)
 			JsonObject()
 		}
+		// Every number is held to a range the generator can work with: a typo must not crash world creation or hang it.
 		val e = root.obj("elevation")
 		val d = Elevation()
-		elevation = Elevation(e.num("sea_level_y", d.seaLevelY), e.num("metres_per_block", d.metresPerBlock), e.num("highland_metres", d.highlandMetres),
-			e.num("highland_min_y", d.highlandMinY), e.num("highland_metres_per_block", d.highlandMetresPerBlock), e.num("max_target_y", d.maxTargetY))
+		elevation = Elevation(e.num("sea_level_y", d.seaLevelY, 0.0, 255.0), e.num("metres_per_block", d.metresPerBlock, 1.0, 1000.0),
+			e.num("highland_metres", d.highlandMetres, 0.0, 9000.0), e.num("highland_min_y", d.highlandMinY, 0.0, 300.0),
+			e.num("highland_metres_per_block", d.highlandMetresPerBlock, 1.0, 1000.0), e.num("max_target_y", d.maxTargetY, 64.0, 300.0))
 		val s = root.obj("sites")
 		val ds = Sites()
 		val w = s.obj("weights")
-		sites = Sites(s.num("cell", ds.cell.toDouble()).toInt(), s.num("chance", ds.chance), s.num("size_scale", ds.sizeScale),
-			s.num("large_biomes_scale", ds.largeBiomesScale), w.keySet().associateWith { w.get(it).asDouble })
-		ridgeScale = root.obj("mountains").num("ridge_scale", 1.0)
+		sites = Sites(s.num("cell", ds.cell.toDouble(), 512.0, 16384.0).toInt(), s.num("chance", ds.chance, 0.0, 1.0),
+			s.num("size_scale", ds.sizeScale, 0.25, 4.0), s.num("large_biomes_scale", ds.largeBiomesScale, 0.25, 4.0),
+			w.keySet().filter { it != "_help" }.associateWith { w.num(it, 1.0, 0.0, 100.0) })
+		ridgeScale = root.obj("mountains").num("ridge_scale", 1.0, 0.0, 3.0)
 		val um = root.obj("uyuni")
 		mirrorBlock = !(um.has("mirror") && um.get("mirror").isJsonPrimitive && um.get("mirror").asString == "water")
 		write(path)
@@ -120,6 +123,20 @@ object BiomesConfig {
 
 	private fun JsonObject.obj(key: String): JsonObject = if (has(key) && get(key).isJsonObject) getAsJsonObject(key) else JsonObject()
 
-	private fun JsonObject.num(key: String, def: Double): Double =
-		if (has(key) && get(key).isJsonPrimitive && get(key).asJsonPrimitive.isNumber) get(key).asDouble else def
+	/** The number at [key], or [def] when it is missing or not a number; held to [lo]..[hi], with a warning when it was outside. */
+	private fun JsonObject.num(key: String, def: Double, lo: Double, hi: Double): Double {
+		if (!has(key)) {
+			return def
+		}
+		val el = get(key)
+		val v = if (el.isJsonPrimitive && el.asJsonPrimitive.isNumber) el.asDouble else Double.NaN
+		if (v.isNaN() || v.isInfinite()) {
+			BiomesMod.LOGGER.warn("config/biomesmod.json: {} is not a number, using {}", key, def)
+			return def
+		}
+		if (v < lo || v > hi) {
+			BiomesMod.LOGGER.warn("config/biomesmod.json: {} = {} is outside {}..{}, using the nearest allowed value", key, v, lo, hi)
+		}
+		return v.coerceIn(lo, hi)
+	}
 }

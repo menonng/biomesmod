@@ -51,6 +51,9 @@
   "geirangerfjord": {
     "source": "eox2024"
   },
+  "giant_redwood_forest": {
+    "source": "eox2016"
+  },
   "giants_causeway": {
     "source": "eox2016"
   },
@@ -142,6 +145,9 @@
   "sossusvlei": {
     "source": "eox2016"
   },
+  "takachiho_gorge": {
+    "source": "eox2016"
+  },
   "tre_cime": {
     "source": "eox2016"
   },
@@ -153,8 +159,5 @@
   },
   "zhangjiajie": {
     "source": "eox2024"
-  },
-  "giant_redwood_forest": {
-    "source": "eox2016"
   }
 }

@@ -219,6 +219,10 @@
       "dimension": "minecraft:overworld"
     },
     {
+      "id": "biomesmod:takachiho_gorge",
+      "dimension": "minecraft:overworld"
+    },
+    {
       "id": "biomesmod:tre_cime",
       "dimension": "minecraft:overworld"
     },
@@ -374,6 +378,27 @@
         ]
       },
       {
+        "biome": "biomesmod:gotjawal",
+        "top_patches": [
+          {
+            "block": "minecraft:mossy_cobblestone",
+            "noise": "minecraft:surface_secondary",
+            "min": 0.3
+          },
+          {
+            "block": "minecraft:moss_block",
+            "noise": "minecraft:surface",
+            "min": -0.15,
+            "max": 0.55
+          },
+          {
+            "block": "minecraft:podzol",
+            "noise": "minecraft:surface",
+            "min": 0.55
+          }
+        ]
+      },
+      {
         "biome": "biomesmod:grand_canyon",
         "top": "minecraft:red_sand",
         "under": "minecraft:orange_terracotta",
@@ -525,6 +550,21 @@
         "top": "minecraft:red_sand",
         "under": "minecraft:red_sandstone",
         "under_depth": 3
+      },
+      {
+        "biome": "biomesmod:takachiho_gorge",
+        "top_patches": [
+          {
+            "block": "minecraft:moss_block",
+            "noise": "minecraft:surface",
+            "min": 0.3
+          },
+          {
+            "block": "minecraft:podzol",
+            "noise": "minecraft:surface_secondary",
+            "min": 0.35
+          }
+        ]
       },
       {
         "biome": "biomesmod:ushishir_caldera",
@@ -1185,7 +1225,7 @@
         "ramp": 140.0,
         "terrain": "lift",
         "target_y": 75,
-        "relief": 0.4,
+        "relief": 0.5,
         "weight": 1.0,
         "biome_threshold": 0.5
       },
@@ -1973,6 +2013,31 @@
         "target_y": 85,
         "relief": 0.2,
         "weight": 2.5,
+        "biome_threshold": 0.5
+      },
+      {
+        "biome": "biomesmod:takachiho_gorge",
+        "temperature": [
+          -0.15,
+          0.55
+        ],
+        "humidity": [
+          -0.1,
+          2.0
+        ],
+        "continentalness": [
+          -0.11,
+          0.3
+        ],
+        "core": [
+          300.0,
+          360.0
+        ],
+        "ramp": 180.0,
+        "terrain": "plateau",
+        "target_y": 100,
+        "relief": 0.12,
+        "weight": 1.4,
         "biome_threshold": 0.5
       },
       {

@@ -18,5 +18,15 @@
       "country": "United States (California)",
       "summary": "Coast redwoods, the tallest trees on Earth (over 110 m), stand in fog-fed groves along Redwood Creek: thick red fibrous trunks rising from a fern and moss floor into a closed canopy far overhead."
     }
+  ],
+  "takachiho_gorge": [
+    {
+      "n": 0,
+      "lat": 32.7021,
+      "lon": 131.3008,
+      "name": "Takachiho Gorge (Gokase River, Miyazaki)",
+      "country": "Japan (Kyushu)",
+      "summary": "A narrow gorge the Gokase River cut through lava flows of Mount Aso: sheer walls of columnar basalt 80 to 100 m high stand a few metres apart over emerald water, with the Manai Falls dropping into it from the forested plateau above."
+    }
   ]
 }

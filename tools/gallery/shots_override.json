@@ -20,8 +20,9 @@
     "above": 28
   },
   "grand_canyon": {
-    "above": 22,
-    "dist": 0.5
+    "above": 60,
+    "dist": 0.35,
+    "t_above": -30
   },
   "monument_valley": {
     "above": 30,
@@ -53,7 +54,12 @@
     "above": 30
   },
   "great_barrier_reef": {
-    "above": 34
+    "x": 11187,
+    "z": -8901,
+    "y": 57,
+    "yaw": 240,
+    "pitch": 12,
+    "time": 6000
   },
   "ha_long_bay": {
     "no_landmark": true,
@@ -108,7 +114,8 @@
     "above": 50
   },
   "puna_de_atacama": {
-    "above": 14
+    "above": 90,
+    "t_above": -30
   },
   "orkhon_steppe": {
     "above": 22
@@ -135,7 +142,12 @@
     "above": 30
   },
   "gotjawal": {
-    "above": 22
+    "x": -7272,
+    "z": -20772,
+    "y": 82,
+    "yaw": 285,
+    "pitch": 2,
+    "time": 6000
   },
   "franz_josef_land": {
     "above": 40
@@ -144,19 +156,21 @@
     "above": 40
   },
   "devils_tower": {
+    "lm_dist": 115,
     "above": 20,
     "t_above": -25
   },
   "tre_cime": {
+    "lm_dist": 120,
     "above": 30,
     "t_above": -20
   },
   "grand_prismatic": {
-    "lm_dist": 80,
-    "above": 14
+    "lm_dist": 70,
+    "above": 34
   },
   "moraine_lake": {
-    "above": 32,
+    "above": 70,
     "t_above": 0
   },
   "iguazu_falls": {
@@ -164,18 +178,16 @@
     "t_above": -6
   },
   "alaid_volcano": {
-    "lm_dist": 420,
-    "above": 40,
-    "t_above": 60
+    "lm_dist": 470,
+    "above": 170,
+    "t_above": -40
   },
-  "krenitsyn_caldera": {
-    "above": 60
-  },
-  "ushishir_caldera": {
-    "above": 55
-  },
+  "krenitsyn_caldera": {},
+  "ushishir_caldera": {},
   "bromo_tengger": {
-    "above": 60
+    "lm_dist": 330,
+    "above": 45,
+    "t_above": 10
   },
   "glacier": {
     "above": 80,
@@ -190,5 +202,13 @@
     "above": 60,
     "dist": 0.45,
     "t_above": -15
+  },
+  "takachiho_gorge": {
+    "x": 6404,
+    "z": -3537,
+    "y": 72,
+    "yaw": 280,
+    "pitch": 8,
+    "time": 3000
   }
 }

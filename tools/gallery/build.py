@@ -45,8 +45,33 @@ def target_y(site):
     return site.get('target_y')
 
 
-def img_tag(path, alt, width=230):
-    return f'<img src="{path}" alt="{alt}" width="{width}">'
+# Every picture in the gallery tables is shown in one frame of this size (4:3, between the square maps and the 16:9
+# views, so each loses an eighth on two sides at most).
+THUMB_W, THUMB_H = 240, 180
+
+
+def img_tag(path, alt):
+    return f'<img src="{path}" alt="{alt}" width="{THUMB_W}" height="{THUMB_H}">'
+
+
+def thumb(bid, kind):
+    """A thumbnail of img/<bid>-<kind>.jpg for the tables: centre crop to the common frame, stored at twice the shown
+    size. Returns its path relative to the page."""
+    from PIL import Image
+    src = os.path.join(OUT, 'img', f'{bid}-{kind}.jpg')
+    rel = f'img/thumb/{bid}-{kind}.jpg'
+    dst = os.path.join(OUT, rel)
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    im = Image.open(src).convert('RGB')
+    w, h = im.size
+    if w * THUMB_H > h * THUMB_W:  # wider than the frame: trim the sides
+        cw, ch = h * THUMB_W // THUMB_H, h
+    else:  # taller: trim top and bottom
+        cw, ch = w, w * THUMB_H // THUMB_W
+    x0, y0 = (w - cw) // 2, (h - ch) // 2
+    im = im.crop((x0, y0, x0 + cw, y0 + ch)).resize((THUMB_W * 2, THUMB_H * 2), Image.LANCZOS)
+    im.save(dst, quality=84, optimize=True)
+    return rel
 
 
 def load(path):
@@ -73,7 +98,7 @@ def main():
             imgs = {k: f'img/{bid}-{k}.jpg' for k in ('map', 'view')}
             have = {k: os.path.exists(os.path.join(OUT, v)) for k, v in imgs.items()}
             originals.append(f'| **{en}**<br>{ko}<br>`{bid}` | ' + ' | '.join(
-                f'[{img_tag(imgs[k], k, 330)}]({imgs[k]})' if have[k] else '—' for k in ('map', 'view')) + ' |')
+                f'[{img_tag(thumb(bid, k), k)}]({imgs[k]})' if have[k] else '—' for k in ('map', 'view')) + ' |')
             continue
         p = ps[0]
         en, ko = spec['names']['en_us'], spec['names']['ko_kr']
@@ -111,14 +136,14 @@ def main():
         ]
         with open(os.path.join(OUT, bid + '.md'), 'w', encoding='utf-8', newline='\n') as f:
             f.write('\n'.join(lines))
-        cells = ' | '.join(f'[{img_tag(imgs[k], k)}]({bid}.md)' if have[k] else '—' for k in ('satellite', 'map', 'view'))
+        cells = ' | '.join(f'[{img_tag(thumb(bid, k), k)}]({bid}.md)' if have[k] else '—' for k in ('satellite', 'map', 'view'))
         rows.append(f'| [**{en}**]({bid}.md)<br>{ko}<br><sub>{p["name"]}, {p["country"]}<br>{TERRAIN[terrain]}{height}</sub> | {cells} |')
     index = [
         '# Biome gallery',
         '',
         'Every real-place biome of the mod next to the place that inspired it: the real satellite image, a top-down map of '
         'the generated site (the in-game "satellite view") and an in-game view with shaders. Click a biome for its page and '
-        'the full-size images.',
+        'the full-size images. Every picture in the tables is cropped to the same 4:3 frame; the pages show them whole.',
         '',
         '| Biome / real place | Satellite (real place) | In-game map (top-down) | In-game view (Bliss shaders) |',
         '|---|---|---|---|',

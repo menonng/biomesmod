@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/feature.schema.json",
+  "configured": {
+    "type": "biomesmod:wild_rock",
+    "config": {
+      "kind": "boulder",
+      "blocks": [
+        {
+          "Name": "minecraft:basalt"
+        },
+        {
+          "Name": "minecraft:mossy_cobblestone"
+        },
+        {
+          "Name": "minecraft:moss_block"
+        }
+      ],
+      "size": [
+        1.0,
+        2.4
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 3
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

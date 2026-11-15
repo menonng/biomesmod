@@ -17,7 +17,8 @@ SITE_RE = re.compile(r"biomesmod:([a-z_]+) \[minecraft:overworld\] OK - site 1 o
 LF_RE = re.compile(r"biomesmod:([a-z_]+) \[minecraft:overworld\] landform ([a-z_]+): .*?-> (\d+) placed at ([-\d,; ]+)")
 
 # Camera distance and height for a landmark of each shape.
-LANDMARK = {'monolith': (150, 25), 'cone': (330, 45), 'caldera': (300, 30), 'hot_spring': (90, 14), 'geyser': (70, 12), 'cascade': (130, 8),
+# Volcanoes are taken from high and far enough to show the whole cone or caldera and the land round it.
+LANDMARK = {'monolith': (120, 25), 'cone': (430, 110), 'caldera': (400, 150), 'hot_spring': (90, 14), 'geyser': (70, 12), 'cascade': (130, 8),
             'glacial_lake': (230, 30), 'pillar_forest': (120, 26), 'butte': (190, 24), 'sea_stack': (110, 12), 'column_field': (60, 8)}
 ABOVE = {'plateau': 10, 'basin': 18, 'lift': 30, 'mountain': 55, 'keep': 30}
 
@@ -64,6 +65,9 @@ def main():
             cam = {'x': s['x'] + math.cos(ang) * d, 'z': s['z'] - math.sin(ang) * d, 'above': o.get('above', ABOVE[s['terrain']]),
                    'tx': s['x'] - math.cos(ang) * d * 0.3, 'tz': s['z'] + math.sin(ang) * d * 0.3, 't_above': o.get('t_above', 0)}
         cam.update({k: v for k, v in o.items() if k in ('x', 'z', 'y', 'tx', 'tz', 'yaw', 'pitch')})
+        if 'yaw' in o:  # a fixed line of sight (under water, inside a forest) instead of a target on the ground
+            cam.pop('tx', None)
+            cam.pop('tz', None)
         shot = dict(name=b, time=o.get('time', 1500), **{k: round(v, 1) if isinstance(v, float) else v for k, v in cam.items()})
         if o.get('commands'):
             shot['commands'] = o['commands']

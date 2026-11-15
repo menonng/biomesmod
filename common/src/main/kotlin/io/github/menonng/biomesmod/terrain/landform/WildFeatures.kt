@@ -87,6 +87,8 @@ private class Pen(val level: WorldGenLevel, val r: RandomSource) {
  * * `palm`: a curved bare trunk with a head of arching fronds.
  * * `flat_top`: a leaning, forking trunk under flat plates of foliage (thorn trees, junipers).
  * * `shrub`: a low many-stemmed bush.
+ * * `coppice`: two to four thin stems leaning apart from one stool, under one low canopy, with roots creeping over the
+ *   rock round it and vines hanging from the crown. It also roots on bare rock (the lava forests of Jeju).
  */
 class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 	data class Config(val style: String, val log: BlockState, val leaves: BlockState, val height: Span) : FeatureConfiguration {
@@ -115,6 +117,7 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 		val ok = when (cfg.style) {
 			"palm", "flat_top", "shrub" -> soil || dry
 			"conifer", "krummholz" -> soil || below.`is`(Blocks.SNOW_BLOCK) || below.`is`(Blocks.STONE)
+			"coppice" -> soil || ChunkWriter.isTerrain(below)
 			else -> soil
 		}
 		if (!ok || !pen.free(o.x, o.y, o.z) || !pen.free(o.x, o.y + 2, o.z)) {
@@ -253,6 +256,68 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 					if (r.nextBoolean()) pen.blob(bx, by + 2.0, bz, 1.4, 0.5, leaves)
 				}
 			}
+			"coppice" -> {
+				val stems = 2 + r.nextInt(3)
+				val a0 = r.nextDouble() * Math.PI * 2
+				for (k in 0 until stems) {
+					val a = a0 + k * Math.PI * 2 / stems + (r.nextDouble() - 0.5) * 0.9
+					val lean = 0.16 + r.nextFloat() * 0.3
+					val sh = max(3, h - r.nextInt(3))
+					var fx = if (k == 0) 0.0 else cos(a) * 0.7
+					var fz = if (k == 0) 0.0 else sin(a) * 0.7
+					for (i in 0 until sh) {
+						pen.log(x + fx.roundToInt(), y + i, z + fz.roundToInt(), log)
+						if (i >= 1) {
+							fx += cos(a) * lean
+							fz += sin(a) * lean
+						}
+					}
+					pen.blob(x + fx, y + sh + 0.3, z + fz, 2.0 + r.nextFloat(), 1.3 + r.nextFloat() * 0.5, leaves)
+				}
+				// Roots over the rock: each follows the ground away from the stool, a step up or down at a time.
+				for (k in 0 until 2 + r.nextInt(3)) {
+					val a = r.nextDouble() * Math.PI * 2
+					val axis = if (abs(cos(a)) > abs(sin(a))) Direction.Axis.X else Direction.Axis.Z
+					var rx = x.toDouble()
+					var rz = z.toDouble()
+					var ry = y
+					for (step in 0 until 1 + r.nextInt(3)) {
+						rx += cos(a)
+						rz += sin(a)
+						val px = rx.roundToInt()
+						val pz = rz.roundToInt()
+						if (px == x && pz == z) continue
+						if (pen.free(px, ry - 1, pz)) {
+							ry--
+						} else if (!pen.free(px, ry, pz)) {
+							if (!pen.free(px, ry + 1, pz)) break
+							ry++
+						}
+						if (!pen.get(px, ry - 1, pz).blocksMotion() || !pen.get(px, ry, pz).fluidState.isEmpty) break
+						pen.log(px, ry, pz, log, axis)
+					}
+				}
+				// Vines from the crown, on the side of a leaf with air next to it.
+				for (k in 0 until 10) {
+					val px = x + r.nextInt(9) - 4
+					val pz = z + r.nextInt(9) - 4
+					val d = Direction.Plane.HORIZONTAL.getRandomDirection(r)
+					for (yy in y + h + 2 downTo y + 2) {
+						if (!pen.get(px, yy, pz).`is`(BlockTags.LEAVES)) continue
+						val vx = px + d.stepX
+						val vz = pz + d.stepZ
+						if (!pen.get(vx, yy, vz).isAir) break
+						val vine = Blocks.VINE.defaultBlockState().setValue(net.minecraft.world.level.block.VineBlock.getPropertyForFace(d.opposite), true)
+						var vy = yy
+						val len = 1 + r.nextInt(4)
+						while (vy > yy - len && vy > y && pen.get(vx, vy, vz).isAir) {
+							pen.set(vx, vy, vz, vine)
+							vy--
+						}
+						break
+					}
+				}
+			}
 			"shrub" -> {
 				val stems = 1 + r.nextInt(3)
 				for (k in 0 until stems) {
@@ -285,6 +350,8 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
  * * `mound`: a low dome (tufa, salt, termite mounds, ice hummocks).
  * * `arch`: a small natural arch.
  * * `driftwood`: a bleached trunk lying on the ground with the stub of a limb (`blocks[0]` is a log).
+ * * `sink`: a collapse pit, a bowl a few blocks deep lined with the rock, with fern and moss on its floor; one in three
+ *   holds a pool (the hollows and wetlands of a lava field).
  */
 class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 	data class Config(val kind: String, val blocks: List<BlockState>, val size: Span) : FeatureConfiguration {
@@ -333,7 +400,7 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 				yy--
 			}
 		}
-		if (cfg.kind == "spire" || cfg.kind == "arch" || cfg.kind == "mound") {
+		if (cfg.kind == "spire" || cfg.kind == "arch" || cfg.kind == "mound" || cfg.kind == "sink") {
 			for (d in arrayOf(intArrayOf(4, 0), intArrayOf(-4, 0), intArrayOf(0, 4), intArrayOf(0, -4))) {
 				if (abs(level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG, x + d[0], z + d[1]) - y) > 2) {
 					return false
@@ -439,6 +506,34 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 					}
 				}
 			}
+			"sink" -> {
+				val rad = size * (1.6 + r.nextFloat() * 0.8)
+				val depth = size * (0.8 + r.nextFloat() * 0.7)
+				val wet = r.nextInt(3) == 0
+				val waterY = y - 1 - max(1, (depth * 0.5).roundToInt())
+				val ir = rad.toInt() + 2
+				val s2 = r.nextInt(1000)
+				for (dx in -ir..ir) {
+					for (dz in -ir..ir) {
+						val d = sqrt((dx * dx + dz * dz).toDouble()) / rad + 0.18 * LNoise.noise2(level.seed xor 0x51C4L, (x + dx + s2) / 2.6, (z + dz) / 2.6)
+						if (d > 1) continue
+						val px = x + dx
+						val pz = z + dz
+						val gy = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR_WG, px, pz)
+						val cut = (depth * (1 - d * d)).roundToInt()
+						if (cut <= 0 || abs(gy - y) > 3) continue
+						val floor = y - 1 - cut
+						for (yy in gy - 1 downTo floor + 1) pen.set(px, yy, pz, AIR)
+						put(px, floor, pz)
+						if (wet && floor < waterY) {
+							for (yy in floor + 1..waterY) pen.set(px, yy, pz, WATER)
+						} else {
+							val f = r.nextFloat()
+							if (f < 0.3) pen.set(px, floor + 1, pz, FERN) else if (f < 0.5) pen.set(px, floor + 1, pz, MOSS_CARPET)
+						}
+					}
+				}
+			}
 			"driftwood" -> {
 				val east = r.nextBoolean()
 				val len = (size * 2).toInt() + 2
@@ -455,5 +550,12 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 			else -> return false
 		}
 		return true
+	}
+
+	companion object {
+		private val AIR = Blocks.AIR.defaultBlockState()
+		private val WATER = Blocks.WATER.defaultBlockState()
+		private val FERN = Blocks.FERN.defaultBlockState()
+		private val MOSS_CARPET = Blocks.MOSS_CARPET.defaultBlockState()
 	}
 }
