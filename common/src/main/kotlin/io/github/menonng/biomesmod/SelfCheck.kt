@@ -382,14 +382,14 @@ internal object SelfCheck {
 				}
 			}
 		}
-		if (villages.isNotEmpty() && !controlDone) {
+		if (!controlDone && System.getProperty("biomesmod.selfcheck.only", "").isNotEmpty()) {
 			// A vanilla village far from this site, measured the same way, for comparison.
 			controlDone = true
 			for (k in 0 until 3) {
 				val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, BlockPos(20000 + k * 3000, 64, 20000), 100, false) ?: continue
 				val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
 				for ((_, start) in chunk.allStarts) {
-					if (start.isValid && start.pieces.size > 8) villageFit(level, start, "CONTROL " + Ids.name(level.getBiome(at).unwrapKey().get()))
+					if (start.isValid && start.pieces.size > 8) villageFit(level, start, "control_" + k + " " + Ids.name(level.getBiome(at).unwrapKey().get()))
 				}
 			}
 		}
@@ -402,6 +402,23 @@ internal object SelfCheck {
 	 * in the air.
 	 */
 	private var controlDone = false
+
+	/** Top natural ground block of a column: earth, stone, sand, snow or one of this mod's blocks; never a tree or a building. */
+	private fun naturalGround(level: ServerLevel, x: Int, z: Int, pos: BlockPos.MutableBlockPos): Int {
+		var y = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR, x, z)
+		val tags = net.minecraft.tags.BlockTags.DIRT
+		while (y > LevelCompat.minY(level)) {
+			val st = level.getBlockState(pos.set(x, y, z))
+			if (st.`is`(tags) || st.`is`(net.minecraft.tags.BlockTags.BASE_STONE_OVERWORLD) || st.`is`(net.minecraft.tags.BlockTags.SAND) ||
+				st.`is`(net.minecraft.tags.BlockTags.TERRACOTTA) || st.`is`(net.minecraft.world.level.block.Blocks.GRAVEL) || st.`is`(net.minecraft.world.level.block.Blocks.SNOW_BLOCK) || st.`is`(net.minecraft.world.level.block.Blocks.SANDSTONE) ||
+				st.`is`(net.minecraft.world.level.block.Blocks.DIRT_PATH) || st.`is`(net.minecraft.world.level.block.Blocks.GRASS_BLOCK) || st.`is`(net.minecraft.world.level.block.Blocks.CLAY) || st.`is`(net.minecraft.world.level.block.Blocks.PACKED_ICE) ||
+				net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(st.block).toString().startsWith("biomesmod:")) {
+				return y
+			}
+			y--
+		}
+		return y
+	}
 
 	/**
 	 * Village planning must see the landforms (LandformHeights): around the first placed landform, the height a village
@@ -451,6 +468,50 @@ internal object SelfCheck {
 			}
 		}
 		if (diffs.isEmpty()) return
+		// House by house: the ground one block outside the walls against the floor, and what the house stands on.
+		var houses = 0
+		var buried = 0
+		var floating = 0
+		var hanging = 0
+		val detail = StringBuilder()
+		val pos = BlockPos.MutableBlockPos()
+		for (piece in start.pieces) {
+			val bb = piece.boundingBox
+			if (bb.ySpan < 5 || bb.xSpan < 5 || bb.zSpan < 5) continue
+			val ring = ArrayList<Int>()
+			var open = 0
+			var edge = 0
+			for (x in bb.minX() - 1..bb.maxX() + 1) for (z in bb.minZ() - 1..bb.maxZ() + 1) {
+				val outside = x < bb.minX() || x > bb.maxX() || z < bb.minZ() || z > bb.maxZ()
+				if (outside) {
+					level.getChunk(x shr 4, z shr 4)
+					ring.add(naturalGround(level, x, z, pos) + 1 - (bb.minY() + 1))
+				} else if (x == bb.minX() || x == bb.maxX() || z == bb.minZ() || z == bb.maxZ()) {
+					edge++
+					val below = level.getBlockState(pos.set(x, bb.minY() - 1, z))
+					if (below.isAir || !below.fluidState.isEmpty) open++
+				}
+			}
+			ring.sort()
+			val med = ring[ring.size / 2]
+			houses++
+			val state = if (med >= 3) "buried" else if (med <= -3) "floating" else if (open * 2 > edge) "hanging" else null
+			when (state) {
+				"buried" -> buried++
+				"floating" -> floating++
+				"hanging" -> hanging++
+			}
+			if (state != null && detail.length < 400) detail.append(" [").append(state).append(' ').append(bb.center.x).append(',').append(bb.minY() + 1).append(',').append(bb.center.z)
+				.append(" ground ").append(ring.first()).append("..").append(med).append("..").append(ring.last()).append(" open below ").append(open).append('/').append(edge).append(']')
+		}
+		BiomesMod.LOGGER.info("[selfcheck] {} village houses: {} in all, {} buried (ground 3+ above the floor round the house), {} floating (3+ below), {} hanging (air under most of the walls);{}",
+			name, houses, buried, floating, hanging, detail)
+		if (io.github.menonng.biomesmod.debug.DebugRender.enabled()) {
+			val bb = start.boundingBox
+			val c = bb.center
+			io.github.menonng.biomesmod.debug.DebugRender.generate(level, (c.x - 72) shr 4, (c.z - 72) shr 4, (c.x + 72) shr 4, (c.z + 72) shr 4)
+			io.github.menonng.biomesmod.debug.DebugRender.iso(level, c, 128, "village_" + name.replace(Regex("[^a-z0-9_]+"), "_").takeLast(60), 3)
+		}
 		diffs.sort()
 		pred.sort()
 		BiomesMod.LOGGER.info("[selfcheck] {} village ground minus predicted height: median {}, 10% {}, 90% {}, min {}, max {}; worst:{}", name, pred[pred.size / 2],
