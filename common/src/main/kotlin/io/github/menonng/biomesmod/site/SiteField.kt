@@ -45,7 +45,7 @@ class SiteField private constructor(
 			val p1 = (seed and 0xFFFF).toDouble() / 65536.0 * PI * 2
 			val p2 = ((seed ushr 16) and 0xFFFF).toDouble() / 65536.0 * PI * 2
 			val p3 = ((seed ushr 32) and 0xFFFF).toDouble() / 65536.0 * PI * 2
-			return 1 + 0.13 * sin(2 * a + p1) + 0.08 * sin(3 * a + p2) + 0.05 * sin(5 * a + p3)
+			return 1 + 0.11 * sin(2 * a + p1) + 0.08 * sin(3 * a + p2) + 0.05 * sin(5 * a + p3) + 0.035 * sin(8 * a + p1 + p3) + 0.025 * sin(13 * a + p2 - p1)
 		}
 	}
 
@@ -121,7 +121,7 @@ class SiteField private constructor(
 		val hu = vegetation.compute(at)
 		val co = continents.compute(at)
 		val er = erosion.compute(at)
-		val candidates = config.specs.filter { it.accepts(t, hu, co, er) && (!it.island || openSea(x, z, it.coreMax)) }
+		val candidates = config.specs.filter { it.accepts(t, hu, co, er) && (!it.island || openSea(x, z, it.coreMax)) && fitsAround(it, x, z) }
 		if (candidates.isEmpty()) {
 			return null
 		}
@@ -156,6 +156,29 @@ class SiteField private constructor(
 			}
 		}
 		return sea >= 16
+	}
+
+	/**
+	 * A site is picked by the climate at its centre, but an ice sheet next to a jungle is a hard join whatever the centre
+	 * says. Sites of the frozen bands are therefore only placed where the land round them is cold too, and sites of the
+	 * hot band where it is warm: at 13 or more of 16 points on the outer edge of the site.
+	 */
+	private fun fitsAround(spec: SiteConfig.Spec, x: Int, z: Int): Boolean {
+		val frozen = spec.temperature[1] <= FROZEN_MAX
+		val hot = spec.temperature[0] >= HOT_MIN
+		if (!frozen && !hot) {
+			return true
+		}
+		val r = spec.coreMax * 1.3 + spec.ramp
+		var ok = 0
+		for (k in 0 until 16) {
+			val a = k * PI / 8
+			val t = temperature.compute(DensityFunction.SinglePointContext((x + kotlin.math.cos(a) * r).toInt(), 64, (z + sin(a) * r).toInt()))
+			if (if (frozen) t <= COLD_MAX else t >= WARM_MIN) {
+				ok++
+			}
+		}
+		return ok >= 13
 	}
 
 	// ---------------------------------------------------------------------------------------------- sampling
@@ -618,6 +641,10 @@ class SiteField private constructor(
 
 		/** Continentalness below which a point counts as open sea (the vanilla ocean band, clear of the coast). */
 		private const val OPEN_SEA = -0.19
+		private const val FROZEN_MAX = -0.45
+		private const val COLD_MAX = -0.3
+		private const val HOT_MIN = 0.55
+		private const val WARM_MIN = 0.2
 
 		/** Sea level of the overworld (fjord floors are cut below it). */
 		private const val SEA_LEVEL = 63.0

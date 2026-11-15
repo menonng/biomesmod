@@ -107,3 +107,18 @@ The self-check logs how the ground meets a village (`village at ...: ground minu
 ## Where a site meets the sea
 
 A `lift` or `mountain` site without fjord channels whose `target_y` stands well above the sea (fully from 30 blocks up) eases its ground round sea level: within 10 blocks above and 8 below, the height is bent towards the waterline (power 1.7), which leaves a low strand and a shallow shelf instead of a slope running straight into the water. A biome can name the material of that strand with `surface.shore` (a block for the ground between y 57 and 64).
+
+## What a site stands next to
+
+A site is picked by the climate at its centre, so on its own an ice sheet could end up beside a forest and a salt
+desert beside snow. Two rules soften the join (`SiteField.fitsAround`, `Site.shape`):
+
+* **Surroundings.** A biome whose whole temperature range is frozen (`temperature[1] <= -0.45`) is only placed where
+  the land round it is cold too: at 13 or more of 16 points on the outer edge of the site the temperature must be
+  `<= -0.3`. A biome of the hot band (`temperature[0] >= 0.55`) needs `>= 0.2` at 13 of 16. This costs sites: the
+  largest ones (Lake Vostok) keep about half of their places.
+* **Outline.** The outline has five lobes of falling size instead of three, and the domain warp of the site grid is
+  `sites.warp` = 130 blocks, so an edge reads less as a circle. The lobes must sum to 0.3 or less (the reach of a site
+  is `core * 1.3 + ramp`).
+
+Other biomes are not checked: a temperate site may still stand next to anything the vanilla climate puts there.

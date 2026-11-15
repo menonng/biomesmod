@@ -416,6 +416,11 @@
         "under_depth": 3
       },
       {
+        "biome": "biomesmod:lake_vostok_plateau",
+        "top": "minecraft:snow_block",
+        "under": "minecraft:snow_block"
+      },
+      {
         "biome": "biomesmod:lencois_maranhenses",
         "top": "biomesmod:white_sand",
         "under": "minecraft:sand",
@@ -576,7 +581,7 @@
       "cell": 2048,
       "jitter": 0.8,
       "chance": 0.85,
-      "warp": 90
+      "warp": 130
     },
     "list": [
       {

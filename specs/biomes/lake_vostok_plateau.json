@@ -61,5 +61,9 @@
   },
   "spawners": "base",
   "carvers": "underground",
-  "structures": "none"
+  "structures": "none",
+  "surface": {
+    "top": "minecraft:snow_block",
+    "under": "minecraft:snow_block"
+  }
 }
