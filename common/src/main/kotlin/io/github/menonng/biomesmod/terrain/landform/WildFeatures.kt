@@ -10,6 +10,7 @@ import net.minecraft.world.level.WorldGenLevel
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.LeavesBlock
 import net.minecraft.world.level.block.RotatedPillarBlock
+import net.minecraft.world.level.block.VineBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.levelgen.feature.Feature
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext
@@ -87,8 +88,10 @@ private class Pen(val level: WorldGenLevel, val r: RandomSource) {
  * * `palm`: a curved bare trunk with a head of arching fronds.
  * * `flat_top`: a leaning, forking trunk under flat plates of foliage (thorn trees, junipers).
  * * `shrub`: a low many-stemmed bush.
- * * `coppice`: two to four thin stems leaning apart from one stool, under one low canopy, with roots creeping over the
- *   rock round it and vines hanging from the crown. It also roots on bare rock (the lava forests of Jeju).
+ * * `coppice`: the trees of a lava-field forest (the gotjawal of Jeju). Two to five thin, crooked stems lean apart from
+ *   one stool (regrowth after centuries of cutting) under one low, dense dome of evergreen leaves. Half of them have
+ *   germinated on a mossy boulder and grip it: their roots run over the top of the rock and down its sides into the
+ *   ground. Ivy climbs the stems, vines hang from the crown, moss and fern cover the rock. Roots on bare rock too.
  */
 class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 	data class Config(val style: String, val log: BlockState, val leaves: BlockState, val height: Span) : FeatureConfiguration {
@@ -257,60 +260,131 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 				}
 			}
 			"coppice" -> {
-				val stems = 2 + r.nextInt(3)
+				// The boulder the tree has grown on, if it has: a mossy lump of lava two or three blocks high.
+				var base = y
+				val rockTops = ArrayList<IntArray>()
+				if (r.nextFloat() < 0.5f) {
+					val rr = 1.4 + r.nextFloat() * 1.1
+					val rh = 2 + r.nextInt(2)
+					val ir = rr.toInt() + 1
+					for (dx in -ir..ir) {
+						for (dz in -ir..ir) {
+							val d = sqrt((dx * dx + dz * dz).toDouble()) / rr + r.nextFloat() * 0.2
+							if (d > 1 || !pen.get(x + dx, y - 1, z + dz).blocksMotion()) continue
+							val top = y - 1 + max(1, (rh * sqrt(1 - d * d) + 0.4).roundToInt())
+							for (yy in y..top) {
+								if (!pen.free(x + dx, yy, z + dz)) continue
+								pen.set(x + dx, yy, z + dz, if (yy == top) (if (r.nextFloat() < 0.75f) MOSS else MOSSY) else if (r.nextFloat() < 0.7f) MOSSY else BASALT)
+							}
+							if (dx == 0 && dz == 0) base = top + 1
+							rockTops.add(intArrayOf(x + dx, top + 1, z + dz))
+						}
+					}
+				}
+				// Stems: crooked, the side ones leaning out towards the light, some with a kink half way up.
+				val stems = 2 + r.nextInt(4)
 				val a0 = r.nextDouble() * Math.PI * 2
+				val trunk = ArrayList<IntArray>()
+				var sumX = 0.0
+				var sumZ = 0.0
+				var tallest = 0
 				for (k in 0 until stems) {
-					val a = a0 + k * Math.PI * 2 / stems + (r.nextDouble() - 0.5) * 0.9
-					val lean = 0.16 + r.nextFloat() * 0.3
-					val sh = max(3, h - r.nextInt(3))
-					var fx = if (k == 0) 0.0 else cos(a) * 0.7
-					var fz = if (k == 0) 0.0 else sin(a) * 0.7
+					var a = a0 + k * Math.PI * 2 / stems + (r.nextDouble() - 0.5) * 0.9
+					var lean = if (k == 0) 0.05 + r.nextFloat() * 0.12 else 0.14 + r.nextFloat() * 0.26
+					val sh = if (k == 0) h else max(3, (h * (0.55 + r.nextFloat() * 0.4)).toInt())
+					var fx = if (k == 0) 0.0 else cos(a) * 0.6
+					var fz = if (k == 0) 0.0 else sin(a) * 0.6
+					var px = x + fx.roundToInt()
+					var pz = z + fz.roundToInt()
 					for (i in 0 until sh) {
-						pen.log(x + fx.roundToInt(), y + i, z + fz.roundToInt(), log)
+						val nx = x + fx.roundToInt()
+						val nz = z + fz.roundToInt()
+						if (nx != px && nz != pz) pen.log(nx, base + i, pz, log) // a diagonal step stays joined
+						pen.log(nx, base + i, nz, log)
+						trunk.add(intArrayOf(nx, base + i, nz))
+						px = nx
+						pz = nz
 						if (i >= 1) {
+							a += (r.nextDouble() - 0.5) * 0.7
+							if (i == sh / 2 && r.nextFloat() < 0.4f) lean *= 1.8
 							fx += cos(a) * lean
 							fz += sin(a) * lean
 						}
 					}
-					pen.blob(x + fx, y + sh + 0.3, z + fz, 2.0 + r.nextFloat(), 1.3 + r.nextFloat() * 0.5, leaves)
+					pen.blob(x + fx, base + sh + 0.2, z + fz, 2.0 + r.nextFloat() * 0.9, 1.3 + r.nextFloat() * 0.5, leaves)
+					sumX += fx
+					sumZ += fz
+					tallest = max(tallest, sh)
 				}
-				// Roots over the rock: each follows the ground away from the stool, a step up or down at a time.
-				for (k in 0 until 2 + r.nextInt(3)) {
-					val a = r.nextDouble() * Math.PI * 2
+				// One low dome over all the stems, wider than it is deep: the closed evergreen canopy.
+				pen.blob(x + sumX / stems, base + tallest - 0.2, z + sumZ / stems, 3.0 + r.nextFloat() * 1.4, 1.5 + r.nextFloat() * 0.6, leaves,
+					0.85 + r.nextFloat() * 0.3, 0.85 + r.nextFloat() * 0.3)
+				// Roots: over the boulder and down its sides into the ground, or a few steps over the rock round the stool.
+				val roots = 3 + r.nextInt(3)
+				for (k in 0 until roots) {
+					val a = a0 + (k + 0.5) * Math.PI * 2 / roots + (r.nextDouble() - 0.5) * 0.6
 					val axis = if (abs(cos(a)) > abs(sin(a))) Direction.Axis.X else Direction.Axis.Z
 					var rx = x.toDouble()
 					var rz = z.toDouble()
-					var ry = y
-					for (step in 0 until 1 + r.nextInt(3)) {
+					var ry = base
+					var grounded = 0
+					val reach = 1 + r.nextInt(2)
+					for (step in 0 until 7) {
 						rx += cos(a)
 						rz += sin(a)
-						val px = rx.roundToInt()
-						val pz = rz.roundToInt()
-						if (px == x && pz == z) continue
-						if (pen.free(px, ry - 1, pz)) {
-							ry--
-						} else if (!pen.free(px, ry, pz)) {
-							if (!pen.free(px, ry + 1, pz)) break
+						val qx = rx.roundToInt()
+						val qz = rz.roundToInt()
+						if (qx == x && qz == z) continue
+						if (!pen.free(qx, ry, qz)) {
+							if (!pen.free(qx, ry + 1, qz)) break
 							ry++
 						}
-						if (!pen.get(px, ry - 1, pz).blocksMotion() || !pen.get(px, ry, pz).fluidState.isEmpty) break
-						pen.log(px, ry, pz, log, axis)
+						if (!pen.get(qx, ry, qz).fluidState.isEmpty) break
+						pen.log(qx, ry, qz, log, axis)
+						var drop = 0
+						while (drop < 5 && pen.free(qx, ry - 1, qz) && pen.get(qx, ry - 1, qz).fluidState.isEmpty) {
+							ry--
+							drop++
+							pen.log(qx, ry, qz, log)
+						}
+						if (ry <= y) grounded++
+						if (grounded >= reach || (base == y && step >= 1 + reach)) break
+					}
+				}
+				// Ivy up the lower stems.
+				for (t in trunk) {
+					if (t[1] > base + h * 0.8 || r.nextFloat() > 0.35f) continue
+					val d = Direction.Plane.HORIZONTAL.getRandomDirection(r)
+					val vine = VINE.setValue(VineBlock.getPropertyForFace(d.opposite), true)
+					for (yy in t[1] until t[1] + 2 + r.nextInt(3)) {
+						if (!pen.get(t[0] + d.stepX, yy, t[2] + d.stepZ).isAir || !pen.get(t[0], yy, t[2]).`is`(BlockTags.LOGS)) break
+						pen.set(t[0] + d.stepX, yy, t[2] + d.stepZ, vine)
+					}
+				}
+				// Moss and fern on the boulder.
+				for (t in rockTops) {
+					if (!pen.get(t[0], t[1], t[2]).isAir) continue
+					val f = r.nextFloat()
+					if (f < 0.25f) {
+						pen.set(t[0], t[1], t[2], MOSS_CARPET)
+					} else if (f < 0.4f && pen.get(t[0], t[1] - 1, t[2]).`is`(Blocks.MOSS_BLOCK)) {
+						pen.set(t[0], t[1], t[2], FERN)
 					}
 				}
 				// Vines from the crown, on the side of a leaf with air next to it.
-				for (k in 0 until 10) {
-					val px = x + r.nextInt(9) - 4
-					val pz = z + r.nextInt(9) - 4
+				for (k in 0 until 6) {
+					val qx = x + r.nextInt(9) - 4
+					val qz = z + r.nextInt(9) - 4
 					val d = Direction.Plane.HORIZONTAL.getRandomDirection(r)
-					for (yy in y + h + 2 downTo y + 2) {
-						if (!pen.get(px, yy, pz).`is`(BlockTags.LEAVES)) continue
-						val vx = px + d.stepX
-						val vz = pz + d.stepZ
+					for (yy in base + h + 2 downTo base + 2) {
+						if (!pen.get(qx, yy, qz).`is`(BlockTags.LEAVES)) continue
+						val vx = qx + d.stepX
+						val vz = qz + d.stepZ
 						if (!pen.get(vx, yy, vz).isAir) break
-						val vine = Blocks.VINE.defaultBlockState().setValue(net.minecraft.world.level.block.VineBlock.getPropertyForFace(d.opposite), true)
+						val vine = VINE.setValue(VineBlock.getPropertyForFace(d.opposite), true)
 						var vy = yy
 						val len = 1 + r.nextInt(4)
-						while (vy > yy - len && vy > y && pen.get(vx, vy, vz).isAir) {
+						while (vy > yy - len && vy > base && pen.get(vx, vy, vz).isAir) {
 							pen.set(vx, vy, vz, vine)
 							vy--
 						}
@@ -335,6 +409,12 @@ class WildTreeFeature : Feature<WildTreeFeature.Config>(Config.CODEC) {
 	}
 
 	companion object {
+		private val MOSSY = Blocks.MOSSY_COBBLESTONE.defaultBlockState()
+		private val MOSS = Blocks.MOSS_BLOCK.defaultBlockState()
+		private val BASALT = Blocks.BASALT.defaultBlockState()
+		private val MOSS_CARPET = Blocks.MOSS_CARPET.defaultBlockState()
+		private val FERN = Blocks.FERN.defaultBlockState()
+		private val VINE = Blocks.VINE.defaultBlockState()
 		private val SOIL = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.ROOTED_DIRT, Blocks.MOSS_BLOCK, Blocks.MUD,
 			Blocks.MYCELIUM)
 	}

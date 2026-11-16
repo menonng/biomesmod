@@ -19,7 +19,8 @@ Everything since 0.5.0-beta.1, in short:
 * Villages in the mod's biomes are planned on the ground that the shapers and landforms will build, and only start on
   level, dry ground. Other surface structures are left out of biomes whose ground is rebuilt.
 * New at the end of the betas: Takachiho Gorge (Japan), a narrow gorge with walls of columnar basalt in a forested plateau; Gotjawal
-  rebuilt as the lava forest it is (clumps of thin stems with roots over the rock and hanging vines, collapse pits with
+  rebuilt as the lava forest it is (clumps of thin crooked stems, many grown on mossy boulders that their roots grip and
+  run down into the ground, ivy on the stems and hanging vines, collapse pits with
   fern and pools, lava rubble and domes, a floor of moss and stone).
 * Waterfalls on steep faces, hamlets, wild trees and rocks, flowers and ground plants per biome.
 
