@@ -468,11 +468,17 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 			val v = LNoise.noise2(level.seed xor 0x70C4L, (px + py * 0.6 + salt) / 3.5, (pz - py * 0.6) / 3.5)
 			return if (v < 0.15) cfg.blocks[0] else cfg.blocks[1 + (abs(px * 31 + py * 17 + pz * 13) % (n - 1))]
 		}
+		// A feature may only touch the chunk it decorates and the eight round it: nothing outside them is read or written.
+		val minX = ((x shr 4) - 1) shl 4
+		val minZ = ((z shr 4) - 1) shl 4
+		fun inside(px: Int, pz: Int) = px >= minX && px < minX + 48 && pz >= minZ && pz < minZ + 48
 		fun put(px: Int, py: Int, pz: Int) {
+			if (!inside(px, pz)) return
 			if (!level.getBlockState(pen.p.set(px, py, pz)).`is`(Blocks.BEDROCK)) pen.set(px, py, pz, rock(px, py, pz))
 		}
 		/** Fills a column from the ground up to [top], and down until it meets terrain. */
 		fun column(px: Int, pz: Int, top: Int) {
+			if (!inside(px, pz)) return
 			var yy = top
 			while (yy > y - 8) {
 				if (yy < y && ChunkWriter.isTerrain(pen.get(px, yy, pz))) break
@@ -512,15 +518,18 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 				val dip = 0.35 + r.nextFloat() * 0.5
 				val beds = 1 + r.nextInt(3)
 				for (b in 0 until beds) {
-					val ox = x + (cos(a) * b * (len * 0.55)).roundToInt()
-					val oz = z + (sin(a) * b * (len * 0.55)).roundToInt()
+					// The beds follow one another along the dip, the row centred on the origin, each bed centred on its own.
+					val shift = (b - (beds - 1) / 2.0) * len * 0.55
+					val ox = x + (cos(a) * shift).roundToInt()
+					val oz = z + (sin(a) * shift).roundToInt()
 					val w = 1.5 + r.nextFloat() * size
 					for (i in 0..len) {
+						val li = i - len / 2
 						for (j in -w.toInt() - 1..w.toInt() + 1) {
 							val edge = abs(j) / w
 							if (edge > 1) continue
-							val px = ox + (cos(a) * i - sin(a) * j).roundToInt()
-							val pz = oz + (sin(a) * i + cos(a) * j).roundToInt()
+							val px = ox + (cos(a) * li - sin(a) * j).roundToInt()
+							val pz = oz + (sin(a) * li + cos(a) * j).roundToInt()
 							val top = y - 1 + (i * dip * (1 - edge * edge * 0.6)).toInt()
 							if (top >= y) column(px, pz, top)
 						}
@@ -599,6 +608,7 @@ class WildRockFeature : Feature<WildRockFeature.Config>(Config.CODEC) {
 						if (d > 1) continue
 						val px = x + dx
 						val pz = z + dz
+						if (!inside(px, pz)) continue
 						val gy = level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR_WG, px, pz)
 						val cut = (depth * (1 - d * d)).roundToInt()
 						if (cut <= 0 || abs(gy - y) > 3) continue
