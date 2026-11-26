@@ -8,9 +8,13 @@ repositories {
 }
 
 def commonDir = rootProject.file('common/src/main')
+// Fabric glue shared by every Fabric version: entry points, loader hooks, fabric.mod.json, the axe mixin.
+def fabricDir = rootProject.file('loader/fabric')
 sourceSets.main {
 	kotlin.srcDir(new File(commonDir, 'kotlin'))
 	resources.srcDir(new File(commonDir, 'resources'))
+	kotlin.srcDir(new File(fabricDir, 'kotlin'))
+	resources.srcDir(new File(fabricDir, 'resources'))
 }
 
 java {
@@ -70,6 +74,7 @@ loom {
 			runDir = "run/selfcheck"
 			source sourceSets.gametest
 			vmArg '-Dbiomesmod.selfcheck=true'
+			vmArg "-Xmx${project.findProperty('heap') ?: '6G'}"  // -Pheap=4G on a busy machine
 			vmArg "-Dbiomesmod.showcase=${project.findProperty('showcase') ?: ''}"
 			vmArg "-Dbiomesmod.showcase.only=${project.findProperty('only') ?: ''}"
 			vmArg "-Dbiomesmod.render=${project.findProperty('render') ?: 'false'}"

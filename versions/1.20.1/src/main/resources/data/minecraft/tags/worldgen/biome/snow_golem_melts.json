@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:bromo_tengger",
+    "biomesmod:dallol",
+    "biomesmod:danakil_flats",
+    "biomesmod:dasht_e_lut",
+    "biomesmod:grand_canyon",
+    "biomesmod:lake_gairdner",
+    "biomesmod:monument_valley",
+    "biomesmod:pamukkale",
+    "biomesmod:puna_de_atacama",
+    "biomesmod:salar_de_tara",
+    "biomesmod:salar_de_uyuni",
+    "biomesmod:socotra",
+    "biomesmod:socotra_coast",
+    "biomesmod:socotra_highlands",
+    "biomesmod:sossusvlei",
+    "biomesmod:wadi_rum"
+  ]
+}

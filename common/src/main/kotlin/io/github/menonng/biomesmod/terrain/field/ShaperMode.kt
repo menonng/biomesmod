@@ -65,6 +65,6 @@ interface ShaperMode : FeatureConfiguration {
 
 	companion object {
 		@JvmField
-		val CODEC: Codec<ShaperMode> = Type.CODEC.dispatch("mode", { it.type }, { it.codec() })
+		val CODEC: Codec<ShaperMode> = io.github.menonng.biomesmod.compat.CodecCompat.dispatch(Type.CODEC, "mode", { it.type }, { it.codec() })
 	}
 }

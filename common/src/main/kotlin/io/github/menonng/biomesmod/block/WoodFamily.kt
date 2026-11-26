@@ -1,17 +1,13 @@
 package io.github.menonng.biomesmod.block
 
 import io.github.menonng.biomesmod.compat.BlockCompat
+import io.github.menonng.biomesmod.compat.BlockKinds
 import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.ButtonBlock
-import net.minecraft.world.level.block.DoorBlock
 import net.minecraft.world.level.block.FenceBlock
-import net.minecraft.world.level.block.FenceGateBlock
-import net.minecraft.world.level.block.PressurePlateBlock
 import net.minecraft.world.level.block.RotatedPillarBlock
 import net.minecraft.world.level.block.SlabBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.StairBlock
-import net.minecraft.world.level.block.TrapDoorBlock
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.properties.BlockSetType
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
@@ -45,14 +41,14 @@ class WoodFamily(
 	val stairs: Block = BlockCompat.register("${name}_stairs", props()) { StairBlock(planks.defaultBlockState(), it) }
 	val slab: Block = BlockCompat.register("${name}_slab", props(), ::SlabBlock)
 	val fence: Block = BlockCompat.register("${name}_fence", props(), ::FenceBlock)
-	val fenceGate: Block = BlockCompat.register("${name}_fence_gate", props().forceSolidOn()) { FenceGateBlock(type, it) }
-	val door: Block = BlockCompat.register("${name}_door", props(3.0f, 3.0f).noOcclusion().pushReaction(PushReaction.DESTROY)) { DoorBlock(set, it) }
+	val fenceGate: Block = BlockCompat.register("${name}_fence_gate", props().forceSolidOn()) { BlockKinds.fenceGate(type, it) }
+	val door: Block = BlockCompat.register("${name}_door", props(3.0f, 3.0f).noOcclusion().pushReaction(PushReaction.DESTROY)) { BlockKinds.door(set, it) }
 	val trapdoor: Block = BlockCompat.register("${name}_trapdoor",
-		props(3.0f, 3.0f).noOcclusion().isValidSpawn { _, _, _, _ -> false }) { TrapDoorBlock(set, it) }
+		props(3.0f, 3.0f).noOcclusion().isValidSpawn { _, _, _, _ -> false }) { BlockKinds.trapdoor(set, it) }
 	val pressurePlate: Block = BlockCompat.register("${name}_pressure_plate",
-		BlockCompat.noCollision(props(0.5f, 0.5f).forceSolidOn()).pushReaction(PushReaction.DESTROY)) { PressurePlateBlock(set, it) }
+		BlockCompat.noCollision(props(0.5f, 0.5f).forceSolidOn()).pushReaction(PushReaction.DESTROY)) { BlockKinds.pressurePlate(set, it) }
 	val button: Block = BlockCompat.register("${name}_button",
-		BlockCompat.noCollision(BlockBehaviour.Properties.of().strength(0.5f).sound(sound)).pushReaction(PushReaction.DESTROY)) { ButtonBlock(set, 30, it) }
+		BlockCompat.noCollision(BlockBehaviour.Properties.of().strength(0.5f).sound(sound)).pushReaction(PushReaction.DESTROY)) { BlockKinds.button(set, 30, it) }
 
 	/** Every block of the family with its id, in creative tab order. */
 	val all: List<Pair<String, Block>> = listOf(

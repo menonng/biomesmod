@@ -17,3 +17,6 @@ servers/
 
 # Local Claude Code config (subagent definitions etc.)
 .claude/
+
+# Python
+__pycache__/

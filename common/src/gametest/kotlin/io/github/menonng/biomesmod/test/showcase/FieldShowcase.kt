@@ -62,7 +62,7 @@ object FieldShowcase {
 			if (only.isNotEmpty() && c.name !in only.split(",")) {
 				continue
 			}
-			val mode = ShaperMode.CODEC.parse(ops, JsonParser.parseString(c.json)).getOrThrow()
+			val mode = ShaperMode.CODEC.parse(ops, JsonParser.parseString(c.json)).result().orElseThrow()
 			val center = find(level, { it.`is`(c.near) }, BlockPos(k * 3000, 64, -k * 1700))
 			if (center == null) {
 				BiomesMod.LOGGER.warn("[showcase] {}: no {} found, skipped", c.name, c.near)

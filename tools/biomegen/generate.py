@@ -348,6 +348,8 @@ def float_max(provider, default=1.0):
     if is_number(provider):
         return float(provider)
     t = provider.get('type', '')
+    if isinstance(provider.get('value'), dict):  # 1.20.1 nests the parameters under "value"
+        provider = dict(provider['value'], type=t)
     if t == 'minecraft:constant':
         return float(provider['value'])
     if t == 'minecraft:uniform':
@@ -1393,6 +1395,35 @@ def owned_dirs(versions):
     return dirs
 
 
+def legacy_120(outputs, versions):
+    """1.20.1 reads int/float providers in their old nested form: every generated worldgen file that differs once
+    converted gets a 1.20.1 copy (versions/1.20.1 wins over common/ in that build)."""
+    if '1.20.1' not in versions:
+        return outputs
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('legacy120', os.path.join(REPO, 'tools', 'blocks', 'legacy120.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    v120 = os.path.normpath(os.path.join(REPO, 'versions', '1.20.1', 'src', 'main', 'resources'))
+    common = os.path.normpath(COMMON_RES)
+    out = dict(outputs)
+    for path, content in outputs.items():
+        p = os.path.normpath(path)
+        if os.sep + 'worldgen' + os.sep not in p or not p.endswith('.json'):
+            continue
+        data = json.loads(content)
+        conv = mod.providers(data)
+        if conv == data:
+            continue
+        if p.startswith(v120):
+            out[path] = dump_json(conv)
+        elif p.startswith(common):
+            target = os.path.join(v120, os.path.relpath(p, common))
+            if not any(os.path.normpath(k) == os.path.normpath(target) for k in outputs):
+                out[target] = dump_json(conv)
+    return out
+
+
 def sync(outputs, versions, check, quiet):
     existing = set()
     for d in owned_dirs(versions):
@@ -1548,7 +1579,7 @@ def main(argv=None):
             print('region %s (weight %d): %s' % (r['name'], r['weight'], ', '.join(p['biome'] for p in r['points'])))
         for e in placements['end']:
             print('end %s: %s weight %d' % (e['biome'], e['type'], e['weight']))
-    return sync(outputs, versions, args.check, args.quiet)
+    return sync(legacy_120(outputs, versions), versions, args.check, args.quiet)
 
 
 def build_lang(specs, outputs, problems):

@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "biomesmod",
+	"version": "${version}",
+	"name": "Biomes Mod",
+	"description": "64 biomes built after real places, each at its real elevation: salt flats, fjords, calderas, canyons, ice sheets, dune seas. With the blocks to dress them.",
+	"authors": [
+		"menonng"
+	],
+	"contact": {
+		"homepage": "https://github.com/menonng/biomesmod",
+		"sources": "https://github.com/menonng/biomesmod",
+		"issues": "https://github.com/menonng/biomesmod/issues"
+	},
+	"icon": "assets/biomesmod/icon.png",
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.menonng.biomesmod.fabric.FabricEntry"
+		],
+		"client": [
+			"io.github.menonng.biomesmod.fabric.FabricClientEntry"
+		],
+		"terrablender": [
+			"io.github.menonng.biomesmod.fabric.FabricTerraBlender"
+		]
+	},
+	"mixins": [
+		"biomesmod.mixins.json",
+		"biomesmod.fabric.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.0",
+		"minecraft": "${minecraft_dependency}",
+		"java": ">=${java_version}",
+		"fabric-api": "*",
+		"fabric-language-kotlin": ">=${fabric_kotlin_version}",
+		"terrablender": "*"
+	}
+}

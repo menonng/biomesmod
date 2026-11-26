@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "biomesmod:aletsch_glacier",
+    "biomesmod:amazon_varzea",
+    "biomesmod:antarctic_peninsula",
+    "biomesmod:cordillera_darwin",
+    "biomesmod:daintree",
+    "biomesmod:denali_massif",
+    "biomesmod:everglades",
+    "biomesmod:glacier",
+    "biomesmod:iguazu_falls",
+    "biomesmod:patagonian_icefield",
+    "biomesmod:zhangjiajie"
+  ]
+}

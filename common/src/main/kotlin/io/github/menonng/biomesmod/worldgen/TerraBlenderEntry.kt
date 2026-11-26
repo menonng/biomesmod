@@ -4,17 +4,17 @@ import io.github.menonng.biomesmod.BiomesMod
 import io.github.menonng.biomesmod.ModBiomes
 import io.github.menonng.biomesmod.ModBlocks
 import io.github.menonng.biomesmod.compat.SurfaceRulesCompat
-import terrablender.api.EndBiomeRegistry
+import io.github.menonng.biomesmod.compat.EndCompat
 import terrablender.api.Regions
-import terrablender.api.TerraBlenderApi
 
 /**
- * "terrablender" entrypoint: biome placement for every dimension, all from the generated placements.json.
+ * Biome placement for every dimension, all from the generated placements.json. Each loader calls [init] when
+ * TerraBlender is ready (Fabric: the "terrablender" entrypoint; Forge and NeoForge: common setup).
  * The End also goes through TerraBlender: its TheEndBiomeSource mixin cancels getNoiseBiome, so Fabric API's
  * TheEndBiomes registrations would never generate while TerraBlender is installed.
  */
-class TerraBlenderEntry : TerraBlenderApi {
-	override fun onTerraBlenderInitialized() {
+object TerraBlenderEntry {
+	fun init() {
 		val placements = Placements.get()
 		val carriers = placements.sites.allBiomes()
 		placements.overworldRegions.forEachIndexed { i, region ->
@@ -24,13 +24,7 @@ class TerraBlenderEntry : TerraBlenderApi {
 		for (e in placements.end) {
 			// Vanilla End biomes default to weight 10 each (TerraBlender config).
 			val key = ModBiomes.key(e.biome)
-			when (e.type) {
-				"highlands" -> EndBiomeRegistry.registerHighlandsBiome(key, e.weight)
-				"midlands" -> EndBiomeRegistry.registerMidlandsBiome(key, e.weight)
-				"edge" -> EndBiomeRegistry.registerEdgeBiome(key, e.weight)
-				"islands" -> EndBiomeRegistry.registerIslandBiome(key, e.weight)
-				else -> throw IllegalStateException("Unknown End biome type ${e.type} in ${Placements.RESOURCE}")
-			}
+			EndCompat.register(e.type, key, e.weight)
 		}
 		// Surface rules may name mod blocks; make sure they are registered even if this entrypoint runs first.
 		ModBlocks.ALL.size

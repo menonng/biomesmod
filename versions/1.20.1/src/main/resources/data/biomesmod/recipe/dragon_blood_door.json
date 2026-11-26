@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "biomesmod:dragon_blood_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "biomesmod:dragon_blood_door",
+    "count": 3
+  },
+  "group": "wooden_door"
+}

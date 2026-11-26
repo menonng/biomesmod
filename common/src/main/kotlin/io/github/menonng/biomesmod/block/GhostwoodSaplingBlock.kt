@@ -24,7 +24,7 @@ import java.util.Optional
  * Ghostwood sapling. Alone it grows into a young white tree; nine planted in a 3x3 square grow together into an
  * ancient ghostwood, the giant of the White Old Growth (the same tree that fills the heart of that biome).
  */
-class GhostwoodSaplingBlock(properties: BlockBehaviour.Properties) : Block(properties), BonemealableBlock {
+class GhostwoodSaplingBlock(properties: BlockBehaviour.Properties) : io.github.menonng.biomesmod.compat.CompatBonemealBlock(properties) {
 	override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape = SHAPE
 
 	override fun canSurvive(state: BlockState, level: LevelReader, pos: BlockPos): Boolean = LandformCompat.isSoil(level.getBlockState(pos.below()))
@@ -35,7 +35,7 @@ class GhostwoodSaplingBlock(properties: BlockBehaviour.Properties) : Block(prope
 		}
 	}
 
-	override fun isValidBonemealTarget(level: LevelReader, pos: BlockPos, state: BlockState): Boolean = true
+	override fun canBonemeal(level: LevelReader, pos: BlockPos, state: BlockState): Boolean = true
 
 	override fun isBonemealSuccess(level: Level, random: RandomSource, pos: BlockPos, state: BlockState): Boolean = random.nextFloat() < 0.45f
 

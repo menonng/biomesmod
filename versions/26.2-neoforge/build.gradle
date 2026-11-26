@@ -1,0 +1,5 @@
+plugins {
+	id 'net.neoforged.moddev'
+	id 'org.jetbrains.kotlin.jvm'
+}
+apply from: rootProject.file('neoforge.gradle')

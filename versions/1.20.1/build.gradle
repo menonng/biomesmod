@@ -1,0 +1,27 @@
+plugins {
+	id 'net.fabricmc.fabric-loom-remap'
+	id 'org.jetbrains.kotlin.jvm'
+}
+apply from: rootProject.file('common.gradle')
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
+	modImplementation "net.fabricmc:fabric-language-kotlin:${rootProject.fabric_kotlin_version}"
+}
+
+// 1.20.1 data: the copies in versions/1.20.1 (old loot table, advancement and recipe formats) take the place of the
+// common ones, and the folders get the names they had before 1.21 (recipes/, loot_tables/, tags/blocks/ ...).
+processResources {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	eachFile { f ->
+		def p = f.path
+		def q = p.replaceFirst('^(data/[^/]+/)(loot_table|recipe|advancement)/', '$1$2s/')
+			.replaceFirst('^(data/[^/]+/tags/)(block|item|fluid|entity_type|game_event)/', '$1$2s/')
+		if (q != p) f.path = q
+	}
+}
+tasks.named('sourcesJar') { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }

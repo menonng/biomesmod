@@ -60,7 +60,7 @@ object LandformShowcase {
 			if (only.isNotEmpty() && c.name !in only.split(",")) {
 				continue
 			}
-			val config = LandformConfig.CODEC.parse(ops, JsonParser.parseString(c.json)).getOrThrow()
+			val config = LandformConfig.CODEC.parse(ops, JsonParser.parseString(c.json)).result().orElseThrow()
 			val center = FieldShowcase.find(level, { it.`is`(c.near) }, BlockPos(-k * 2600, 64, k * 2100))
 			if (center == null) {
 				BiomesMod.LOGGER.warn("[showcase] {}: no {} found, skipped", c.name, c.near)

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "biomesmod:star_bloom"
+    }
+  ],
+  "result": {
+    "item": "minecraft:light_blue_dye",
+    "count": 1
+  },
+  "group": "light_blue_dye"
+}

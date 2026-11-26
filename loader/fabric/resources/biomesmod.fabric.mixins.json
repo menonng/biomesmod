@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "io.github.menonng.biomesmod.fabric.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"AxeItemMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -6,7 +6,7 @@ import io.github.menonng.biomesmod.compat.LevelCompat
 import io.github.menonng.biomesmod.terrain.util.WorldSampler
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.chunk.status.ChunkStatus
+import io.github.menonng.biomesmod.compat.ChunkStatusCompat as ChunkStatus
 import net.minecraft.world.level.levelgen.Heightmap
 import java.awt.Color
 import java.awt.image.BufferedImage

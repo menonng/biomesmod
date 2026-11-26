@@ -3,7 +3,7 @@ package io.github.menonng.biomesmod.site
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.context.CommandContext
 import io.github.menonng.biomesmod.worldgen.Placements
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
 import net.minecraft.commands.SharedSuggestionProvider
@@ -20,8 +20,8 @@ import kotlin.math.roundToLong
 object SiteCommand {
 	private const val SEARCH = 40_000
 
-	fun register() {
-		CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+	fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+		run {
 			dispatcher.register(
 				Commands.literal("biomesmod").then(Commands.literal("sites")
 					.executes { list(it, null) }

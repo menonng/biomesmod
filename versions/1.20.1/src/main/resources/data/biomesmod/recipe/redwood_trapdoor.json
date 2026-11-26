@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "biomesmod:redwood_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "biomesmod:redwood_trapdoor",
+    "count": 2
+  },
+  "group": "wooden_trapdoor"
+}

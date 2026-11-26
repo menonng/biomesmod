@@ -3,7 +3,7 @@ package io.github.menonng.biomesmod
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.fabricmc.loader.api.FabricLoader
+import io.github.menonng.biomesmod.platform.Loader
 import java.nio.file.Files
 import kotlin.math.max
 import kotlin.math.min
@@ -46,7 +46,7 @@ object BiomesConfig {
 	val mirrorBlock: Boolean
 
 	init {
-		val path = FabricLoader.getInstance().configDir.resolve("biomesmod.json")
+		val path = Loader.hooks.configDir.resolve("biomesmod.json")
 		val root = try {
 			if (Files.exists(path)) JsonParser.parseString(Files.readString(path)).asJsonObject else JsonObject()
 		} catch (e: Exception) {

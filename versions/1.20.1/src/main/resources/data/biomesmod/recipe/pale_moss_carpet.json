@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "biomesmod:pale_moss"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "biomesmod:pale_moss_carpet",
+    "count": 3
+  }
+}

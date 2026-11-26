@@ -1,0 +1,55 @@
+{
+  "values": {
+    "biomesmod:dragon_blood_leaves": {
+      "chance": 0.3
+    },
+    "biomesmod:ghostwood_leaves": {
+      "chance": 0.3
+    },
+    "biomesmod:redwood_leaves": {
+      "chance": 0.3
+    },
+    "biomesmod:dragon_blood_sapling": {
+      "chance": 0.3
+    },
+    "biomesmod:redwood_sapling": {
+      "chance": 0.3
+    },
+    "biomesmod:ghostwood_sapling": {
+      "chance": 0.3
+    },
+    "biomesmod:tussock_grass": {
+      "chance": 0.3
+    },
+    "biomesmod:silver_beard": {
+      "chance": 0.3
+    },
+    "biomesmod:astral_roots": {
+      "chance": 0.3
+    },
+    "biomesmod:pale_moss_carpet": {
+      "chance": 0.3
+    },
+    "biomesmod:yareta": {
+      "chance": 0.5
+    },
+    "biomesmod:pale_moss": {
+      "chance": 0.65
+    },
+    "biomesmod:pale_fern": {
+      "chance": 0.65
+    },
+    "biomesmod:desert_rose": {
+      "chance": 0.65
+    },
+    "biomesmod:moonpetal": {
+      "chance": 0.65
+    },
+    "biomesmod:star_bloom": {
+      "chance": 0.65
+    },
+    "biomesmod:moon_bracket": {
+      "chance": 0.65
+    }
+  }
+}

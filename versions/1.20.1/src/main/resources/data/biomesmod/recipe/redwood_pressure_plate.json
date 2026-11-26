@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "biomesmod:redwood_planks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "item": "biomesmod:redwood_pressure_plate",
+    "count": 1
+  },
+  "group": "wooden_pressure_plate"
+}

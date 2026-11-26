@@ -209,7 +209,7 @@ def leaves_loot(out, name, sapling):
 
 # ---------------------------------------------------------------- recipes
 
-def recipes(out, woods, versions=('1.21.1', '26.2')):
+def recipes(out, woods, versions=('1.20.1', '1.21.1', '26.2')):
     """Crafting and smelting recipes, written per version (the ingredient format differs), each with the advancement that
     puts it into the recipe book."""
     table = {}
@@ -266,7 +266,11 @@ def recipes(out, woods, versions=('1.21.1', '26.2')):
             if fn not in keep:
                 os.remove(os.path.join(d, fn))
         for name, (unlock, make) in table.items():
-            out.write(os.path.join(d, name + '.json'), make(old if mc == '1.21.1' else (lambda i: i)))
+            r = make(old if mc in ('1.20.1', '1.21.1') else (lambda i: i))
+            if mc == '1.20.1':  # results were {"item": ...} (crafting) and a plain id (smelting) before 1.20.5
+                res = r['result']
+                r['result'] = res['id'] if r['type'] == 'minecraft:smelting' else dict({'item': res['id']}, **({'count': res['count']} if 'count' in res else {}))
+            out.write(os.path.join(d, name + '.json'), r)
     for name, (unlock, make) in table.items():
         rid = f'{MOD}:{name}'
         out.write(f'data/{MOD}/advancement/recipes/{name}.json', {

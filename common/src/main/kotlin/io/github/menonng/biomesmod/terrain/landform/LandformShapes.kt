@@ -21,12 +21,12 @@ object LandformShapes {
 		GeyserShape.NAME to GeyserShape.CODEC,
 	)
 
-	private val NAME: Codec<String> = Codec.STRING.validate { s ->
+	private val NAME: Codec<String> = Codec.STRING.flatXmap({ s ->
 		if (CODECS.containsKey(s)) DataResult.success(s)
 		else DataResult.error { "Unknown landform shape '$s', expected one of ${CODECS.keys}" }
-	}
+	}, { DataResult.success(it) })
 
-	internal val MAP_CODEC: MapCodec<LandformShape> = NAME.dispatchMap("shape", { it.name() }, { CODECS[it]!! })
+	internal val MAP_CODEC: MapCodec<LandformShape> = io.github.menonng.biomesmod.compat.CodecCompat.dispatchMap(NAME, "shape", { it.name() }, { CODECS[it]!! })
 
 	fun names(): Iterable<String> = CODECS.keys
 }

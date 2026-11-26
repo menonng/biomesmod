@@ -392,7 +392,7 @@ internal object SelfCheck {
 		val cx = center.x shr 4
 		val cz = center.z shr 4
 		for (dz in -10..10) for (dx in -10..10) {
-			val chunk = level.getChunk(cx + dx, cz + dz, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+			val chunk = level.getChunk(cx + dx, cz + dz, io.github.menonng.biomesmod.compat.ChunkStatusCompat.STRUCTURE_STARTS)
 			for ((structure, start) in chunk.allStarts) {
 				if (!start.isValid) continue
 				val id = names[structure] ?: "?"
@@ -428,7 +428,7 @@ internal object SelfCheck {
 					if (spot == null) continue
 					tried++
 					val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, spot, 16, false) ?: continue
-					val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+					val chunk = level.getChunk(at.x shr 4, at.z shr 4, io.github.menonng.biomesmod.compat.ChunkStatusCompat.STRUCTURE_STARTS)
 					for ((_, start) in chunk.allStarts) {
 						if (!found && start.isValid && start.pieces.size > 8 && level.getBiome(start.boundingBox.center).`is`(entry.key)) {
 							found = true
@@ -444,7 +444,7 @@ internal object SelfCheck {
 			controlDone = true
 			for (k in 0 until 3) {
 				val at = level.findNearestMapStructure(net.minecraft.tags.StructureTags.VILLAGE, BlockPos(20000 + k * 3000, 64, 20000), 100, false) ?: continue
-				val chunk = level.getChunk(at.x shr 4, at.z shr 4, net.minecraft.world.level.chunk.status.ChunkStatus.STRUCTURE_STARTS)
+				val chunk = level.getChunk(at.x shr 4, at.z shr 4, io.github.menonng.biomesmod.compat.ChunkStatusCompat.STRUCTURE_STARTS)
 				for ((_, start) in chunk.allStarts) {
 					if (start.isValid && start.pieces.size > 8) villageFit(level, start, "control_" + k + " " + Ids.name(level.getBiome(at).unwrapKey().get()))
 				}

@@ -1,0 +1,72 @@
+// Applied by every versions/<mc>-neoforge/build.gradle (ModDevGradle). The jar is built from the same shared code as
+// the Fabric one (common/), the Minecraft-version shims of the matching Fabric project (versions/<mc>, without its
+// fabric/ package) and the NeoForge glue (loader/neoforge).
+version = "${rootProject.mod_version}+${project.minecraft_version}-neoforge"
+group = rootProject.maven_group
+base { archivesName = rootProject.archives_base_name }
+
+repositories {
+	maven { name = 'Glitchfiend (TerraBlender)'; url = 'https://maven.minecraftforge.net/' }
+	maven { name = 'Kotlin for Forge'; url = 'https://thedarkcolour.github.io/KotlinForForge/' }
+}
+
+def mcDir = rootProject.file("versions/${project.mc_dir}/src/main")
+sourceSets.main {
+	kotlin.srcDir(rootProject.file('common/src/main/kotlin'))
+	resources.srcDir(rootProject.file('common/src/main/resources'))
+	kotlin.srcDir(new File(mcDir, 'kotlin'))
+	resources.srcDir(new File(mcDir, 'resources'))
+	kotlin.srcDir(rootProject.file('loader/neoforge/kotlin'))
+	resources.srcDir(rootProject.file('loader/neoforge/resources'))
+	kotlin.exclude('**/biomesmod/fabric/**')
+}
+
+java {
+	toolchain.languageVersion = JavaLanguageVersion.of(project.java_version as int)
+	withSourcesJar()
+}
+
+neoForge {
+	version = project.neoforge_version
+	mods {
+		biomesmod { sourceSet sourceSets.main }
+	}
+	runs {
+		// Headless self-check, as runSelfCheck on Fabric: ./gradlew :<mc>-neoforge:runServer [-Pbiomes=a,b]
+		server {
+			server()
+			gameDirectory = project.file('run/selfcheck')
+			systemProperty 'biomesmod.selfcheck', 'true'
+			systemProperty 'biomesmod.selfcheck.only', project.findProperty('biomes') ?: ''
+			programArgument '--nogui'
+			jvmArgument '-Xmx4G'
+		}
+	}
+}
+
+dependencies {
+	implementation "com.github.glitchfiend:TerraBlender-neoforge:${project.terrablender_version}"
+	implementation "thedarkcolour:kotlinforforge-neoforge:${project.kff_version}"
+}
+
+processResources {
+	def props = [version: project.version, minecraft_range: project.minecraft_range, neoforge_min: project.neoforge_min]
+	inputs.properties props
+	filesMatching('META-INF/neoforge.mods.toml') { expand props }
+}
+
+jar {
+	from(rootProject.file('LICENSE')) { rename { 'LICENSE_biomesmod' } }
+}
+
+// Fresh world every run, like the Fabric self-check.
+tasks.matching { it.name == 'runServer' }.configureEach {
+	doFirst {
+		def dir = project.file('run/selfcheck')
+		delete new File(dir, 'world')
+		dir.mkdirs()
+		new File(dir, 'eula.txt').text = 'eula=true\n'
+		def props = new File(dir, 'server.properties')
+		if (!props.exists()) props.text = 'level-seed=0\nonline-mode=false\nspawn-protection=0\nmax-tick-time=-1\n'
+	}
+}

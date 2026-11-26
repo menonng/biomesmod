@@ -1,6 +1,5 @@
 package io.github.menonng.biomesmod.compat
 
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Registry
 import net.minecraft.core.particles.ColorParticleOption
@@ -9,7 +8,6 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.BlockItem
-import net.minecraft.world.item.CreativeModeTabs
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock
@@ -39,11 +37,6 @@ object BlockCompat {
 	fun <T : BlockEntity> blockEntity(name: String, factory: (BlockPos, BlockState) -> T, vararg blocks: Block): BlockEntityType<T> =
 		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Ids.id(name), BlockEntityType({ p, s -> factory(p, s) }, setOf(*blocks)))
 
-	/** Adds the items to the Natural Blocks creative tab. */
-	fun naturalTab(items: List<Item>) {
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register { output -> items.forEach { output.accept(it) } }
-	}
-
 	/** [tall]: a two-block item such as a door. */
 	fun item(name: String, block: Block, tall: Boolean = false): Item {
 		val key = ResourceKey.create(Registries.ITEM, Ids.id(name))
@@ -51,11 +44,4 @@ object BlockCompat {
 		return Registry.register(BuiltInRegistries.ITEM, key,
 			if (tall) net.minecraft.world.item.DoubleHighBlockItem(block, properties) else BlockItem(block, properties))
 	}
-
-	fun buildingTab(items: List<Item>) {
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register { output -> items.forEach { output.accept(it) } }
-	}
-
-	/** 26.2 picks each quad's render layer from its texture's alpha, so cut-out textures need no registration. */
-	fun cutout(blocks: List<Block>, mipped: List<Block>) {}
 }

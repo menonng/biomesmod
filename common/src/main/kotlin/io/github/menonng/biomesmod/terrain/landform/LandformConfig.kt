@@ -56,9 +56,9 @@ class LandformConfig(
 	internal fun riseFromSea(): Boolean = riseFrom == "sea_level"
 
 	companion object {
-		private val RISE: Codec<String> = Codec.STRING.validate { s ->
+		private val RISE: Codec<String> = Codec.STRING.flatXmap({ s ->
 			if (s == "ground" || s == "sea_level") DataResult.success(s) else DataResult.error { "rise_from must be ground or sea_level: $s" }
-		}
+		}, { DataResult.success(it) })
 
 		@JvmField
 		val CODEC: Codec<LandformConfig> = RecordCodecBuilder.create { i ->

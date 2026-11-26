@@ -468,6 +468,8 @@ def main():
             json.dump(lang, f, indent=2, ensure_ascii=False)
             f.write("\n")
     print("%d blocks, %d recipes written" % (len(BLOCKS) + len(out.names), n_recipes))
+    import legacy120  # noqa: E402  (1.20.1 copies of the data whose format changed in 1.20.5)
+    legacy120.main()
 
 
 if __name__ == "__main__":

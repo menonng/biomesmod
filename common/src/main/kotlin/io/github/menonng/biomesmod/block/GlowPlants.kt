@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState
  * particle drift off: the star bloom of the Star Abyss, the moon bracket fungus on white old-growth trunks.
  */
 class GlowClusterBlock(height: Float, width: Float, properties: BlockBehaviour.Properties, private val particle: () -> ParticleOptions,
-	private val chance: Int) : AmethystClusterBlock(height, width, properties) {
+	private val chance: Int) : io.github.menonng.biomesmod.compat.CompatCluster(height, width, properties) {
 	override fun animateTick(state: BlockState, level: Level, pos: BlockPos, random: RandomSource) {
 		if (random.nextInt(chance) == 0) {
 			level.addParticle(particle(), pos.x + 0.2 + random.nextDouble() * 0.6, pos.y + 0.3 + random.nextDouble() * 0.5,

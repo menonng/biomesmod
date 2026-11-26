@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "biomesmod-gametest",
+	"version": "1.0.0",
+	"name": "Biomes Mod (dev showcases)",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.menonng.biomesmod.test.Showcases"
+		]
+	},
+	"depends": {
+		"biomesmod": "*"
+	}
+}

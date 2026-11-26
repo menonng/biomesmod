@@ -1,13 +1,9 @@
 package io.github.menonng.biomesmod.compat
 
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
-import net.minecraft.client.renderer.RenderType
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.BlockItem
-import net.minecraft.world.item.CreativeModeTabs
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.LeavesBlock
@@ -35,23 +31,8 @@ object BlockCompat {
 		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Ids.id(name),
 			BlockEntityType.Builder.of({ p, s -> factory(p, s) }, *blocks).build(null))
 
-	/** Adds the items to the Natural Blocks creative tab. */
-	fun naturalTab(items: List<Item>) {
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register { entries -> items.forEach { entries.accept(it) } }
-	}
-
 	/** [tall]: a two-block item such as a door. */
 	fun item(name: String, block: Block, tall: Boolean = false): Item =
 		Registry.register(BuiltInRegistries.ITEM, Ids.id(name),
 			if (tall) net.minecraft.world.item.DoubleHighBlockItem(block, Item.Properties()) else BlockItem(block, Item.Properties()))
-
-	fun buildingTab(items: List<Item>) {
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register { entries -> items.forEach { entries.accept(it) } }
-	}
-
-	/** Client only: cut-out render layers (plants, crystals) and mipped cut-out (leaves). */
-	fun cutout(blocks: List<Block>, mipped: List<Block>) {
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), *blocks.toTypedArray())
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutoutMipped(), *mipped.toTypedArray())
-	}
 }

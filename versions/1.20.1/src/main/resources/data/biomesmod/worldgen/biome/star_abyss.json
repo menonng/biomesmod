@@ -1,0 +1,65 @@
+{
+  "carvers": {},
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 1317448,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:end_rod"
+      },
+      "probability": 0.005
+    },
+    "sky_color": 329242,
+    "water_color": 4874198,
+    "water_fog_color": 659248
+  },
+  "features": [
+    [
+      "biomesmod:star_abyss_rock"
+    ],
+    [],
+    [
+      "biomesmod:star_abyss_wells"
+    ],
+    [],
+    [
+      "minecraft:end_gateway_return"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "biomesmod:star_abyss_isles",
+      "biomesmod:star_abyss_crystals",
+      "biomesmod:star_abyss_blooms",
+      "biomesmod:star_abyss_buds"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "maxCount": 4,
+        "minCount": 4,
+        "type": "minecraft:enderman",
+        "weight": 10
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}
